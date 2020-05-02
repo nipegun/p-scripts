@@ -29,7 +29,7 @@ wget -q --tries=10 --timeout=20 --spider https://github.com
     mkdir -p /root/scripts/p-scripts/Alias/
     rm /root/scripts/p-scripts/.git -R 2> /dev/null
     chmod +x /root/scripts/p-scripts/*.sh -R
-    /root/scripts/d-scripts/CrearAliasParaLosPScripts.sh
+    /root/scripts/p-scripts/CrearAliasParaLosPScripts.sh
     echo ""
     echo "-----------------------------------------"
     echo -e "  ${ColorVerde}p-scripts sincronizados correctamente${FinColor}"
