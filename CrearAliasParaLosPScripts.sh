@@ -21,3 +21,4 @@ ln -s /root/scripts/d-scripts/SINcronizarPScripts.sh                       /root
 echo ""
 echo -e "${ColorVerde}Alias creados. Deberías poder ejecutar los d-scripts escribiendo el nombre de su alias.${FinColor}"
 echo ""
+
