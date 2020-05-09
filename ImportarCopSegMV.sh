@@ -9,7 +9,7 @@
 #  Script de NiPeGun para importar una copia de seguridad de una MV
 #--------------------------------------------------------------------
 
-CantArgsEsperados=2
+CantArgsEsperados=3
 ArgsInsuficientes=65
 
 ColorAdvertencia='\033[1;31m'
@@ -22,21 +22,16 @@ if [ $# -ne $CantArgsEsperados ]
     echo "------------------------------------------------------------------------------"
     echo -e "${ColorAdvertencia}Mal uso del script.${FinColor} El uso correcto sería:"
     echo ""
-    echo -e "$0 ${ColorArgumentos}[NombreCompletoDelArchivo] [IDDeLaMV]${FinColor}"
+    echo -e "$0 ${ColorArgumentos}[NombreCompletoDelArchivo] [IDDeLaNuevaMV] [Almacenamiento]${FinColor}"
     echo ""
     echo "Ejemplo:"
-    echo "$0 windowsxp.vma.gz 130"
-    echo ""
-    echo "Tienes disponibles las siguientes copias de seguridad:"
-    echo ""
-    ls /var/lib/vz/dump/
-    echo ""
+    echo "$0 windowsxp.vma.gz 130 local-lvm" 
     echo "------------------------------------------------------------------------------"
     echo ""
     exit $ArgsInsuficientes
   else
     echo ""
-    qmrestore /var/lib/vz/dump/$1 $2
+    qmrestore $1 $2 -storage $3
     echo ""
 fi
 
