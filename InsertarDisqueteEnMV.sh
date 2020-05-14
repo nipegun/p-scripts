@@ -17,8 +17,8 @@ echo ""
 echo "¿Quieres insertar el disquete apagando la máquina?"
 select yn in "Si" "No, cancelar"; do
     case $yn in
-        Yes ) echo "Insertando disquete y reárrancando la MV..."; break;;
-        No ) exit;;
+        Si ) echo "Insertando disquete y reárrancando la MV..."; break;;
+        No, cancelar ) exit;;
     esac
 done
 
