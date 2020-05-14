@@ -19,14 +19,14 @@ FinColor='\033[0m'
 if [ $# -ne $ArgumentosNecesarios ]
   then
     echo ""
-    echo "-------------------------------------------------------------------------"
+    echo "------------------------------------------------------------------------------"
     echo -e "${InicioColorRojo}Mal uso del script.${FinColor} El uso correcto sería:"
     echo ""
     echo -e "$0 ${InicioColorVerde}[IDDeLaVM] [ArchivoDeImagen]${FinColor}"
     echo ""
     echo "Ejemplo:"
-    echo "AgrandarDiscoVirtual 206 sata1 5"
-    echo "-------------------------------------------------------------------------"
+    echo "$0 206 /home/pepe/Disquete con datos.ima"
+    echo "------------------------------------------------------------------------------"
     echo ""
     exit $ArgumentosInsuficientes
   else
