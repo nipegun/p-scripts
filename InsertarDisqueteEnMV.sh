@@ -14,7 +14,7 @@ echo "Para insertar el disquete en la máquina virtual ésta debe primero apagar
 echo ""
 
 while true; do
-    read -p 'Escribe "Si" para insertar el disquete apagando la máquina o "No" para cancelar...' yn
+    read -p "Presiona [S] para insertar el disquete apagando la máquina o [N] para cancelar... " yn
     case $yn in
         [Yy]* ) comands; break;;
         [Nn]* ) exit;;
