@@ -14,7 +14,7 @@ echo ""
 echo "Para insertar el disquete en la máquina virtual ésta debe primero apagarse."
 echo ""
 
-echo "¿Quieres instertar el disquete apagando la máquina?"
+echo "¿Quieres insertar el disquete apagando la máquina?"
 select yn in "Si" "No, cancelar"; do
     case $yn in
         Yes ) echo "Insertando disquete y reárrancando la MV..."; break;;
