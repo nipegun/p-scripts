@@ -17,7 +17,7 @@ while true; do
     read -p "Presiona [S] para insertar el disquete apagando la máquina o [N] para cancelar... " yn
     case $yn in
         [Yy]* ) comands; break;;
-        [Nn]* ) exit;;
+        [Nn]* ) echo "Cancelando ..."; exit;;
         * ) echo "Responde S o N";;
     esac
 done
