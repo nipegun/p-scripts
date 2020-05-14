@@ -15,5 +15,6 @@ echo "Presiona x para apagar la máquina virtual e insertar el disquete, o Z par
 echo ""
 read -p "Presiona [Enter] para continuar apagando la máquina o cualquier otra tecla para cancelar..."
 echo ""
+#qm stop $1
 #$ComandoInicioMV "-drive file=$2,if=floppy,index=0"
 
