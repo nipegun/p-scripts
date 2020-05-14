@@ -13,6 +13,14 @@ ComandoInicioMV=$(qm showcmd $1)
 echo "Para insertar el disquete en la máquina virtual ésta debe primero apagarse."
 echo ""
 
+echo "Do you wish to install this program?"
+select yn in "Yes" "No"; do
+    case $yn in
+        Yes ) make install; break;;
+        No ) exit;;
+    esac
+done
+
 while true; do
     read -p "Presiona [S] para insertar el disquete apagando la máquina o [N] para cancelar... " yn
     case $yn in
