@@ -46,6 +46,13 @@ if [ $# -ne $ArgumentosNecesarios ]
              ComandoFinal=$ComandoInicio$ComandoAgregado
              qm stop $1
              $ComandoFinal
+             echo ""
+             echo "Si la máquina virtual no arranca o lo anterior te dio un eror, copia esta línea:"
+             echo ""
+             echo $ComandoFinal
+             echo ""
+             echo "Y ejecútala manualmente."
+             echo ""
              break;;
         No ) echo "";
              echo "Operación cancelada.";
