@@ -53,6 +53,8 @@ if [ $# -ne $ArgumentosNecesarios ]
              echo ""
              echo "Y ejecútala manualmente."
              echo ""
+             echo "NOTA: La imagen de disco se expulsará automáticamente al apagar la MV."
+             echo ""
              break;;
         No ) echo "";
              echo "Operación cancelada.";
