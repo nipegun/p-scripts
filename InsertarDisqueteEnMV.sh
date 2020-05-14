@@ -20,6 +20,10 @@ select yn in "Si" "No"; do
     Si ) echo "";
          echo "Insertando disquete y re-arrancando la MV...";
          echo "";
+         ComandoInicioMV=$(qm showcmd $1)
+         ComandoFinalMV=$ComandoInicioMV + "-drive file=$2,if=floppy,index=0"
+         #qm stop $1
+         echo $ComandoFinalMV
          break;;
     No ) echo "";
          echo "Operación cancelada.";
