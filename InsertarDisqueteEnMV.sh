@@ -16,19 +16,27 @@ echo ""
 
 echo "¿Quieres insertar el disquete apagando la máquina? (Número + [Enter] para elegir)"
 select yn in "Si" "No"; do
-    case $yn in
-        Si ) echo ""; echo "Insertando disquete y reárrancando la MV..."; echo ""; break;;
-        No ) echo ""; echo "Operación cancelada."; echo ""; exit;;
-        * ) echo ""; echo "Opción incorrecta. Elige 1 o 2."; echo "";;
-    esac
+  case $yn in
+    Si ) echo "";
+         echo "Insertando disquete y re-arrancando la MV...";
+         echo "";
+         break;;
+    No ) echo "";
+         echo "Operación cancelada.";
+         echo "";
+         exit;;
+     * ) echo "";
+         echo "Opción incorrecta. Elige 1 o 2.";
+         echo "";;
+  esac
 done
 
-while true; do
-    read -p "Presiona [S] para insertar el disquete apagando la máquina o [N] para cancelar... " yn
-    case $yn in
-        [Yy]* ) comands; break;;
-        [Nn]* ) echo ""; echo "Operación cancelada."; echo ""; exit;;
-        * ) echo "Responde S o N";;
-    esac
-done
+#while true; do
+#    read -p "Presiona [S] para insertar el disquete apagando la máquina o [N] para cancelar... " yn
+#    case $yn in
+#        [Yy]* ) comands; break;;
+#        [Nn]* ) echo ""; echo "Operación cancelada."; echo ""; exit;;
+#        * ) echo "Responde S o N";;
+#    esac
+#done
 
