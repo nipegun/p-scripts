@@ -12,13 +12,6 @@
 ComandoInicioMV=$(qm showcmd $1)
 echo "Para insertar el disquete en la máquina virtual ésta debe primero apagarse."
 echo ""
-echo "Presiona [S] para insertar el disquete apagando la máquina o [N] para cancelar..."
-select sn in "Si" "No"; do
-    case $sn in
-        Si ) #qm stop $1; #$ComandoInicioMV "-drive file=$2,if=floppy,index=0"; break;;
-        No ) exit;;
-    esac
-done
 
 while true; do
     read -p "Presiona [S] para insertar el disquete apagando la máquina o [N] para cancelar..." yn
