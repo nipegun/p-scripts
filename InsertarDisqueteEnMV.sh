@@ -25,7 +25,7 @@ if [ $# -ne $ArgumentosNecesarios ]
     echo -e "$0 ${InicioColorVerde}[IDDeLaVM] [ArchivoDeImagen]${FinColor}"
     echo ""
     echo "Ejemplo:"
-    echo '"'$0'" 206 "/home/pepe/Disquete con datos.ima"'
+    echo ''$0' 206 "/home/pepe/Disquete con datos.ima"'
     echo "-----------------------------------------------------------------------------------------"
     echo ""
     exit $ArgumentosInsuficientes
