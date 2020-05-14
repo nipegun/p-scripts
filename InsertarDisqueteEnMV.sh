@@ -42,9 +42,10 @@ if [ $# -ne $ArgumentosNecesarios ]
              echo "Insertando disquete y re-arrancando la MV...";
              echo "";
              ComandoInicio=$(qm showcmd $1)
-             ComandoAgregado="-drive file=$2,if=floppy,index=0"
+             ComandoAgregado='-drive file="$2",if=floppy,index=0'
              ComandoFinal=$ComandoInicio$ComandoAgregado
              qm stop $1
+             echo $ComandoFinal
              $ComandoFinal
              break;;
         No ) echo "";
