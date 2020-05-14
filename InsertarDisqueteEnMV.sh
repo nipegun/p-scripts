@@ -10,5 +10,6 @@
 #---------------------------------------------------------------------------------
 
 ComandoInicioMV=$(qm showcmd $1)
-echo $ComandoInicioMV
-
+echo "Para insertar el disquete en la máquina virtual ésta debe primero apagarse."
+echo "Presiona x para apagar la máquina virtual e insertar el disquete, o Z para cancelar "
+read -p "Presiona Enter para continuar"
