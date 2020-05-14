@@ -45,8 +45,7 @@ if [ $# -ne $ArgumentosNecesarios ]
              ComandoAgregado="-drive file=$2,if=floppy,index=0"
              ComandoFinal=$ComandoInicio$ComandoAgregado
              qm stop $1
-             echo $ComandoAgregado
-             echo $ComandoFinal
+             $ComandoFinal
              break;;
         No ) echo "";
              echo "Operación cancelada.";
