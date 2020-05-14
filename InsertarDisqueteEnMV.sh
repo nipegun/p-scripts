@@ -19,7 +19,7 @@ select yn in "Si" "No"; do
     case $yn in
         Si ) echo ""; echo "Insertando disquete y reárrancando la MV..."; echo ""; break;;
         No ) echo ""; echo "Operación cancelada."; echo ""; exit;;
-        * ) echo ""; echo "Opción incorrecta. Elige 1 0 2."; echo "";;
+        * ) echo ""; echo "Opción incorrecta. Elige 1 o 2."; echo "";;
     esac
 done
 
