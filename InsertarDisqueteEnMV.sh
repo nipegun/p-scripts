@@ -18,7 +18,7 @@ echo "¿Quieres insertar el disquete apagando la máquina?"
 select yn in "Si" "No"; do
     case $yn in
         Si ) echo "Insertando disquete y reárrancando la MV..."; break;;
-        No ) exit;;
+        No ) echo "Operación cancelada."; exit;;
     esac
 done
 
