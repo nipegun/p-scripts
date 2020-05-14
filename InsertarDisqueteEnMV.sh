@@ -9,40 +9,53 @@
 #  Script de NiPeGun para insertar una imagen de disquete en una MV de ProxmoxVE
 #---------------------------------------------------------------------------------
 
-ComandoInicioMV=$(qm showcmd $1)
-echo ""
-echo "Para insertar el disquete en la máquina virtual ésta debe primero apagarse."
-echo ""
+ArgumentosNecesarios=2
+ArgumentosInsuficientes=65
 
-echo "¿Quieres insertar el disquete apagando la máquina? (Número + [Enter] para elegir)"
-select yn in "Si" "No"; do
-  case $yn in
-    Si ) echo "";
-         echo "Insertando disquete y re-arrancando la MV...";
-         echo "";
-         ComandoInicio=$(qm showcmd $1)
-         ComandoAgregado="-drive file=$2,if=floppy,index=0"
-         ComandoFinal=$ComandoInicio$ComandoAgregado
-         qm stop $1
-         echo $ComandoAgregado
-         echo $ComandoFinal
-         break;;
-    No ) echo "";
-         echo "Operación cancelada.";
-         echo "";
-         exit;;
-     * ) echo "";
-         echo "Opción incorrecta. Elige 1 o 2.";
-         echo "";;
-  esac
-done
+InicioColorRojo='\033[1;31m'
+InicioColorVerde='\033[1;32m'
+FinColor='\033[0m'
 
-#while true; do
-#    read -p "Presiona [S] para insertar el disquete apagando la máquina o [N] para cancelar... " yn
-#    case $yn in
-#        [Yy]* ) comands; break;;
-#        [Nn]* ) echo ""; echo "Operación cancelada."; echo ""; exit;;
-#        * ) echo "Responde S o N";;
-#    esac
-#done
+if [ $# -ne $ArgumentosNecesarios ]
+  then
+    echo ""
+    echo "-------------------------------------------------------------------------"
+    echo -e "${InicioColorRojo}Mal uso del script.${FinColor} El uso correcto sería:"
+    echo ""
+    echo -e "$0 ${InicioColorVerde}[IDDeLaVM] [ArchivoDeImagen]${FinColor}"
+    echo ""
+    echo "Ejemplo:"
+    echo "AgrandarDiscoVirtual 206 sata1 5"
+    echo "-------------------------------------------------------------------------"
+    echo ""
+    exit $ArgumentosInsuficientes
+  else
+    echo ""
+    echo "Para insertar el disquete en la máquina virtual ésta debe primero apagarse."
+    echo ""
+
+    echo "¿Quieres insertar el disquete apagando la máquina? (Número + [Enter] para elegir)"
+    select yn in "Si" "No";
+    do
+      case $yn in
+        Si ) echo "";
+             echo "Insertando disquete y re-arrancando la MV...";
+             echo "";
+             ComandoInicio=$(qm showcmd $1)
+             ComandoAgregado="-drive file=$2,if=floppy,index=0"
+             ComandoFinal=$ComandoInicio$ComandoAgregado
+             qm stop $1
+             echo $ComandoAgregado
+             echo $ComandoFinal
+             break;;
+        No ) echo "";
+             echo "Operación cancelada.";
+             echo "";
+             exit;;
+         * ) echo "";
+             echo "Opción incorrecta. Elige 1 o 2.";
+             echo "";;
+      esac
+    done
+fi
 
