@@ -89,11 +89,9 @@ echo "  broadcast 192.168.1.255" >> /etc/network/interfaces
 echo "  bridge-ports $interfazinalambrica1 $interfazcableada3 $interfazcableada4 $interfazcableada5 $interfazcableada6 " >> /etc/network/interfaces
 
 echo ""
-echo "--------------------------------------------"
-echo "   INDICANDO LA UBICACIÓN DEL ARCHIVO DE"
-echo "  CONFIGURACIÓN DEL DEMONIO DHCPD ASI COMO"
-echo "     LA INTERFAZ SOBRE LA QUE CORRERÁ"
-echo "--------------------------------------------"
+echo "------------------------------------------------------------------------------------------------------------------"
+echo " INDICANDO LA UBICACIÓN DEL ARCHIVO DE CONFIGURACIÓN DEL DEMONIO DHCPD ASI COMO LA INTERFAZ SOBRE LA QUE CORRERÁ"
+echo "------------------------------------------------------------------------------------------------------------------"
 echo ""
 cp /etc/default/isc-dhcp-server /etc/default/isc-dhcp-server.bak
 sed -i -e 's|#DHCPDv4_CONF=/etc/dhcp/dhcpd.conf|DHCPDv4_CONF=/etc/dhcp/dhcpd.conf|g' /etc/default/isc-dhcp-server
@@ -120,13 +118,13 @@ echo "  }" >> /etc/dhcp/dhcpd.conf
 echo "}" >> /etc/dhcp/dhcpd.conf
 
 echo ""
-echo "------------------------------------"
-echo "    INDICANDO LA UBICACIÓN DE LA"
-echo "  CONFIGURACIÓN DEL DAEMON HOSTAPD"
-echo "------------------------------------"
+echo "-----------------------------------------------------------------"
+echo "  INDICANDO LA UBICACIÓN DE LA CONFIGURACIÓN DEL DAEMON HOSTAPD"
+echo "-----------------------------------------------------------------"
 echo ""
 cp /etc/default/hostapd /etc/default/hostapd.bak
 sed -i -e 's|#DAEMON_CONF=""|DAEMON_CONF="/etc/hostapd/hostapd.conf"|g' /etc/default/hostapd
+sed -i -e 's|#DAEMON_OPTS=""|DAEMON_OPTS="-dd -t -f /var/log/hostapd.log"|g' /etc/default/hostapd
 
 echo ""
 echo "-----------------------------------"
