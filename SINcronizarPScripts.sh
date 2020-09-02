@@ -28,7 +28,7 @@ wget -q --tries=10 --timeout=20 --spider https://github.com
     git clone --depth=1 https://github.com/nipegun/p-scripts
     mkdir -p /root/scripts/p-scripts/Alias/
     rm /root/scripts/p-scripts/.git -R 2> /dev/null
-    chmod +x /root/scripts/p-scripts/*.sh -R
+    find /root/scripts/p-scripts/ -type f -iname "*.sh" -exec chmod +x {} \;
     /root/scripts/p-scripts/CrearAliasParaLosPScripts.sh
     echo ""
     echo "-----------------------------------------"
