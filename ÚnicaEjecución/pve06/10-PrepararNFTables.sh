@@ -16,6 +16,7 @@ FinColor='\033[0m'
 echo ""
 echo -e "${ColorVerde}Creando el archivo para meter los comandos...${FinColor}"
 echo ""
+apt-get -y install nftables
 echo '#!/bin/bash' > /root/scripts/ComandosNFTables.sh
 echo "" >> /root/scripts/ComandosNFTables.sh
 echo "#  ESCRIBE ABAJO, UNO POR LÍNEA, LOS COMANDOS DE NFTABLES A EJECUTAR AL ARRANQUE"  >> /root/scripts/ComandosNFTables.sh
