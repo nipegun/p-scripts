@@ -71,7 +71,7 @@ menu=(dialog --timeout 5 --checklist "Elección de escritorio:" 22 76 16)
             echo -e "${ColorVerde}Instalando escritorio Mate...${FinColor}"
             echo ""
             tasksel install mate-dektop
-            /root/nipe-scripts/debian10/ÚnicaEjecución/Escritorio/PostInstalaciónDeEscritorioMate 
+            /root/d-scripts/ÚnicaEjecución/debian10/Escritorio/PostInstalaciónDeEscritorioMate.sh
             systemctl disable NetworkManager.service
           ;;
 
