@@ -10,6 +10,16 @@
 #---------------------------------------------------------------
 
 aso
+for VerKenrel in {1..9}
+
+      do
+        for SubVerKernel in {1..128}
+          do
+  
+
+          done
+      done
+aso
 apt-get -y remove pve-kernel-4.10.1-2-pve  pve-headers-4.10.1-2-pve
 apt-get -y remove pve-kernel-4.10.5-1-pve  pve-headers-4.10.5-1-pve
 apt-get -y remove pve-kernel-4.10.8-1-pve  pve-headers-4.10.8-1-pve
