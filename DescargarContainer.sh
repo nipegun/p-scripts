@@ -12,17 +12,17 @@
 CantArgsEsperados=1
 ArgsInsuficientes=65
 
-ColorAdvertencia='\033[1;31m'
-ColorArgumentos='\033[1;32m'
+ColorRojo='\033[1;31m'
+ColorVerde='\033[1;32m'
 FinColor='\033[0m'
 
 if [ $# -ne $CantArgsEsperados ]
   then
     echo ""
     echo "------------------------------------------------------------------------------"
-    echo -e "${ColorAdvertencia}Mal uso del script.${FinColor} El uso correcto sería:"
+    echo -e "${ColorRojo}Mal uso del script.${FinColor} El uso correcto sería:"
     echo ""
-    echo -e "$0 ${ColorArgumentos}[NombreDelContainer]${FinColor}"
+    echo -e "$0 ${ColorVerde}[NombreDelContainer]${FinColor}"
     echo ""
     echo "Ejemplo:"
     echo ' $0 debian-9.0-standard_9.7-1_amd64.tar.gz'
