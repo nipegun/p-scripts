@@ -29,6 +29,7 @@ apt -y install build-essential git lintian debhelper iasl nasm python uuid-dev g
 # Clonar el repo
 mkdir /root/CodFuente 2> /dev/null
 cd /root/CodFuente
+rm -rf /root/CodFuente/pve-edk2-firmware/
 git clone -b macos-support-proxmox-6.1 https://github.com/thenickdude/pve-edk2-firmware.git
 
 # Preparar paquete
@@ -36,6 +37,7 @@ cd pve-edk2-firmware
 make
 
 # Instalar
+mv /root/pve-edk2-firmware/ /root/CodFuente/pve-edk2-firmware/
 find /root/CodFuente/pve-edk2-firmware -type f -name pve-edk2-firmware*.deb -exec bash -c 'mv "$0" "/root/CodFuente/pve-edk2-firmware/OVMFCloverPatch.deb" ' {} \;
 dpkg -i /root/CodFuente/pve-edk2-firmware/OVMFCloverPatch.deb
 
