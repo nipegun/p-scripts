@@ -13,7 +13,7 @@ InterfazCableada1=eth0
 InterfazPuente=vmbr0
 UsuarioPPPMovistar=adslppp@telefonicanetpa
 ClavePPPMovistar=adslppp
-MacDelRouterMovistar=00:00:00:00:00:00
+MacDelRouterMovistar="00:00:00:00:00:00"
 
 ColorRojo='\033[1;31m'
 ColorVerde='\033[1;32m'
