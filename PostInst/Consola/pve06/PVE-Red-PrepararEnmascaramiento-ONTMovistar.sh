@@ -126,6 +126,34 @@ echo "nic-$InterfazCableada1.6" >> /etc/ppp/peers/MovistarWAN
 echo 'user "'$UsuarioPPPMovistar'"' >> /etc/ppp/peers/MovistarWAN
 echo "usepeerdns" >> /etc/ppp/peers/MovistarWAN
 
+echo "connect /bin/true"                        > /etc/ppp/peers/MovistarWAN
+echo "default-asyncmap"                        >> /etc/ppp/peers/MovistarWAN
+echo "defaultroute"                            >> /etc/ppp/peers/MovistarWAN
+echo "hide-password"                           >> /etc/ppp/peers/MovistarWAN
+echo "holdoff 3"                               >> /etc/ppp/peers/MovistarWAN
+echo "ipcp-accept-local"                       >> /etc/ppp/peers/MovistarWAN
+echo "ipcp-accept-remote"                      >> /etc/ppp/peers/MovistarWAN
+echo "lcp-echo-interval 15"                    >> /etc/ppp/peers/MovistarWAN
+echo "lcp-echo-failure 3"                      >> /etc/ppp/peers/MovistarWAN
+echo "lock"                                    >> /etc/ppp/peers/MovistarWAN
+echo "mru 1492"                                >> /etc/ppp/peers/MovistarWAN
+echo "mtu 1492"                                >> /etc/ppp/peers/MovistarWAN
+echo "noaccomp"                                >> /etc/ppp/peers/MovistarWAN
+echo "noauth"                                  >> /etc/ppp/peers/MovistarWAN
+echo "nobsdcomp"                               >> /etc/ppp/peers/MovistarWAN
+echo "noccp"                                   >> /etc/ppp/peers/MovistarWAN
+echo "nodeflate"                               >> /etc/ppp/peers/MovistarWAN
+echo "noipdefault"                             >> /etc/ppp/peers/MovistarWAN
+echo "nopcomp"                                 >> /etc/ppp/peers/MovistarWAN
+echo "novj"                                    >> /etc/ppp/peers/MovistarWAN
+echo "novjccomp"                               >> /etc/ppp/peers/MovistarWAN
+echo "persist"                                 >> /etc/ppp/peers/MovistarWAN
+echo "plugin rp-pppoe.so $InterfazCableada1.6" >> /etc/ppp/peers/MovistarWAN
+echo "updetach"                                >> /etc/ppp/peers/MovistarWAN
+echo "usepeerdns"                              >> /etc/ppp/peers/MovistarWAN
+echo 'user "'$UsuarioPPPMovistar'"'            >> /etc/ppp/peers/MovistarWAN
+
+
 echo ""
 echo -e "${ColorVerde}Creando el archivo chap-secrets...${FinColor}"
 echo ""
