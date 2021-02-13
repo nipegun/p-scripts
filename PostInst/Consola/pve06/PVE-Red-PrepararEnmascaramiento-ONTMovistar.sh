@@ -13,7 +13,7 @@ InterfazCableada1=eth0
 InterfazPuente=vmbr0
 UsuarioPPPMovistar="adslppp@telefonicanetpa"
 ClavePPPMovistar="adslppp"
-IPDeIPTV="10.0.0.1"
+IPDeIPTV="10.x.x.x"
 MacWANDelRouterMovistar="00:00:00:00:00:00"
 
 ColorRojo='\033[1;31m'
