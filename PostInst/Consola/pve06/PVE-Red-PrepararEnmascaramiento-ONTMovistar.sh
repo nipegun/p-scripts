@@ -30,7 +30,7 @@ echo ""
 echo -e "${ColorVerde}Instalando paquetes de red...${FinColor}"
 echo ""
 apt-get -y update
-apt-get -y install vlan pppoe wget
+apt-get -y install vlan pppoe
 
 echo ""
 echo -e "${ColorVerde}Activando el módulo 8021q para VLANs...${FinColor}"
