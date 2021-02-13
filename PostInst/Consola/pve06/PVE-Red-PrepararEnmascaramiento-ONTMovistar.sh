@@ -39,73 +39,73 @@ echo 8021q >> /etc/modules
 echo ""
 echo -e "${ColorVerde}Configurando la interfaz loopback...${FinColor}"
 echo ""
-echo "auto lo" > /etc/network/interfaces
+echo "auto lo"                   > /etc/network/interfaces
 echo "  iface lo inet loopback" >> /etc/network/interfaces
-echo "" >> /etc/network/interfaces
+echo ""                         >> /etc/network/interfaces
 
 echo ""
 echo -e "${ColorVerde}Configurando la interfaz WAN...${FinColor}"
 echo ""
-echo "auto $InterfazCableada1" >> /etc/network/interfaces
-echo "  allow-hotplug $InterfazCableada1" >> /etc/network/interfaces
-echo "  iface $InterfazCableada1 inet manual" >> /etc/network/interfaces
+echo "auto $InterfazCableada1"                                                             >> /etc/network/interfaces
+echo "  allow-hotplug $InterfazCableada1"                                                  >> /etc/network/interfaces
+echo "  iface $InterfazCableada1 inet manual"                                              >> /etc/network/interfaces
 echo "  # hwaddress ether $MacDelRouterMovistar # Necesario para evitar futuros problemas" >> /etc/network/interfaces
-echo "" >> /etc/network/interfaces
+echo ""                                                                                    >> /etc/network/interfaces
 
 echo ""
 echo -e "${ColorVerde}Configurando la conexión PPP...${FinColor}"
 echo ""
-echo "auto MovistarWAN" >> /etc/network/interfaces
-echo "  iface MovistarWAN inet ppp" >> /etc/network/interfaces
-echo "  pre-up /bin/ip link set $InterfazCableada1.6 up" >> /etc/network/interfaces
-echo "  provider MovistarWAN" >> /etc/network/interfaces
-echo "" >> /etc/network/interfaces
+echo "auto MovistarWAN"                                                                    >> /etc/network/interfaces
+echo "  iface MovistarWAN inet ppp"                                                        >> /etc/network/interfaces
+echo "  pre-up /bin/ip link set $InterfazCableada1.6 up"                                   >> /etc/network/interfaces
+echo "  provider MovistarWAN"                                                              >> /etc/network/interfaces
+echo ""                                                                                    >> /etc/network/interfaces
 
 echo ""
 echo -e "${ColorVerde}Configurando la vlan de datos (6) y prioridad (1)...${FinColor}"
 echo ""
-echo "# VLAN de Datos" >> /etc/network/interfaces
-echo "auto $InterfazCableada1.6" >> /etc/network/interfaces
-echo "  iface $InterfazCableada1.6 inet manual" >> /etc/network/interfaces
+echo "# VLAN de Datos"                                                                                    >> /etc/network/interfaces
+echo "auto $InterfazCableada1.6"                                                                          >> /etc/network/interfaces
+echo "  iface $InterfazCableada1.6 inet manual"                                                           >> /etc/network/interfaces
 echo "  #vlan-raw-device $InterfazCableada1 # Necesario si la vlan se crea con un nombre no convencional" >> /etc/network/interfaces
-echo "  metric 1" >> /etc/network/interfaces
-echo "" >> /etc/network/interfaces
+echo "  metric 1"                                                                                         >> /etc/network/interfaces
+echo ""                                                                                                   >> /etc/network/interfaces
 
 echo ""
 echo -e "${ColorVerde}Configurando la vlan de televisión (2) y prioridad (4)...${FinColor}"
 echo ""
-echo "# VLAN de Televisión" >> /etc/network/interfaces
-echo "auto $InterfazCableada1.2" >> /etc/network/interfaces
-echo "  iface $InterfazCableada1.2 inet dhcp" >> /etc/network/interfaces
+echo "# VLAN de Televisión"                                                                               >> /etc/network/interfaces
+echo "auto $InterfazCableada1.2"                                                                          >> /etc/network/interfaces
+echo "  iface $InterfazCableada1.2 inet dhcp"                                                             >> /etc/network/interfaces
 echo "  #vlan-raw-device $InterfazCableada1 # Necesario si la vlan se crea con un nombre no convencional" >> /etc/network/interfaces
-echo "  metric 4" >> /etc/network/interfaces
-echo "" >> /etc/network/interfaces
+echo "  metric 4"                                                                                         >> /etc/network/interfaces
+echo ""                                                                                                   >> /etc/network/interfaces
 
 echo ""
 echo -e "${ColorVerde}Configurando la vlan de voz (3) y prioridad (4)...${FinColor}"
 echo ""
-echo "# VLAN de Telefonía" >> /etc/network/interfaces
-echo "auto $InterfazCableada1.3" >> /etc/network/interfaces
-echo "  iface $InterfazCableada1.3 inet dhcp" >> /etc/network/interfaces
+echo "# VLAN de Telefonía"                                                                                >> /etc/network/interfaces
+echo "auto $InterfazCableada1.3"                                                                          >> /etc/network/interfaces
+echo "  iface $InterfazCableada1.3 inet dhcp"                                                             >> /etc/network/interfaces
 echo "  #vlan-raw-device $InterfazCableada1 # Necesario si la vlan se crea con un nombre no convencional" >> /etc/network/interfaces
-echo "  metric 4" >> /etc/network/interfaces
-echo "" >> /etc/network/interfaces
+echo "  metric 4"                                                                                         >> /etc/network/interfaces
+echo ""                                                                                                   >> /etc/network/interfaces
 
 echo ""
 echo -e "${ColorVerde}Configurando la interfaz para las MVs...${FinColor}"
 echo ""
-echo "auto $InterfazPuente" >> /etc/network/interfaces
-echo "  iface $InterfazPuente inet static" >> /etc/network/interfaces
-echo "  address 192.168.0.1" >> /etc/network/interfaces
-echo "  netmask 255.255.255.0" >> /etc/network/interfaces
-echo "  bridge-ports none" >> /etc/network/interfaces
-echo "  bridge-stp off" >> /etc/network/interfaces
-echo "  bridge-fd 0" >> /etc/network/interfaces
+echo "auto $InterfazPuente"                                                                 >> /etc/network/interfaces
+echo "  iface $InterfazPuente inet static"                                                  >> /etc/network/interfaces
+echo "  address 192.168.0.1"                                                                >> /etc/network/interfaces
+echo "  netmask 255.255.255.0"                                                              >> /etc/network/interfaces
+echo "  bridge-ports none"                                                                  >> /etc/network/interfaces
+echo "  bridge-stp off"                                                                     >> /etc/network/interfaces
+echo "  bridge-fd 0"                                                                        >> /etc/network/interfaces
 echo "  post-up   iptables -t nat -A POSTROUTING -s '192.168.0.0/24' -o ppp0 -j MASQUERADE" >> /etc/network/interfaces
 echo "  post-down iptables -t nat -D POSTROUTING -s '192.168.0.0/24' -o ppp0 -j MASQUERADE" >> /etc/network/interfaces
-echo "  post-up   iptables -t raw -I PREROUTING -i fwbr+ -j CT --zone 1" >> /etc/network/interfaces
-echo "  post-down iptables -t raw -D PREROUTING -i fwbr+ -j CT --zone 1" >> /etc/network/interfaces
-echo "" >> /etc/network/interfaces
+echo "  post-up   iptables -t raw -I PREROUTING -i fwbr+ -j CT --zone 1"                    >> /etc/network/interfaces
+echo "  post-down iptables -t raw -D PREROUTING -i fwbr+ -j CT --zone 1"                    >> /etc/network/interfaces
+echo ""                                                                                     >> /etc/network/interfaces
 
 echo ""
 echo -e "${ColorVerde}Creando el archivo para el proveedor PPPoE...${FinColor}"
@@ -148,7 +148,8 @@ echo "nopcomp"                                 >> /etc/ppp/peers/MovistarWAN
 echo "novj"                                    >> /etc/ppp/peers/MovistarWAN
 echo "novjccomp"                               >> /etc/ppp/peers/MovistarWAN
 echo "persist"                                 >> /etc/ppp/peers/MovistarWAN
-echo "plugin rp-pppoe.so $InterfazCableada1.6" >> /etc/ppp/peers/MovistarWAN
+echo "plugin rp-pppoe.so"                      >> /etc/ppp/peers/MovistarWAN
+echo "nic-$InterfazCableada1.6"                >> /etc/ppp/peers/MovistarWAN
 echo "updetach"                                >> /etc/ppp/peers/MovistarWAN
 echo "usepeerdns"                              >> /etc/ppp/peers/MovistarWAN
 echo 'user "'$UsuarioPPPMovistar'"'            >> /etc/ppp/peers/MovistarWAN
