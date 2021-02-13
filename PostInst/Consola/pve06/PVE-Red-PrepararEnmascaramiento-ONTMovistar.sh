@@ -11,8 +11,8 @@
 
 InterfazCableada1=eth0
 InterfazPuente=vmbr0
-UsuarioPPPMovistar=adslppp@telefonicanetpa
-ClavePPPMovistar=adslppp
+UsuarioPPPMovistar="adslppp@telefonicanetpa"
+ClavePPPMovistar="adslppp"
 MacDelRouterMovistar="00:00:00:00:00:00"
 
 ColorRojo='\033[1;31m'
@@ -28,6 +28,7 @@ echo ""
 echo ""
 echo -e "${ColorVerde}Instalando paquetes de red...${FinColor}"
 echo ""
+apt-get -y update
 apt-get -y install vlan pppoe wget
 
 echo ""
