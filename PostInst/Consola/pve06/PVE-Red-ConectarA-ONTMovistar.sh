@@ -103,6 +103,8 @@ echo "  netmask 255.255.255.0"                                                  
 echo "  bridge-ports none"                                                                  >> /etc/network/interfaces
 echo "  bridge-stp off"                                                                     >> /etc/network/interfaces
 echo "  bridge-fd 0"                                                                        >> /etc/network/interfaces
+echo "  post-up   echo 1 > /proc/sys/net/ipv4/ip_forward"                                   >> /etc/network/interfaces
+echo "  post-down echo 0 > /proc/sys/net/ipv4/ip_forward"                                   >> /etc/network/interfaces
 echo "  post-up   iptables -t nat -A POSTROUTING -s '192.168.0.0/24' -o ppp0 -j MASQUERADE" >> /etc/network/interfaces
 echo "  post-down iptables -t nat -D POSTROUTING -s '192.168.0.0/24' -o ppp0 -j MASQUERADE" >> /etc/network/interfaces
 echo "  post-up   iptables -t raw -I PREROUTING -i fwbr+ -j CT --zone 1"                    >> /etc/network/interfaces
@@ -112,24 +114,6 @@ echo ""                                                                         
 echo ""
 echo -e "${ColorVerde}Creando el archivo para el proveedor PPPoE...${FinColor}"
 echo ""
-
-######################################################################
-echo "noipdefault" > /etc/ppp/peers/MovistarWAN
-echo "defaultroute" >> /etc/ppp/peers/MovistarWAN
-echo "replacedefaultroute" >> /etc/ppp/peers/MovistarWAN
-echo "hide-password" >> /etc/ppp/peers/MovistarWAN
-echo "#lcp-echo-interval 30" >> /etc/ppp/peers/MovistarWAN
-echo "#lcp-echo-failure 4" >> /etc/ppp/peers/MovistarWAN
-echo "noauth" >> /etc/ppp/peers/MovistarWAN
-echo "persist" >> /etc/ppp/peers/MovistarWAN
-echo "#mtu 1492" >> /etc/ppp/peers/MovistarWAN
-echo "#maxfail 0" >> /etc/ppp/peers/MovistarWAN
-echo "#holdoff 20" >> /etc/ppp/peers/MovistarWAN
-echo "plugin rp-pppoe.so" >> /etc/ppp/peers/MovistarWAN
-echo "nic-$InterfazCableada1.6" >> /etc/ppp/peers/MovistarWAN
-echo 'user "'$UsuarioPPPMovistar'"' >> /etc/ppp/peers/MovistarWAN
-echo "usepeerdns" >> /etc/ppp/peers/MovistarWAN
-######################################################################
 
 echo "connect /bin/true"                        > /etc/ppp/peers/MovistarWAN
 echo "default-asyncmap"                        >> /etc/ppp/peers/MovistarWAN
@@ -159,7 +143,6 @@ echo "updetach"                                >> /etc/ppp/peers/MovistarWAN
 echo "usepeerdns"                              >> /etc/ppp/peers/MovistarWAN
 echo 'user "'$UsuarioPPPMovistar'"'            >> /etc/ppp/peers/MovistarWAN
 
-
 echo ""
 echo -e "${ColorVerde}Creando el archivo chap-secrets...${FinColor}"
 echo ""
@@ -170,16 +153,10 @@ echo -e "${ColorVerde}Agregando datos al archivo pap-secrets...${FinColor}"
 echo ""
 echo '"'$UsuarioPPPMovistar'" * "'$ClavePPPMovistar'"' >> /etc/ppp/pap-secrets
 
-echo ""
-echo -e "${ColorVerde}Habilitando ip-forwarding...${FinColor}"
-echo ""
-cp /etc/sysctl.conf /etc/sysctl.conf.bak
-sed -i -e 's|#net.ipv4.ip_forward=1|net.ipv4.ip_forward=1|g' /etc/sysctl.conf
-
-echo ""
-echo -e "${ColorVerde}Agregando la conexión ppp0 a los ComandosPostArranque...${FinColor}"
-echo ""
-echo "pon MovistarWAN" >> /root/scripts/ComandosPostArranque.sh
+#echo ""
+#echo -e "${ColorVerde}Agregando la conexión ppp0 a los ComandosPostArranque...${FinColor}"
+#echo ""
+#echo "pon MovistarWAN" >> /root/scripts/ComandosPostArranque.sh
 
 echo ""
 echo -e "${ColorVerde}--------------------------------------------------------------------------------------------${FinColor}"
