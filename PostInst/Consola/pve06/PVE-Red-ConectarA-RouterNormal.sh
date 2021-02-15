@@ -22,12 +22,6 @@ echo -e "${ColorVerde}Iniciando el script de conexión de Proxmox a un router no
 echo -e "${ColorVerde}----------------------------------------------------------------${FinColor}"
 echo ""
 
-
-echo ""
-echo -e "${ColorVerde}Activando el módulo 8021q para VLANs...${FinColor}"
-echo ""
-sed -i -e 's|echo 8021q|#echo 8021q|g' /etc/modules
-
 echo ""
 echo -e "${ColorVerde}Configurando la interfaz loopback...${FinColor}"
 echo ""
@@ -36,13 +30,13 @@ echo "  iface lo inet loopback" >> /etc/network/interfaces
 echo ""                         >> /etc/network/interfaces
 
 echo ""
-echo -e "${ColorVerde}Configurando la interfaz WAN...${FinColor}"
+echo -e "${ColorVerde}Configurando el puerto ethernet...${FinColor}"
 echo ""
 echo "iface $InterfazCableada1 inet manual" >> /etc/network/interfaces
 echo ""                                     >> /etc/network/interfaces
 
 echo ""
-echo -e "${ColorVerde}Configurando la interfaz para las MVs...${FinColor}"
+echo -e "${ColorVerde}Configurando el puente para las MVs...${FinColor}"
 echo ""
 echo "auto $InterfazPuente"                >> /etc/network/interfaces
 echo "  iface $InterfazPuente inet static" >> /etc/network/interfaces
