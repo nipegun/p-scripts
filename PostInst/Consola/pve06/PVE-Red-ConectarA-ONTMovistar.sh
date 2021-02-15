@@ -98,7 +98,7 @@ echo -e "${ColorVerde}Configurando la interfaz para las MVs...${FinColor}"
 echo ""
 echo "auto $InterfazPuente"                                                                 >> /etc/network/interfaces
 echo "  iface $InterfazPuente inet static"                                                  >> /etc/network/interfaces
-echo "  address 192.168.0.1"                                                                >> /etc/network/interfaces
+echo "  address 192.168.0.200"                                                              >> /etc/network/interfaces
 echo "  netmask 255.255.255.0"                                                              >> /etc/network/interfaces
 echo "  bridge-ports none"                                                                  >> /etc/network/interfaces
 echo "  bridge-stp off"                                                                     >> /etc/network/interfaces
