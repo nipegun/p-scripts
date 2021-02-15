@@ -47,7 +47,7 @@ echo ""                         >> /etc/network/interfaces
 echo ""
 echo -e "${ColorVerde}Configurando la interfaz WAN...${FinColor}"
 echo ""
-echo "auto $InterfazCableada1"                                                                >> /etc/network/interfaces
+#echo "auto $InterfazCableada1"                                                               >> /etc/network/interfaces
 echo "  allow-hotplug $InterfazCableada1"                                                     >> /etc/network/interfaces
 echo "  iface $InterfazCableada1 inet manual"                                                 >> /etc/network/interfaces
 echo "  # hwaddress ether $MacWANDelRouterMovistar # Necesario para evitar futuros problemas" >> /etc/network/interfaces
@@ -114,7 +114,6 @@ echo ""                                                                         
 echo ""
 echo -e "${ColorVerde}Creando el archivo para el proveedor PPPoE...${FinColor}"
 echo ""
-
 echo "connect /bin/true"                        > /etc/ppp/peers/MovistarWAN
 echo "default-asyncmap"                        >> /etc/ppp/peers/MovistarWAN
 echo "defaultroute"                            >> /etc/ppp/peers/MovistarWAN
