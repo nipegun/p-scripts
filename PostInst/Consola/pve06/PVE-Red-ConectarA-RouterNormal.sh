@@ -46,6 +46,7 @@ echo "  gateway 192.168.0.1"               >> /etc/network/interfaces
 echo "  bridge-ports eth0"                 >> /etc/network/interfaces
 echo "  bridge-stp off"                    >> /etc/network/interfaces
 echo "  bridge-fd 0"                       >> /etc/network/interfaces
+echo "  hwaddress ether 00:00:00:00:02:00" >> /etc/network/interfaces
 echo ""                                    >> /etc/network/interfaces
 
 echo ""
