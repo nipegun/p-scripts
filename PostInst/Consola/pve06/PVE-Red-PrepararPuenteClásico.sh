@@ -55,11 +55,6 @@ echo "  bridge-fd 0"                       >> /etc/network/interfaces
 echo ""                                    >> /etc/network/interfaces
 
 echo ""
-echo -e "${ColorVerde}Habilitando ip-forwarding...${FinColor}"
-echo ""
-sed -i -e 's|net.ipv4.ip_forward=1|#net.ipv4.ip_forward=1|g' /etc/sysctl.conf
-
-echo ""
 echo -e "${ColorVerde}--------------------------------------------------------------------------------------------${FinColor}"
 echo -e "${ColorVerde}Ejecución del script de conexión de Proxmox a la fibra de Movistar, finalizada.${FinColor}"
 echo ""
@@ -71,3 +66,4 @@ echo "pon MovistarWAN"
 echo -e "${ColorVerde}--------------------------------------------------------------------------------------------${FinColor}"
 echo ""
 shutdown -h now
+
