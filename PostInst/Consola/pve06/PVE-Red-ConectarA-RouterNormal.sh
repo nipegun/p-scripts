@@ -50,15 +50,13 @@ echo ""                                    >> /etc/network/interfaces
 
 echo ""
 echo -e "${ColorVerde}--------------------------------------------------------------------------------------------${FinColor}"
-echo -e "${ColorVerde}Ejecución del script de conexión de Proxmox a la fibra de Movistar, finalizada.${FinColor}"
+echo -e "${ColorVerde}Ejecución del script de conexión de Proxmox a un router normal, finalizada.${FinColor}"
 echo ""
 echo -e "${ColorVerde}Ya puedes apagar Proxmox ejecutando:${FinColor}"
 echo "shutdown -h now"
-echo -e "${ColorVerde}y conectarle el cable ethernet al cualquier puerto LAN del router.${FinColor}"
+echo -e "${ColorVerde}y conectarle el cable ethernet a cualquier puerto LAN del router.${FinColor}"
 echo ""
-echo -e "${ColorVerde}Después de encenderlo de nuevo, PVE debería tener internet a través de la interfaz ppp0${FinColor}"
-echo -e "${ColorVerde}Si por alguna razón la interfaz ppp0 no se levanta, puedes levantarla manualmente ejecutando:${FinColor}"
-echo "pon MovistarWAN"
+echo -e "${ColorVerde}Después de encenderlo de nuevo, PVE debería tener internet a través de la interfaz $InterfazCableada1${FinColor}"
 echo -e "${ColorVerde}--------------------------------------------------------------------------------------------${FinColor}"
 echo ""
 
