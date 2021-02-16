@@ -176,6 +176,7 @@ echo "  host VM201 {"                                 >> /etc/dhcp/dhcpd.conf
 echo "    hardware ethernet 00:00:00:00:02:01;"       >> /etc/dhcp/dhcpd.conf
 echo "    fixed-address 192.168.0.201;"               >> /etc/dhcp/dhcpd.conf
 echo "  }"                                            >> /etc/dhcp/dhcpd.conf
+echo ""                                               >> /etc/dhcp/dhcpd.conf
 echo "  host VM202 {"                                 >> /etc/dhcp/dhcpd.conf
 echo "    hardware ethernet 00:00:00:00:02:02;"       >> /etc/dhcp/dhcpd.conf
 echo "    fixed-address 192.168.0.202;"               >> /etc/dhcp/dhcpd.conf
