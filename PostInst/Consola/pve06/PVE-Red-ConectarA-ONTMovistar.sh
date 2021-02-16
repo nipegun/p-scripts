@@ -40,13 +40,15 @@ echo 8021q >> /etc/modules
 echo ""
 echo -e "${ColorVerde}Configurando la interfaz loopback...${FinColor}"
 echo ""
-echo "auto lo"                   > /etc/network/interfaces
+echo "# Interfaz LoopBack"       > /etc/network/interfaces
+echo "auto lo"                  >> /etc/network/interfaces
 echo "  iface lo inet loopback" >> /etc/network/interfaces
 echo ""                         >> /etc/network/interfaces
 
 echo ""
 echo -e "${ColorVerde}Configurando la interfaz WAN...${FinColor}"
 echo ""
+echo "# Interfaz WAN"                                                                         >> /etc/network/interfaces
 echo "auto $InterfazWAN"                                                                      >> /etc/network/interfaces
 echo "  allow-hotplug $InterfazWAN"                                                           >> /etc/network/interfaces
 echo "  iface $InterfazWAN inet manual"                                                       >> /etc/network/interfaces
@@ -61,11 +63,12 @@ echo "auto $InterfazWAN.6"                                                      
 echo "  iface $InterfazWAN.6 inet manual"                                                           >> /etc/network/interfaces
 echo "  #vlan-raw-device $InterfazWAN # Necesario si la vlan se crea con un nombre no convencional" >> /etc/network/interfaces
 echo "  metric 1"                                                                                   >> /etc/network/interfaces
-echo "" 
+echo ""                                                                                             >> /etc/network/interfaces
 
 echo ""
 echo -e "${ColorVerde}Configurando la conexión PPP...${FinColor}"
 echo ""
+echo "# Interfaz PPPoE"                            >> /etc/network/interfaces
 echo "auto MovistarWAN"                            >> /etc/network/interfaces
 echo "  iface MovistarWAN inet ppp"                >> /etc/network/interfaces
 echo "  pre-up /bin/ip link set $InterfazWAN.6 up" >> /etc/network/interfaces
