@@ -53,3 +53,4 @@ sed -i -e 's|flush ruleset|flush ruleset\n|g' /etc/nftables.conf
 
 # Recargar NFTables
 nft --file /etc/nftables.conf
+
