@@ -171,7 +171,7 @@ echo "authoritative;"                                  > /etc/dhcp/dhcpd.conf
 echo "subnet 192.168.0.0 netmask 255.255.255.0 {"     >> /etc/dhcp/dhcpd.conf
 echo "  range 192.168.0.100 192.168.0.199;"           >> /etc/dhcp/dhcpd.conf
 echo "  option routers 192.168.0.200;"                >> /etc/dhcp/dhcpd.conf
-echo "  option domain-name-servers 1.1.1.1, 1.0.0.1;" >> /etc/dhcp/dhcpd.conf
+echo "  option domain-name-servers 192.168.0.200;"    >> /etc/dhcp/dhcpd.conf
 echo "  default-lease-time 600;"                      >> /etc/dhcp/dhcpd.conf
 echo "  max-lease-time 7200;"                         >> /etc/dhcp/dhcpd.conf
 echo ""                                               >> /etc/dhcp/dhcpd.conf
