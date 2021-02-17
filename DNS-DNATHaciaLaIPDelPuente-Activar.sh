@@ -14,7 +14,7 @@ ColorVerde='\033[1;32m'
 ColorFin='\033[0m'
 
 RangoDeIPsDeLasMVs="192.168.0.201-192.168.0.254"
-IPDelPuente="192.168.0.200"
+IPDePVE="127.0.0.1"
 
 echo ""
 echo -e "${ColorVerde}Activando el reenvio del tráfico DNS hacia la IP del puente (vmbr0)...${ColorFin}"
@@ -30,25 +30,25 @@ if [ $(dpkg-query -W -f='${Status}' nftables 2>/dev/null | grep -c "ok installed
 fi
 
 # Borrar reenvío previo, si es que existe.
-/root/scripts/p-scripts/DNS-DNATHaciaLaIPDelPuente-Desactivar.sh
+/root/scripts/p-scripts/DNS-DNATHaciaLaIPDePVE-Desactivar.sh
 
 # Crear el archivo con las reglas
-echo "table NAT {"                                                             > /root/scripts/NFTables-DNS-DNATHaciaLaIPDelPuente.nft
-echo ""                                                                       >> /root/scripts/NFTables-DNS-DNATHaciaLaIPDelPuente.nft
-echo "  chain prerouting {"                                                   >> /root/scripts/NFTables-DNS-DNATHaciaLaIPDelPuente.nft
-echo "    type nat hook prerouting priority 0"                                >> /root/scripts/NFTables-DNS-DNATHaciaLaIPDelPuente.nft
-echo "    tcp dport   53 ip saddr $RangoDeIPsDeLasMVs dnat $IPDelPuente:53"   >> /root/scripts/NFTables-DNS-DNATHaciaLaIPDelPuente.nft
-echo "    udp dport   53 ip saddr $RangoDeIPsDeLasMVs dnat $IPDelPuente:53"   >> /root/scripts/NFTables-DNS-DNATHaciaLaIPDelPuente.nft
-echo "    tcp dport  853 ip saddr $RangoDeIPsDeLasMVs dnat $IPDelPuente:853"  >> /root/scripts/NFTables-DNS-DNATHaciaLaIPDelPuente.nft
-echo "    udp dport  853 ip saddr $RangoDeIPsDeLasMVs dnat $IPDelPuente:853"  >> /root/scripts/NFTables-DNS-DNATHaciaLaIPDelPuente.nft
-echo "    tcp dport 5353 ip saddr $RangoDeIPsDeLasMVs dnat $IPDelPuente:5353" >> /root/scripts/NFTables-DNS-DNATHaciaLaIPDelPuente.nft
-echo "    udp dport 5353 ip saddr $RangoDeIPsDeLasMVs dnat $IPDelPuente:5353" >> /root/scripts/NFTables-DNS-DNATHaciaLaIPDelPuente.nft
-echo "  }"                                                                    >> /root/scripts/NFTables-DNS-DNATHaciaLaIPDelPuente.nft
-echo ""                                                                       >> /root/scripts/NFTables-DNS-DNATHaciaLaIPDelPuente.nft
-echo "}"                                                                      >> /root/scripts/NFTables-DNS-DNATHaciaLaIPDelPuente.nft
+echo "table NAT {"                                                         > /root/scripts/NFTables-DNS-DNATHaciaLaIPDePVE.nft
+echo ""                                                                   >> /root/scripts/NFTables-DNS-DNATHaciaLaIPDePVE.nft
+echo "  chain prerouting {"                                               >> /root/scripts/NFTables-DNS-DNATHaciaLaIPDePVE.nft
+echo "    type nat hook prerouting priority 0"                            >> /root/scripts/NFTables-DNS-DNATHaciaLaIPDePVE.nft
+echo "    tcp dport   53 ip saddr $RangoDeIPsDeLasMVs dnat $IPDePVE:53"   >> /root/scripts/NFTables-DNS-DNATHaciaLaIPDePVE.nft
+echo "    udp dport   53 ip saddr $RangoDeIPsDeLasMVs dnat $IPDePVE:53"   >> /root/scripts/NFTables-DNS-DNATHaciaLaIPDePVE.nft
+echo "    tcp dport  853 ip saddr $RangoDeIPsDeLasMVs dnat $IPDePVE:853"  >> /root/scripts/NFTables-DNS-DNATHaciaLaIPDePVE.nft
+echo "    udp dport  853 ip saddr $RangoDeIPsDeLasMVs dnat $IPDePVE:853"  >> /root/scripts/NFTables-DNS-DNATHaciaLaIPDePVE.nft
+echo "    tcp dport 5353 ip saddr $RangoDeIPsDeLasMVs dnat $IPDePVE:5353" >> /root/scripts/NFTables-DNS-DNATHaciaLaIPDePVE.nft
+echo "    udp dport 5353 ip saddr $RangoDeIPsDeLasMVs dnat $IPDePVE:5353" >> /root/scripts/NFTables-DNS-DNATHaciaLaIPDePVE.nft
+echo "  }"                                                                >> /root/scripts/NFTables-DNS-DNATHaciaLaIPDePVE.nft
+echo ""                                                                   >> /root/scripts/NFTables-DNS-DNATHaciaLaIPDePVE.nft
+echo "}"                                                                  >> /root/scripts/NFTables-DNS-DNATHaciaLaIPDePVE.nft
 
 # Incluir el archivo con las reglas en el archivo de configuración de NFTables
-sed -i '/^flush ruleset/a include "/root/scripts/NFTables-DNS-DNATHaciaLaIPDelPuente.nft"' /etc/nftables.conf
+sed -i '/^flush ruleset/a include "/root/scripts/NFTables-DNS-DNATHaciaLaIPDePVE.nft"' /etc/nftables.conf
 sed -i -e 's|flush ruleset|flush ruleset\n|g' /etc/nftables.conf
 
 # Recargar NFTables
