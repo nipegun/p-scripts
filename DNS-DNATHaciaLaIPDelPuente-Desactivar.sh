@@ -13,7 +13,7 @@
 rm -rf /root/scripts/NFTables-DNS-DNATHaciaLaIPDelPuente.nft
 
 # Borrar la inclusión de la reglas en el archivo de configuración de NFTables
-sed -i -e 's|include "/root/scripts/NFTables-DNS-DNATHaciaLaIPLANDelPuente.nft"||g' /etc/nftables.conf
+sed -i -e 's|include "/root/scripts/NFTables-DNS-DNATHaciaLaIPDelPuente.nft"||g' /etc/nftables.conf
 
 # Recargar NFTables
 nft --file /etc/nftables.conf
