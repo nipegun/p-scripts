@@ -5,15 +5,15 @@
 # Si se te llena la boca hablando de libertad entonces hazlo realmente libre.
 # No tienes que aceptar ningún tipo de términos de uso o licencia para utilizarlo o modificarlo porque va sin CopyLeft.
 
-#--------------------------------------------------------------------------------------------------
-#  Script de NiPeGun para desactivar el reenvio de todo el tráfico DNS hacia la IP LAN del router
-#--------------------------------------------------------------------------------------------------
+#----------------------------------------------------------------------------------------------
+#  Script de NiPeGun para desactivar el reenvio de todo el tráfico DNS hacia la IP de Proxmox
+#----------------------------------------------------------------------------------------------
 
 # Borrar el archivo de reglas
-rm -rf /root/scripts/NFTables-DNS-DNATHaciaLaIPDelPuente.nft
+rm -rf /root/scripts/NFTables-DNS-DNATHaciaLaIPDePVE.nft
 
 # Borrar la inclusión de la reglas en el archivo de configuración de NFTables
-sed -i -e 's|include "/root/scripts/NFTables-DNS-DNATHaciaLaIPDelPuente.nft"||g' /etc/nftables.conf
+sed -i -e 's|include "/root/scripts/NFTables-DNS-DNATHaciaLaIPDePVE.nft"||g' /etc/nftables.conf
 
 # Recargar NFTables
 nft --file /etc/nftables.conf
