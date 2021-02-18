@@ -18,7 +18,7 @@ ColorFin='\033[0m'
 # Comprobar si el paquete tcpdump está instalado. Si no está, instalarlo.
 if [[ $(dpkg-query -s tcpdump 2>/dev/null | grep installed) == "" ]]; then
     echo ""
-    echo "tcpdump no está instalado. Se procederá a su instalación..."
+    echo "tcpdump no está instalado. Iniciando su instalación..."
     echo ""
     apt-get -y update
     apt-get -y install tcpdump
