@@ -50,6 +50,15 @@ echo "  hwaddress ether 00:00:00:00:02:00" >> /etc/network/interfaces
 echo ""                                    >> /etc/network/interfaces
 
 echo ""
+echo -e "${ColorVerde}Indicando la ubicación del archivo de configuración del demonio dhcpd${FinColor}"
+echo -e "${ColorVerde}y la interfaz sobre la que correrá...${FinColor}"
+echo ""
+cp /etc/default/isc-dhcp-server /etc/default/isc-dhcp-server.bak
+echo 'DHCPDv4_CONF=/etc/dhcp/dhcpd.conf'  > /etc/default/isc-dhcp-server
+echo 'INTERFACESv4="$InterfazPuente"'    >> /etc/default/isc-dhcp-server
+echo 'INTERFACESv6=""'                   >> /etc/default/isc-dhcp-server
+
+echo ""
 echo -e "${ColorVerde}Configurando el servidor DHCP...${FinColor}"
 echo ""
 cp /etc/dhcp/dhcpd.conf /etc/dhcp/dhcpd.conf.bak
