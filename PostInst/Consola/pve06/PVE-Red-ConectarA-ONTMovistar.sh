@@ -53,7 +53,7 @@ echo "auto $InterfazWAN"                                                        
 echo "  allow-hotplug $InterfazWAN"                                                           >> /etc/network/interfaces
 echo "  iface $InterfazWAN inet manual"                                                       >> /etc/network/interfaces
 echo "  # hwaddress ether $MacWANDelRouterMovistar # Necesario para evitar futuros problemas" >> /etc/network/interfaces
-echo ""                                                                                       >> /etc/network/interfaces                                                                                >> /etc/network/interfaces
+echo ""                                                                                       >> /etc/network/interfaces
 
 echo ""
 echo -e "${ColorVerde}Configurando la vlan de datos (6) y prioridad (1)...${FinColor}"
