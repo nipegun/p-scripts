@@ -38,7 +38,7 @@ menu=(dialog --timeout 5 --checklist "Elección de escritorio:" 22 76 16)
             echo ""
             echo -e "${ColorVerde}Instalando escritorio Cinnamon...${FinColor}"
             echo ""
-            tasksel install cinnamon-dektop
+            tasksel install cinnamon-desktop
             apt-get -y install firefox-esr-l10n-es-es libreoffice-l10n-es
           ;;
 
@@ -46,7 +46,7 @@ menu=(dialog --timeout 5 --checklist "Elección de escritorio:" 22 76 16)
             echo ""
             echo -e "${ColorVerde}Instalando escritorio Gnome...${FinColor}"
             echo ""
-            tasksel install gnome-dektop
+            tasksel install gnome-desktop
             apt-get -y install firefox-esr-l10n-es-es libreoffice-l10n-es
           ;;
 
@@ -54,7 +54,7 @@ menu=(dialog --timeout 5 --checklist "Elección de escritorio:" 22 76 16)
             echo ""
             echo -e "${ColorVerde}Instalando escritorio KDE...${FinColor}"
             echo ""
-            tasksel install kde-dektop
+            tasksel install kde-desktop
             apt-get -y install firefox-esr-l10n-es-es libreoffice-l10n-es
           ;;
 
@@ -62,7 +62,7 @@ menu=(dialog --timeout 5 --checklist "Elección de escritorio:" 22 76 16)
             echo ""
             echo -e "${ColorVerde}Instalando escritorio LXDE...${FinColor}"
             echo ""
-            tasksel install lxde-dektop
+            tasksel install lxde-desktop
             apt-get -y install firefox-esr-l10n-es-es libreoffice-l10n-es
           ;;
 
@@ -70,7 +70,7 @@ menu=(dialog --timeout 5 --checklist "Elección de escritorio:" 22 76 16)
             echo ""
             echo -e "${ColorVerde}Instalando escritorio Mate...${FinColor}"
             echo ""
-            tasksel install mate-dektop
+            tasksel install mate-desktop
             /root/d-scripts/ÚnicaEjecución/debian10/Escritorio/PostInstalaciónDeEscritorioMate.sh
             systemctl disable NetworkManager.service
           ;;
@@ -79,7 +79,7 @@ menu=(dialog --timeout 5 --checklist "Elección de escritorio:" 22 76 16)
             echo ""
             echo -e "${ColorVerde}Instalando escritorio XFCE...${FinColor}"
             echo ""
-            tasksel install xfce-dektop
+            tasksel install xfce-desktop
             apt-get -y install firefox-esr-l10n-es-es libreoffice-l10n-es
           ;;
 
