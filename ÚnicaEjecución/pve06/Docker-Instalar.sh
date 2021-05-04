@@ -18,3 +18,5 @@ apt-get -y install docker-ce
 mkdir /root/portainer/data
 docker run -d -p 9000:9000 -v /root/portainer/data:/data -v /var/run/docker.sock:/var/run/docker.sock portainer/portainer
 systemctl enable docker
+echo "docker run -d -p 9000:9000 -v /root/portainer/data:/data -v /var/run/docker.sock:/var/run/docker.sock portainer/portainer" >> /root/scripts/ComandosPostArranque.sh
+
