@@ -65,9 +65,12 @@
 ## Otras cosas a borrar
 apt-get -y remove akregator
    apt-get -y remove ark
+   apt-get -y remove dolphin
    apt-get -y remove dragonplayer
    apt-get -y remove gedit
    apt-get -y remove gwenview
+   apt-get -y remove imagemagick
+   apt-get -y remove inkscape
    apt-get -y remove juk
    apt-get -y remove k3b
    apt-get -y remove kcalc
