@@ -62,3 +62,24 @@
    tasksel install mate-desktop
    apt-get -y install xrdp
 
+## Otras cosas a borrar
+apt-get -y remove akregator
+   apt-get -y remove ark
+   apt-get -y remove dragonplayer
+   apt-get -y remove gedit
+   apt-get -y remove gwenview
+   apt-get -y remove juk
+   apt-get -y remove k3b
+   apt-get -y remove kcalc
+   apt-get -y remove konqueror
+   apt-get -y remove konsole
+   apt-get -y remove kwalletmanager
+   apt-get -y remove lxterminal
+   apt-get -y remove nautilus
+   apt-get -y remove okular
+   apt-get -y remove pidgin
+   apt-get -y remove rhythmbox
+   apt-get -y remove sound-juicer
+   apt-get -y remove sweeper
+   apt-get -y remove xterm
+   apt-get -y autoremove
