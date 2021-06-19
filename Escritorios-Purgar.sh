@@ -86,3 +86,4 @@ apt-get -y remove akregator
    apt-get -y remove sweeper
    apt-get -y remove xterm
    apt-get -y autoremove
+
