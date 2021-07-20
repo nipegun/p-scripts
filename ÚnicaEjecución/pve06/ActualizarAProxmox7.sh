@@ -9,8 +9,8 @@
 #  Script de NiPeGun para actualizar Proxmox 6 a Proxmox 7
 #-----------------------------------------------------------
 
-MVIni=1
-MVFin=9999
+MVIni=201
+MVFin=254
 
 echo ""
 echo "--------------------------------------------------------------------"
