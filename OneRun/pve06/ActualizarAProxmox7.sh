@@ -53,9 +53,14 @@ sed -i -e 's|buster|bullseye|g' /etc/apt/sources.list.d/pve-enterprise.list
 sed -i -e 's|buster|bullseye|g' /etc/apt/sources.list.d/pve-no-subscription.list
 sed -i -e 's|buster|bullseye|g' /etc/apt/sources.list.d/pve-no-sub.list
 
-""
-"  Actualizando a la versión 7..."
-""
+echo ""
+echo "  Actualizando a la versión 7..."
+echo ""
 apt-get -y update
 apt-get -y dist-upgrade
+
+echo ""
+echo "  Reiniciando el sistema para iniciar en Proxmox 7..."
+echo ""
+shutdown -r now
 
