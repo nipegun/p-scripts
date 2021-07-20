@@ -32,6 +32,7 @@ echo "  Apagando todas las máquinas virtuales y contenedores..."
 echo ""
 for IdMV in $(seq $MVIni $MVFin);
   do
+    echo "  Apagando la máquina virtual $IdMV..."
     qm shutdown $IdMV
   done
 
