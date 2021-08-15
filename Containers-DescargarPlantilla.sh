@@ -34,6 +34,8 @@ if [ $# -ne $CantArgsEsperados ]
     echo ""
     exit $ArgsInsuficientes
   else
+    echo ""
     pveam download $2 $1
+    echo ""
 fi
 
