@@ -22,7 +22,7 @@ if [ $# -ne $CantArgsEsperados ]
     echo "-------------------------------------------------------------------------------"
     echo -e "${ColorRojo}  Mal uso del script.${FinColor} El uso correcto sería:"
     echo ""
-    echo -e "  $0 ${ColorVerde}[NombreDeLaPlantilla] [Almacenamiento>DeDestino]${FinColor}"
+    echo -e "  $0 ${ColorVerde}[NombreDelArchivoDePlantilla] [AlmacenamientoDeDestino]${FinColor}"
     echo ""
     echo "  Ejemplo:"
     echo "  $0 debian-10-standard_10.7-1_amd64.tar.gz local"
