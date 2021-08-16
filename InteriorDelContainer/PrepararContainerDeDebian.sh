@@ -36,6 +36,9 @@ echo ""
    echo 'LANG="es_ES.UTF-8"' > /etc/default/locale
    echo 'LANGUAGE="es_ES:es"' >> /etc/default/locale
 
+## Preparar comandos post arranque
+   curl --silent https://raw.githubusercontent.com/nipegun/d-scripts/master/PostInst/Consola/04-PrepararComandosPostArranque.sh | bash
+
 ## Reiniciar
    shutdown -r now
 
