@@ -22,7 +22,7 @@ if [ $# -ne $CantArgsEsperados ]
     echo "------------------------------------------------------------------------------"
     echo -e "${ColorAdvertencia}Mal uso del script.${FinColor} El uso correcto sería:"
     echo ""
-    echo -e "$0 ${ColorArgumentos}[NombreCompletoDelArchivo] [IDDeLaNuevaMV] [Almacenamiento]${FinColor}"
+    echo -e "$0 ${ColorArgumentos}[RutaAbsolutaAlArchivo] [IDDeLaNuevaMV] [Almacenamiento]${FinColor}"
     echo ""
     echo "Ejemplo:"
     echo "$0 windowsxp.vma.gz 130 local-lvm" 
