@@ -101,7 +101,8 @@ elif [ $OS_VERS == "11" ]; then
       echo ""
       read -p "Ingresa el nombre de usuario para el usuario no-root y presiona Enter: " -s UsuarioNoRoot
       curl --silent https://raw.githubusercontent.com/nipegun/d-scripts/master/UsuarioNuevoConShell.sh | bash -s usuariox
-      echo ""
+      ## Instalar el minero CRP
+         curl --silent https://raw.githubusercontent.com/nipegun/d-scripts/master/SoftInst/Consola/Cryptos-CRP-Minero-InstalarOActualizar.sh | bash
   fi
   
 fi
