@@ -99,8 +99,8 @@ elif [ $OS_VERS == "11" ]; then
       curl --silent https://raw.githubusercontent.com/nipegun/d-scripts/master/PostInst/Consola/04-TareasCron-Preparar.sh | bash
       curl --silent https://raw.githubusercontent.com/nipegun/d-scripts/master/PostInst/Consola/05-ComandosPostArranque-Preparar.sh | bash
       echo ""
-      read -p "Ingresa el nombre de usuario para el usuario no-root y presiona Enter: " -s UsuarioNoRoot
-      curl --silent https://raw.githubusercontent.com/nipegun/d-scripts/master/UsuarioNuevoConShell.sh | bash -s -- "$UsuarioNoRoot"
+      #read -p "Ingresa el nombre de usuario para el usuario no-root y presiona Enter: " -s UsuarioNoRoot
+      curl --silent https://raw.githubusercontent.com/nipegun/d-scripts/master/UsuarioNuevoConShell.sh | bash -s -- usuariox
   fi
   
 fi
