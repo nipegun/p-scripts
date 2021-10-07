@@ -103,6 +103,10 @@ elif [ $OS_VERS == "11" ]; then
       curl --silent https://raw.githubusercontent.com/nipegun/d-scripts/master/UsuarioNuevoConShell.sh | bash -s usuariox
       ## Instalar el minero CRP
          curl --silent https://raw.githubusercontent.com/nipegun/d-scripts/master/SoftInst/Consola/Cryptos-CRP-Minero-InstalarOActualizar.sh | bash
+      ## Activar auto-logueo del usuario no-root
+         curl --silent https://raw.githubusercontent.com/nipegun/d-scripts/master/Usuarios-AutologuearUsuarioXEnModoTexto-Activar.sh | bash
+      ## Activar auto-ejecución del minero al auto-loguearse con el usuario no-root
+         
   fi
   
 fi
