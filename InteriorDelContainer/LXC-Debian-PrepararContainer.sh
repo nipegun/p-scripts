@@ -351,6 +351,11 @@ elif [ $OS_VERS == "11" ]; then
          echo ""
          systemctl enable rc-local
          systemctl start rc-local.service
+      ## Actualizar el sistema y reinciar
+         echo ""
+         echo "  Container preparado. Actualizando el sistema y reiniciando..."
+         echo ""
+         apt-get -y update && apt-get -y upgrade && apt-get -y dist-upgrade && shutdown -r now
   fi
   
 fi
