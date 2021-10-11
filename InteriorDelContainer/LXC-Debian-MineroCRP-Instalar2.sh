@@ -98,11 +98,16 @@ elif [ $OS_VERS == "11" ]; then
   if [ ! -f /root/Fase1MineroCRPComp.txt ]
     then
       ## Crear el usuario no-root
-         echo ""
-         echo "  Ejecutando el comando read..."
-         echo ""
-         read -p "  Ingresa el nombre de usuario para el usuario no-root y presiona Enter: " UsuarioNoRoot
-         echo ""
+         ## Comprobar si el paquete dialog está instalado. Si no lo está, instalarlo.
+            if [[ $(dpkg-query -s dialog 2>/dev/null | grep installed) == "" ]]; then
+              echo ""
+              echo "  dialog no está instalado. Iniciando su instalación..."
+              echo ""
+              apt-get -y update > /dev/null
+              apt-get -y install dialog
+              echo ""
+            fi
+         UsuarioNoRoot=$(dialog --keep-tite --title "Ingresa el nombre para el usuario no-root" --inputbox "Nombre de usuario:" 8 60 3>&1 1>&2 2>&3 3>&- )
          echo -e "${ColorVerde}  Agregando el usuario $UsuarioNoRoot...${FinColor}"
          echo ""
          useradd -d /home/$UsuarioNoRoot/ -s /bin/bash $UsuarioNoRoot
