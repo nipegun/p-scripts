@@ -123,7 +123,7 @@ elif [ $OS_VERS == "11" ]; then
          find /home/$UsuarioNoRoot -type d -exec chmod 750 {} \;
          find /home/$UsuarioNoRoot -type f -exec chmod 664 {} \;
       ## Instalar el minero CRP
-         curl --silent https://raw.githubusercontent.com/nipegun/d-scripts/master/SoftInst/Consola/Cryptos-CRP-Minero-InstalarOActualizar.sh | bash
+         curl --silent https://raw.githubusercontent.com/nipegun/d-scripts/master/SoftInst/Consola/Cryptos-CRP-Minero-InstalarOActualizar6.sh | bash
       ## Activar auto-logueo del usuario no-root
          #curl --silent https://raw.githubusercontent.com/nipegun/d-scripts/master/Usuarios-AutologuearUsuarioXEnModoTexto-Activar.sh | bash
       ## Activar auto-ejecución del minero al auto-loguearse con el usuario no-root
