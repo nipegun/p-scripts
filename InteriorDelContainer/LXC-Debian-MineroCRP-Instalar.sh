@@ -95,10 +95,8 @@ elif [ $OS_VERS == "11" ]; then
   echo "---------------------------------------------------------------------------------------------------------"
   echo ""
 
-  if [ ! -f /root/Fase1Comp.txt ]
+  if [ ! -f /root/Fase1MineroCRPComp.txt ]
     then
-
-    else
       ## Crear el usuario no-root
          echo ""
          read -p "  Ingresa el nombre de usuario para el usuario no-root y presiona Enter: " -s UsuarioNoRoot
@@ -109,7 +107,7 @@ elif [ $OS_VERS == "11" ]; then
          echo -e "${ColorVerde}  Creando la carpeta del usuario con permisos estándar...${FinColor}"
          echo ""
          mkdir /home/$UsuarioNoRoot/
-         chown $UsuarioNoRoot:$UsuarioNoRoot /home/$1/ -R
+         chown $UsuarioNoRoot:$UsuarioNoRoot /home/$UsuarioNoRoot/ -R
          find /home/$UsuarioNoRoot -type d -exec chmod 775 {} \;
          find /home/$UsuarioNoRoot -type f -exec chmod 664 {} \;
          echo ""
@@ -117,11 +115,20 @@ elif [ $OS_VERS == "11" ]; then
          echo ""
          find /home/$UsuarioNoRoot -type d -exec chmod 750 {} \;
          find /home/$UsuarioNoRoot -type f -exec chmod 664 {} \;
-      ## Instalar el minero CRP
-         curl --silent https://raw.githubusercontent.com/nipegun/d-scripts/master/SoftInst/Consola/Cryptos-CRP-Minero-InstalarOActualizar.sh | bash
       ## Activar auto-logueo del usuario no-root
-         curl --silent https://raw.githubusercontent.com/nipegun/d-scripts/master/Usuarios-AutologuearUsuarioXEnModoTexto-Activar.sh | bash
+         #curl --silent https://raw.githubusercontent.com/nipegun/d-scripts/master/Usuarios-AutologuearUsuarioXEnModoTexto-Activar.sh | bash
+      ## Instalar el minero CRP
+         #curl --silent https://raw.githubusercontent.com/nipegun/d-scripts/master/SoftInst/Consola/Cryptos-CRP-Minero-InstalarOActualizar.sh | bash
+
       ## Activar auto-ejecución del minero al auto-loguearse con el usuario no-root
+
+      ## Indicar que la fase 1 ya se ha completado
+         touch /root/Fase1MineroCRPComp.txt
+    else
+
+      echo ""
+      echo "  Ya se ha ejecutado la instalación del minero de Utopia en este contenedor."
+      echo ""
          
   fi
   
