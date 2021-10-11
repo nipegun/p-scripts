@@ -101,7 +101,7 @@ elif [ $OS_VERS == "11" ]; then
          echo ""
          echo "  Ejecutando el comando read..."
          echo ""
-         read -p '  Ingresa el nombre de usuario para el usuario no-root y presiona Enter: ' UsuarioNoRoot
+         read -p "  Ingresa el nombre de usuario para el usuario no-root y presiona Enter: " UsuarioNoRoot
          echo ""
          echo -e "${ColorVerde}  Agregando el usuario $UsuarioNoRoot...${FinColor}"
          echo ""
