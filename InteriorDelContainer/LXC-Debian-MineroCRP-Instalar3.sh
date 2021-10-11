@@ -118,7 +118,7 @@ elif [ $OS_VERS == "11" ]; then
          find /home/$UsuarioNoRoot -type d -exec chmod 775 {} \;
          find /home/$UsuarioNoRoot -type f -exec chmod 664 {} \;
          echo ""
-         echo -e "${ColorVerde}Denegando el acceso a la carpeta /home/$UsuarioNoRoot a los otros usuarios...${FinColor}"
+         echo -e "${ColorVerde}  Denegando el acceso a la carpeta /home/$UsuarioNoRoot a los otros usuarios...${FinColor}"
          echo ""
          find /home/$UsuarioNoRoot -type d -exec chmod 750 {} \;
          find /home/$UsuarioNoRoot -type f -exec chmod 664 {} \;
