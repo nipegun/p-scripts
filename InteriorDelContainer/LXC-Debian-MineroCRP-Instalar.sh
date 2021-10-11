@@ -99,10 +99,24 @@ elif [ $OS_VERS == "11" ]; then
     then
 
     else
+      ## Crear el usuario no-root
          echo ""
-         read -p "Ingresa el nombre de usuario para el usuario no-root y presiona Enter: " -s UsuarioNoRoot
-         
-
+         read -p "  Ingresa el nombre de usuario para el usuario no-root y presiona Enter: " -s UsuarioNoRoot
+         echo ""
+         echo -e "${ColorVerde}  Agregando el usuario $UsuarioNoRoot...${FinColor}"
+         echo ""
+         useradd -d /home/$UsuarioNoRoot/ -s /bin/bash $UsuarioNoRoot
+         echo -e "${ColorVerde}  Creando la carpeta del usuario con permisos estándar...${FinColor}"
+         echo ""
+         mkdir /home/$UsuarioNoRoot/
+         chown $UsuarioNoRoot:$UsuarioNoRoot /home/$1/ -R
+         find /home/$UsuarioNoRoot -type d -exec chmod 775 {} \;
+         find /home/$UsuarioNoRoot -type f -exec chmod 664 {} \;
+         echo ""
+         echo -e "${ColorVerde}Denegando el acceso a la carpeta /home/$UsuarioNoRoot a los otros usuarios...${FinColor}"
+         echo ""
+         find /home/$UsuarioNoRoot -type d -exec chmod 750 {} \;
+         find /home/$UsuarioNoRoot -type f -exec chmod 664 {} \;
       ## Instalar el minero CRP
          curl --silent https://raw.githubusercontent.com/nipegun/d-scripts/master/SoftInst/Consola/Cryptos-CRP-Minero-InstalarOActualizar.sh | bash
       ## Activar auto-logueo del usuario no-root
