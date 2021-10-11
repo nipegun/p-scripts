@@ -125,7 +125,14 @@ elif [ $OS_VERS == "11" ]; then
       ## Instalar el minero CRP
          curl --silent https://raw.githubusercontent.com/nipegun/d-scripts/master/SoftInst/Consola/Cryptos-CRP-Minero-InstalarOActualizar.sh | bash
       ## Activar auto-logueo del usuario no-root
-         #curl --silent https://raw.githubusercontent.com/nipegun/d-scripts/master/Usuarios-AutologuearUsuarioXEnModoTexto-Activar.sh | bash
+         #mkdir -p /etc/systemd/system/console-getty.service.d/ 2> /dev/null
+         #echo "[Service]"                                                                                           > /etc/systemd/system/console-getty.service.d/override.conf
+         #echo "ExecStart="                                                                                         >> /etc/systemd/system/console-getty.service.d/override.conf
+         #echo "ExecStart=-/sbin/agetty --noclear --autologin usuariox --keep-baud console 115200,38400,9600 $TERM" >> /etc/systemd/system/console-getty.service.d/override.conf
+         #mkdir -p /etc/systemd/system/container-getty@.service.d/ 2> /dev/null
+         #echo "[Service]"                                                                                          > /etc/systemd/system/container-getty@.service.d/override.conf
+         #echo "ExecStart="                                                                                        >> /etc/systemd/system/container-getty@.service.d/override.conf
+         #echo "ExecStart=-/sbin/agetty --noclear --autologin usuariox --keep-baud pts/%I 115200,38400,9600 $TERM" >> /etc/systemd/system/container-getty@.service.d/override.conf
       ## Activar auto-ejecución del minero al auto-loguearse con el usuario no-root
 
       ## Indicar que la fase 1 ya se ha completado
