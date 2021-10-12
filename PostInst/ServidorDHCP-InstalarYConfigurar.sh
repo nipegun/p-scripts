@@ -98,6 +98,7 @@ elif [ $OS_VERS == "11" ]; then
   apt-get -y install isc-dhcp-server
 
   ## Crear el archivo de configuración
+     IPPVE=$(hostname -I | cut -d' ' -f1 | cut -d' ' -f1)
      cp /etc/dhcp/dhcpd.conf /etc/dhcp/dhcpd.conf.bak
      echo "authoritative;"                                 > /etc/dhcp/dhcpd.conf
      echo "  subnet 192.168.1.0 netmask 255.255.255.0 {"  >> /etc/dhcp/dhcpd.conf
