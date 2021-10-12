@@ -95,7 +95,12 @@ elif [ $OS_VERS == "11" ]; then
   echo "--------------------------------------------------------------------------------------------"
   echo ""
 
-  apt-get -y install isc-dhcp-server
+  ## Instalar el paquete
+     apt-get -y install isc-dhcp-server
+
+  ## Indicar las interfaces
+     sed -i -e 's|#DHCPDv4_CONF=/etc/dhcp/dhcpd.conf|DHCPDv4_CONF=/etc/dhcp/dhcpd.conf|g' /etc/default/isc-dhcp-server
+     sed -i -e 's|INTERFACESv4=""|INTERFACESv4="vmbr0"|g'                                 /etc/default/isc-dhcp-server
 
   ## Crear el archivo de configuración
      IPPVE=$(hostname -I | cut -d' ' -f1 | cut -d' ' -f1)
@@ -380,4 +385,12 @@ elif [ $OS_VERS == "11" ]; then
      echo ""                                              >> /etc/dhcp/dhcpd.conf
      echo "  }"                                           >> /etc/dhcp/dhcpd.conf
 
+  ## Reiniciar el servicio
+     systemctl restart isc-dhcp-server.service
+
 fi
+
+echo ""
+echo "  Ejecución del script finalizada."
+echo ""
+
