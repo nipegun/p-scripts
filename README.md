@@ -7,4 +7,4 @@ Los "p-scripts" son scripts en bash que, o he ido creado para paliar necesidades
 Para instalar los p-scripts en la ubicación aconsejada sigue las instrucciones de este artículo: http://hacks4geeks.com/p-scripts
 
 ### ATENCIÓN!!
-Los scripts de dentro de las carpetas "OneRun" están diseñados (por ahora) para ser ejecutados una ÚNICA vez. Si la ejecución de alguno de esos scripts falla o es interrumpida, no se debería volver a ejecutar el mismo script y habría que recurrir a una revisión manual de lo que pudo haber fallado y de las cosas que podrían haber sido modificadas de forma errónea para corregirlas. 
+Los scripts de dentro de las carpetas "PostInst" están diseñados (por ahora) para ser ejecutados una ÚNICA vez. Si la ejecución de alguno de esos scripts falla o es interrumpida, no se debería volver a ejecutar el mismo script y habría que recurrir a una revisión manual de lo que pudo haber fallado y de las cosas que podrían haber sido modificadas de forma errónea para corregirlas. 
