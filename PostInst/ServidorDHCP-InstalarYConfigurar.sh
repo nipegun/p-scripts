@@ -95,6 +95,13 @@ elif [ $OS_VERS == "11" ]; then
   echo "--------------------------------------------------------------------------------------------"
   echo ""
 
+  ## Desinstalar cualquier posible paquete previamente instalado
+     mkdir -p /CopSegInt/ 2> /dev/null
+     mkdir -p /CopSegInt/DHCP/ 2> /dev/null
+     cp /etc/default/isc-dhcp-server /CopSegInt/DHCP/ 2> /dev/null
+     cp /etc/dhcp/dhcpd.conf /CopSegInt/DHCP/ 2> /dev/null
+     apt-ge -y purge isc-dhcp-server
+     
   ## Instalar el paquete
      apt-get -y install isc-dhcp-server
 
