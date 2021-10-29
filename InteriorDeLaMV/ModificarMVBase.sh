@@ -58,9 +58,9 @@ if [ $# -ne $CantArgsEsperados ]
     echo ""
     echo -e "${ColorVerde}Cambiando el nombre y la carpeta del usuario no root...${FinColor}"
     echo ""
-    usermod -l $2 usuario
+    usermod -l $2 usuariox
     usermod -d /home/$2 -m $2
-    groupmod -n $2 usuario
+    groupmod -n $2 usuariox
     echo -e "$2\n$2" | passwd $2
     echo ""
     echo -e "Nuevo nombre: ${ColorVerde}$2${FinColor}"
