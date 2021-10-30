@@ -108,7 +108,22 @@ elif [ $OS_VERS == "11" ]; then
   echo "-----------------------------------------------------------------"
   echo ""
 
-  sed -i -e "s|ExecStart=-/sbin/agetty -o '-p -- \\u' --noclear --keep-baud tty%I 115200,38400,9600 $TERM|ExecStart=-/sbin/agetty --noclear -a minerocrp --keep-baud tty%I 115200,38400,9600 $TERM|g" /lib/systemd/system/container-getty@.service
+  # Se debe reemplazar la línea
+  # ExecStart=-/sbin/agetty -o '-p -- \\u' --noclear --keep-baud tty%I 115200,38400,9600 $TERM
+  # por
+  # ExecStart=-/sbin/agetty --noclear -a minerocrp --keep-baud tty%I 115200,38400,9600 $TERM
+  # en el archivo
+  # /lib/systemd/system/container-getty@.service
+  #
+  # Nota:
+  # -o '-p -- \\u' es para que pida el password
+
+  # Esta solución es temporal y puede que se revierta en alguna actualización del sistema
+
+  ## Borrar la línea que empieza por ExecStart
+     sed -i '/^ExecStart/d' /lib/systemd/system/container-getty@.service
+  ## Reemplazar la línea Type=idle por la línea de ejecucion, un saldo de línea y nuevamente type idle
+     sed -i -e 's|Type=idle|ExecStart=-/sbin/agetty --noclear -a minerocrp --keep-baud tty%I 115200,38400,9600 $TERM\nType=idle|g' /lib/systemd/system/container-getty@.service
 
 fi
 
