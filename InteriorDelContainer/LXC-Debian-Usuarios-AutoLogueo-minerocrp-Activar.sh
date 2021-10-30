@@ -7,6 +7,10 @@
 
 #-----------------------------------------------------------------------------------------------------
 #  Script de NiPeGun para activar el autologueo del usuario minerocrp en un contenedor LXC de Debian
+#
+#  Ejecución con curl:
+#  curl --silent https://raw.githubusercontent.com/nipegun/p-scripts/master/InteriorDelContainer/LXC-Debian-Usuarios-AutoLogueo-minerocrp-Activar.sh | bash
+#
 #-----------------------------------------------------------------------------------------------------
 
 ColorRojo='\033[1;31m'
