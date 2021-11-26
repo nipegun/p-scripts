@@ -24,11 +24,11 @@
 ## Borrar el archivo x
    rm /var/lib/pve-cluster/.pmxcfs.lockfile
 
-sed -i -e 's|192.168.0.10|192.168.1.200|g' /etc/GNUstep/gdomap_probes
-sed -i -e 's|192.168.0.10|192.168.1.200|g' /etc/hosts
-sed -i -e 's|192.168.0.10|192.168.1.200|g' /etc/issue
-sed -i -e 's|192.168.0.10|192.168.1.200|g' /etc/pve/.members
-sed -i -e 's|192.168.0.10|192.168.1.200|g' /etc/pve/priv/known_hosts
+#sed -i -e 's|192.168.0.10|192.168.1.200|g' /etc/GNUstep/gdomap_probes
+#sed -i -e 's|192.168.0.10|192.168.1.200|g' /etc/hosts
+#sed -i -e 's|192.168.0.10|192.168.1.200|g' /etc/issue
+#sed -i -e 's|192.168.0.10|192.168.1.200|g' /etc/pve/.members
+#sed -i -e 's|192.168.0.10|192.168.1.200|g' /etc/pve/priv/known_hosts
 
 ## Arrancar el servicio del cluster
    systemctl start pve-cluster
