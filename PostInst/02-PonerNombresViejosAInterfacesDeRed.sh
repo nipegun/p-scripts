@@ -16,17 +16,18 @@ FinColor='\033[0m'
 echo ""
 echo -e "${ColorVerde}Configurando las interfaces de red...${FinColor}"
 echo ""
-echo "auto lo"                  > /etc/network/interfaces
-echo "iface lo inet loopback"  >> /etc/network/interfaces
-echo ""                        >> /etc/network/interfaces
-echo "iface eth0 inet manual"  >> /etc/network/interfaces
-echo ""                        >> /etc/network/interfaces
-echo "auto vmbr0"              >> /etc/network/interfaces
-echo "iface vmbr0 inet static" >> /etc/network/interfaces
-echo "  address 192.168.0.10"  >> /etc/network/interfaces
-echo "  netmask 255.255.255.0" >> /etc/network/interfaces
-echo "  gateway 192.168.0.1"   >> /etc/network/interfaces
-echo "  bridge_ports eth0"     >> /etc/network/interfaces
-echo "  bridge_stp off"        >> /etc/network/interfaces
-echo "  bridge_fd 0"           >> /etc/network/interfaces
+echo "auto lo"                              > /etc/network/interfaces
+echo "iface lo inet loopback"              >> /etc/network/interfaces
+echo ""                                    >> /etc/network/interfaces
+echo "iface eth0 inet manual"              >> /etc/network/interfaces
+echo ""                                    >> /etc/network/interfaces
+echo "auto vmbr0"                          >> /etc/network/interfaces
+echo "iface vmbr0 inet static"             >> /etc/network/interfaces
+echo "  address 192.168.1.200"             >> /etc/network/interfaces
+echo "  netmask 255.255.255.0"             >> /etc/network/interfaces
+echo "  gateway 192.168.1.1"               >> /etc/network/interfaces
+echo "  bridge_ports eth0"                 >> /etc/network/interfaces
+echo "  bridge_stp off"                    >> /etc/network/interfaces
+echo "  bridge_fd 0"                       >> /etc/network/interfaces
+echo "  hwaddress ether 00:00:00:00:02:00" >> /etc/network/interfaces
 
