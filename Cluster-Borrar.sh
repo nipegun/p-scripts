@@ -24,6 +24,9 @@
 ## Borrar el archivo x
    rm /var/lib/pve-cluster/.pmxcfs.lockfile
 
+## Borrar la clave de autenticación
+   rm -f /etc/corosync/authkey
+
 #sed -i -e 's|192.168.0.10|192.168.1.200|g' /etc/GNUstep/gdomap_probes
 #sed -i -e 's|192.168.0.10|192.168.1.200|g' /etc/hosts
 #sed -i -e 's|192.168.0.10|192.168.1.200|g' /etc/issue
