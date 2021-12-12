@@ -117,6 +117,13 @@ elif [ $OS_VERS == "11" ]; then
          echo ''                  >> /etc/default/keyboard
       ## Marcar la fase 1
          touch /root/Fase1Comp.txt
+         echo ""
+         echo "  Fase 1 completada. Reiniciando el container..."
+         echo ""
+         echo "  Al acabar de reiniciar beberás ejecutar el script una segunda vez"
+         echo "  para terminar de preparar el contenedor."
+         echo ""
+
       ## Reiniciar sistema
          shutdown -r now
     else
