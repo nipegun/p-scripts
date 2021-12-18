@@ -5,13 +5,13 @@
 # Si se te llena la boca hablando de libertad entonces hazlo realmente libre.
 # No tienes que aceptar ningún tipo de términos de uso o licencia para utilizarlo o modificarlo porque va sin CopyLeft.
 
-#-----------------------------------------------------------------------
-#  Script de NiPeGun para borrar todos los kernels viejos de ProxmoxVE
+#---------------------------------------------------------------------------
+#  Script de NiPeGun para dejar sólo el último kernel instalado en ProxmoxVE
 #
 #  Ejecución remota:
 #  curl -s | bash
 #
-#-----------------------------------------------------------------------
+#---------------------------------------------------------------------------
 
 ColorRojo='\033[1;31m'
 ColorVerde='\033[1;32m'
@@ -46,9 +46,9 @@ FinColor='\033[0m'
 if [ $OS_VERS == "7" ]; then
 
   echo ""
-  echo "------------------------------------------------------------------------"
-  echo "  Iniciando el script de borrado de kernels viejos para ProxmoxVE 3..."
-  echo "------------------------------------------------------------------------"
+  echo "------------------------------------------------------------------------------------"
+  echo "  Iniciando el script para dejar sólo el último kernel instalado en ProxmoxVE 3..."
+  echo "------------------------------------------------------------------------------------"
   echo ""
 
   echo ""
@@ -58,9 +58,9 @@ if [ $OS_VERS == "7" ]; then
 elif [ $OS_VERS == "8" ]; then
 
   echo ""
-  echo "------------------------------------------------------------------------"
-  echo "  Iniciando el script de borrado de kernels viejos para ProxmoxVE 4..."
-  echo "------------------------------------------------------------------------"
+  echo "------------------------------------------------------------------------------------"
+  echo "  Iniciando el script para dejar sólo el último kernel instalado en ProxmoxVE 4..."
+  echo "------------------------------------------------------------------------------------"
   echo ""
 
   echo ""
@@ -70,9 +70,9 @@ elif [ $OS_VERS == "8" ]; then
 elif [ $OS_VERS == "9" ]; then
 
   echo ""
-  echo "------------------------------------------------------------------------"
-  echo "  Iniciando el script de borrado de kernels viejos para ProxmoxVE 5..."
-  echo "------------------------------------------------------------------------"
+  echo "------------------------------------------------------------------------------------"
+  echo "  Iniciando el script para dejar sólo el último kernel instalado en ProxmoxVE 5..."
+  echo "------------------------------------------------------------------------------------"
   echo ""
 
   echo ""
@@ -82,66 +82,40 @@ elif [ $OS_VERS == "9" ]; then
 elif [ $OS_VERS == "10" ]; then
 
   echo ""
-  echo "------------------------------------------------------------------------"
-  echo "  Iniciando el script de borrado de kernels viejos para ProxmoxVE 6..."
-  echo "------------------------------------------------------------------------"
+  echo "------------------------------------------------------------------------------------"
+  echo "  Iniciando el script para dejar sólo el último kernel instalado en ProxmoxVE 6..."
+  echo "------------------------------------------------------------------------------------"
   echo ""
 
-  apt-get -y remove pve-kernel-4.10.1-2-pve  pve-headers-4.10.1-2-pve
-  apt-get -y remove pve-kernel-4.10.5-1-pve  pve-headers-4.10.5-1-pve
-  apt-get -y remove pve-kernel-4.10.8-1-pve  pve-headers-4.10.8-1-pve
-  apt-get -y remove pve-kernel-4.10.11-1-pve pve-headers-4.10.11-1-pve
-  apt-get -y remove pve-kernel-4.10.15-1-pve pve-headers-4.10.15-1-pve
-  apt-get -y remove pve-kernel-4.10.17-1-pve pve-headers-4.10.17-1-pve
-  apt-get -y remove pve-kernel-4.10.17-2-pve pve-headers-4.10.17-2-pve
-  apt-get -y remove pve-kernel-4.10.17-3-pve pve-headers-4.10.17-3-pve
-  apt-get -y remove pve-kernel-4.10.17-4-pve pve-headers-4.10.17-4-pve
-  apt-get -y remove pve-kernel-4.10.17-5-pve pve-headers-4.10.17-5-pve
-  # apt-get -y remove pve-kernel-4.13
-  apt-get -y remove pve-kernel-4.13.3-1-pve  pve-headers-4.13.3-1-pve
-  apt-get -y remove pve-kernel-4.13.4-1-pve  pve-headers-4.13.4-1-pve
-  apt-get -y remove pve-kernel-4.13.8-1-pve  pve-headers-4.13.8-1-pve
-  apt-get -y remove pve-kernel-4.13.8-2-pve  pve-headers-4.13.8-2-pve
-  apt-get -y remove pve-kernel-4.13.8-3-pve  pve-headers-4.13.8-3-pve
-  apt-get -y remove pve-kernel-4.13.13-1-pve pve-headers-4.13.13-1-pve
-  apt-get -y remove pve-kernel-4.13.13-2-pve pve-headers-4.13.13-2-pve
-  apt-get -y remove pve-kernel-4.13.13-3-pve pve-headers-4.13.13-3-pve
-  apt-get -y remove pve-kernel-4.13.13-4-pve pve-headers-4.13.13-4-pve
-  apt-get -y remove pve-kernel-4.13.13-5-pve pve-headers-4.13.13-5-pve
-  apt-get -y remove pve-kernel-4.13.13-6-pve pve-headers-4.13.13-6-pve
-  apt-get -y remove pve-kernel-4.13.16-1-pve pve-headers-4.13.16-1-pve
-  apt-get -y remove pve-kernel-4.13.16-2-pve pve-headers-4.13.16-2-pve
-  apt-get -y remove pve-kernel-4.13.16-3-pve pve-headers-4.13.16-3-pve
-  # apt-get -y remove pve-kernel-4.15
-  apt-get -y remove pve-kernel-4.15.3-1-pve  pve-headers-4.15.3-1-pve
-  apt-get -y remove pve-kernel-4.15.10-1-pve pve-headers-4.15.10-1-pve
-  apt-get -y remove pve-kernel-4.15.15-1-pve pve-headers-4.15.15-1-pve
-  apt-get -y remove pve-kernel-4.15.17-1-pve pve-headers-4.15.17-1-pve
-  apt-get -y remove pve-kernel-4.15.17-2-pve pve-headers-4.15.17-2-pve
-  apt-get -y remove pve-kernel-4.15.17-3-pve pve-headers-4.15.17-3-pve
-  apt-get -y remove pve-kernel-4.15.18-1-pve pve-headers-4.15.18-1-pve
-  apt-get -y remove pve-kernel-4.15.18-2-pve pve-headers-4.15.18-2-pve
-  apt-get -y remove pve-kernel-4.15.18-3-pve pve-headers-4.15.18-3-pve
-  apt-get -y remove pve-kernel-4.15.18-4-pve pve-headers-4.15.18-4-pve
-  apt-get -y remove pve-kernel-4.15.18-5-pve pve-headers-4.15.18-5-pve
-  apt-get -y remove pve-kernel-4.15.18-6-pve pve-headers-4.15.18-6-pve
-  apt-get -y remove pve-kernel-4.15.18-7-pve pve-headers-4.15.18-7-pve
-  apt-get -y remove pve-kernel-4.15.18-8-pve pve-headers-4.15.18-8-pve
-  apt-get -y remove pve-kernel-4.15.18-9-pve pve-headers-4.15.18-9-pve
-  apt-get -y remove pve-kernel-4.15.18-10-pve pve-headers-4.15.18-10-pve
+  dpkg-query -l | grep pve-kernel | cut -d ' ' -f3 | grep -v firmware | grep -v helper > /tmp/KernelsInstalados.txt
+  echo '#!/bin/bash '                                   > /tmp/BorrarKernelsViejos.sh
+  echo ""                                              >> /tmp/BorrarKernelsViejos.sh
+  cat /tmp/KernelsInstalados.txt | head -n -1          >> /tmp/BorrarKernelsViejos.sh
+  sed -i -e 's|pve-kernel|apt-get -y remove pve-kernel|g' /tmp/BorrarKernelsViejos.sh
+  echo ""                                              >> /tmp/BorrarKernelsViejos.sh
+  echo "apt-get -y autoremove"                         >> /tmp/BorrarKernelsViejos.sh
+  chmod +x                                                /tmp/BorrarKernelsViejos.sh
+  /tmp/BorrarKernelsViejos.sh
+
+# apt-get -y remove pve-kernel-4.15.18-10-pve pve-headers-4.15.18-10-pve
 
 elif [ $OS_VERS == "11" ]; then
 
   echo ""
-  echo "------------------------------------------------------------------------"
-  echo "  Iniciando el script de borrado de kernels viejos para ProxmoxVE 7..."
-  echo "------------------------------------------------------------------------"
+  echo "------------------------------------------------------------------------------------"
+  echo "  Iniciando el script para dejar sólo el último kernel instalado en ProxmoxVE 7..."
+  echo "------------------------------------------------------------------------------------"
   echo ""
 
-  apt-get update && apt-get -y dist-upgrade
-  UltKernelDisponible=$(apt-cache search pve-kernel | grep atest | tail -1 | cut -d ' ' -f1)
-  apt-get -y install $UltKernelDisponible
-  KernelsInstalados=$(dpkg-query -l | grep pve-kernel | cut -d ' ' -f3 | grep -v firmware | grep -v helper)
+  dpkg-query -l | grep pve-kernel | cut -d ' ' -f3 | grep -v firmware | grep -v helper > /tmp/KernelsInstalados.txt
+  echo '#!/bin/bash '                                   > /tmp/BorrarKernelsViejos.sh
+  echo ""                                              >> /tmp/BorrarKernelsViejos.sh
+  cat /tmp/KernelsInstalados.txt | head -n -1          >> /tmp/BorrarKernelsViejos.sh
+  sed -i -e 's|pve-kernel|apt-get -y remove pve-kernel|g' /tmp/BorrarKernelsViejos.sh
+  echo ""                                              >> /tmp/BorrarKernelsViejos.sh
+  echo "apt-get -y autoremove"                         >> /tmp/BorrarKernelsViejos.sh
+  chmod +x                                                /tmp/BorrarKernelsViejos.sh
+  /tmp/BorrarKernelsViejos.sh
 
 fi
 
