@@ -97,7 +97,8 @@ elif [ $OS_VERS == "10" ]; then
   chmod +x                                                /tmp/BorrarKernelsViejos.sh
   /tmp/BorrarKernelsViejos.sh
 
-# apt-get -y remove pve-kernel-4.15.18-10-pve pve-headers-4.15.18-10-pve
+  # apt-get -y remove pve-kernel-4.15.18-10-pve --purge
+  # apt-get -y remove pve-headers-4.15.18-10-pve --purge
 
 elif [ $OS_VERS == "11" ]; then
 
