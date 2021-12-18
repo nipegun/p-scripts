@@ -5,13 +5,13 @@
 # Si se te llena la boca hablando de libertad entonces hazlo realmente libre.
 # No tienes que aceptar ningún tipo de términos de uso o licencia para utilizarlo o modificarlo porque va sin CopyLeft.
 
-#---------------------------------------------------------------------------
+#-----------------------------------------------------------------------------------------------------------------
 #  Script de NiPeGun para dejar sólo el último kernel instalado en ProxmoxVE
 #
 #  Ejecución remota:
-#  curl -s | bash
+#  curl -s https://raw.githubusercontent.com/nipegun/p-scripts/master/Kernel-DejarS%C3%B3loEl%C3%9Altimo.sh | bash
 #
-#---------------------------------------------------------------------------
+#-----------------------------------------------------------------------------------------------------------------
 
 ColorRojo='\033[1;31m'
 ColorVerde='\033[1;32m'
