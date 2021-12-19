@@ -7,6 +7,10 @@
 
 #---------------------------------------------------------------------------------------------------------------------------
 #  Script de NiPeGun para quitar el mensaje de suscripción no válida al conectarse a la web de administración de ProxmoxVE
+#
+#  Ejecución remota:
+#  curl -s | bash
+#
 #---------------------------------------------------------------------------------------------------------------------------
 
 sed -i.bak 's|status => "NotFound",|status => "Active",|g' /usr/share/perl5/PVE/API2/Subscription.pm
