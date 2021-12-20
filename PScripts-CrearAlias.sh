@@ -16,7 +16,8 @@ echo ""
 echo -e "${ColorVerde}Creando alias para los p-scripts...${FinColor}"
 echo ""
 
-ln -s /root/scripts/p-scripts/PScripts-Sincronizar.sh                       /root/scripts/p-scripts/Alias/sinps
+ln -s /root/scripts/p-scripts/PVE-Actualizar.sh                  /root/scripts/p-scripts/Alias/apve
+ln -s /root/scripts/p-scripts/PScripts-Sincronizar.sh            /root/scripts/p-scripts/Alias/sinps
 
 echo ""
 echo -e "${ColorVerde}Alias creados. Deberías poder ejecutar los p-scripts escribiendo el nombre de su alias.${FinColor}"
