@@ -127,6 +127,8 @@ elif [ $OS_VERS == "11" ]; then
       ## Reiniciar sistema
          shutdown -r now
     else
+      ## asdas Permitir el logueo root mediante ssh
+         sed -i -e 's|#PermitRootLogin prohibit-password|PermitRootLogin yes|g' /etc/ssh/sshc_config
       ## Poner todos los repositorios
          cp /etc/apt/sources.list /etc/apt/sources.list.bak
          echo "deb http://deb.debian.org/debian bullseye main contrib non-free"                         > /etc/apt/sources.list
