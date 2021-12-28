@@ -362,11 +362,16 @@ elif [ $OS_VERS == "11" ]; then
          echo ""
          systemctl enable rc-local
          systemctl start rc-local.service
+      ## Instalar paquetes minimos
+         apt-get -y update
+         apt-get -y install curl
+         apt-get -y install git
+         apt-get -y install nmap
       ## Actualizar el sistema y reinciar
          echo ""
          echo "  Container preparado. Actualizando el sistema y reiniciando..."
          echo ""
-         apt-get -y update && apt-get -y upgrade && apt-get -y dist-upgrade && apt-get -y install mc && shutdown -r now
+         apt-get -y upgrade && apt-get -y dist-upgrade && apt-get -y install mc && shutdown -r now
   fi
   
 fi
