@@ -34,7 +34,6 @@ URLKali="$URLBase"kali/current/amd64/default/
       sed -i -e "s|$|amd64/default/|" /tmp/lxc-debian-amd64.txt
       VersDebianAMD64=$(curl -s $(cat /tmp/lxc-debian-amd64.txt) | sed 's/a href=/\n/g' | sed 's.</a>.\n.g' | grep '/"' | cut -d '"' -f2 | grep -v images | sed 's|./||' | tail -n1)
       sed -i -e "s|$|$VersDebianAMD64|" /tmp/lxc-debian-amd64.txt
-      cat /tmp/lxc-debian-amd64.txt
       VersDebianAMD64=$(cat /tmp/lxc-debian-amd64.txt | cut -d '_' -f1 | rev | cut -d'/' -f1 | rev)
       sed -i -e 's/$/rootfs.tar.xz/' /tmp/lxc-debian-amd64.txt
    ## arm64
@@ -67,7 +66,7 @@ URLKali="$URLBase"kali/current/amd64/default/
    VersKali=$(cat /tmp/lxc-kali-amd64.txt | cut -d '_' -f1 | rev | cut -d'/' -f1 | rev)
    sed -i -e 's/$/rootfs.tar.xz/' /tmp/lxc-kali-amd64.txt
    echo ""
-   echo "  Contenedores de Kali:"
+   echo "  Contenedores extra de Kali:"
    echo ""
    echo "  amd64: $(cat /tmp/lxc-kali-amd64.txt)"
    echo "    wget $(cat /tmp/lxc-kali-amd64.txt) -O /tmp/kali-amd64-$VersKali.tar.xz"
