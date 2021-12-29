@@ -41,8 +41,8 @@ URLKali="$URLBase/kali/current/amd64/default/"
    echo ""
 
 ## Kali
-   curl -s $URLBaseKali | sed 's/a href=/\n/g' | sed 's.</a>.\n.g' | grep '/"' | cut -d '"' -f2 | grep -v images | cut -d '.' -f2 | tail -n1 > /tmp/lxc-kali.txt
-   sed -i -e "s|^|$URLBaseKali|" /tmp/lxc-kali.txt
+   curl -s $URLKali | sed 's/a href=/\n/g' | sed 's.</a>.\n.g' | grep '/"' | cut -d '"' -f2 | grep -v images | cut -d '.' -f2 | tail -n1 > /tmp/lxc-kali.txt
+   sed -i -e "s|^|$URLKali|" /tmp/lxc-kali.txt
    echo ""
    cat /tmp/lxc-kali.txt
    echo ""
