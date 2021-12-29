@@ -12,9 +12,8 @@
 #  curl -s https://raw.githubusercontent.com/nipegun/p-scripts/master/LXC-MostrarDisponibles-Extra.sh | bash
 #-----------------------------------------------------------------------------------------------------------------------
 
-URLBase="https://uk.lxd.images.canonical.com/images"
-
-URLKali="$URLBase/kali/current/amd64/default/"
+URLBase="https://uk.lxd.images.canonical.com/images/"
+URLKali="$URLBase"kali/current/amd64/default/
 
 ## Comprobar si el paquete curl está instalado. Si no lo está, instalarlo.
    if [[ $(dpkg-query -s curl 2>/dev/null | grep installed) == "" ]]; then
@@ -27,10 +26,17 @@ URLKali="$URLBase/kali/current/amd64/default/"
    fi
 
 ## Debian
-   curl -s $URLBase/debian/ | sed 's.a href=.\n.g' | sed 's.</a>.\n.g' | grep '/"' | cut -d '"' -f2 | grep -v images > /tmp/lxc-debian.txt
-   sed -i -e "s|^|$URLBase|" /tmp/lxc-debian.txt
+   curl -s $URLBase/debian/ | sed 's.a href=.\n.g' | sed 's.</a>.\n.g' | grep '/"' | cut -d '"' -f2 | grep -v images > /tmp/lxc-debian-arm64.txt
+   sed -i -e "s|^|$URLBase|" /tmp/lxc-debian-arm64.txt
+   VersDebianARM64=$(cat /tmp/lxc-kali-amd64.txt | cut -d '_' -f1 | rev | cut -d'/' -f1 | rev)
    echo ""
-   cat /tmp/lxc-debian.txt
+   cat /tmp/lxc-debian-arm64.txt
+   echo ""
+   echo ""
+   echo "  Contenedores extra de Debian:"
+   echo ""
+   echo "  arm64: $(cat /tmp/lxc-debian-arm64.txt)"
+   echo "    wget $(cat /tmp/lxc-debian-arm64.txt) -O /tmp/debian-$VersDebianARM64-arm64.tar.xz"
    echo ""
 
 ## Devuan
@@ -49,9 +55,7 @@ URLKali="$URLBase/kali/current/amd64/default/"
    echo "  Contenedores de Kali:"
    echo ""
    echo "  amd64: $(cat /tmp/lxc-kali-amd64.txt)"
-   echo "  wget $(cat /tmp/lxc-kali-amd64.txt) -O /tmp/kali-amd64-$VersKali.tar.xz"
-   echo ""
-   echo "arm64:"
+   echo "    wget $(cat /tmp/lxc-kali-amd64.txt) -O /tmp/kali-amd64-$VersKali.tar.xz"
    echo ""
 
 ## OpenWRT
