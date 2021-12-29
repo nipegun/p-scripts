@@ -49,7 +49,7 @@ URLKali="$URLBase"kali/current/amd64/default/
    echo "  amd64:"
    echo ""
    echo "    debian-amd64-$DistDebianBeta-$FechaVersDebianBeta.tar.xz"
-   echo "      wget $(cat /tmp/lxc-debian-amd64.txt) -O /tmp/debian-amd64-$DistDebianBeta-$FechaVersDebianBeta.tar.xz"
+   echo "      Para descargarlo: wget $(cat /tmp/lxc-debian-amd64.txt) -O /tmp/debian-amd64-$DistDebianBeta-$FechaVersDebianBeta.tar.xz"
    echo ""
    echo ""
    #echo "  arm64: $(cat /tmp/lxc-debian-arm64.txt)"
