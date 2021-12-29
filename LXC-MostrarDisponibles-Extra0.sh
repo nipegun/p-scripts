@@ -12,9 +12,9 @@
 #  curl -s https://raw.githubusercontent.com/nipegun/p-scripts/master/LXC-MostrarDisponibles-Extra.sh | bash
 #-----------------------------------------------------------------------------------------------------------------------
 
-URLBase="https://uk.lxd.images.canonical.com/images/"
+URLBase="https://uk.lxd.images.canonical.com/images"
 
-URLBaseKali="$URLBase\kali/current/amd64/default/"
+URLKali="$URLBase/kali/current/amd64/default/"
 
 ## Comprobar si el paquete curl está instalado. Si no lo está, instalarlo.
    if [[ $(dpkg-query -s curl 2>/dev/null | grep installed) == "" ]]; then
