@@ -26,7 +26,7 @@ URLBase="https://uk.lxd.images.canonical.com/images/"
 
 ## Debian
    curl -s $URLBase/debian/ | sed 's.a href=.\n.g' | sed 's.</a>.\n.g' | grep '/"' | cut -d '"' -f2 | grep -v images > /tmp/lxc-debian.txt
-   sed -i -e 's/^/\$URLBase/' /tmp/lxc-debian.txt
+   sed -i -e "s|^|$URLBase|" /tmp/lxc-debian.txt
    echo ""
    cat /tmp/lxc-debian.txt
    echo ""
