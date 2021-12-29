@@ -39,7 +39,7 @@ URLKali="$URLBase"kali/current/amd64/default/
    ## arm64
       curl -s $URLBase/debian/ | sed 's.a href=.\n.g' | sed 's.</a>.\n.g' | grep '/"' | cut -d '"' -f2 | grep -v images > /tmp/lxc-debian-arm64.txt
       sed -i -e "s|^|$URLBase|" /tmp/lxc-debian-arm64.txt
-      VersDebianARM64=$(cat /tmp/lxc-kali-arm64.txt | cut -d '_' -f1 | rev | cut -d'/' -f1 | rev)
+      VersDebianARM64=$(cat /tmp/lxc-debian-arm64.txt | cut -d '_' -f1 | rev | cut -d'/' -f1 | rev)
    echo ""
    echo "  Contenedores extra de Debian:"
    echo ""
