@@ -33,28 +33,28 @@ URLBase="https://uk.lxd.images.canonical.com/images/"
 
 ## Devuan
    curl -s $URLBase/devuan/ | sed 's.a href=.\n.g' | sed 's.</a>.\n.g' | grep '/"' | cut -d '"' -f2 | grep -v images > /tmp/lxc-devuan.txt
-   sed -i -e 's/^/$URLBase/' /tmp/lxc-devuan.txt
+   sed -i -e "s|^|$URLBase|" /tmp/lxc-devuan.txt
    echo ""
    cat /tmp/lxc-devuan.txt
    echo ""
 
 ## Kali
    curl -s $URLBase/kali/ | sed 's.a href=.\n.g' | sed 's.</a>.\n.g' | grep '/"' | cut -d '"' -f2 | grep -v images > /tmp/lxc-kali.txt
-   sed -i -e 's/^/$URLBase/' /tmp/lxc-kali.txt
+   sed -i -e "s|^|$URLBase|" /tmp/lxc-kali.txt
    echo ""
    cat /tmp/lxc-kali.txt
    echo ""
 
 ## OpenWRT
    curl -s $URLBase/openwrt/ | sed 's.a href=.\n.g' | sed 's.</a>.\n.g' | grep '/"' | cut -d '"' -f2 | grep -v images > /tmp/lxc-openwrt.txt
-   sed -i -e 's/^/$URLBase/' /tmp/lxc-openwrt.txt
+   sed -i -e "s|^|$URLBase|" /tmp/lxc-openwrt.txt
    echo ""
    cat /tmp/lxc-openwrt.txt
    echo ""
 
 ## Ubuntu
    curl -s $URLBase/ubuntu/ | sed 's.a href=.\n.g' | sed 's.</a>.\n.g' | grep '/"' | cut -d '"' -f2 | grep -v images > /tmp/lxc-ubuntu.txt
-   sed -i -e 's/^/$URLBase/' /tmp/lxc-ubuntu.txt
+   sed -i -e "s|^|$URLBase|" /tmp/lxc-ubuntu.txt
    echo ""
    cat /tmp/lxc-ubuntu.txt
    echo ""
