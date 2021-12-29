@@ -41,10 +41,14 @@ URLKali="$URLBase/kali/current/amd64/default/"
    echo ""
 
 ## Kali
-   curl -s $URLKali | sed 's/a href=/\n/g' | sed 's.</a>.\n.g' | grep '/"' | cut -d '"' -f2 | grep -v images | sed 's|./||' | tail -n1 > /tmp/lxc-kali.txt
-   sed -i -e "s|^|$URLKali|" /tmp/lxc-kali.txt
+   curl -s $URLKali | sed 's/a href=/\n/g' | sed 's.</a>.\n.g' | grep '/"' | cut -d '"' -f2 | grep -v images | sed 's|./||' | tail -n1 > /tmp/lxc-kali-amd64.txt
+   sed -i -e "s|^|$URLKali|" /tmp/lxc-kali-amd64.txt
+   sed -i -e 's/$/rootfs.tar.xz/' /tmp/lxc-kali-amd64.txt
    echo ""
-   cat /tmp/lxc-kali.txt
+   echo "  Contenedores de Kali:"
+   echo ""
+   echo "amd64: $(cat /tmp/lxc-kali-amd64.txt)"
+   echo "arm64:"
    echo ""
 
 ## OpenWRT
