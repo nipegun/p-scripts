@@ -123,8 +123,6 @@ elif [ $OS_VERS == "11" ]; then
          echo "  Al acabar de reiniciar beberás ejecutar el script una segunda vez"
          echo "  para terminar de preparar el contenedor."
          echo ""
-      ## asdas Permitir el logueo root mediante ssh
-         sed -i -e 's|#PermitRootLogin prohibit-password|PermitRootLogin yes|g' /etc/ssh/sshd_config
       ## Reiniciar sistema
          shutdown -r now
     else
@@ -362,11 +360,15 @@ elif [ $OS_VERS == "11" ]; then
          echo ""
          systemctl enable rc-local
          systemctl start rc-local.service
+      ## Permitir el logueo root mediante ssh
+         sed -i -e 's|#PermitRootLogin prohibit-password|PermitRootLogin yes|g' /etc/ssh/sshd_config
       ## Instalar paquetes minimos
          apt-get -y update
          apt-get -y install curl
          apt-get -y install git
          apt-get -y install nmap
+      ## Instalar y configurar Fail2Ban
+         curl -s https://raw.githubusercontent.com/nipegun/d-scripts/master/SoftInst/Consola/Fail2Ban-InstalarYConfigurar.sh | bash
       ## Actualizar el sistema y reinciar
          echo ""
          echo "  Container preparado. Actualizando el sistema y reiniciando..."
