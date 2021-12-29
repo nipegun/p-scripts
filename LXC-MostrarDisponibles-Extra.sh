@@ -9,7 +9,7 @@
 #  Script de NiPeGun para mostrar los containers LXC extra disponibles para descargar en ProxmoxVE, fuera del propio PVE
 #
 #  Ejecución remota:
-#  curl -s | bash
+#  curl -s https://raw.githubusercontent.com/nipegun/p-scripts/master/LXC-MostrarDisponibles-Extra.sh | bash
 #-----------------------------------------------------------------------------------------------------------------------
 
 URLBase="https://uk.lxd.images.canonical.com/images"
@@ -29,14 +29,14 @@ URLBase="https://uk.lxd.images.canonical.com/images"
    sed -i -e "s/^/$URLBase/" /tmp/lxc-debian.txt
 ## Devuan
    curl -s $URLBase/devuan/ | sed 's.a href=.\n.g' | sed 's.</a>.\n.g' | grep '/"' | cut -d '"' -f2 | grep -v images > /tmp/lxc-devuan.txt
-
+   sed -i -e "s/^/$URLBase/" /tmp/lxc-devuan.txt
 ## Kali
    curl -s $URLBase/kali/ | sed 's.a href=.\n.g' | sed 's.</a>.\n.g' | grep '/"' | cut -d '"' -f2 | grep -v images > /tmp/lxc-kali.txt
-
+   sed -i -e "s/^/$URLBase/" /tmp/lxc-kali.txt
 ## OpenWRT
    curl -s $URLBase/openwrt/ | sed 's.a href=.\n.g' | sed 's.</a>.\n.g' | grep '/"' | cut -d '"' -f2 | grep -v images > /tmp/lxc-openwrt.txt
-
+   sed -i -e "s/^/$URLBase/" /tmp/lxc-openwrt.txt
 ## Ubuntu
    curl -s $URLBase/ubuntu/ | sed 's.a href=.\n.g' | sed 's.</a>.\n.g' | grep '/"' | cut -d '"' -f2 | grep -v images > /tmp/lxc-ubuntu.txt
-
+   sed -i -e "s/^/$URLBase/" /tmp/lxc-ubuntu.txt
 
