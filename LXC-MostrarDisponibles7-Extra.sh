@@ -14,6 +14,8 @@
 
 URLBase="https://uk.lxd.images.canonical.com/images/"
 
+URLBaseKali="$URLBase\kali/current/amd64/default/"
+
 ## Comprobar si el paquete curl está instalado. Si no lo está, instalarlo.
    if [[ $(dpkg-query -s curl 2>/dev/null | grep installed) == "" ]]; then
      echo ""
@@ -39,8 +41,8 @@ URLBase="https://uk.lxd.images.canonical.com/images/"
    echo ""
 
 ## Kali
-   curl -s $URLBase/kali/ | sed 's.a href=.\n.g' | sed 's.</a>.\n.g' | grep '/"' | cut -d '"' -f2 | grep -v images > /tmp/lxc-kali.txt
-   sed -i -e "s|^|$URLBase|" /tmp/lxc-kali.txt
+   curl -s $URLBaseKali | sed 's/a href=/\n/g' | sed 's.</a>.\n.g' | grep '/"' | cut -d '"' -f2 | grep -v images | cut -d '.' -f2 | tail -n1 > /tmp/lxc-kali.txt
+   sed -i -e "s|^|$URLBaseKali|" /tmp/lxc-kali.txt
    echo ""
    cat /tmp/lxc-kali.txt
    echo ""
