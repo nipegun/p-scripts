@@ -51,16 +51,16 @@ URLKali="$URLBase"kali/current/amd64/default/
    echo "  amd64: $(cat /tmp/lxc-debian-amd64.txt)"
    echo "    wget $(cat /tmp/lxc-debian-amd64.txt) -O /tmp/debian-amd64-$DistDebian-.tar.xz"
    echo ""
-   echo "  arm64: $(cat /tmp/lxc-debian-arm64.txt)"
-   echo "    wget $(cat /tmp/lxc-debian-arm64.txt) -O /tmp/debian-$VersDebianARM64-arm64.tar.xz"
-   echo ""
+   #echo "  arm64: $(cat /tmp/lxc-debian-arm64.txt)"
+   #echo "    wget $(cat /tmp/lxc-debian-arm64.txt) -O /tmp/debian-$VersDebianARM64-arm64.tar.xz"
+   #echo ""
 
 ## Devuan
-   curl -s $URLBase/devuan/ | sed 's.a href=.\n.g' | sed 's.</a>.\n.g' | grep '/"' | cut -d '"' -f2 | grep -v images > /tmp/lxc-devuan.txt
-   sed -i -e "s|^|$URLBase|" /tmp/lxc-devuan.txt
-   echo ""
-   cat /tmp/lxc-devuan.txt
-   echo ""
+   #curl -s $URLBase/devuan/ | sed 's.a href=.\n.g' | sed 's.</a>.\n.g' | grep '/"' | cut -d '"' -f2 | grep -v images > /tmp/lxc-devuan.txt
+   #sed -i -e "s|^|$URLBase|" /tmp/lxc-devuan.txt
+   #echo ""
+   #cat /tmp/lxc-devuan.txt
+   #echo ""
 
 ## Kali
    curl -s $URLKali | sed 's/a href=/\n/g' | sed 's.</a>.\n.g' | grep '/"' | cut -d '"' -f2 | grep -v images | sed 's|./||' | tail -n1 > /tmp/lxc-kali-amd64.txt
@@ -75,16 +75,16 @@ URLKali="$URLBase"kali/current/amd64/default/
    echo ""
 
 ## OpenWRT
-   curl -s $URLBase/openwrt/ | sed 's.a href=.\n.g' | sed 's.</a>.\n.g' | grep '/"' | cut -d '"' -f2 | grep -v images > /tmp/lxc-openwrt.txt
-   sed -i -e "s|^|$URLBase|" /tmp/lxc-openwrt.txt
-   echo ""
-   cat /tmp/lxc-openwrt.txt
-   echo ""
+   #curl -s $URLBase/openwrt/ | sed 's.a href=.\n.g' | sed 's.</a>.\n.g' | grep '/"' | cut -d '"' -f2 | grep -v images > /tmp/lxc-openwrt.txt
+   #sed -i -e "s|^|$URLBase|" /tmp/lxc-openwrt.txt
+   #echo ""
+   #cat /tmp/lxc-openwrt.txt
+   #echo ""
 
 ## Ubuntu
-   curl -s $URLBase/ubuntu/ | sed 's.a href=.\n.g' | sed 's.</a>.\n.g' | grep '/"' | cut -d '"' -f2 | grep -v images > /tmp/lxc-ubuntu.txt
-   sed -i -e "s|^|$URLBase|" /tmp/lxc-ubuntu.txt
-   echo ""
-   cat /tmp/lxc-ubuntu.txt
-   echo ""
+   #curl -s $URLBase/ubuntu/ | sed 's.a href=.\n.g' | sed 's.</a>.\n.g' | grep '/"' | cut -d '"' -f2 | grep -v images > /tmp/lxc-ubuntu.txt
+   #sed -i -e "s|^|$URLBase|" /tmp/lxc-ubuntu.txt
+   #echo ""
+   #cat /tmp/lxc-ubuntu.txt
+   #echo ""
 
