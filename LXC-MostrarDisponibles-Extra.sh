@@ -25,18 +25,18 @@ URLBase="https://uk.lxd.images.canonical.com/images"
    fi
 
 ## Debian
-   curl -s $URLBase/debian/
-
+   curl -s $URLBase/debian/ | sed 's.a href=.\n.g' | sed 's.</a>.\n.g' | grep '/"' | cut -d '"' -f2 | grep -v images > /tmp/lxc-debian.txt
+   sed -i -e "s/^/$URLBase/" /tmp/lxc-debian.txt
 ## Devuan
-   curl -s $URLBase/devuan/
+   curl -s $URLBase/devuan/ | sed 's.a href=.\n.g' | sed 's.</a>.\n.g' | grep '/"' | cut -d '"' -f2 | grep -v images > /tmp/lxc-devuan.txt
 
 ## Kali
-   curl -s $URLBase/kali/
+   curl -s $URLBase/kali/ | sed 's.a href=.\n.g' | sed 's.</a>.\n.g' | grep '/"' | cut -d '"' -f2 | grep -v images > /tmp/lxc-kali.txt
 
 ## OpenWRT
-   curl -s $URLBase/openwrt/
+   curl -s $URLBase/openwrt/ | sed 's.a href=.\n.g' | sed 's.</a>.\n.g' | grep '/"' | cut -d '"' -f2 | grep -v images > /tmp/lxc-openwrt.txt
 
 ## Ubuntu
-   curl -s $URLBase/ubuntu/
+   curl -s $URLBase/ubuntu/ | sed 's.a href=.\n.g' | sed 's.</a>.\n.g' | grep '/"' | cut -d '"' -f2 | grep -v images > /tmp/lxc-ubuntu.txt
 
 
