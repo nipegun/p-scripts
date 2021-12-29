@@ -26,14 +26,30 @@ URLKali="$URLBase"kali/current/amd64/default/
    fi
 
 ## Debian
-   curl -s $URLBase/debian/ | sed 's.a href=.\n.g' | sed 's.</a>.\n.g' | grep '/"' | cut -d '"' -f2 | grep -v images > /tmp/lxc-debian-arm64.txt
-   sed -i -e "s|^|$URLBase|" /tmp/lxc-debian-arm64.txt
-   VersDebianARM64=$(cat /tmp/lxc-kali-amd64.txt | cut -d '_' -f1 | rev | cut -d'/' -f1 | rev)
+   ## amd64
+      curl -s $URLBase/debian/ | sed 's.a href=.\n.g' | sed 's.</a>.\n.g' | grep '/"' | cut -d '"' -f2 | grep -v images | head -n1 > /tmp/lxc-debian-amd64.txt
+      DistDebian=$(cat /tmp/lxc-debian-amd64.txt | cut -d'/' -f1)
+      sed -i -e "s|^|debian/|" /tmp/lxc-debian-amd64.txt
+      sed -i -e "s|^|$URLBase|" /tmp/lxc-debian-amd64.txt
+      sed -i -e "s|$|amd64/default/|" /tmp/lxc-debian-amd64.txt
+      curl -s $(cat /tmp/lxc-debian-amd64.txt) | sed 's/a href=/\n/g' | sed 's.</a>.\n.g' | grep '/"' | cut -d '"' -f2 | grep -v images | sed 's|./||' | tail -n1
+      VersDebianAMD64=$(curl -s $(cat /tmp/lxc-debian-amd64.txt) | sed 's/a href=/\n/g' | sed 's.</a>.\n.g' | grep '/"' | cut -d '"' -f2 | grep -v images | sed 's|./||' | tail -n1)
+      sed -i -e "s|$|$VersDebianAMD64|" /tmp/lxc-debian-amd64.txt
+      cat /tmp/lxc-debian-amd64.txt
+      VersDebianAMD64=$(cat /tmp/lxc-debian-amd64.txt | cut -d '_' -f1 | rev | cut -d'/' -f1 | rev)
+      sed -i -e 's/$/rootfs.tar.xz/' /tmp/lxc-debian-amd64.txt
+   ## arm64
+      curl -s $URLBase/debian/ | sed 's.a href=.\n.g' | sed 's.</a>.\n.g' | grep '/"' | cut -d '"' -f2 | grep -v images > /tmp/lxc-debian-arm64.txt
+      sed -i -e "s|^|$URLBase|" /tmp/lxc-debian-arm64.txt
+      VersDebianARM64=$(cat /tmp/lxc-kali-arm64.txt | cut -d '_' -f1 | rev | cut -d'/' -f1 | rev)
    echo ""
    cat /tmp/lxc-debian-arm64.txt
    echo ""
    echo ""
    echo "  Contenedores extra de Debian:"
+   echo ""
+   echo "  amd64: $(cat /tmp/lxc-debian-amd64.txt)"
+   echo "    wget $(cat /tmp/lxc-debian-amd64.txt) -O /tmp/debian-amd64-$DistDebian-.tar.xz"
    echo ""
    echo "  arm64: $(cat /tmp/lxc-debian-arm64.txt)"
    echo "    wget $(cat /tmp/lxc-debian-arm64.txt) -O /tmp/debian-$VersDebianARM64-arm64.tar.xz"
