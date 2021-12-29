@@ -48,7 +48,7 @@ if [ $OS_VERS == "7" ]; then
   echo ""
 
   echo ""
-  echo "  Script para ProxmoxVE 3 todavía no preparado. Prueba ejecutarlo en otra versión de Proxmox."
+  echo "  Comandos para ProxmoxVE 3 todavía no preparados. Prueba ejecutarlo en otra versión de Proxmox."
   echo ""
 
 elif [ $OS_VERS == "8" ]; then
@@ -60,7 +60,7 @@ elif [ $OS_VERS == "8" ]; then
   echo ""
 
   echo ""
-  echo "  Script para ProxmoxVE 4 todavía no preparado. Prueba ejecutarlo en otra versión de Proxmox."
+  echo "  Comandos para ProxmoxVE 4 todavía no preparados. Prueba ejecutarlo en otra versión de Proxmox."
   echo ""
 
 elif [ $OS_VERS == "9" ]; then
@@ -72,7 +72,7 @@ elif [ $OS_VERS == "9" ]; then
   echo ""
 
   echo ""
-  echo "  Script para ProxmoxVE 5 todavía no preparado. Prueba ejecutarlo en otra versión de Proxmox."
+  echo "  Comandos para ProxmoxVE 5 todavía no preparados. Prueba ejecutarlo en otra versión de Proxmox."
   echo ""
 
 elif [ $OS_VERS == "10" ]; then
@@ -84,7 +84,7 @@ elif [ $OS_VERS == "10" ]; then
   echo ""
 
   echo ""
-  echo "  Script para ProxmoxVE 6 todavía no preparado. Prueba ejecutarlo en otra versión de Proxmox."
+  echo "  Comandos para ProxmoxVE 6 todavía no preparados. Prueba ejecutarlo en otra versión de Proxmox."
   echo ""
 
 elif [ $OS_VERS == "11" ]; then
