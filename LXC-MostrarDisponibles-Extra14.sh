@@ -28,7 +28,7 @@ URLKali="$URLBase"kali/current/amd64/default/
 ## Debian
    ## amd64
       curl -s $URLBase/debian/ | sed 's.a href=.\n.g' | sed 's.</a>.\n.g' | grep '/"' | cut -d '"' -f2 | grep -v images | head -n1 > /tmp/lxc-debian-amd64.txt
-      DistDebian=$(cat /tmp/lxc-debian-amd64.txt | cut -d'/' -f1)
+      DistDebianBeta=$(cat /tmp/lxc-debian-amd64.txt | cut -d'/' -f1)
       sed -i -e "s|^|debian/|" /tmp/lxc-debian-amd64.txt
       sed -i -e "s|^|$URLBase|" /tmp/lxc-debian-amd64.txt
       sed -i -e "s|$|amd64/default/|" /tmp/lxc-debian-amd64.txt
@@ -43,8 +43,9 @@ URLKali="$URLBase"kali/current/amd64/default/
    echo ""
    echo "  Contenedores extra de Debian:"
    echo ""
-   echo "  amd64: $(cat /tmp/lxc-debian-amd64.txt)"
-   echo "    wget $(cat /tmp/lxc-debian-amd64.txt) -O /tmp/debian-amd64-$DistDebian-.tar.xz"
+   echo "  amd64:"
+   echo "    wget $(cat /tmp/lxc-debian-amd64.txt) -O /tmp/debian-amd64-$DistDebianBeta-.tar.xz"
+   echo ""
    echo ""
    #echo "  arm64: $(cat /tmp/lxc-debian-arm64.txt)"
    #echo "    wget $(cat /tmp/lxc-debian-arm64.txt) -O /tmp/debian-$VersDebianARM64-arm64.tar.xz"
@@ -65,7 +66,7 @@ URLKali="$URLBase"kali/current/amd64/default/
    echo ""
    echo "  Contenedores extra de Kali:"
    echo ""
-   echo "  amd64: $(cat /tmp/lxc-kali-amd64.txt)"
+   echo "  amd64:"
    echo "    wget $(cat /tmp/lxc-kali-amd64.txt) -O /tmp/kali-amd64-$VersKali.tar.xz"
    echo ""
 
