@@ -33,7 +33,7 @@ URLKali="$URLBase"kali/current/amd64/default/
       sed -i -e "s|^|$URLBase|" /tmp/lxc-debian-amd64.txt
       sed -i -e "s|$|amd64/default/|" /tmp/lxc-debian-amd64.txt
       VersDebianAMD64=$(curl -s $(cat /tmp/lxc-debian-amd64.txt) | sed 's/a href=/\n/g' | sed 's.</a>.\n.g' | grep '/"' | cut -d '"' -f2 | grep -v images | sed 's|./||' | tail -n1)
-      FechaVersDebianBeta=$VersDebianAMD64
+      FechaVersDebianBeta=$(echo $VersDebianAMD64| cut -d '_' -f1 | rev | cut -d'/' -f1 | rev)
       sed -i -e "s|$|$VersDebianAMD64|" /tmp/lxc-debian-amd64.txt
       VersDebianAMD64=$(cat /tmp/lxc-debian-amd64.txt | cut -d '_' -f1 | rev | cut -d'/' -f1 | rev)
       sed -i -e 's/$/rootfs.tar.xz/' /tmp/lxc-debian-amd64.txt
