@@ -41,9 +41,6 @@ URLKali="$URLBase"kali/current/amd64/default/
       sed -i -e "s|^|$URLBase|" /tmp/lxc-debian-arm64.txt
       VersDebianARM64=$(cat /tmp/lxc-kali-arm64.txt | cut -d '_' -f1 | rev | cut -d'/' -f1 | rev)
    echo ""
-   cat /tmp/lxc-debian-arm64.txt
-   echo ""
-   echo ""
    echo "  Contenedores extra de Debian:"
    echo ""
    echo "  amd64: $(cat /tmp/lxc-debian-amd64.txt)"
