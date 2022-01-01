@@ -371,6 +371,8 @@ elif [ $OS_VERS == "11" ]; then
          apt-get -y install nmap
       ## Instalar y configurar Fail2Ban
          curl -s https://raw.githubusercontent.com/nipegun/d-scripts/master/SoftInst/Consola/Fail2Ban-InstalarYConfigurar.sh | bash
+      ## Instalar los d-scripts
+         curl -s https://raw.githubusercontent.com/nipegun/d-scripts/master/DScripts-Sincronizar.sh | bash
       ## Actualizar el sistema y reinciar
          echo ""
          echo "  Container preparado. Actualizando el sistema y reiniciando..."
