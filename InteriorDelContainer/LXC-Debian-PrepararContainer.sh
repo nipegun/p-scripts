@@ -373,6 +373,7 @@ elif [ $OS_VERS == "11" ]; then
          curl -s https://raw.githubusercontent.com/nipegun/d-scripts/master/SoftInst/Consola/Fail2Ban-InstalarYConfigurar.sh | bash
       ## Instalar los d-scripts
          curl -s https://raw.githubusercontent.com/nipegun/d-scripts/master/DScripts-Sincronizar.sh | bash
+         echo "export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/root/scripts/d-scripts/Alias/" >> /root/.bashrc
       ## Actualizar el sistema y reinciar
          echo ""
          echo "  Container preparado. Actualizando el sistema y reiniciando..."
