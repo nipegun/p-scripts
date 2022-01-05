@@ -361,7 +361,7 @@ elif [ $OS_VERS == "11" ]; then
          systemctl enable rc-local
          systemctl start rc-local.service
       ## Permitir el logueo root mediante ssh
-         sed -i -e 's|#PermitRootLogin prohibit-password|PermitRootLogin yes|g' /etc/ssh/sshd_config
+         #sed -i -e 's|#PermitRootLogin prohibit-password|PermitRootLogin yes|g' /etc/ssh/sshd_config
       ## Crear la carpeta para montar las carpetas del host
          mkdir /Host/ 2> /dev/null
       ## Instalar paquetes minimos
