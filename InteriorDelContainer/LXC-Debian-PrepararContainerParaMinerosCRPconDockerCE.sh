@@ -156,7 +156,7 @@ elif [ $OS_VERS == "11" ]; then
      docker build -t nipegun:minerocrp - < /root/DockerFileMineroCRP
 
   ## Ejecutar el contenedor
-     docker run -d --restart always --cap-add=IPC_LOCK nipegun:minerocrp
+     docker run -d --restart=always --cap-add=IPC_LOCK --name minerocrp1 -v /Host/MineroCRP1:/data nipegun:minerocrp
 
 fi
 
