@@ -5,12 +5,14 @@
 # Si se te llena la boca hablando de libertad entonces hazlo realmente libre.
 # No tienes que aceptar ningún tipo de términos de uso o licencia para utilizarlo o modificarlo porque va sin CopyLeft.
 
-#-------------------------------------------------------------------------------------------------------------------------------
+#--------------------------------------------------------------------------------------------------------------------------------------------------------
 #  Script de NiPeGun para preparar el contenedor LXC de debian para correr mineros CRP con docker
 #
 # Ejecución remota:
-# curl -s https://raw.githubusercontent.com/nipegun/p-scripts/master/InteriorDelContainer/LXC-Debian-PrepararContainer.sh | bash
-#-------------------------------------------------------------------------------------------------------------------------------
+# curl -s https://raw.githubusercontent.com/nipegun/p-scripts/master/InteriorDelContainer/LXC-Debian-PrepararContainerParaMinerosCRPconDockerCE.sh | bash
+#--------------------------------------------------------------------------------------------------------------------------------------------------------
+
+UtopiaPublicKey=C24C4B77698578B46CDB1C109996B0299984FEE46AAC5CD6025786F5C5C61415
 
 ColorRojo='\033[1;31m'
 ColorVerde='\033[1;32m'
@@ -105,17 +107,17 @@ elif [ $OS_VERS == "11" ]; then
      apt-get -y autoremove
 
   ## Instalar paquetes necesarios
-     apt-get -y install ethtool
-     apt-get -y install nload
-     apt-get -y install screen
-     apt-get -y install htop
+     #apt-get -y install ethtool
+     #apt-get -y install nload
+     #apt-get -y install screen
+     #apt-get -y install htop
      #apt-get -y install docker.io
 
   ## Instalar DockerCE
-     curl
+     curl -s https://raw.githubusercontent.com/nipegun/d-scripts/master/SoftInst/Consola/DockerCE-Instalar.sh | bash
 
   ## Instalar PortainerCE
-     curl
+     curl -s https://raw.githubusercontent.com/nipegun/d-scripts/master/SoftInst/Consola/DockerCE-InstalarContenedor-PortainerCE.sh | bash
 
   ## Instalar miniupnpd
      echo ""
@@ -133,6 +135,19 @@ elif [ $OS_VERS == "11" ]; then
      sed -i -e 's|IPTABLES=$(which iptables)|IPTABLES=$(which iptables-legacy)|g'           /etc/miniupnpd/miniupnpd_functions.sh
      sed -i -e 's|IPTABLES=$(which ip6tables)|IPTABLES=$(which ip6tables-legacy)|g'         /etc/miniupnpd/miniupnpd_functions.sh
      sed -i -e 's|#net.ipv4.ip_forward=1|net.ipv4.ip_forward=1|g'                           /etc/sysctl.conf
+
+  ## Creando el dockerfile
+     echo "FROM debian:buster-slim"                                                    > /root/DockerFile
+     echo "RUN \\"                                                                    >> /root/DockerFile
+     echo "  cd /tmp && \\"                                                           >> /root/DockerFile
+     echo "  apt update && \\"                                                        >> /root/DockerFile
+     echo "  apt full-upgrade -y && \\"                                               >> /root/DockerFile
+     echo "  apt install wget -y && \\"                                               >> /root/DockerFile
+     echo "  apt install libglib2.0-0 -y && \\"                                       >> /root/DockerFile
+     echo "  apt-install netbase -y && \\"                                            >> /root/DockerFile
+     echo "  wget https://update.u.is/downloads/uam/linux/uam-latest_amd64.deb && \\" >> /root/DockerFile
+     echo "  dpkg -i /tmp/uam-latest_amd64.deb"                                       >> /root/DockerFile
+     echo "CMD /opt/uam/uam --pk $UtopiaPublicKey --no-ui"                            >> /root/DockerFile
 
 fi
 
