@@ -150,11 +150,11 @@ elif [ $OS_VERS == "11" ]; then
      echo "  apt-get -y install netbase                                                                                         && \\" >> /root/DockerFileMineroCRP
      echo "  wget https://update.u.is/downloads/uam/linux/uam-latest_amd64.deb                                                  && \\" >> /root/DockerFileMineroCRP
      echo "  dpkg -i /tmp/uam-latest_amd64.deb                                                                                  && \\" >> /root/DockerFileMineroCRP
-     echo "  echo '"'#!/bin/bash'"'  > /root/ObtenerIPDelMinero.sh                                                              && \\" >> /root/DockerFileMineroCRP
+     echo "  echo '"'#!/bin/bash'"'      > /root/ObtenerIPDelMinero.sh                                                          && \\" >> /root/DockerFileMineroCRP
      echo "  echo 'hostname -I' >> /root/ObtenerIPDelMinero.sh                                                                  && \\" >> /root/DockerFileMineroCRP
      echo "  chmod +x              /root/ObtenerIPDelMinero.sh                                                                  && \\" >> /root/DockerFileMineroCRP
      echo "  echo '"'#!/bin/bash'"' > /root/EjecutarMinero.sh                                                                   && \\" >> /root/DockerFileMineroCRP
-     echo "  echo 'IPLocalDelMinero=$(/root/ObtenerIPDelMinero.sh)'                                  >> /root/EjecutarMinero.sh && \\" >> /root/DockerFileMineroCRP
+     echo "  echo 'IPLocalDelMinero='"'$(/root/ObtenerIPDelMinero.sh)'"' >> /root/EjecutarMinero.sh'                                  && \\" >> /root/DockerFileMineroCRP
      echo "  echo '/opt/uam/uam --pk $UtopiaPublicKey --no-ui --http ["'"$IPLocalDelMinero"'"]:8090' >> /root/EjecutarMinero.sh && \\" >> /root/DockerFileMineroCRP
      echo "CMD /root/EjecutarMinero.sh"                                                                                                >> /root/DockerFileMineroCRP
      nano /root/DockerFileMineroCRP
