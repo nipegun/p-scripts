@@ -137,20 +137,27 @@ elif [ $OS_VERS == "11" ]; then
      sed -i -e 's|#net.ipv4.ip_forward=1|net.ipv4.ip_forward=1|g'                           /etc/sysctl.conf
 
   ## Creando el dockerfile
-     echo "FROM debian:bullseye-slim"                                                  > /root/DockerFileMineroCRP
-     echo "RUN \\"                                                                    >> /root/DockerFileMineroCRP
-     echo "  cd /tmp && \\"                                                           >> /root/DockerFileMineroCRP
-     echo "  apt-get -y update && \\"                                                 >> /root/DockerFileMineroCRP
-     echo "  apt-get -y upgrade && \\"                                                >> /root/DockerFileMineroCRP
-     echo "  apt-get -y dist-upgrade && \\"                                           >> /root/DockerFileMineroCRP
-     echo "  apt-get -y install dialog && \\"                                         >> /root/DockerFileMineroCRP
-     echo "  apt-get -y install apt-utils && \\"                                      >> /root/DockerFileMineroCRP
-     echo "  apt-get -y install wget && \\"                                           >> /root/DockerFileMineroCRP
-     echo "  apt-get -y install libglib2.0-0 && \\"                                   >> /root/DockerFileMineroCRP
-     echo "  apt-get -y install netbase && \\"                                        >> /root/DockerFileMineroCRP
-     echo "  wget https://update.u.is/downloads/uam/linux/uam-latest_amd64.deb && \\" >> /root/DockerFileMineroCRP
-     echo "  dpkg -i /tmp/uam-latest_amd64.deb"                                       >> /root/DockerFileMineroCRP
-     echo "CMD /opt/uam/uam --pk $UtopiaPublicKey --no-ui"                            >> /root/DockerFileMineroCRP
+     echo "FROM debian:bullseye-slim"                                                                                                   > /root/DockerFileMineroCRP
+     echo "RUN \\"                                                                                                                     >> /root/DockerFileMineroCRP
+     echo "  cd /tmp                                                                                                            && \\" >> /root/DockerFileMineroCRP
+     echo "  apt-get -y update                                                                                                  && \\" >> /root/DockerFileMineroCRP
+     echo "  apt-get -y upgrade                                                                                                 && \\" >> /root/DockerFileMineroCRP
+     echo "  apt-get -y dist-upgrade                                                                                            && \\" >> /root/DockerFileMineroCRP
+     echo "  apt-get -y install dialog                                                                                          && \\" >> /root/DockerFileMineroCRP
+     echo "  apt-get -y install apt-utils                                                                                       && \\" >> /root/DockerFileMineroCRP
+     echo "  apt-get -y install wget                                                                                            && \\" >> /root/DockerFileMineroCRP
+     echo "  apt-get -y install libglib2.0-0                                                                                    && \\" >> /root/DockerFileMineroCRP
+     echo "  apt-get -y install netbase                                                                                         && \\" >> /root/DockerFileMineroCRP
+     echo "  wget https://update.u.is/downloads/uam/linux/uam-latest_amd64.deb                                                  && \\" >> /root/DockerFileMineroCRP
+     echo "  dpkg -i /tmp/uam-latest_amd64.deb                                                                                  && \\" >> /root/DockerFileMineroCRP
+     echo "  echo '"'#!/bin/bash'"'  > /root/ObtenerIPDelMinero.sh                                                              && \\" >> /root/DockerFileMineroCRP
+     echo "  echo 'hostname -I' >> /root/ObtenerIPDelMinero.sh                                                                  && \\" >> /root/DockerFileMineroCRP
+     echo "  chmod +x              /root/ObtenerIPDelMinero.sh                                                                  && \\" >> /root/DockerFileMineroCRP
+     echo "  echo '"'#!/bin/bash'"' > /root/EjecutarMinero.sh                                                                   && \\" >> /root/DockerFileMineroCRP
+     echo "  echo 'IPLocalDelMinero=$(/root/ObtenerIPDelMinero.sh)'                                  >> /root/EjecutarMinero.sh && \\" >> /root/DockerFileMineroCRP
+     echo "  echo '/opt/uam/uam --pk $UtopiaPublicKey --no-ui --http ["'"$IPLocalDelMinero"'"]:8090' >> /root/EjecutarMinero.sh && \\" >> /root/DockerFileMineroCRP
+     echo "CMD /root/EjecutarMinero.sh"                                                                                                >> /root/DockerFileMineroCRP
+     nano /root/DockerFileMineroCRP
 
   ## Construit la imagen
      docker build -t nipegun:minerocrp - < /root/DockerFileMineroCRP
