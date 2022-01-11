@@ -155,5 +155,8 @@ elif [ $OS_VERS == "11" ]; then
   ## Construit la imagen
      docker build -t nipegun:minerocrp - < /root/DockerFileMineroCRP
 
+  ## Ejecutar el contenedor
+     docker run -d --restart always --cap-add=IPC_LOCK nipegun:minerocrp
+
 fi
 
