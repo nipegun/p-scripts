@@ -5,13 +5,26 @@
 # Si se te llena la boca hablando de libertad entonces hazlo realmente libre.
 # No tienes que aceptar ningún tipo de términos de uso o licencia para utilizarlo o modificarlo porque va sin CopyLeft.
 
-#----------------------------------------------------
+#----------------------------------------------------------------------------------------------------
 #  Script de NiPeGun para sincronizar los p-scripts
-#----------------------------------------------------
+#
+#  Ejecución remota:
+#  curl -s https://raw.githubusercontent.com/nipegun/p-scripts/master/PScripts-Sincronizar.sh | bash
+#----------------------------------------------------------------------------------------------------
 
 ColorRojo='\033[1;31m'
 ColorVerde='\033[1;32m'
 FinColor='\033[0m'
+
+# Comprobar si el paquete wget está instalado. Si no lo está, instalarlo.
+if [[ $(dpkg-query -s wget 2>/dev/null | grep installed) == "" ]]; then
+    echo ""
+    echo "  wget no está instalado. Iniciando su instalación..."
+    echo ""
+    apt-get -y update
+    apt-get -y install wget
+    echo ""
+fi
 
 # Comprobar si hay conexión a Internet antes de sincronizar los p-scripts
 wget -q --tries=10 --timeout=20 --spider https://github.com
@@ -25,6 +38,15 @@ wget -q --tries=10 --timeout=20 --spider https://github.com
     rm /root/scripts/p-scripts -R 2> /dev/null
     mkdir /root/scripts 2> /dev/null
     cd /root/scripts
+    ## Comprobar si el paquete git está instalado. Si no lo está, instalarlo.
+       if [[ $(dpkg-query -s git 2>/dev/null | grep installed) == "" ]]; then
+         echo ""
+         echo "  git no está instalado. Iniciando su instalación..."
+         echo ""
+         apt-get -y update > /dev/null
+         apt-get -y install git
+         echo ""
+       fi
     git clone --depth=1 https://github.com/nipegun/p-scripts
     mkdir -p /root/scripts/p-scripts/Alias/
     rm /root/scripts/p-scripts/.git -R 2> /dev/null
