@@ -17,9 +17,9 @@ ColorVerde='\033[1;32m'
 FinColor='\033[0m'
 
 echo ""
-echo -e "${ColorVerde}-----------------------------------------------------------------${FinColor}"
-echo -e "${ColorVerde}  Iniciando script de copia de seguridad internade ProxmoxVE...${FinColor}"
-echo -e "${ColorVerde}-----------------------------------------------------------------${FinColor}"
+echo -e "${ColorVerde}------------------------------------------------------------------${FinColor}"
+echo -e "${ColorVerde}  Iniciando script de copia de seguridad interna de ProxmoxVE...${FinColor}"
+echo -e "${ColorVerde}------------------------------------------------------------------${FinColor}"
 echo ""
 
 ## Definir la fecha de ejecución del script
