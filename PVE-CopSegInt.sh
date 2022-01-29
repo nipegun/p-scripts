@@ -6,7 +6,7 @@
 # No tienes que aceptar ningún tipo de términos de uso o licencia para utilizarlo o modificarlo porque va sin CopyLeft.
 
 #----------------------------------------------------------------------------------------------
-#  Script de NiPeGun para hacer copia de seguridad de la base de datos de Proxmox
+#  Script de NiPeGun para hacer copia de seguridad interna de ProxmoxVE
 #
 #  Ejecución remota:
 #  curl -s https://raw.githubusercontent.com/nipegun/p-scripts/master/PVE-CopSegInt.sh | bash
@@ -17,18 +17,24 @@ ColorVerde='\033[1;32m'
 FinColor='\033[0m'
 
 echo ""
-echo -e "${ColorVerde}-----------------------------------------------------------------------${FinColor}"
-echo -e "${ColorVerde}  Iniciando la copia de seguridad de la base de datos de ProxmoxVE...${FinColor}"
-echo -e "${ColorVerde}-----------------------------------------------------------------------${FinColor}"
+echo -e "${ColorVerde}-----------------------------------------------------------------${FinColor}"
+echo -e "${ColorVerde}  Iniciando script de copia de seguridad internade ProxmoxVE...${FinColor}"
+echo -e "${ColorVerde}-----------------------------------------------------------------${FinColor}"
 echo ""
 
 ## Definir la fecha de ejecución del script
    FechaDeEjec=$(date +A%YM%mD%d@%T)
 
-## Crear la carpeta de copias de seguridad interna (en caso de que no exista
+## Crear las carpetas de copias de seguridad interna (en caso de que no existan)
    mkdir -p /CopSegInt/$FechaDeEjec/BD/ 2> /dev/null
+   mkdir -p /CopSegInt/$FechaDeEjec/etc/ 2> /dev/null
+   mkdir -p /CopSegInt/$FechaDeEjec/home/ 2> /dev/null
+   mkdir -p /CopSegInt/$FechaDeEjec/root/ 2> /dev/null
 
-## Ejecutar copia de seguridad
+## Ejecutar copia de seguridad de la base de datos
+   echo ""
+   echo "  Haciendo copia de seguridad de la base de datos..."
+   echo ""
    EstadoDeLaBaseDeDatosDePVE=$(sqlite3 /var/lib/pve-cluster/config.db "PRAGMA integrity_check;")
    if [ $EstadoDeLaBaseDeDatosDePVE == "ok" ]; then
      echo ""
