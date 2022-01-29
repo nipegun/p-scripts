@@ -31,11 +31,17 @@ echo ""
    mkdir -p /CopSegInt/$FechaDeEjec/home/ 2> /dev/null
    mkdir -p /CopSegInt/$FechaDeEjec/root/ 2> /dev/null
 
-## Ejecutar copia de seguridad de la base de datos
+## Ejecutar copia de seguridad de /etc/
    echo ""
    echo "  Haciendo copia de seguridad de la carpeta /etc/..."
    echo ""
    cp -L -r /etc/* /CopSegInt/$FechaDeEjec/etc/
+
+## Ejecutar copia de seguridad de /root/
+   echo ""
+   echo "  Haciendo copia de seguridad de la carpeta /root/..."
+   echo ""
+   cp -L -r /root/* /CopSegInt/$FechaDeEjec/root/
 
 ## Ejecutar copia de seguridad de la base de datos
    echo ""
