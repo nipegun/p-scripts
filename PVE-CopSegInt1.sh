@@ -33,6 +33,12 @@ echo ""
 
 ## Ejecutar copia de seguridad de la base de datos
    echo ""
+   echo "  Haciendo copia de seguridad de la carpeta /etc/..."
+   echo ""
+   cp -r /etc/* /CopSegInt/$FechaDeEjec/etc/
+
+## Ejecutar copia de seguridad de la base de datos
+   echo ""
    echo "  Haciendo copia de seguridad de la base de datos..."
    echo ""
    EstadoDeLaBaseDeDatosDePVE=$(sqlite3 /var/lib/pve-cluster/config.db "PRAGMA integrity_check;")
