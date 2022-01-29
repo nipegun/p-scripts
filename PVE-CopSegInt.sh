@@ -59,7 +59,7 @@ echo ""
      rm -f /var/lib/pve-cluster/config.db.sql.tmp2 2> /dev/null
      mv /var/lib/pve-cluster/config.db.bak /CopSegInt/$FechaDeEjec/BD/config.db
      mv /var/lib/pve-cluster/config.db.sql /CopSegInt/$FechaDeEjec/BD/config.db.sql
-     echo "Este archivo debe ubicarse en /var/lib/pve-cluster/" > /CopSegInt/$FechaDeEjec/BD/UbicDelArchivoConfigDB.txt
+     echo "El archivo config.db debe ubicarse en /var/lib/pve-cluster/" > /CopSegInt/$FechaDeEjec/BD/UbicDelArchivoConfigDB.txt
    else
      echo ""
      echo "    El estado de la base de datos no es consistente. Intentando exportar lo que se pueda..."
