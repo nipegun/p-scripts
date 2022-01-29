@@ -35,7 +35,7 @@ echo ""
    echo ""
    echo "  Haciendo copia de seguridad de la carpeta /etc/..."
    echo ""
-   cp -r /etc/* /CopSegInt/$FechaDeEjec/etc/
+   cp -L -r /etc/* /CopSegInt/$FechaDeEjec/etc/
 
 ## Ejecutar copia de seguridad de la base de datos
    echo ""
