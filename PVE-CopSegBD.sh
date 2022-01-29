@@ -5,12 +5,12 @@
 # Si se te llena la boca hablando de libertad entonces hazlo realmente libre.
 # No tienes que aceptar ningún tipo de términos de uso o licencia para utilizarlo o modificarlo porque va sin CopyLeft.
 
-#----------------------------------------------------------------------------------
+#---------------------------------------------------------------------------------------------
 #  Script de NiPeGun para hacer copia de seguridad de la base de datos de Proxmox
 #
 #  Ejecución remota:
-#  curl -s x | bash
-#----------------------------------------------------------------------------------
+#  curl -s https://raw.githubusercontent.com/nipegun/p-scripts/master/PVE-CopSegBD.sh | bash
+#---------------------------------------------------------------------------------------------
 
 EstadoDeLaBaseDeDatosDePVE=$(sqlite3 /var/lib/pve-cluster/config.db "PRAGMA integrity_check;")
 if [ $EstadoDeLaBaseDeDatosDePVE == "ok" ]; then
@@ -25,7 +25,6 @@ if [ $EstadoDeLaBaseDeDatosDePVE == "ok" ]; then
   cat /var/lib/pve-cluster/config.db.sql.tmp2 | sed 's/tree (/tree (\n/g' | sed 's/VALUES(/VALUES(\n  /g' | sed 's-,-,\n  -g'  | sed 's-);-\n);\n-g' | sed 's-    -  -g' > /var/lib/pve-cluster/config.db.sql
   rm -f /var/lib/pve-cluster/config.db.sql.tmp1 2> /dev/null
   rm -f /var/lib/pve-cluster/config.db.sql.tmp2 2> /dev/null
-
 else
   echo ""
   echo "  El estado de la base de datos no es consistente. Intentando exportar lo que se pueda..."
@@ -34,7 +33,4 @@ else
   sqlite3 /var/lib/pve-cluster/config.db ".dump" | sed -e 's|^ROLLBACK;\( -- due to errors\)*$|COMMIT;|g' | sqlite3 /var/lib/pve-cluster/config.db.dump-before-rollback
 
 fi
-
-
-
 
