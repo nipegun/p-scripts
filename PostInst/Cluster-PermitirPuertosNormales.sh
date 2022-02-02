@@ -9,8 +9,11 @@
 #  Script de NiPeGun para permitir los puertos comunes en el cortafuegos del cluster de Proxmox
 #------------------------------------------------------------------------------------------------
 
-# Esto se hace para no dejar el cluster enjaulado si cambiamos sin querer
-# la política de entrada a drop
+# Esto se hace para no dejar el cluster enjaulado si cambiamos sin querer la política de entrada a drop
+
+echo ""
+echo "  Creando reglas por defecto para el cluster..."
+echo ""
 
 echo "[OPTIONS]"                                > /etc/pve/firewall/cluster.fw
 echo ""                                        >> /etc/pve/firewall/cluster.fw
