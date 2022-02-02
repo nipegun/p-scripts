@@ -5,9 +5,12 @@
 # Si se te llena la boca hablando de libertad entonces hazlo realmente libre.
 # No tienes que aceptar ningún tipo de términos de uso o licencia para utilizarlo o modificarlo porque va sin CopyLeft.
 
-#------------------------------------------------------------------------------------------------
+#-------------------------------------------------------------------------------------------------------------------------
 #  Script de NiPeGun para permitir los puertos comunes en el cortafuegos del cluster de Proxmox
-#------------------------------------------------------------------------------------------------
+#
+#  Ejecución remota:
+#  curl -s https://raw.githubusercontent.com/nipegun/p-scripts/master/PostInst/Cluster-PermitirPuertosNormales.sh | bash
+#-------------------------------------------------------------------------------------------------------------------------
 
 # Esto se hace para no dejar el cluster enjaulado si cambiamos sin querer la política de entrada a drop
 
