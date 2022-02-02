@@ -83,9 +83,30 @@ elif [ $OS_VERS == "10" ]; then
   echo "----------------------------------------------------------------------------"
   echo ""
 
+  apt-get -y update
+  apt-get -y install tasksel
   tasksel install mate-desktop
-  apt-get -y install firefox-esr-l10n-es-es libreoffice-l10n-es
-  systemctl disable NetworkManager.service
+  apt-get -y install caja-open-terminal
+  apt-get -y install caja-admin
+  apt-get -y install firefox-esr-l10n-es-es
+  apt-get -y install libreoffice-l10n-es
+
+  ## Permitir caja como root
+     mkdir -p /root/.config/autostart/ 2> /dev/null
+     echo "[Desktop Entry]"                > /root/.config/autostart/caja.desktop
+     echo "Type=Application"              >> /root/.config/autostart/caja.desktop
+     echo "Exec=caja --force-desktop"     >> /root/.config/autostart/caja.desktop
+     echo "Hidden=false"                  >> /root/.config/autostart/caja.desktop
+     echo "X-MATE-Autostart-enabled=true" >> /root/.config/autostart/caja.desktop
+     echo "Name[es_ES]=Caja"              >> /root/.config/autostart/caja.desktop
+     echo "Name=Caja"                     >> /root/.config/autostart/caja.desktop
+     echo "Comment[es_ES]="               >> /root/.config/autostart/caja.desktop
+     echo "Comment="                      >> /root/.config/autostart/caja.desktop
+     echo "X-MATE-Autostart-Delay=0"      >> /root/.config/autostart/caja.desktop
+     gio set /root/.config/autostart/caja.desktop "metadata::trusted" yes
+
+  ## Deshabilitar network manager
+     systemctl disable NetworkManager.service
 
 elif [ $OS_VERS == "11" ]; then
 
@@ -95,9 +116,30 @@ elif [ $OS_VERS == "11" ]; then
   echo "----------------------------------------------------------------------------"
   echo ""
 
+  apt-get -y update
+  apt-get -y install tasksel
   tasksel install mate-desktop
-  apt-get -y install firefox-esr-l10n-es-es libreoffice-l10n-es
-  systemctl disable NetworkManager.service
+  apt-get -y install caja-open-terminal
+  apt-get -y install caja-admin
+  apt-get -y install firefox-esr-l10n-es-es
+  apt-get -y install libreoffice-l10n-es
+
+  ## Permitir caja como root
+     mkdir -p /root/.config/autostart/ 2> /dev/null
+     echo "[Desktop Entry]"                > /root/.config/autostart/caja.desktop
+     echo "Type=Application"              >> /root/.config/autostart/caja.desktop
+     echo "Exec=caja --force-desktop"     >> /root/.config/autostart/caja.desktop
+     echo "Hidden=false"                  >> /root/.config/autostart/caja.desktop
+     echo "X-MATE-Autostart-enabled=true" >> /root/.config/autostart/caja.desktop
+     echo "Name[es_ES]=Caja"              >> /root/.config/autostart/caja.desktop
+     echo "Name=Caja"                     >> /root/.config/autostart/caja.desktop
+     echo "Comment[es_ES]="               >> /root/.config/autostart/caja.desktop
+     echo "Comment="                      >> /root/.config/autostart/caja.desktop
+     echo "X-MATE-Autostart-Delay=0"      >> /root/.config/autostart/caja.desktop
+     gio set /root/.config/autostart/caja.desktop "metadata::trusted" yes
+
+  ## Deshabilitar network manager
+     systemctl disable NetworkManager.service
 
 fi
 
