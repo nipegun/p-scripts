@@ -28,3 +28,4 @@ echo ""
 echo -e "${ColorVerde}PCI Passthrough estará disponible a partir del próximo reinicio.${FinColor}"
 echo -e "${ColorVerde}Si quieres reiniciar el sistema ahora, ejecuta: shutdown -r now.${FinColor}"
 echo ""
+
