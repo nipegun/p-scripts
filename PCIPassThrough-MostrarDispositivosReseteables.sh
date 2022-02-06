@@ -7,6 +7,9 @@
 
 #------------------------------------------------------------------------------
 #  Script de NiPeGun para mostrar que dispositivos PCI aceptan ser reseteados
+#
+#  Ejecución remota:
+#  curl -s x | bash
 #------------------------------------------------------------------------------
 
 for iommu_group in $(find /sys/kernel/iommu_groups/ -maxdepth 1 -mindepth 1 -type d)
