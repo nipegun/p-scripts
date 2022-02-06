@@ -17,11 +17,12 @@ FinColor='\033[0m'
 sed -i -e 's|GRUB_CMDLINE_LINUX_DEFAULT="quiet"|GRUB_CMDLINE_LINUX_DEFAULT="quiet amd_iommu=on iommu=pt pcie_acs_override=downstream"|g' /etc/default/grub
 update-grub
 
-echo "vfio" >> /etc/modules
+echo "vfio"             >> /etc/modules
 echo "vfio_iommu_type1" >> /etc/modules
-echo "vfio_pci" >> /etc/modules
-echo "vfio_virqfd" >> /etc/modules
-echo "options vfio_iommu_type1 allow_unsafe_interrupts=1" > /etc/modprobe.d/iommu_unsafe_interrupts.conf
+echo "vfio_pci"         >> /etc/modules
+echo "vfio_virqfd"      >> /etc/modules
+
+echo "options vfio_iommu_type1 allow_unsafe_interrupts=1" > /etc/modprobe.d/pci-passthrough.conf
 update-initramfs -u
 
 echo ""
