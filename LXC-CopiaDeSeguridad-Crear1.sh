@@ -34,7 +34,7 @@ if [ $# -ne $CantArgsEsperados ]
     exit $ArgsInsuficientes
   else
     echo ""
-    vzdump $1 --mode stop --compress gzip --tmpdir /var/tmp --dumpdir /var/tmp  $2 -storage
+    vzdump $1 --mode stop --compress gzip --tmpdir /var/tmp --dumpdir /var/tmp
     echo ""
     echo "Copia de seguridad del container guardada en /var/tmp"
     echo ""
