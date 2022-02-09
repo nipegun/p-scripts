@@ -23,12 +23,12 @@ if [ $# -ne $CantArgsEsperados ]
   then
     echo ""
     echo "------------------------------------------------------------------------------"
-    echo -e "${ColorAdvertencia}Mal uso del script.${FinColor} El uso correcto sería:"
+    echo -e "${ColorAdvertencia}  Mal uso del script.${FinColor} El uso correcto sería:"
     echo ""
-    echo -e "$0 ${ColorArgumentos}[IDDelContainer]${FinColor}"
+    echo -e "  $0 ${ColorArgumentos}[IDDelContainer]${FinColor}"
     echo ""
-    echo "Ejemplo:"
-    echo "$0 130" 
+    echo "  Ejemplo:"
+    echo "  $0 130" 
     echo "------------------------------------------------------------------------------"
     echo ""
     exit $ArgsInsuficientes
