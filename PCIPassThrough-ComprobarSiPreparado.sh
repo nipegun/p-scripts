@@ -12,6 +12,53 @@
 #  curl -s https://raw.githubusercontent.com/nipegun/p-scripts/master/PCIPassThrough-ComprobarSiPreparado.sh | bash
 #------------------------------------------------------------------------------------------------------------------------------
 
+ColorRojo='\033[1;31m'
+ColorVerde='\033[1;32m'
+FinColor='\033[0m'
+
+# Procesador con extensiones de virtualización
+
+# Soporte IOMMU
+
+# Soporte para Interrupt Remapping
+
+if [[ $(dmesg | grep emapp | grep "remapping") != "" ]];
+  then
+    echo ""
+    echo -e "${ColorVerde}  El equipo tiene soporte para Interrupt Remmaping.${FinColor}"
+    echo ""
+  else
+    echo ""
+    echo -e "${ColorRojo}  El equipo NO tiene soporte para Interrupt Remmaping.${FinColor}"
+    echo -e "${ColorRojo}  NO podrás pasar tarjetas físicas a máquinas virtuales.${FinColor}"
+    echo ""
+    exit
+fi
+
+
+# /etc/default/grub
+
+if [[ $(cat /etc/default/grub | grep "_iommu=on") != "" ]];
+  then
+    echo ""
+    echo -e "${ColorVerde}  Parece que has agregado la activación de IOMMU en el archivo /etc/default/grub.${FinColor}"
+    echo ""
+      if [[ $(cat /etc/default/grub | grep "acs_override") != "" ]];
+        then
+          echo ""
+          echo -e "${ColorVerde}    Parece que has permitido las interrupciones inseguras de Interrupt Remmaping.${FinColor}"
+          echo ""
+      fi
+  else
+    echo ""
+    echo -e "${ColorRojo}   No has agregado la activación de IOMMU en /etc/default/grub.${FinColor}"
+    echo -e "${ColorRojo}   No estás listo para pasar tarjetas PCI a máquinas virtuales.${FinColor}"
+    echo ""
+    exit
+fi
+
+# /etc/modprobe.d/pci-passthrough.conf
+
 if [ -e /etc/modprobe.d/pci-passthrough.conf ];
   then
     echo ""
@@ -31,8 +78,8 @@ if [ -e /etc/modprobe.d/pci-passthrough.conf ];
     fi
   else
     echo ""
-    echo "  El archivo /etc/modprobe.d/pci-passthrough.conf no existe."
-    echo "  No parece que hayas configurado pci-passthrough en el pasado."
+    echo -e "${ColorRojo}  El archivo /etc/modprobe.d/pci-passthrough.conf no existe.${FinColor}"
+    echo -e "${ColorRojo}  No parece que hayas configurado pci-passthrough en el pasado.${FinColor}"
     echo ""
 fi
 
