@@ -12,7 +12,7 @@
 #  curl -s https://raw.githubusercontent.com/nipegun/p-scripts/master/PCIPassThrough-ComprobarSiPreparado.sh | bash
 #------------------------------------------------------------------------------------------------------------------------------
 
-if [ -e /etc/modprobe.d/pci-passthrough.conf];
+if [ -e /etc/modprobe.d/pci-passthrough.conf ];
   then
     echo ""
     echo "  El archivo /etc/modprobe.d/pci-passthrough.conf existe"
