@@ -20,7 +20,6 @@ FinColor='\033[0m'
 
 echo ""
 echo "Extensiones de virtualización:"
-echo ""
 
 if [[ $(cat /proc/cpuinfo | grep -o -E "svm|vmx" | head -n1) == "svm" ]]; then
   echo ""
@@ -42,7 +41,6 @@ fi
 
 echo ""
 echo "Soporte para IOMMU:"
-echo ""
 
 if [[ $(dmesg | grep -e DMAR -e IOMMU | grep ound) != "" ]]; then
   echo ""
@@ -60,7 +58,6 @@ fi
 
 echo ""
 echo "Interrupt Remapping:"
-echo ""
 
 if [[ $(dmesg | grep emapp | grep "remapping") != "" ]];
   then
@@ -74,7 +71,6 @@ if [[ $(dmesg | grep emapp | grep "remapping") != "" ]];
     echo ""
     exit
 fi
-
 
 # /etc/default/grub
 
