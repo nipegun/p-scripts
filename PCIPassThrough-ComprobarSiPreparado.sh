@@ -44,6 +44,18 @@ echo ""
 echo "Soporte para IOMMU:"
 echo ""
 
+if [[ $(dmesg | grep -e DMAR -e IOMMU | grep ound) != "" ]]; then
+  echo ""
+  echo -e "${ColorVerde}  Parece que el equipo tiene soporte para IOMMU.${FinColor}"
+  echo ""
+else
+  echo ""
+  echo -e "${ColorRojo}  El equipo no tiene soporte IOMMU o no lo has activado en la BIOS.${FinColor}"
+  echo -e "${ColorRojo}  NO podrás pasar tarjetas físicas a máquinas virtuales.${FinColor}"
+  echo ""
+  exit
+fi
+
 # Soporte para Interrupt Remapping
 
 echo ""
