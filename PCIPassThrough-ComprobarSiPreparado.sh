@@ -20,7 +20,13 @@ if [ -e /etc/modprobe.d/pci-passthrough.conf ];
     if [[ $(cat /etc/modprobe.d/pci-passthrough.conf | grep unsafe) != "" ]];
       then
         echo ""
-        echo "  Parece que has permitido las interrupciones inseguras de Interrupt Remmaping."
+        echo "    Parece que has permitido las interrupciones inseguras de Interrupt Remmaping."
+        echo ""
+    fi
+    if [[ $(cat /etc/modprobe.d/pci-passthrough.conf | grep "vfio-pci ids=") != "" ]];
+      then
+        echo ""
+        echo "    Parece que ya has intentado pasar alguna pciid de algún dispositivo."
         echo ""
     fi
   else
