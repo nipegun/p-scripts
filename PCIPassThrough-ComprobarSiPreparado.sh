@@ -22,6 +22,22 @@ echo ""
 echo "Extensiones de virtualización:"
 echo ""
 
+if [[ $(cat /proc/cpuinfo | grep -o -E "svm|vmx" | head -n1) == "svm" ]]; then
+  echo ""
+  echo -e "${ColorVerde}  Parece que el equipo tiene un procesador AMD con extensiones de virtualización.${FinColor}"
+  echo ""
+elif [[ $(cat /proc/cpuinfo | grep -o -E "svm|vmx" | head -n1) == "vmx" ]]; then
+  echo ""
+  echo -e "${ColorVerde}  Parece que el equipo tiene un procesador Intel con extensiones de virtualización.${FinColor}"
+  echo ""
+else
+  echo ""
+  echo -e "${ColorRojo}  El equipo no cuenta con un procesador con extensiones de virtualización.${FinColor}"
+  echo -e "${ColorRojo}  NO podrás pasar tarjetas físicas a máquinas virtuales.${FinColor}"
+  echo ""
+  exit
+fi
+
 # Soporte para IOMMU
 
 echo ""
