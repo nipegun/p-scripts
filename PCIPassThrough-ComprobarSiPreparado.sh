@@ -18,9 +18,21 @@ FinColor='\033[0m'
 
 # Procesador con extensiones de virtualización
 
-# Soporte IOMMU
+echo ""
+echo "Extensiones de virtualización:"
+echo ""
+
+# Soporte para IOMMU
+
+echo ""
+echo "Soporte para IOMMU:"
+echo ""
 
 # Soporte para Interrupt Remapping
+
+echo ""
+echo "Interrupt Remapping:"
+echo ""
 
 if [[ $(dmesg | grep emapp | grep "remapping") != "" ]];
   then
