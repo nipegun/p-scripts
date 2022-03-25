@@ -17,7 +17,7 @@ if [ -e /etc/modprobe.d/pci-passthrough.conf ];
     echo ""
     echo "  El archivo /etc/modprobe.d/pci-passthrough.conf existe"
     echo ""
-    if [ $(cat /etc/modprobe.d/pci-passthrough.conf | grep unsafe) != '' ];
+    if [[ $(cat /etc/modprobe.d/pci-passthrough.conf | grep unsafe) != "" ]];
       then
         echo ""
         echo "  Parece que has permitido las interrupciones inseguras de Interrupt Remmaping."
