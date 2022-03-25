@@ -12,19 +12,21 @@
 #  curl -s https://raw.githubusercontent.com/nipegun/p-scripts/master/PCIPassThrough-ComprobarSiPreparado.sh | bash
 #------------------------------------------------------------------------------------------------------------------------------
 
-if -f /etc/modprobe.d/pci-passthrough.conf then
-  echo ""
-  echo "  El archivo /etc/modprobe.d/pci-passthrough.conf existe"
-  echo ""
-  if $(cat /etc/modprobe.d/pci-passthrough.conf | grep unsafe) != '' then
+if [ -e /etc/modprobe.d/pci-passthrough.conf];
+  then
     echo ""
-    echo "  Parece que has permitido las interrupciones inseguras de Interrupt Remmaping."
+    echo "  El archivo /etc/modprobe.d/pci-passthrough.conf existe"
     echo ""
-  fi
-else
-  echo ""
-  echo "  El archivo /etc/modprobe.d/pci-passthrough.conf no existe."
-  echo "  No parece que hayas configurado pci-passthrough en el pasado."
-  echo ""
+    if [ $(cat /etc/modprobe.d/pci-passthrough.conf | grep unsafe) != '' ];
+      then
+        echo ""
+        echo "  Parece que has permitido las interrupciones inseguras de Interrupt Remmaping."
+        echo ""
+    fi
+  else
+    echo ""
+    echo "  El archivo /etc/modprobe.d/pci-passthrough.conf no existe."
+    echo "  No parece que hayas configurado pci-passthrough en el pasado."
+    echo ""
 fi
 
