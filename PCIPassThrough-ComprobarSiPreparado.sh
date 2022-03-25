@@ -59,10 +59,10 @@ fi
 echo ""
 echo "Interrupt Remapping:"
 
-if [[ $(dmesg | grep emapp | grep "remapping") != "" ]];
+if [[ $(dmesg | grep emapp | grep "emapping") != "" ]];
   then
     echo ""
-    echo -e "${ColorVerde}  El equipo tiene soporte para Interrupt Remmaping.${FinColor}"
+    echo -e "${ColorVerde}  Parece que el equipo tiene soporte para Interrupt Remmaping.${FinColor}"
     echo ""
   else
     echo ""
