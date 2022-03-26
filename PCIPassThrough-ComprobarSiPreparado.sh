@@ -18,104 +18,163 @@ FinColor='\033[0m'
 
 # Procesador con extensiones de virtualización
 
-echo ""
-echo "Extensiones de virtualización:"
+  echo ""
+  echo "Extensiones de virtualización:"
 
-if [[ $(cat /proc/cpuinfo | grep -o -E "svm|vmx" | head -n1) == "svm" ]]; then
-  echo ""
-  echo -e "${ColorVerde}  Parece que el equipo tiene un procesador AMD con extensiones de virtualización.${FinColor}"
-  echo ""
-elif [[ $(cat /proc/cpuinfo | grep -o -E "svm|vmx" | head -n1) == "vmx" ]]; then
-  echo ""
-  echo -e "${ColorVerde}  Parece que el equipo tiene un procesador Intel con extensiones de virtualización.${FinColor}"
-  echo ""
-else
-  echo ""
-  echo -e "${ColorRojo}  El equipo no cuenta con un procesador con extensiones de virtualización.${FinColor}"
-  echo -e "${ColorRojo}  NO podrás pasar tarjetas físicas a máquinas virtuales.${FinColor}"
-  echo ""
-  exit
-fi
-
-# Soporte para IOMMU
-
-echo ""
-echo "Soporte para IOMMU:"
-
-if [[ $(dmesg | grep -e DMAR -e IOMMU | grep ound) != "" ]]; then
-  echo ""
-  echo -e "${ColorVerde}  Parece que el equipo tiene soporte para IOMMU.${FinColor}"
-  echo ""
-else
-  echo ""
-  echo -e "${ColorRojo}  El equipo no tiene soporte IOMMU o no lo has activado en la BIOS.${FinColor}"
-  echo -e "${ColorRojo}  NO podrás pasar tarjetas físicas a máquinas virtuales.${FinColor}"
-  echo ""
-  exit
-fi
-
-# Soporte para Interrupt Remapping
-
-echo ""
-echo "Interrupt Remapping:"
-
-if [[ $(dmesg | grep emapp | grep "emapping") != "" ]];
-  then
+  if [[ $(cat /proc/cpuinfo | grep -o -E "svm|vmx" | head -n1) == "svm" ]]; then
     echo ""
-    echo -e "${ColorVerde}  Parece que el equipo tiene soporte para Interrupt Remmaping.${FinColor}"
+    echo -e "${ColorVerde}  Parece que el equipo tiene un procesador AMD con extensiones de virtualización.${FinColor}"
+    echo ""
+  elif [[ $(cat /proc/cpuinfo | grep -o -E "svm|vmx" | head -n1) == "vmx" ]]; then
+    echo ""
+    echo -e "${ColorVerde}  Parece que el equipo tiene un procesador Intel con extensiones de virtualización.${FinColor}"
     echo ""
   else
     echo ""
-    echo -e "${ColorRojo}  El equipo NO tiene soporte para Interrupt Remmaping.${FinColor}"
+    echo -e "${ColorRojo}  El equipo no cuenta con un procesador con extensiones de virtualización.${FinColor}"
     echo -e "${ColorRojo}  NO podrás pasar tarjetas físicas a máquinas virtuales.${FinColor}"
     echo ""
     exit
-fi
+  fi
+
+# Soporte para IOMMU
+
+  echo ""
+  echo "Soporte para IOMMU:"
+
+  if [[ $(dmesg | grep -e DMAR -e IOMMU | grep ound) != "" ]]; then
+    echo ""
+    echo -e "${ColorVerde}  Parece que el equipo tiene soporte para IOMMU.${FinColor}"
+    echo ""
+  else
+    echo ""
+    echo -e "${ColorRojo}  El equipo no tiene soporte IOMMU o no lo has activado en la BIOS.${FinColor}"
+    echo -e "${ColorRojo}  NO podrás pasar tarjetas físicas a máquinas virtuales.${FinColor}"
+    echo ""
+    exit
+  fi
+
+# Soporte para Interrupt Remapping
+
+  echo ""
+  echo "Interrupt Remapping:"
+
+  if [[ $(dmesg | grep emapp | grep "emapping") != "" ]];
+    then
+      echo ""
+      echo -e "${ColorVerde}  Parece que el equipo tiene soporte para Interrupt Remmaping.${FinColor}"
+      echo ""
+    else
+      echo ""
+      echo -e "${ColorRojo}  El equipo NO tiene soporte para Interrupt Remmaping.${FinColor}"
+      echo -e "${ColorRojo}  NO podrás pasar tarjetas físicas a máquinas virtuales.${FinColor}"
+      echo ""
+      exit
+  fi
+
+# Agrupamiento IOMMU
+
+  echo ""
+  echo "Agrupamiento IOMMU:"
+
+  echo '#!/bin/bash'                                                                             > /root/MostrarGruposIOMMU.sh
+  echo "for iommu_group in \$(find /sys/kernel/iommu_groups/ -maxdepth 1 -mindepth 1 -type d);" >> /root/MostrarGruposIOMMU.sh
+  echo '  do echo "" && echo "Grupo IOMMU $(basename "$iommu_group")";'                         >> /root/MostrarGruposIOMMU.sh
+  echo ""                                                                                       >> /root/MostrarGruposIOMMU.sh
+  echo 'for device in $(ls -1 "$iommu_group"/devices/);'                                        >> /root/MostrarGruposIOMMU.sh
+  echo '  do echo -n $'\t'; lspci -nns "$device"; done; done'                                   >> /root/MostrarGruposIOMMU.sh
+  echo ""                                                                                       >> /root/MostrarGruposIOMMU.sh
+  echo 'echo ""'                                                                                >> /root/MostrarGruposIOMMU.sh
+  chmod +x /root/MostrarGruposIOMMU.sh
+
+  if [[ $(/root/MostrarGruposIOMMU.sh) != "" ]];
+    then
+      echo ""
+      echo -e "${ColorVerde}  Parece que el equipo tiene soporte para agrupamiento IOMMU.${FinColor}"
+      echo -e "${ColorVerde}  Tendrás que asegurarte que la tarjeta que quieras pasar esté aislada en su propio grupo.${FinColor}"
+      echo ""
+    else
+      echo ""
+      echo -e "${ColorRojo}  El equipo NO tiene soporte para agrupamiento IOMMU Remmaping.${FinColor}"
+      echo -e "${ColorRojo}  Probablemente tu procesador no cuente con la característica ACS (Access Control Services).${FinColor}"
+      echo -e "${ColorRojo}  NO podrás pasar tarjetas físicas a máquinas virtuales.${FinColor}"
+      echo ""
+      exit
+  fi
 
 # /etc/default/grub
 
-if [[ $(cat /etc/default/grub | grep "_iommu=on") != "" ]];
-  then
-    echo ""
-    echo -e "${ColorVerde}  Parece que has agregado la activación de IOMMU en el archivo /etc/default/grub.${FinColor}"
-    echo ""
-      if [[ $(cat /etc/default/grub | grep "acs_override") != "" ]];
-        then
-          echo ""
-          echo -e "${ColorVerde}    Parece que has permitido las interrupciones inseguras de Interrupt Remmaping.${FinColor}"
-          echo ""
-      fi
-  else
-    echo ""
-    echo -e "${ColorRojo}   No has agregado la activación de IOMMU en /etc/default/grub.${FinColor}"
-    echo -e "${ColorRojo}   No estás listo para pasar tarjetas PCI a máquinas virtuales.${FinColor}"
-    echo ""
-    exit
-fi
+  echo ""
+  echo "Archivo /etc/default/grub:"
+
+  if [[ $(cat /etc/default/grub | grep "_iommu=on") != "" ]];
+    then
+      echo ""
+      echo -e "${ColorVerde}  Parece que has agregado la activación de IOMMU en el archivo /etc/default/grub.${FinColor}"
+      echo ""
+        if [[ $(cat /etc/default/grub | grep "acs_override") != "" ]];
+          then
+            echo ""
+            echo -e "${ColorVerde}    Parece que has permitido las interrupciones inseguras de Interrupt Remmaping.${FinColor}"
+            echo ""
+        fi
+    else
+      echo ""
+      echo -e "${ColorRojo}   No has agregado la activación de IOMMU en /etc/default/grub.${FinColor}"
+      echo -e "${ColorRojo}   No estás listo para pasar tarjetas PCI a máquinas virtuales.${FinColor}"
+      echo ""
+      exit
+  fi
+
+
 
 # /etc/modprobe.d/pci-passthrough.conf
 
-if [ -e /etc/modprobe.d/pci-passthrough.conf ];
-  then
-    echo ""
-    echo "  El archivo /etc/modprobe.d/pci-passthrough.conf existe"
-    echo ""
-    if [[ $(cat /etc/modprobe.d/pci-passthrough.conf | grep unsafe) != "" ]];
-      then
-        echo ""
-        echo "    Parece que has permitido las interrupciones inseguras de Interrupt Remmaping."
-        echo ""
-    fi
-    if [[ $(cat /etc/modprobe.d/pci-passthrough.conf | grep "vfio-pci ids=") != "" ]];
-      then
-        echo ""
-        echo "    Parece que ya has intentado pasar alguna pciid de algún dispositivo."
-        echo ""
-    fi
-  else
-    echo ""
-    echo -e "${ColorRojo}  El archivo /etc/modprobe.d/pci-passthrough.conf no existe.${FinColor}"
-    echo -e "${ColorRojo}  No parece que hayas configurado pci-passthrough en el pasado.${FinColor}"
-    echo ""
-fi
+  echo ""
+  echo "/etc/modprobe.d/pci-passthrough.conf:"
+  
+  if [ -e /etc/modprobe.d/pci-passthrough.conf ];
+    then
+      echo ""
+      echo "  El archivo /etc/modprobe.d/pci-passthrough.conf existe"
+      echo ""
+      if [[ $(cat /etc/modprobe.d/pci-passthrough.conf | grep unsafe) != "" ]];
+        then
+          echo ""
+          echo "    Parece que has permitido las interrupciones inseguras de Interrupt Remmaping."
+          echo ""
+      fi
+      if [[ $(cat /etc/modprobe.d/pci-passthrough.conf | grep "vfio-pci ids=") != "" ]];
+        then
+          echo ""
+          echo "    Parece que ya has intentado pasar alguna pciid de algún dispositivo."
+          echo ""
+      fi
+    else
+      echo ""
+      echo -e "${ColorRojo}  El archivo /etc/modprobe.d/pci-passthrough.conf no existe.${FinColor}"
+      echo -e "${ColorRojo}  No parece que hayas configurado pci-passthrough en el pasado.${FinColor}"
+      echo ""
+  fi
 
+# Archivo /etc/modules
+
+  echo ""
+  echo "Archivo /etc/modules:"
+
+  cat /etc/modules | grep "vfio "
+  cat /etc/modules | grep "vfio_iommu_type1"
+  cat /etc/modules | grep "vfio_pci"
+  cat /etc/modules | grep "vfio_virqfd"
+
+# Módulos vfio efectivamente cargados
+
+  echo ""
+  echo "Módulos vfio efectivamente cargados"
+
+  lsmod | grep ^vfio | cut -d' ' -f1 | sort > /tmp/modulosvfio.txt
+
+  while read -r line;
+    do
+      echo "$line" ;
+    done < /tmp/modulosvfio.txt
