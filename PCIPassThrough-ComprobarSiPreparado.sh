@@ -176,5 +176,10 @@ FinColor='\033[0m'
 
   while read -r line;
     do
-      echo "$line" ;
+      arrVFIO+=("$line");
     done < /tmp/modulosvfio.txt
+
+   if [[ arrVFIO  ]]
+     
+   fi
+ 
