@@ -5,12 +5,12 @@
 # Si se te llena la boca hablando de libertad entonces hazlo realmente libre.
 # No tienes que aceptar ningún tipo de términos de uso o licencia para utilizarlo o modificarlo porque va sin CopyLeft.
 
-#------------------------------------------------------------------------------------------------------------
+#--------------------------------------------------------------------------------------------------------------------------------
 #  Script de NiPeGun para importar una copia de seguridad de contenedor LXC
 #
 #  Ejecución remota:
-#  curl -s https://raw.githubusercontent.com/nipegun/p-scripts/master/LXC-ExpandirDiscoAl100x100.sh | bash
-#------------------------------------------------------------------------------------------------------------
+#  curl -s https://raw.githubusercontent.com/nipegun/p-scripts/master/InteriorDelContainer/LXC-ExpandirDiscoAl100x100.sh | bash
+#--------------------------------------------------------------------------------------------------------------------------------
 
 # Determinar sistema de archivos
   SistArch=$(df -Th | grep "/dev/loop0" | tr -s ' ' | cut -d' ' -f2)
