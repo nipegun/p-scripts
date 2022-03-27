@@ -5,12 +5,12 @@
 # Si se te llena la boca hablando de libertad entonces hazlo realmente libre.
 # No tienes que aceptar ningún tipo de términos de uso o licencia para utilizarlo o modificarlo porque va sin CopyLeft.
 
-#--------------------------------------------------------------------------------------------------------------------------------
+#--------------------------------------------------------------------------------------------------------------------------
 #  Script de NiPeGun para importar una copia de seguridad de contenedor LXC
 #
 #  Ejecución remota:
-#  curl -s https://raw.githubusercontent.com/nipegun/p-scripts/master/InteriorDelContainer/LXC-ExpandirDiscoAl100x100.sh | bash
-#--------------------------------------------------------------------------------------------------------------------------------
+#  curl -s https://raw.githubusercontent.com/nipegun/p-scripts/master/LXC-ExpandirPartRootAlMax.sh | bash -s NumContainer
+#--------------------------------------------------------------------------------------------------------------------------
 
 # Determinar sistema de archivos
 #  SistArch=$(df -Th | grep "/dev/loop0" | tr -s ' ' | cut -d' ' -f2)
@@ -20,9 +20,13 @@
 #    df -Th
 #  fi
 
-NombreAlmacenamiento=$(cat /etc/pve/lxc/$1.conf | grep rootfs | sed 's- --g' | cut -d':' -f2)
-ArchivoDisco=$(cat /etc/pve/lxc/$1.conf | grep rootfs | cut -d'/' -f2 | cut -d',' -f1)
-CarpetaAlmacenamiento=$(cat /etc/pve/storage.cfg | grep -m2 $NombreAlmacenamiento | tail -n1 | sed 's- --g' | cut -d'h' -f2)
+vNombreAlmacenamiento=$(cat /etc/pve/lxc/$1.conf | grep rootfs | sed 's- --g' | cut -d':' -f2)
+vArchivoDisco=$(cat /etc/pve/lxc/$1.conf | grep rootfs | cut -d'/' -f2 | cut -d',' -f1)
+vCarpetaAlmacenamiento=$(cat /etc/pve/storage.cfg | grep -m2 $NombreAlmacenamiento | tail -n1 | sed 's- --g' | cut -d'h' -f2)
+
+echo "vNombreAlmacenamiento = $vNombreAlmacenamiento"
+echo "vArchivoDisco = $vArchivoDisco"
+echo "vCarpetaAlmacenamiento = $vCarpetaAlmacenamiento"
 
 # umount /media/root/26d50c38-9af5-4bb0-a749-751d6f4fbca4
 # tune2fs -f -E clear_mmp /PVE/images/201/vm-201-disk-0.raw
