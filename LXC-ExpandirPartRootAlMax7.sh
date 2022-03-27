@@ -53,24 +53,28 @@ if [ $# -ne $CantArgsEsperados ]
     # Desmontar el disco (Si es que está montado)
       echo ""
       echo "  Desmontando el disco del contendor (si es que está montado en el host de Proxmox)..."
+      echo "  orden: umount $vCarpetaAlmacenamiento\images/$1/$vArchivoDeDisco"
       echo ""
       umount $vCarpetaAlmacenamiento\images/$1/$vArchivoDeDisco
 
     # Forzar la aceptación de que el disco no está montado
       echo ""
       echo "  Forzando el bloque MMP a limpio..."
+      echo "  orden: tune2fs -f -E clear_mmp $vCarpetaAlmacenamiento\images/$1/$vArchivoDeDisco"
       echo ""
       tune2fs -f -E clear_mmp $vCarpetaAlmacenamiento\images/$1/$vArchivoDeDisco
 
     # Revisar y reparar el sistema de archivos del contenedor
       echo ""
       echo "  Revisando y reparando el sistema de archivos del contendor..."
+      echo "  orden: e2fsck -f $vCarpetaAlmacenamiento\images/$1/$vArchivoDeDisco"
       echo ""
       e2fsck -f $vCarpetaAlmacenamiento\images/$1/$vArchivoDeDisco
 
     # Realizar la expansión
       echo ""
       echo "  Efectuando la redimensión..."
+      echo "  orden: resize2fs $vCarpetaAlmacenamiento\images/$1/$vArchivoDeDisco"
       echo ""
       resize2fs $vCarpetaAlmacenamiento\images/$1/$vArchivoDeDisco
 
