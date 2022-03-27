@@ -17,6 +17,7 @@ ArgsInsuficientes=65
 
 ColorRojo='\033[1;31m'
 ColorVerde='\033[1;32m'
+ColorAzul='\033[1;34m'
 FinColor='\033[0m'
 
 if [ $# -ne $CantArgsEsperados ]
@@ -59,7 +60,7 @@ if [ $# -ne $CantArgsEsperados ]
 
     # Forzar la aceptación de que el disco no está montado
       echo ""
-      echo "  Forzando el bloque MMP a limpio..."
+      echo -e "${ColorAzul}  Forzando el bloque MMP a limpio...${FinColor}"
       echo "  orden: tune2fs -f -E clear_mmp "$vCarpetaAlmacenamiento"images/$1/$vArchivoDeDisco"
       echo ""
       tune2fs -f -E clear_mmp "$vCarpetaAlmacenamiento"images/$1/$vArchivoDeDisco
