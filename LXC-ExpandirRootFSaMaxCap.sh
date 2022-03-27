@@ -9,7 +9,7 @@
 #  Script de NiPeGun para importar una copia de seguridad de contenedor LXC
 #
 #  Ejecución remota:
-#  curl -s https://raw.githubusercontent.com/nipegun/p-scripts/master/LXC-ExpandirPartRootAlMax.sh | bash -s NumContainer
+#  curl -s https://raw.githubusercontent.com/nipegun/p-scripts/master/LXC-ExpandirRootFSaMaxCap.sh | bash -s NumContainer
 #--------------------------------------------------------------------------------------------------------------------------
 
 CantArgsEsperados=1
