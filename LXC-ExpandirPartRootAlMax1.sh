@@ -21,11 +21,11 @@
 #  fi
 
 vNombreAlmacenamiento=$(cat /etc/pve/lxc/$1.conf | grep rootfs | sed 's- --g' | cut -d':' -f2)
-vArchivoDisco=$(cat /etc/pve/lxc/$1.conf | grep rootfs | cut -d'/' -f2 | cut -d',' -f1)
-vCarpetaAlmacenamiento=$(cat /etc/pve/storage.cfg | grep -m2 $NombreAlmacenamiento | tail -n1 | sed 's- --g' | cut -d'h' -f2)
+vArchivoDeDisco=$(cat /etc/pve/lxc/$1.conf | grep rootfs | cut -d'/' -f2 | cut -d',' -f1)
+vCarpetaAlmacenamiento=$(cat /etc/pve/storage.cfg | grep -m2 $vNombreAlmacenamiento | tail -n1 | sed 's- --g' | cut -d'h' -f2)
 
 echo "vNombreAlmacenamiento = $vNombreAlmacenamiento"
-echo "vArchivoDisco = $vArchivoDisco"
+echo "vArchivoDeDisco = $vArchivoDeDisco"
 echo "vCarpetaAlmacenamiento = $vCarpetaAlmacenamiento"
 
 # umount /media/root/26d50c38-9af5-4bb0-a749-751d6f4fbca4
