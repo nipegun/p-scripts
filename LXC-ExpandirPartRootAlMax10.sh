@@ -38,7 +38,7 @@ if [ $# -ne $CantArgsEsperados ]
 
     # Apagar el contenedor
       echo ""
-      echo "  Apagando el contendor..."
+      echo -e "${ColorAzul}  Apagando el contendor...${FinColor}"
       echo ""
       pct shutdown $1
 
@@ -53,7 +53,7 @@ if [ $# -ne $CantArgsEsperados ]
 
     # Desmontar el disco (Si es que está montado)
       echo ""
-      echo "  Desmontando el disco del contendor (si es que está montado en el host de Proxmox)..."
+      echo -e "${ColorAzul}  Desmontando el disco del contendor (si es que está montado en el host de Proxmox)...${FinColor}"
       echo "  orden: umount "$vCarpetaAlmacenamiento"images/$1/$vArchivoDeDisco"
       echo ""
       umount "$vCarpetaAlmacenamiento"images/$1/$vArchivoDeDisco
@@ -67,14 +67,14 @@ if [ $# -ne $CantArgsEsperados ]
 
     # Revisar y reparar el sistema de archivos del contenedor
       echo ""
-      echo "  Revisando y reparando el sistema de archivos del contendor..."
+      echo -e "${ColorAzul}  Revisando y reparando el sistema de archivos del contendor...${FinColor}"
       echo "  orden: e2fsck -f "$vCarpetaAlmacenamiento"images/$1/$vArchivoDeDisco"
       echo ""
       e2fsck -f "$vCarpetaAlmacenamiento"images/$1/$vArchivoDeDisco
 
     # Realizar la expansión
       echo ""
-      echo "  Efectuando la redimensión..."
+      echo -e "${ColorAzul}  Efectuando la redimensión...${FinColor}"
       echo "  orden: resize2fs "$vCarpetaAlmacenamiento"images/$1/$vArchivoDeDisco"
       echo ""
       resize2fs "$vCarpetaAlmacenamiento"images/$1/$vArchivoDeDisco
