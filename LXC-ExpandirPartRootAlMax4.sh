@@ -28,7 +28,8 @@ echo "vNombreAlmacenamiento = $vNombreAlmacenamiento"
 echo "vArchivoDeDisco = $vArchivoDeDisco"
 echo "vCarpetaAlmacenamiento = $vCarpetaAlmacenamiento"
 
-ls -l  $vCarpetaAlmacenamiento\images/$1/$vArchivoDeDisco
+umount  $vCarpetaAlmacenamiento\images/$1/$vArchivoDeDisco
+
 # umount /media/root/26d50c38-9af5-4bb0-a749-751d6f4fbca4
 # tune2fs -f -E clear_mmp /PVE/images/201/vm-201-disk-0.raw
 # e2fsck -f /PVE/images/201/vm-201-disk-0.raw
