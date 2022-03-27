@@ -70,7 +70,7 @@ if [ $# -ne $CantArgsEsperados ]
       echo -e "${ColorAzul}  Revisando y reparando el sistema de archivos del contendor...${FinColor}"
       echo "  orden: e2fsck -f "$vCarpetaAlmacenamiento"images/$1/$vArchivoDeDisco"
       echo ""
-      e2fsck -f "$vCarpetaAlmacenamiento"images/$1/$vArchivoDeDisco
+      e2fsck -y -f "$vCarpetaAlmacenamiento"images/$1/$vArchivoDeDisco
 
     # Realizar la expansión
       echo ""
