@@ -197,7 +197,7 @@ FinColor='\033[0m'
       echo ""
       echo -e "${ColorVerde}  El archivo /etc/modprobe.d/pci-passthrough.conf existe${FinColor}"
       echo ""
-      if [[ $(cat /etc/modprobe.d/pci-passthrough.conf | grep unsafe) != "" ]];
+      if [[ $(cat /etc/modprobe.d/pci-passthrough.conf | grep "options vfio_iommu_type1 allow_unsafe_interrupts=1") != "" ]];
         then
           echo ""
           echo -e "${ColorVerde}    Parece que has permitido las interrupciones inseguras de Interrupt Remmaping en el archivo pci-passthrough.conf.${FinColor}"
