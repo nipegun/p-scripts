@@ -115,7 +115,7 @@ FinColor='\033[0m'
         if [[ $(cat /etc/default/grub | grep "acs_override") != "" ]];
           then
             echo ""
-            echo -e "${ColorVerde}    Parece que has permitido las interrupciones inseguras de Interrupt Remmaping.${FinColor}"
+            echo -e "${ColorVerde}    Parece que has permitido las interrupciones inseguras de Interrupt Remmaping en el archivo /etc/default/grub.${FinColor}"
             echo ""
         fi
     else
@@ -125,8 +125,6 @@ FinColor='\033[0m'
       echo ""
       exit
   fi
-
-
 
 # /etc/modprobe.d/pcipassthrough.conf
 
@@ -141,7 +139,7 @@ FinColor='\033[0m'
       if [[ $(cat /etc/modprobe.d/pcipassthrough.conf | grep unsafe) != "" ]];
         then
           echo ""
-          echo "    Parece que has permitido las interrupciones inseguras de Interrupt Remmaping."
+          echo "    Parece que has permitido las interrupciones inseguras de Interrupt Remmaping en el archivo pcipassthrough.conf."
           echo ""
       fi
       if [[ $(cat /etc/modprobe.d/pcipassthrough.conf | grep "vfio-pci ids=") != "" ]];
@@ -157,29 +155,56 @@ FinColor='\033[0m'
       echo ""
   fi
 
-# Archivo /etc/modules
+# Módulos necesarios en el archivo /etc/modules
 
   echo ""
-  echo "Archivo /etc/modules:"
+  echo "Módulos necesarios en el archivo /etc/modules:"
 
-  cat /etc/modules | grep "vfio "
-  cat /etc/modules | grep "vfio_iommu_type1"
-  cat /etc/modules | grep "vfio_pci"
-  cat /etc/modules | grep "vfio_virqfd"
+  rm -f /tmp/ModulosEnEtcModules.txt
+  touch /tmp/ModulosEnEtcModules.txt
+  cat /etc/modules | grep "vfio" | sort >> /tmp/ModulosEnEtcModules.txt
+
+  vVFIO1=$(sed -n 1p /tmp/ModulosEnEtcModules.txt)
+  vVFIO2=$(sed -n 2p /tmp/ModulosEnEtcModules.txt)
+  vVFIO3=$(sed -n 3p /tmp/ModulosEnEtcModules.txt)
+  vVFIO4=$(sed -n 4p /tmp/ModulosEnEtcModules.txt)
+
+  if [[ "$vVFIO1" == "vfio" ]] ; then
+    echo -e "${ColorVerde}  El módulo $vVFIO1             está agregado a /etc/modules${FinColor}"
+    if [[ "$vVFIO2" == "vfio_iommu_type1" ]] ; then
+      echo -e "${ColorVerde}  El módulo $vVFIO2 está agregado a /etc/modules${FinColor}"
+      if [[ "$vVFIO3" == "vfio_pci" ]] ; then
+        echo -e "${ColorVerde}  El módulo $vVFIO3         está agregado a /etc/modules${FinColor}"
+        if [[ "$vVFIO4" == "vfio_virqfd" ]] ; then
+          echo -e "${ColorVerde}  El módulo $vVFIO4      está agregado a /etc/modules${FinColor}"
+        fi
+      fi
+    fi
+  fi
 
 # Módulos vfio efectivamente cargados
 
   echo ""
   echo "Módulos vfio efectivamente cargados"
 
-  lsmod | grep ^vfio | cut -d' ' -f1 | sort > /tmp/modulosvfio.txt
+  rm -f /tmp/ModulosVFIOCargados.txt
+  lsmod | grep ^vfio | cut -d' ' -f1 | sort > /tmp/ModulosVFIOCargados.txt
 
-  while read -r line;
-    do
-      arrVFIO+=("$line");
-    done < /tmp/modulosvfio.txt
+  vVFIOcar1=$(sed -n 1p /tmp/ModulosVFIOCargados.txt)
+  vVFIOcar2=$(sed -n 2p /tmp/ModulosVFIOCargados.txt)
+  vVFIOcar3=$(sed -n 3p /tmp/ModulosVFIOCargados.txt)
+  vVFIOcar4=$(sed -n 4p /tmp/ModulosVFIOCargados.txt)
 
-   if [[ arrVFIO  ]]
-     
-   fi
+  if [[ "$vVFIOcar1" == "vfio" ]] ; then
+    echo -e "${ColorVerde}  El módulo $vVFIOcar1             está agregado a /etc/modules${FinColor}"
+    if [[ "$vVFIOcar2" == "vfio_iommu_type1" ]] ; then
+      echo -e "${ColorVerde}  El módulo $vVFIOcar2 está agregado a /etc/modules${FinColor}"
+      if [[ "$vVFIOcar3" == "vfio_pci" ]] ; then
+        echo -e "${ColorVerde}  El módulo $vVFIOcar3         está agregado a /etc/modules${FinColor}"
+        if [[ "$vVFIOcar4" == "vfio_virqfd" ]] ; then
+          echo -e "${ColorVerde}  El módulo $vVFIOcar4      está agregado a /etc/modules${FinColor}"
+        fi
+      fi
+    fi
+  fi
  
