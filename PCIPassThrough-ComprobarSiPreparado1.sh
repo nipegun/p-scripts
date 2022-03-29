@@ -126,12 +126,12 @@ FinColor='\033[0m'
       exit
   fi
 
-# /etc/modprobe.d/pcipassthrough.conf
+# /etc/modprobe.d/pci-passthrough.conf
 
   echo ""
-  echo "/etc/modprobe.d/pcipassthrough.conf:"
+  echo "/etc/modprobe.d/pci-passthrough.conf:"
   
-  if [ -e /etc/modprobe.d/pcipassthrough.conf ];
+  if [ -e /etc/modprobe.d/pci-passthrough.conf ];
     then
       echo ""
       echo "  El archivo /etc/modprobe.d/pci-passthrough.conf existe"
