@@ -179,6 +179,12 @@ FinColor='\033[0m'
         fi
       fi
     fi
+  else
+    echo -e "${ColorRojo}   ¡Los módulos vfio no están cargados!${FinColor}"
+    echo -e "${ColorRojo}   vfio, vfio_iommu_type1, vfio_pci y vfio_virqfd deberían estar cargados.${FinColor}"
+    echo -e "${ColorRojo}   No estás listo para pasar tarjetas PCI a máquinas virtuales.${FinColor}"
+    echo ""
+    exit
   fi
  
 # /etc/modprobe.d/pci-passthrough.conf
