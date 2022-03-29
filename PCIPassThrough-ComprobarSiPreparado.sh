@@ -126,35 +126,6 @@ FinColor='\033[0m'
       exit
   fi
 
-# /etc/modprobe.d/pci-passthrough.conf
-
-  echo ""
-  echo "/etc/modprobe.d/pci-passthrough.conf:"
-  
-  if [ -e /etc/modprobe.d/pci-passthrough.conf ];
-    then
-      echo ""
-      echo -e "${ColorVerde}  El archivo /etc/modprobe.d/pci-passthrough.conf existe${FinColor}"
-      echo ""
-      if [[ $(cat /etc/modprobe.d/pci-passthrough.conf | grep unsafe) != "" ]];
-        then
-          echo ""
-          echo -e "${ColorVerde}    Parece que has permitido las interrupciones inseguras de Interrupt Remmaping en el archivo pci-passthrough.conf.${FinColor}"
-          echo ""
-      fi
-      if [[ $(cat /etc/modprobe.d/pci-passthrough.conf | grep "vfio-pci ids=") != "" ]];
-        then
-          echo ""
-          echo -e "${ColorVerde}    Parece que ya has intentado pasar alguna pciid de algún dispositivo.${FinColor}"
-          echo ""
-      fi
-    else
-      echo ""
-      echo -e "${ColorRojo}  El archivo /etc/modprobe.d/pci-passthrough.conf no existe.${FinColor}"
-      echo -e "${ColorRojo}  No parece que hayas configurado PCIPassThrough en el pasado.${FinColor}"
-      echo ""
-  fi
-
 # Módulos necesarios en el archivo /etc/modules
 
   echo ""
@@ -210,5 +181,32 @@ FinColor='\033[0m'
     fi
   fi
  
-echo ""
+# /etc/modprobe.d/pci-passthrough.conf
+
+  echo ""
+  echo "/etc/modprobe.d/pci-passthrough.conf:"
+  
+  if [ -e /etc/modprobe.d/pci-passthrough.conf ];
+    then
+      echo ""
+      echo -e "${ColorVerde}  El archivo /etc/modprobe.d/pci-passthrough.conf existe${FinColor}"
+      echo ""
+      if [[ $(cat /etc/modprobe.d/pci-passthrough.conf | grep unsafe) != "" ]];
+        then
+          echo ""
+          echo -e "${ColorVerde}    Parece que has permitido las interrupciones inseguras de Interrupt Remmaping en el archivo pci-passthrough.conf.${FinColor}"
+          echo ""
+      fi
+      if [[ $(cat /etc/modprobe.d/pci-passthrough.conf | grep "vfio-pci ids=") != "" ]];
+        then
+          echo ""
+          echo -e "${ColorVerde}    Parece que ya has intentado pasar alguna pciid de algún dispositivo.${FinColor}"
+          echo ""
+      fi
+    else
+      echo ""
+      echo -e "${ColorRojo}  El archivo /etc/modprobe.d/pci-passthrough.conf no existe.${FinColor}"
+      echo -e "${ColorRojo}  No parece que hayas configurado PCIPassThrough en el pasado.${FinColor}"
+      echo ""
+  fi
 
