@@ -159,6 +159,7 @@ FinColor='\033[0m'
 
   echo ""
   echo "Módulos necesarios en el archivo /etc/modules:"
+  echo ""
 
   rm -f /tmp/ModulosEnEtcModules.txt
   touch /tmp/ModulosEnEtcModules.txt
@@ -186,6 +187,7 @@ FinColor='\033[0m'
 
   echo ""
   echo "Módulos vfio efectivamente cargados"
+  echo ""
 
   rm -f /tmp/ModulosVFIOCargados.txt
   lsmod | grep ^vfio | cut -d' ' -f1 | sort > /tmp/ModulosVFIOCargados.txt
@@ -196,13 +198,13 @@ FinColor='\033[0m'
   vVFIOcar4=$(sed -n 4p /tmp/ModulosVFIOCargados.txt)
 
   if [[ "$vVFIOcar1" == "vfio" ]] ; then
-    echo -e "${ColorVerde}  El módulo $vVFIOcar1             está agregado a /etc/modules${FinColor}"
+    echo -e "${ColorVerde}  El módulo $vVFIOcar1             está cargado.${FinColor}"
     if [[ "$vVFIOcar2" == "vfio_iommu_type1" ]] ; then
-      echo -e "${ColorVerde}  El módulo $vVFIOcar2 está agregado a /etc/modules${FinColor}"
+      echo -e "${ColorVerde}  El módulo $vVFIOcar2 está cargado.${FinColor}"
       if [[ "$vVFIOcar3" == "vfio_pci" ]] ; then
-        echo -e "${ColorVerde}  El módulo $vVFIOcar3         está agregado a /etc/modules${FinColor}"
+        echo -e "${ColorVerde}  El módulo $vVFIOcar3         está cargado.${FinColor}"
         if [[ "$vVFIOcar4" == "vfio_virqfd" ]] ; then
-          echo -e "${ColorVerde}  El módulo $vVFIOcar4      está agregado a /etc/modules${FinColor}"
+          echo -e "${ColorVerde}  El módulo $vVFIOcar4      está cargado.${FinColor}"
         fi
       fi
     fi
