@@ -13,7 +13,7 @@
 # ----------
 
 # Modificar sólo esto antes de ejecutar el script
-vCarpetaCopSeg="/Particiones/CopSeg/Proxmox/Ids/" # La ubicación de la carpeta para las copias debe acabar con /
+vCarpetaCopSeg="/tmp/" # La ubicación de la carpeta para las copias debe acabar con /
 vIdIni=100
 vIdFin=999
 
