@@ -17,7 +17,7 @@ vCarpetaCopSeg="/Particiones/CopSeg/" # La ubicación de la carpeta para las cop
 vIdIni=205
 vIdFin=223
 
-FechaDeEjec=$(date +A%YM%mD%d@%T)
+vFechaDeEjec=$(date +A%YM%mD%d@%T)
 
 ColorAzul="\033[0;34m"
 ColorVerde='\033[1;32m'
@@ -29,7 +29,7 @@ echo -e "${ColorAzul}  Iniciando copia de seguridad de todos los contenedores y 
 echo ""
 
 # Abortar script si no existe la carpeta de copias de seguridad
-  if [ -d "$CarpetaCopSeg" ]; then
+  if [ -d "$vCarpetaCopSeg" ]; then
     echo ""
   else
     echo ""
@@ -40,7 +40,7 @@ echo ""
   fi
 
 # Crear carpeta con la fecha
-  mkdir -p $CarpetaCopSeg$FechaDeEjec 2> /dev/null
+  mkdir -p $vCarpetaCopSeg$vFechaDeEjec 2> /dev/null
 
 # Recorrer todas las ids
   for vId in $(seq $vIdIni $vIdFin);
@@ -49,18 +49,18 @@ echo ""
         if [ -f /etc/pve/lxc/$vId.conf]; then # Si es contenedor
           echo -e "${ColorAzul}    Ejecutando copia de seguridad del contenedor $vId...${FinColor}"
           # Determinar el estado actual del contenedor
-            EstadoLXC=$(pct status $vId | sed 's- --g' | cut -d':' -f2)
-            if [ $EstadoLXC == "running" ]; then
+            vEstadoLXC=$(pct status $vId | sed 's- --g' | cut -d':' -f2)
+            if [ $vEstadoLXC == "running" ]; then
               echo "      El contenedor está actualmente encendido."
               echo "      Se procederá a apagarlo para realizar la copia y se volverá a encender al finalizar el proceso."
               pct shutdown $vId
-              mkdir -p $CarpetaCopSeg$FechaDeEjec$vId
-              vzdump $vId --mode stop --compress gzip --dumpdir $CarpetaCopSeg$FechaDeEjec$vId/
+              mkdir -p $vCarpetaCopSeg$vFechaDeEjec$vId
+              vzdump $vId --mode stop --compress gzip --dumpdir $vCarpetaCopSeg$vFechaDeEjec$vId/
               echo "      Copia de seguridad realizada. Encendiendo nuevamente el contenedor..."
               pct start $vId
-            else if [ $EstadoLXC == "stopped" ]; then
-              mkdir -p $CarpetaCopSeg$FechaDeEjec$vId
-              vzdump $vId --mode stop --compress gzip --dumpdir $CarpetaCopSeg$FechaDeEjec$vId/
+            else if [ $vEstadoLXC == "stopped" ]; then
+              mkdir -p $vCarpetaCopSeg$vFechaDeEjec$vId
+              vzdump $vId --mode stop --compress gzip --dumpdir $vCarpetaCopSeg$vFechaDeEjec$vId/
             else # No se puede determinar si está apagado o encendido
               echo ""
               echo -e "${ColorRojo}    No se ha podido determinar si el contenedor $vId está apagado o encendido.${FinColor}"
@@ -70,18 +70,18 @@ echo ""
         else if [ -f /etc/pve/qemu-server/$vId.conf]; then # Si es máquina virtual
           echo -e "${ColorAzul}  Ejecutando copia de seguridad de la máquina virtual $vId...${FinColor}"
           # Determinar el estado actual de la máquina virtual
-            EstadoMV=$(pct status $vId | sed 's- --g' | cut -d':' -f2)
-            if [ $EstadoMV == "running" ]; then
+            vEstadoMV=$(pct status $vId | sed 's- --g' | cut -d':' -f2)
+            if [ $vEstadoMV == "running" ]; then
               echo "  La máquina virtual está actualmente encendida."
               echo "  Se procederá a apagarla para realizar la copia y se volverá a encender al finalizar el proceso."
               qm shutdown $vId
-              mkdir -p $CarpetaCopSeg$FechaDeEjec$vId
-              vzdump $vId --mode stop --compress gzip --dumpdir $CarpetaCopSeg$FechaDeEjec$vId/
+              mkdir -p $vCarpetaCopSeg$vFechaDeEjec$vId
+              vzdump $vId --mode stop --compress gzip --dumpdir $vCarpetaCopSeg$vFechaDeEjec$vId/
               echo "  Copia de seguridad realizada. Encendiendo nuevamente la máquina virtual..."
               qm start $vId
-            else if [ $EstadoMV == "stopped" ]; then
-              mkdir -p $CarpetaCopSeg$FechaDeEjec$vId
-              vzdump $vId --mode stop --compress gzip --dumpdir $CarpetaCopSeg$FechaDeEjec$vId/
+            else if [ $vEstadoMV == "stopped" ]; then
+              mkdir -p $vCarpetaCopSeg$vFechaDeEjec$vId
+              vzdump $vId --mode stop --compress gzip --dumpdir $vCarpetaCopSeg$vFechaDeEjec$vId/
             else # No se puede determinar si está apagado o encendido
               echo ""
               echo -e "${ColorRojo}  No se ha podido determinar si la máquina virtual $vId está apagada o encendida.${FinColor}"
