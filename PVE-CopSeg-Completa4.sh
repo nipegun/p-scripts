@@ -19,7 +19,7 @@ vIdFin=223
 
 vFechaDeEjec=$(date +A%YM%mD%d@%T)
 
-ColorAzul="\033[0;34m"
+ColorAzul="\033[1;34m"
 ColorVerde='\033[1;32m'
 ColorRojo='\033[1;31m'
 FinColor='\033[0m'
