@@ -67,7 +67,7 @@ echo ""
               echo -e "${ColorRojo}    Se aborta su copia de seguridad.${FinColor}"
               echo ""
             fi
-        else if [ -f /etc/pve/qemu-server/$vId.conf]; then # Si es máquina virtual
+        else if [ -f /etc/pve/qemu-server/$vId.conf ]; then # Si es máquina virtual
           echo -e "${ColorAzul}  Ejecutando copia de seguridad de la máquina virtual $vId...${FinColor}"
           # Determinar el estado actual de la máquina virtual
             vEstadoMV=$(pct status $vId | sed 's- --g' | cut -d':' -f2)
