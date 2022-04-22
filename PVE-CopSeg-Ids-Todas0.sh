@@ -26,7 +26,7 @@ ColorRojo='\033[1;31m'
 FinColor='\033[0m'
 
 echo ""
-echo -e "${ColorAzul}  Iniciando copia de seguridad de todos los contenedores y máquinas virtuales...${FinColor}"
+echo -e "${ColorAzulClaro}  Iniciando copia de seguridad de todos los contenedores y máquinas virtuales...${FinColor}"
 echo ""
 
 # Abortar script si no existe la carpeta de copias de seguridad
@@ -45,7 +45,7 @@ echo ""
     do
       # Determinar si es máquina virtual o contenedor
         if [ -f /etc/pve/lxc/$vId.conf ]; then # Si es contenedor
-          echo -e "${ColorAzul}    Ejecutando copia de seguridad del contenedor $vId...${FinColor}"
+          echo -e "${ColorAzulClaro}    Ejecutando copia de seguridad del contenedor $vId...${FinColor}"
           # Determinar el estado actual del contenedor
             vEstadoLXC=$(pct status $vId | sed 's- --g' | cut -d':' -f2)
             if [ $vEstadoLXC == "running" ]; then
@@ -89,7 +89,7 @@ echo ""
               echo ""
             fi
         elif [ -f /etc/pve/qemu-server/$vId.conf ]; then # Si es máquina virtual
-          echo -e "${ColorAzul}  Ejecutando copia de seguridad de la máquina virtual $vId...${FinColor}"
+          echo -e "${ColorAzulClaro}  Ejecutando copia de seguridad de la máquina virtual $vId...${FinColor}"
           # Determinar el estado actual de la máquina virtual
             vEstadoMV=$(qm status $vId | sed 's- --g' | cut -d':' -f2)
             if [ $vEstadoMV == "running" ]; then
