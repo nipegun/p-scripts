@@ -9,7 +9,7 @@
 #  Script de NiPeGun para hacer copia de seguridad de todos los contenedores y las máquinas virtuales de Proxmox
 #
 #  Ejecución remota:
-#  curl -s x | bash
+#  curl -s https://raw.githubusercontent.com/nipegun/p-scripts/master/PVE-CopSeg-Completa.sh | bash
 # ----------
 
 # Modificar sólo esto antes de ejecutar el script
