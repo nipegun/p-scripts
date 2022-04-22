@@ -58,7 +58,7 @@ echo ""
               vzdump $vId --mode stop --compress gzip --dumpdir $vCarpetaCopSeg$vFechaDeEjec$vId/
               echo "      Copia de seguridad realizada. Encendiendo nuevamente el contenedor..."
               pct start $vId
-            else if [ $vEstadoLXC == "stopped" ]; then
+            elif [ $vEstadoLXC == "stopped" ]; then
               mkdir -p $vCarpetaCopSeg$vFechaDeEjec$vId
               vzdump $vId --mode stop --compress gzip --dumpdir $vCarpetaCopSeg$vFechaDeEjec$vId/
             else # No se puede determinar si está apagado o encendido
@@ -67,7 +67,7 @@ echo ""
               echo -e "${ColorRojo}    Se aborta su copia de seguridad.${FinColor}"
               echo ""
             fi
-        else if [ -f /etc/pve/qemu-server/$vId.conf ]; then # Si es máquina virtual
+        elif [ -f /etc/pve/qemu-server/$vId.conf ]; then # Si es máquina virtual
           echo -e "${ColorAzul}  Ejecutando copia de seguridad de la máquina virtual $vId...${FinColor}"
           # Determinar el estado actual de la máquina virtual
             vEstadoMV=$(pct status $vId | sed 's- --g' | cut -d':' -f2)
@@ -79,7 +79,7 @@ echo ""
               vzdump $vId --mode stop --compress gzip --dumpdir $vCarpetaCopSeg$vFechaDeEjec$vId/
               echo "  Copia de seguridad realizada. Encendiendo nuevamente la máquina virtual..."
               qm start $vId
-            else if [ $vEstadoMV == "stopped" ]; then
+            elif [ $vEstadoMV == "stopped" ]; then
               mkdir -p $vCarpetaCopSeg$vFechaDeEjec$vId
               vzdump $vId --mode stop --compress gzip --dumpdir $vCarpetaCopSeg$vFechaDeEjec$vId/
             else # No se puede determinar si está apagado o encendido
