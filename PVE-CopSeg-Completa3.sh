@@ -46,7 +46,7 @@ echo ""
   for vId in $(seq $vIdIni $vIdFin);
     do
       # Determinar si es máquina virtual o contenedor
-        if [ -f /etc/pve/lxc/$vId.conf]; then # Si es contenedor
+        if [ -f /etc/pve/lxc/$vId.conf ]; then # Si es contenedor
           echo -e "${ColorAzul}    Ejecutando copia de seguridad del contenedor $vId...${FinColor}"
           # Determinar el estado actual del contenedor
             vEstadoLXC=$(pct status $vId | sed 's- --g' | cut -d':' -f2)
