@@ -33,8 +33,8 @@ echo ""
     echo ""
   else
     echo ""
-    echo -e "${ColorRojo}  No se ha encontrado la carpeta de copias de seguridad indicada en el script.${FinColor}"
-    echo -e "${ColorRojo}  Copia de seguridad abortada.${FinColor}"
+    echo -e "${ColorRojo}    No se ha encontrado la carpeta de copias de seguridad indicada en el script.${FinColor}"
+    echo -e "${ColorRojo}    Copia de seguridad abortada.${FinColor}"
     echo ""
     exit 1
   fi
@@ -47,24 +47,24 @@ echo ""
     do
       # Determinar si es máquina virtual o contenedor
         if [ -f /etc/pve/lxc/$vId.conf]; then # Si es contenedor
-          echo -e "${ColorAzul}  Ejecutando copia de seguridad del contenedor $vId...${FinColor}"
+          echo -e "${ColorAzul}    Ejecutando copia de seguridad del contenedor $vId...${FinColor}"
           # Determinar el estado actual del contenedor
             EstadoLXC=$(pct status $vId | sed 's- --g' | cut -d':' -f2)
             if [ $EstadoLXC == "running" ]; then
-              echo "  El contenedor está actualmente encendido."
-              echo "  Se procederá a apagarlo para realizar la copia y se volverá a encender al finalizar el proceso."
+              echo "      El contenedor está actualmente encendido."
+              echo "      Se procederá a apagarlo para realizar la copia y se volverá a encender al finalizar el proceso."
               pct shutdown $vId
               mkdir -p $CarpetaCopSeg$FechaDeEjec$vId
               vzdump $vId --mode stop --compress gzip --dumpdir $CarpetaCopSeg$FechaDeEjec$vId/
-              echo "  Copia de seguridad realizada. Encendiendo nuevamente el contenedor..."
+              echo "      Copia de seguridad realizada. Encendiendo nuevamente el contenedor..."
               pct start $vId
             else if [ $EstadoLXC == "stopped" ]; then
               mkdir -p $CarpetaCopSeg$FechaDeEjec$vId
               vzdump $vId --mode stop --compress gzip --dumpdir $CarpetaCopSeg$FechaDeEjec$vId/
             else # No se puede determinar si está apagado o encendido
               echo ""
-              echo -e "${ColorRojo}  No se ha podido determinar si el contenedor $vId está apagado o encendido.${FinColor}"
-              echo -e "${ColorRojo}  Se aborta su copia de seguridad.${FinColor}"
+              echo -e "${ColorRojo}    No se ha podido determinar si el contenedor $vId está apagado o encendido.${FinColor}"
+              echo -e "${ColorRojo}    Se aborta su copia de seguridad.${FinColor}"
               echo ""
             fi
         else if [ -f /etc/pve/qemu-server/$vId.conf]; then # Si es máquina virtual
