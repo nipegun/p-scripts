@@ -14,8 +14,8 @@
 
 # Modificar sólo esto antes de ejecutar el script
 vCarpetaCopSeg="/Particiones/CopSeg/" # La ubicación de la carpeta para las copias debe acabar con /
-vIdIni=205
-vIdFin=223
+vIdIni=100
+vIdFin=999
 
 vFechaDeEjec=$(date +A%YM%mD%d@%T)
 
