@@ -57,12 +57,12 @@ echo ""
               mkdir -p $vCarpetaCopSeg$vId 2> /dev/null
               vzdump $vId --mode stop --compress gzip --dumpdir $vCarpetaCopSeg$vId/
               # Cambiar de nombre la carpeta de la copia
-                vNombreDelContenedor=$(find $vCarpetaCopSeg$vId -maxdepth 1 -type f -name *.log -exec grep "VM Name" {} \; | cut -d' ' -f6)
-                if [ -d $vCarpetaCopSeg$vId"-"$vNombreDelContenedor ]; then                                                          # Si ya existe una carpeta con el nombre completo
-                  mv $vCarpetaCopSeg$vId/* $vCarpetaCopSeg$vId"-"$vNombreDelContenedor/                                              # mover todos los archivos a ella
-                  rm -rf $vCarpetaCopSeg$vId                                                                                         # y borrar la carpeta que sólo tiene el id del contenedor.
-                else                                                                                                                 # Si no existe una carpeta con el mismo nombre
-                  find $vCarpetaCopSeg -depth -type d -name "$vId" -print -exec mv {} $vCarpetaCopSeg$vId"-"$vNombreDelContenedor \; # mover la carpeta de sólo número a una carpeta con nombre completo.
+                vNombreDelContenedor=$(find $vCarpetaCopSeg$vId -maxdepth 1 -type f -name *.log -exec grep "CT Name" {} \; | cut -d' ' -f6)
+                if [ -d $vCarpetaCopSeg$vId"-"$vNombreDelContenedor ]; then                                                   # Si ya existe una carpeta con el nombre completo
+                  mv $vCarpetaCopSeg$vId/* $vCarpetaCopSeg$vId"-"$vNombreDelContenedor/                                       # mover todos los archivos a ella
+                  rm -rf $vCarpetaCopSeg$vId                                                                                  # y borrar la carpeta que sólo tiene el id del contenedor.
+                else                                                                                                          # Si no existe una carpeta con el mismo nombre
+                  find $vCarpetaCopSeg -depth -type d -name "$vId" -exec mv {} $vCarpetaCopSeg$vId"-"$vNombreDelContenedor \; # mover la carpeta de sólo número a una carpeta con nombre completo.
                 fi
               echo ""
               echo -e "${ColorVerde}      Copia de seguridad realizada. Encendiendo nuevamente el contenedor...${FinColor}"
@@ -72,12 +72,12 @@ echo ""
               mkdir -p $vCarpetaCopSeg$vId 2> /dev/null
               vzdump $vId --mode stop --compress gzip --dumpdir $vCarpetaCopSeg$vId/
               # Cambiar de nombre la carpeta de la copia
-                vNombreDelContenedor=$(find $vCarpetaCopSeg$vId -maxdepth 1 -type f -name *.log -exec grep "VM Name" {} \; | cut -d' ' -f6)
-                if [ -d $vCarpetaCopSeg$vId"-"$vNombreDelContenedor ]; then                                                          # Si ya existe una carpeta con el nombre completo
-                  mv $vCarpetaCopSeg$vId/* $vCarpetaCopSeg$vId"-"$vNombreDelContenedor/                                              # mover todos los archivos a ella
-                  rm -rf $vCarpetaCopSeg$vId                                                                                         # y borrar la carpeta que sólo tiene el id del contenedor.
-                else                                                                                                                 # Si no existe una carpeta con el mismo nombre
-                  find $vCarpetaCopSeg -depth -type d -name "$vId" -print -exec mv {} $vCarpetaCopSeg$vId"-"$vNombreDelContenedor \; # mover la carpeta de sólo número a una carpeta con nombre completo.
+                vNombreDelContenedor=$(find $vCarpetaCopSeg$vId -maxdepth 1 -type f -name *.log -exec grep "CT Name" {} \; | cut -d' ' -f6)
+                if [ -d $vCarpetaCopSeg$vId"-"$vNombreDelContenedor ]; then                                                   # Si ya existe una carpeta con el nombre completo
+                  mv $vCarpetaCopSeg$vId/* $vCarpetaCopSeg$vId"-"$vNombreDelContenedor/                                       # mover todos los archivos a ella
+                  rm -rf $vCarpetaCopSeg$vId                                                                                  # y borrar la carpeta que sólo tiene el id del contenedor.
+                else                                                                                                          # Si no existe una carpeta con el mismo nombre
+                  find $vCarpetaCopSeg -depth -type d -name "$vId" -exec mv {} $vCarpetaCopSeg$vId"-"$vNombreDelContenedor \; # mover la carpeta de sólo número a una carpeta con nombre completo.
                 fi
               echo ""
               echo -e "${ColorVerde}      Copia de seguridad realizada.${FinColor}"
@@ -102,11 +102,11 @@ echo ""
               vzdump $vId --mode stop --compress gzip --dumpdir $vCarpetaCopSeg$vId/
               # Cambiar de nombre la carpeta de la copia
                 vNombreDeLaMV=$(find $vCarpetaCopSeg$vId -maxdepth 1 -type f -name *.log -exec grep "VM Name" {} \; | cut -d' ' -f6)
-                if [ -d $vCarpetaCopSeg$vId"-"$vNombreDeLaMV ]; then                                                          # Si ya existe una carpeta con el nombre completo
-                  mv $vCarpetaCopSeg$vId/* $vCarpetaCopSeg$vId"-"$vNombreDeLaMV/                                              # mover todos los archivos a ella
-                  rm -rf $vCarpetaCopSeg$vId                                                                                  # y borrar la carpeta que sólo tiene el id de la MV.
-                else                                                                                                          # Si no existe una carpeta con el mismo nombre
-                  find $vCarpetaCopSeg -depth -type d -name "$vId" -print -exec mv {} $vCarpetaCopSeg$vId"-"$vNombreDeLaMV \; # mover la carpeta de sólo número a una carpeta con nombre completo.
+                if [ -d $vCarpetaCopSeg$vId"-"$vNombreDeLaMV ]; then                                                   # Si ya existe una carpeta con el nombre completo
+                  mv $vCarpetaCopSeg$vId/* $vCarpetaCopSeg$vId"-"$vNombreDeLaMV/                                       # mover todos los archivos a ella
+                  rm -rf $vCarpetaCopSeg$vId                                                                           # y borrar la carpeta que sólo tiene el id de la MV.
+                else                                                                                                   # Si no existe una carpeta con el mismo nombre
+                  find $vCarpetaCopSeg -depth -type d -name "$vId" -exec mv {} $vCarpetaCopSeg$vId"-"$vNombreDeLaMV \; # mover la carpeta de sólo número a una carpeta con nombre completo.
                 fi
               echo ""
               echo -e "${ColorVerde}      Copia de seguridad realizada. Encendiendo nuevamente la máquina virtual...${FinColor}"
@@ -117,11 +117,11 @@ echo ""
               vzdump $vId --mode stop --compress gzip --dumpdir $vCarpetaCopSeg$vId/
               # Cambiar de nombre la carpeta de la copia
                 vNombreDeLaMV=$(find $vCarpetaCopSeg$vId -maxdepth 1 -type f -name *.log -exec grep "VM Name" {} \; | cut -d' ' -f6)
-                if [ -d $vCarpetaCopSeg$vId"-"$vNombreDeLaMV ]; then                                                          # Si ya existe una carpeta con el nombre completo
-                  mv $vCarpetaCopSeg$vId/* $vCarpetaCopSeg$vId"-"$vNombreDeLaMV/                                              # mover todos los archivos a ella
-                  rm -rf $vCarpetaCopSeg$vId                                                                                  # y borrar la carpeta que sólo tiene el id de la MV.
-                else                                                                                                          # Si no existe una carpeta con el mismo nombre
-                  find $vCarpetaCopSeg -depth -type d -name "$vId" -print -exec mv {} $vCarpetaCopSeg$vId"-"$vNombreDeLaMV \; # mover la carpeta de sólo número a una carpeta con nombre completo.
+                if [ -d $vCarpetaCopSeg$vId"-"$vNombreDeLaMV ]; then                                                   # Si ya existe una carpeta con el nombre completo
+                  mv $vCarpetaCopSeg$vId/* $vCarpetaCopSeg$vId"-"$vNombreDeLaMV/                                       # mover todos los archivos a ella
+                  rm -rf $vCarpetaCopSeg$vId                                                                           # y borrar la carpeta que sólo tiene el id de la MV.
+                else                                                                                                   # Si no existe una carpeta con el mismo nombre
+                  find $vCarpetaCopSeg -depth -type d -name "$vId" -exec mv {} $vCarpetaCopSeg$vId"-"$vNombreDeLaMV \; # mover la carpeta de sólo número a una carpeta con nombre completo.
                 fi
               echo ""
               echo -e "${ColorVerde}      Copia de seguridad realizada.${FinColor}"
@@ -141,22 +141,6 @@ echo ""
 
 # Borrar las carpetas vacías
 #find $CarpetaCopSeg -type d -empty -delete
-
-# Reemplazar los nombres de las carpetas de las copias de cada máquina virtual por el nombre completo
-#echo ""
-#echo "  Reemplazando el nombre de las carpetas por nombres completos de las máquinas virtuales"
-#echo ""
-#for IdMV in $(seq $MVIni $MVFin);
-#  do
-#    NombreDeLaMV=$(find $Carpeta$IdMV -maxdepth 1 -type f -name *.log -exec grep "VM Name" {} \; | cut -d' ' -f6)
-#    if [ -d $Carpeta$IdMV"-"$NombreDeLaMV ]; then                                                    # Si ya existe una carpeta con el nombre completo
-#      mv $Carpeta$IdMV/* $Carpeta$IdMV"-"$NombreDeLaMV/                                              # mover todos los archivos a ella
-#      rm -rf $Carpeta$IdMV                                                                           # y borrar la carpeta que sólo tiene el número de la MV
-#    else                                                                                             # Si no existe una carpeta con el mismo nombre
-#      find $Carpeta -depth -type d -name "$IdMV" -print -exec mv {} $Carpeta$IdMV"-"$NombreDeLaMV \; # mover la carpeta de sólo número a una carpeta con nombre completo
-#    fi
-#  done
-
 
 # Apuntar fecha en el log
   touch /var/log/CopiasDeSeguridad.log
