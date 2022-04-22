@@ -102,10 +102,10 @@ echo ""
               echo -e "${ColorRojo}      Se aborta su copia de seguridad.${FinColor}"
               echo ""
             fi
-        else
-          echo ""
-          echo "  No hay ningún contenedor LXC o máquina virtual con la id $vId."
-          echo ""
+        #else
+        #  echo ""
+        #  echo "  No hay ningún contenedor LXC o máquina virtual con la id $vId."
+        #  echo ""
         fi
   done
 
