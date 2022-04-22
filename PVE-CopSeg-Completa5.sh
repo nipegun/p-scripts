@@ -51,12 +51,16 @@ echo ""
           # Determinar el estado actual del contenedor
             vEstadoLXC=$(pct status $vId | sed 's- --g' | cut -d':' -f2)
             if [ $vEstadoLXC == "running" ]; then
+              echo ""
               echo "      El contenedor está actualmente encendido."
               echo "      Se procederá a apagarlo para realizar la copia y se volverá a encender al finalizar el proceso."
+              echo ""
               pct shutdown $vId
               mkdir -p $vCarpetaCopSeg$vFechaDeEjec$vId
               vzdump $vId --mode stop --compress gzip --dumpdir $vCarpetaCopSeg$vFechaDeEjec$vId/
-              echo "      Copia de seguridad realizada. Encendiendo nuevamente el contenedor..."
+              echo ""
+              echo -e "${ColorVerde}    Copia de seguridad realizada. Encendiendo nuevamente el contenedor...${FinColor}"
+              echo ""
               pct start $vId
             elif [ $vEstadoLXC == "stopped" ]; then
               mkdir -p $vCarpetaCopSeg$vFechaDeEjec$vId
@@ -70,10 +74,12 @@ echo ""
         elif [ -f /etc/pve/qemu-server/$vId.conf ]; then # Si es máquina virtual
           echo -e "${ColorAzul}  Ejecutando copia de seguridad de la máquina virtual $vId...${FinColor}"
           # Determinar el estado actual de la máquina virtual
-            vEstadoMV=$(pct status $vId | sed 's- --g' | cut -d':' -f2)
+            vEstadoMV=$(qm status $vId | sed 's- --g' | cut -d':' -f2)
             if [ $vEstadoMV == "running" ]; then
+              echo ""
               echo "  La máquina virtual está actualmente encendida."
               echo "  Se procederá a apagarla para realizar la copia y se volverá a encender al finalizar el proceso."
+              echo ""
               qm shutdown $vId
               mkdir -p $vCarpetaCopSeg$vFechaDeEjec$vId
               vzdump $vId --mode stop --compress gzip --dumpdir $vCarpetaCopSeg$vFechaDeEjec$vId/
@@ -91,7 +97,6 @@ echo ""
         else
           echo ""
           echo "  No hay ningún contenedor LXC o máquina virtual con la id $vId."
-          echo "  Pasando a la siguiente Id..."
           echo ""
         fi
   done
