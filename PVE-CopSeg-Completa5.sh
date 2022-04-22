@@ -59,7 +59,7 @@ echo ""
               mkdir -p $vCarpetaCopSeg$vFechaDeEjec$vId
               vzdump $vId --mode stop --compress gzip --dumpdir $vCarpetaCopSeg$vFechaDeEjec$vId/
               echo ""
-              echo -e "${ColorVerde}    Copia de seguridad realizada. Encendiendo nuevamente el contenedor...${FinColor}"
+              echo -e "${ColorVerde}      Copia de seguridad realizada. Encendiendo nuevamente el contenedor...${FinColor}"
               echo ""
               pct start $vId
             elif [ $vEstadoLXC == "stopped" ]; then
@@ -67,8 +67,8 @@ echo ""
               vzdump $vId --mode stop --compress gzip --dumpdir $vCarpetaCopSeg$vFechaDeEjec$vId/
             else # No se puede determinar si está apagado o encendido
               echo ""
-              echo -e "${ColorRojo}    No se ha podido determinar si el contenedor $vId está apagado o encendido.${FinColor}"
-              echo -e "${ColorRojo}    Se aborta su copia de seguridad.${FinColor}"
+              echo -e "${ColorRojo}      No se ha podido determinar si el contenedor $vId está apagado o encendido.${FinColor}"
+              echo -e "${ColorRojo}      Se aborta su copia de seguridad.${FinColor}"
               echo ""
             fi
         elif [ -f /etc/pve/qemu-server/$vId.conf ]; then # Si es máquina virtual
@@ -83,15 +83,17 @@ echo ""
               qm shutdown $vId
               mkdir -p $vCarpetaCopSeg$vFechaDeEjec$vId
               vzdump $vId --mode stop --compress gzip --dumpdir $vCarpetaCopSeg$vFechaDeEjec$vId/
-              echo "  Copia de seguridad realizada. Encendiendo nuevamente la máquina virtual..."
+              echo ""
+              echo -e "${ColorVerde}      Copia de seguridad realizada. Encendiendo nuevamente la máquina virtual...${FinColor}"
+              echo ""
               qm start $vId
             elif [ $vEstadoMV == "stopped" ]; then
               mkdir -p $vCarpetaCopSeg$vFechaDeEjec$vId
               vzdump $vId --mode stop --compress gzip --dumpdir $vCarpetaCopSeg$vFechaDeEjec$vId/
             else # No se puede determinar si está apagado o encendido
               echo ""
-              echo -e "${ColorRojo}  No se ha podido determinar si la máquina virtual $vId está apagada o encendida.${FinColor}"
-              echo -e "${ColorRojo}  Se aborta su copia de seguridad.${FinColor}"
+              echo -e "${ColorRojo}      No se ha podido determinar si la máquina virtual $vId está apagada o encendida.${FinColor}"
+              echo -e "${ColorRojo}      Se aborta su copia de seguridad.${FinColor}"
               echo ""
             fi
         else
