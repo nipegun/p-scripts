@@ -39,9 +39,6 @@ echo ""
     exit 1
   fi
 
-# Crear carpeta con la fecha
-  mkdir -p $vCarpetaCopSeg$vFechaDeEjec 2> /dev/null
-
 # Recorrer todas las ids
   for vId in $(seq $vIdIni $vIdFin);
     do
@@ -56,20 +53,20 @@ echo ""
               echo "      Se procederá a apagarlo para realizar la copia y se volverá a encender al finalizar el proceso."
               echo ""
               pct shutdown $vId
-              mkdir -p $vCarpetaCopSeg$vFechaDeEjec/$vId
-              vzdump $vId --mode stop --compress gzip --dumpdir $vCarpetaCopSeg$vFechaDeEjec$vId/
+              mkdir -p $vCarpetaCopSeg$vId
+              vzdump $vId --mode stop --compress gzip --dumpdir $vCarpetaCopSeg$vId/
               # Cambiar de nombre la carpeta de la copia
-                NombreDelContenedor=$(find $vCarpetaCopSeg$vFechaDeEjec/$vId/ -maxdepth 1 -type f -name *.log -exec grep "VM Name" {} \; | cut -d' ' -f6)
+                NombreDelContenedor=$(find $vCarpetaCopSeg$vId/ -maxdepth 1 -type f -name *.log -exec grep "VM Name" {} \; | cut -d' ' -f6)
                 
               echo ""
               echo -e "${ColorVerde}      Copia de seguridad realizada. Encendiendo nuevamente el contenedor...${FinColor}"
               echo ""
               pct start $vId
             elif [ $vEstadoLXC == "stopped" ]; then
-              mkdir -p $vCarpetaCopSeg$vFechaDeEjec/$vId
-              vzdump $vId --mode stop --compress gzip --dumpdir $vCarpetaCopSeg$vFechaDeEjec$vId/
+              mkdir -p $vCarpetaCopSeg$vId
+              vzdump $vId --mode stop --compress gzip --dumpdir $vCarpetaCopSeg$vId/
               # Cambiar de nombre la carpeta de la copia
-                NombreDelContenedor=$(find $vCarpetaCopSeg$vFechaDeEjec/$vId/ -maxdepth 1 -type f -name *.log -exec grep "VM Name" {} \; | cut -d' ' -f6)
+                NombreDelContenedor=$(find $vCarpetaCopSeg$vId/ -maxdepth 1 -type f -name *.log -exec grep "VM Name" {} \; | cut -d' ' -f6)
                 
               echo ""
               echo -e "${ColorVerde}      Copia de seguridad realizada.${FinColor}"
@@ -86,19 +83,19 @@ echo ""
             vEstadoMV=$(qm status $vId | sed 's- --g' | cut -d':' -f2)
             if [ $vEstadoMV == "running" ]; then
               echo ""
-              echo "  La máquina virtual está actualmente encendida."
-              echo "  Se procederá a apagarla para realizar la copia y se volverá a encender al finalizar el proceso."
+              echo "    La máquina virtual está actualmente encendida."
+              echo "    Se procederá a apagarla para realizar la copia y se volverá a encender al finalizar el proceso."
               echo ""
               qm shutdown $vId
-              mkdir -p $vCarpetaCopSeg$vFechaDeEjec/$vId
-              vzdump $vId --mode stop --compress gzip --dumpdir $vCarpetaCopSeg$vFechaDeEjec$vId/
+              mkdir -p $vCarpetaCopSeg$vId
+              vzdump $vId --mode stop --compress gzip --dumpdir $vCarpetaCopSeg$vId/
               echo ""
               echo -e "${ColorVerde}      Copia de seguridad realizada. Encendiendo nuevamente la máquina virtual...${FinColor}"
               echo ""
               qm start $vId
             elif [ $vEstadoMV == "stopped" ]; then
-              mkdir -p $vCarpetaCopSeg$vFechaDeEjec/$vId
-              vzdump $vId --mode stop --compress gzip --dumpdir $vCarpetaCopSeg$vFechaDeEjec$vId/
+              mkdir -p $vCarpetaCopSeg$vId
+              vzdump $vId --mode stop --compress gzip --dumpdir $vCarpetaCopSeg$vId/
             else # No se puede determinar si está apagado o encendido
               echo ""
               echo -e "${ColorRojo}      No se ha podido determinar si la máquina virtual $vId está apagada o encendida.${FinColor}"
