@@ -21,3 +21,6 @@ dnf install centreon centreon-database
 
 yum -y install hostname
 curl -L -s https://raw.githubusercontent.com/centreon/centreon/master/unattended.sh | sh
+
+
+yum search centreon- | grep ^centreon | sed 's-\:.*--' | sed 's/^/yum -y install /' > /tmp/cent.sh
