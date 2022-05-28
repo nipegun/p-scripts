@@ -9,14 +9,17 @@
 #  Script de NiPeGun para crear una red intern
 # ----------
 
-echo ""                                                                                        >> /etc/network/interfaces
-echo "auto vmbr10"                                                                             >> /etc/network/interfaces
-echo "  iface vmbr10 inet static"                                                              >> /etc/network/interfaces
-echo "  address 192.168.10.1"                                                                  >> /etc/network/interfaces
-echo "  netmask 255.255.255.0"                                                                 >> /etc/network/interfaces
-echo "  bridge_ports none"                                                                     >> /etc/network/interfaces
-echo "  bridge_stp off"                                                                        >> /etc/network/interfaces
-echo "  bridge_fd 0"                                                                           >> /etc/network/interfaces
-echo "  post-up echo 1 > /proc/sys/net/ipv4/ip_forward"                                        >> /etc/network/interfaces
-echo "  post-up   iptables -t nat -A POSTROUTING -s '192.168.10.0/24' -o enp4s0 -j MASQUERADE" >> /etc/network/interfaces
-echo "  post-down iptables -t nat -D POSTROUTING -s '192.168.10.0/24' -o enp4s0 -j MASQUERADE" >> /etc/network/interfaces
+echo ""                                                                                       >> /etc/network/interfaces
+echo "auto vmbr10"                                                                            >> /etc/network/interfaces
+echo "  iface vmbr10 inet static"                                                             >> /etc/network/interfaces
+echo "  address 192.168.10.1"                                                                 >> /etc/network/interfaces
+echo "  netmask 255.255.255.0"                                                                >> /etc/network/interfaces
+echo "  bridge_ports none"                                                                    >> /etc/network/interfaces
+echo "  bridge_stp off"                                                                       >> /etc/network/interfaces
+echo "  bridge_fd 0"                                                                          >> /etc/network/interfaces
+echo "  post-up echo 1 > /proc/sys/net/ipv4/ip_forward"                                       >> /etc/network/interfaces
+echo "  post-up   iptables -t nat -A POSTROUTING -s '192.168.10.0/24' -o vmbr0 -j MASQUERADE" >> /etc/network/interfaces
+echo "  post-down iptables -t nat -D POSTROUTING -s '192.168.10.0/24' -o vmbr0 -j MASQUERADE" >> /etc/network/interfaces
+echo ""                                                                                       >> /etc/network/interfaces
+systemctl restart networking
+
