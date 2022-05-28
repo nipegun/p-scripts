@@ -9,7 +9,7 @@
 #  Script de NiPeGun para preparar el contenedor LXC de debian para correr mineros CRP con docker
 #
 # Ejecución remota:
-# curl -s https://raw.githubusercontent.com/nipegun/p-scripts/master/InteriorDelContainer/LXC-Debian-PrepararContainer-ParaMinerosCRPconDockerCE.sh | bash
+# curl -s https://raw.githubusercontent.com/nipegun/p-scripts/master/InteriorDelContainer/LXC-Debian-Preparar-ParaMinerosCRPconDockerCE.sh | bash
 # ----------
 
 UtopiaPublicKey=C24C4B77698578B46CDB1C109996B0299984FEE46AAC5CD6025786F5C5C61415
