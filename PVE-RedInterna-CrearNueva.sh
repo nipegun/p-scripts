@@ -7,6 +7,9 @@
 
 # ----------
 #  Script de NiPeGun para crear una red interna con NAT en proxmox
+#
+#  Ejecución remota:
+#  curl -s x | bash
 # ----------
 
 echo ""                           >> /etc/network/interfaces
