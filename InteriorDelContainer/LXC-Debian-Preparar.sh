@@ -9,7 +9,7 @@
 #  Script de NiPeGun para customizar el contenedor LXC de debian standard
 #
 # Ejecución remota:
-# curl -s https://raw.githubusercontent.com/nipegun/p-scripts/master/InteriorDelContainer/LXC-Debian-PrepararContainer.sh | bash
+# curl -s https://raw.githubusercontent.com/nipegun/p-scripts/master/InteriorDelContainer/LXC-Debian-Preparar.sh | bash
 #-------------------------------------------------------------------------------------------------------------------------------
 
 ColorRojo='\033[1;31m'
