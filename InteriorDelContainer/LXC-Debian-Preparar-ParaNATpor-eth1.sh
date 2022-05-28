@@ -9,7 +9,7 @@
 #  Script de NiPeGun para preparar un container LXC de Debian para natear
 #
 #  Ejecución remota:
-#  curl -s x | bash
+#  curl -s https://raw.githubusercontent.com/nipegun/p-scripts/master/InteriorDelContainer/LXC-Debian-Preparar-ParaNATpor-eth1.sh | bash
 # ----------
 
 ColorRojo='\033[1;31m'
