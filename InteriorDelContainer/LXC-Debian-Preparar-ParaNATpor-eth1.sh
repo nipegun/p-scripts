@@ -131,6 +131,7 @@ elif [ $OS_VERS == "10" ]; then
   echo "  # Enmascarar bajo la misma IP todo lo que vaya desde la subred de la LAN hacia la interfaz WAN" >> /root/scripts/ReglasIPTablesNAT.sh
   echo "    iptables -A POSTROUTING -s 10.0.0.0/8 -o eth0 -j MASQUERADE"                                  >> /root/scripts/ReglasIPTablesNAT.sh
   chmod +x /root/scripts/ReglasIPTablesNAT.sh
+  /root/scripts/ReglasIPTablesNAT.sh 
 
 elif [ $OS_VERS == "11" ]; then
 
@@ -146,24 +147,30 @@ elif [ $OS_VERS == "11" ]; then
   cp /etc/sysctl.conf /etc/sysctl.conf.bak
   sed -i -e 's|#net.ipv4.ip_forward=1|net.ipv4.ip_forward=1|g' /etc/sysctl.conf
 
-  echo ""
-  echo "  Creando las reglas de IPTables..."
-  echo ""
-  mkdir -p /root/scripts/ 2> /dev/null
-  echo '#!/bin/bash'                                                                                       > /root/scripts/ReglasIPTablesNAT.sh
-  echo "# Poner todo en DROP"                                                                             >> /root/scripts/ReglasIPTablesNAT.sh
-  echo "  iptables -P INPUT DROP"                                                                         >> /root/scripts/ReglasIPTablesNAT.sh
-  echo "  iptables -P OUTPUT DROP"                                                                        >> /root/scripts/ReglasIPTablesNAT.sh
-  echo "  iptables -P FORWARD DROP"                                                                       >> /root/scripts/ReglasIPTablesNAT.sh
-  echo "# Crear las reglas de reenvío"                                                                    >> /root/scripts/ReglasIPTablesNAT.sh
-  echo "  # Reenviar paquetes ICMP desde la interfaz WAN hacia la interfaz LAN"                           >> /root/scripts/ReglasIPTablesNAT.sh
-  echo "    iptables -A FORWARD -i eth0 -o eth1 -p icmp -j ACCEPT"                                        >> /root/scripts/ReglasIPTablesNAT.sh
-  echo "  # Reenviar paquetes ICMP desde la interfaz LAN hacia la interfaz WAN"                           >> /root/scripts/ReglasIPTablesNAT.sh
-  echo "    iptables -A FORWARD -i eth1 -o eth0 -p icmp -j ACCEPT"                                        >> /root/scripts/ReglasIPTablesNAT.sh
-  echo "# Crear las reglas de NAT"                                                                        >> /root/scripts/ReglasIPTablesNAT.sh
-  echo "  # Enmascarar bajo la misma IP todo lo que vaya desde la subred de la LAN hacia la interfaz WAN" >> /root/scripts/ReglasIPTablesNAT.sh
-  echo "    iptables -A POSTROUTING -s 10.0.0.0/8 -o eth0 -j MASQUERADE"                                  >> /root/scripts/ReglasIPTablesNAT.sh
-  chmod +x /root/scripts/ReglasIPTablesNAT.sh
+  # Crear las reglas
+    echo "table inet filter {"                                                > /root/ReglasNFTablesNAT.rules
+    echo "}"                                                                 >> /root/ReglasNFTablesNAT.rules
+    echo ""                                                                  >> /root/ReglasNFTablesNAT.rules
+    echo "table ip nat {"                                                    >> /root/ReglasNFTablesNAT.rules
+    echo "  chain postrouting {"                                             >> /root/ReglasNFTablesNAT.rules
+    echo "    type nat hook postrouting priority 100; policy accept;"        >> /root/ReglasNFTablesNAT.rules
+    echo '    oifname "eth0" ip saddr 10.0.0.0/8 counter masquerade'         >> /root/ReglasNFTablesNAT.rules
+    echo "  }"                                                               >> /root/ReglasNFTablesNAT.rules
+    echo ""                                                                  >> /root/ReglasNFTablesNAT.rules
+    echo "  chain prerouting {"                                              >> /root/ReglasNFTablesNAT.rules
+    echo "    type nat hook prerouting priority 0; policy accept;"           >> /root/ReglasNFTablesNAT.rules
+    echo '    iifname "eth0" tcp dport 20022 counter dnat to 10.0.0.240:22'  >> /root/ReglasNFTablesNAT.rules
+    echo '    iifname "eth0" tcp dport 20080 counter dnat to 10.0.0.231:80'  >> /root/ReglasNFTablesNAT.rules
+    echo '    iifname "eth0" tcp dport 20443 counter dnat to 10.0.0.231:443' >> /root/ReglasNFTablesNAT.rules
+    echo "  }"                                                               >> /root/ReglasNFTablesNAT.rules
+    echo "}"                                                                 >> /root/ReglasNFTablesNAT.rules
+
+  # Agregar las reglas al archivo de configuración de NFTables
+    sed -i '/^flush ruleset/a include "/root/ReglasNFTablesNAT.rules"' /etc/nftables.conf
+    sed -i -e 's|flush ruleset|flush ruleset\n|g' /etc/nftables.conf
+
+  # Recargar las reglas generales de NFTables
+    nft --file /etc/nftables.conf
 
 fi
 
