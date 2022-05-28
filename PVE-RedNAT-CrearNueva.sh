@@ -20,6 +20,6 @@ echo "  bridge_fd 0"                                                            
 echo "  post-up echo 1 > /proc/sys/net/ipv4/ip_forward"                                       >> /etc/network/interfaces
 echo "  post-up   iptables -t nat -A POSTROUTING -s '192.168.10.0/24' -o vmbr0 -j MASQUERADE" >> /etc/network/interfaces
 echo "  post-down iptables -t nat -D POSTROUTING -s '192.168.10.0/24' -o vmbr0 -j MASQUERADE" >> /etc/network/interfaces
-echo ""                                                                                       >> /etc/network/interfaces
+echo "#RedNAT"                                                                                >> /etc/network/interfaces
 systemctl restart networking
 
