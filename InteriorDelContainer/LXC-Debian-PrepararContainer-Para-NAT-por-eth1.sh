@@ -75,8 +75,29 @@ elif [ $OS_VERS == "9" ]; then
   echo ""
 
   echo ""
-  echo "  Comandos para Debian 9 todavía no preparados. Prueba ejecutar el script en otra versión de Debian."
+  echo "  Habilitando el forwarding entre interfaces..."
   echo ""
+  cp /etc/sysctl.conf /etc/sysctl.conf.bak
+  sed -i -e 's|#net.ipv4.ip_forward=1|net.ipv4.ip_forward=1|g' /etc/sysctl.conf
+
+  echo ""
+  echo "  Creando las reglas de IPTables..."
+  echo ""
+  mkdir -p /root/scripts/ 2> /dev/null
+  echo '#!/bin/bash'                                                                                       > /root/scripts/ReglasIPTablesNAT.sh
+  echo "# Poner todo en DROP"                                                                             >> /root/scripts/ReglasIPTablesNAT.sh
+  echo "  iptables -P INPUT DROP"                                                                         >> /root/scripts/ReglasIPTablesNAT.sh
+  echo "  iptables -P OUTPUT DROP"                                                                        >> /root/scripts/ReglasIPTablesNAT.sh
+  echo "  iptables -P FORWARD DROP"                                                                       >> /root/scripts/ReglasIPTablesNAT.sh
+  echo "# Crear las reglas de reenvío"                                                                    >> /root/scripts/ReglasIPTablesNAT.sh
+  echo "  # Reenviar paquetes ICMP desde la interfaz WAN hacia la interfaz LAN"                           >> /root/scripts/ReglasIPTablesNAT.sh
+  echo "    iptables -A FORWARD -i eth0 -o eth1 -p icmp -j ACCEPT"                                        >> /root/scripts/ReglasIPTablesNAT.sh
+  echo "  # Reenviar paquetes ICMP desde la interfaz LAN hacia la interfaz WAN"                           >> /root/scripts/ReglasIPTablesNAT.sh
+  echo "    iptables -A FORWARD -i eth1 -o eth0 -p icmp -j ACCEPT"                                        >> /root/scripts/ReglasIPTablesNAT.sh
+  echo "# Crear las reglas de NAT"                                                                        >> /root/scripts/ReglasIPTablesNAT.sh
+  echo "  # Enmascarar bajo la misma IP todo lo que vaya desde la subred de la LAN hacia la interfaz WAN" >> /root/scripts/ReglasIPTablesNAT.sh
+  echo "    iptables -A POSTROUTING -s 10.0.0.0/8 -o eth0 -j MASQUERADE"                                  >> /root/scripts/ReglasIPTablesNAT.sh
+  chmod +x /root/scripts/ReglasIPTablesNAT.sh
 
 elif [ $OS_VERS == "10" ]; then
 
@@ -87,8 +108,29 @@ elif [ $OS_VERS == "10" ]; then
   echo ""
 
   echo ""
-  echo "  Comandos para Debian 10 todavía no preparados. Prueba ejecutar el script en otra versión de Debian."
+  echo "  Habilitando el forwarding entre interfaces..."
   echo ""
+  cp /etc/sysctl.conf /etc/sysctl.conf.bak
+  sed -i -e 's|#net.ipv4.ip_forward=1|net.ipv4.ip_forward=1|g' /etc/sysctl.conf
+
+  echo ""
+  echo "  Creando las reglas de IPTables..."
+  echo ""
+  mkdir -p /root/scripts/ 2> /dev/null
+  echo '#!/bin/bash'                                                                                       > /root/scripts/ReglasIPTablesNAT.sh
+  echo "# Poner todo en DROP"                                                                             >> /root/scripts/ReglasIPTablesNAT.sh
+  echo "  iptables -P INPUT DROP"                                                                         >> /root/scripts/ReglasIPTablesNAT.sh
+  echo "  iptables -P OUTPUT DROP"                                                                        >> /root/scripts/ReglasIPTablesNAT.sh
+  echo "  iptables -P FORWARD DROP"                                                                       >> /root/scripts/ReglasIPTablesNAT.sh
+  echo "# Crear las reglas de reenvío"                                                                    >> /root/scripts/ReglasIPTablesNAT.sh
+  echo "  # Reenviar paquetes ICMP desde la interfaz WAN hacia la interfaz LAN"                           >> /root/scripts/ReglasIPTablesNAT.sh
+  echo "    iptables -A FORWARD -i eth0 -o eth1 -p icmp -j ACCEPT"                                        >> /root/scripts/ReglasIPTablesNAT.sh
+  echo "  # Reenviar paquetes ICMP desde la interfaz LAN hacia la interfaz WAN"                           >> /root/scripts/ReglasIPTablesNAT.sh
+  echo "    iptables -A FORWARD -i eth1 -o eth0 -p icmp -j ACCEPT"                                        >> /root/scripts/ReglasIPTablesNAT.sh
+  echo "# Crear las reglas de NAT"                                                                        >> /root/scripts/ReglasIPTablesNAT.sh
+  echo "  # Enmascarar bajo la misma IP todo lo que vaya desde la subred de la LAN hacia la interfaz WAN" >> /root/scripts/ReglasIPTablesNAT.sh
+  echo "    iptables -A POSTROUTING -s 10.0.0.0/8 -o eth0 -j MASQUERADE"                                  >> /root/scripts/ReglasIPTablesNAT.sh
+  chmod +x /root/scripts/ReglasIPTablesNAT.sh
 
 elif [ $OS_VERS == "11" ]; then
 
@@ -104,7 +146,24 @@ elif [ $OS_VERS == "11" ]; then
   cp /etc/sysctl.conf /etc/sysctl.conf.bak
   sed -i -e 's|#net.ipv4.ip_forward=1|net.ipv4.ip_forward=1|g' /etc/sysctl.conf
 
+  echo ""
+  echo "  Creando las reglas de IPTables..."
+  echo ""
+  mkdir -p /root/scripts/ 2> /dev/null
+  echo '#!/bin/bash'                                                                                       > /root/scripts/ReglasIPTablesNAT.sh
+  echo "# Poner todo en DROP"                                                                             >> /root/scripts/ReglasIPTablesNAT.sh
+  echo "  iptables -P INPUT DROP"                                                                         >> /root/scripts/ReglasIPTablesNAT.sh
+  echo "  iptables -P OUTPUT DROP"                                                                        >> /root/scripts/ReglasIPTablesNAT.sh
+  echo "  iptables -P FORWARD DROP"                                                                       >> /root/scripts/ReglasIPTablesNAT.sh
+  echo "# Crear las reglas de reenvío"                                                                    >> /root/scripts/ReglasIPTablesNAT.sh
+  echo "  # Reenviar paquetes ICMP desde la interfaz WAN hacia la interfaz LAN"                           >> /root/scripts/ReglasIPTablesNAT.sh
+  echo "    iptables -A FORWARD -i eth0 -o eth1 -p icmp -j ACCEPT"                                        >> /root/scripts/ReglasIPTablesNAT.sh
+  echo "  # Reenviar paquetes ICMP desde la interfaz LAN hacia la interfaz WAN"                           >> /root/scripts/ReglasIPTablesNAT.sh
+  echo "    iptables -A FORWARD -i eth1 -o eth0 -p icmp -j ACCEPT"                                        >> /root/scripts/ReglasIPTablesNAT.sh
+  echo "# Crear las reglas de NAT"                                                                        >> /root/scripts/ReglasIPTablesNAT.sh
+  echo "  # Enmascarar bajo la misma IP todo lo que vaya desde la subred de la LAN hacia la interfaz WAN" >> /root/scripts/ReglasIPTablesNAT.sh
+  echo "    iptables -A POSTROUTING -s 10.0.0.0/8 -o eth0 -j MASQUERADE"                                  >> /root/scripts/ReglasIPTablesNAT.sh
+  chmod +x /root/scripts/ReglasIPTablesNAT.sh
+
 fi
-
-
 
