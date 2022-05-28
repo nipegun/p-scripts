@@ -6,7 +6,10 @@
 # No tienes que aceptar ningún tipo de términos de uso o licencia para utilizarlo o modificarlo porque va sin CopyLeft.
 
 # ----------
-#  Script de NiPeGun para crear una red interna con NAT en proxmox
+#  Script de NiPeGun para crear una red interna con NAT en Proxmox
+#
+#  Ejecución remota:
+#  curl -s https://raw.githubusercontent.com/nipegun/p-scripts/master/PVE-RedNAT-CrearNueva.sh | bash
 # ----------
 
 echo ""                                                                                       >> /etc/network/interfaces
