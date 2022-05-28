@@ -6,7 +6,7 @@
 # No tienes que aceptar ningún tipo de términos de uso o licencia para utilizarlo o modificarlo porque va sin CopyLeft.
 
 # ----------
-#  Script de NiPeGun para crear una red interna en Proxmox
+#  Script de NiPeGun para crear una red interna en Proxmox (host-only bridge)
 #
 #  Ejecución remota:
 #  curl -s https://raw.githubusercontent.com/nipegun/p-scripts/master/PVE-RedInterna-CrearNueva.sh | bash
