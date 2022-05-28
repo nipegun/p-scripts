@@ -6,7 +6,7 @@
 # No tienes que aceptar ningún tipo de términos de uso o licencia para utilizarlo o modificarlo porque va sin CopyLeft.
 
 # ----------
-#  Script de NiPeGun para crear una red intern
+#  Script de NiPeGun para crear una red interna con NAT en proxmox
 # ----------
 
 echo ""                                                                                       >> /etc/network/interfaces
