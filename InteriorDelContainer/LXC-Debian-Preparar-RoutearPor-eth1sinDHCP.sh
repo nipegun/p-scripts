@@ -9,9 +9,8 @@
 #  Script de NiPeGun para instalar y configurar xxxxxxxxx en Debian
 #
 #  Ejecución remota:
-#  curl -s x | bash
+#  curl -s https://raw.githubusercontent.com/nipegun/p-scripts/master/InteriorDelContainer/LXC-Debian-Preparar-RoutearPor-eth1sinDHCP.sh | bash
 # ----------
-
 
 vInterfazFuera="eth0"
 vInterfazDentro="eth1"
@@ -158,7 +157,6 @@ elif [ $OS_VERS == "11" ]; then
   echo "  Iniciando el script de instalación de xxxxxxxxx para Debian 11 (Bullseye)..."
   echo "--------------------------------------------------------------------------------"
   echo ""
-
 
   echo ""
   echo "  Configurando la interfaz loopback"
