@@ -192,6 +192,11 @@ elif [ $OS_VERS == "11" ]; then
   sed -i -e 's|#net.ipv4.ip_forward=1|net.ipv4.ip_forward=1|g' /etc/sysctl.conf
 
   echo ""
+  echo "  Instalando iptables..."
+  echo ""
+  apt-get -y update && apt-get -y install iptables
+  
+  echo ""
   echo "  Creando las reglas de IPTables..."
   echo ""
   echo "*mangle"                                                                                           > /root/ReglasIPTablesIP4Router
