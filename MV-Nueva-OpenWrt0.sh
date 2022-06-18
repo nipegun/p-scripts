@@ -66,9 +66,10 @@ echo ""
   qm set $vIdMV --sata0 $vNomAlmMV:28
 # Descargar una versión de debian live
   echo ""
-  echo "  Descargando la última versión de Debian Live con escritorio Mate..."
+  echo "  Descargando la última versión de Debian Live..."
   echo ""
-  vArchivo=$(curl -s $vURLDescarga | sed 's->->\n-g' | grep href |grep "mate.iso" | tail -n 1 | cut -d'"' -f2)
+  #vArchivo=$(curl -s $vURLDescarga | sed 's->->\n-g' | grep href |grep "mate.iso" | tail -n 1 | cut -d'"' -f2)
+  vArchivo=$(curl -s $vURLDescarga | sed 's->->\n-g' | grep href |grep "standard.iso" | tail -n 1 | cut -d'"' -f2)
   # Comprobar si el paquete wget está instalado. Si no lo está, instalarlo.
   if [[ $(dpkg-query -s wget 2>/dev/null | grep installed) == "" ]]; then
     echo ""
