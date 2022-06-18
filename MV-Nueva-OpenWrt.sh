@@ -41,7 +41,7 @@ echo ""
   pct destroy $vIdMV 2> /dev/null
 # Crear archivo de configuración para la máquina nueva
   echo ""
-  echo "  Creando archivo de configuración para la MV $vIdMV..."
+  echo "  Creando un nuevo archivo de configuración para la MV $vIdMV..."
   echo ""
   touch /etc/pve/qemu-server/$vIdMV.conf
   echo "name: openwrt"                                           > /etc/pve/qemu-server/$vIdMV.conf
@@ -61,7 +61,7 @@ echo ""
   echo "protection: 1"                                          >> /etc/pve/qemu-server/$vIdMV.conf
 # Crear disco para la máquina nueva
   echo ""
-  echo "  Agregando un disco duro a la máquina virtual $vIdMV..."
+  echo "  Agregando un nuevo disco duro a la máquina virtual $vIdMV..."
   echo ""
   qm set $vIdMV --sata0 $vNomAlmMV:28
 # Descargar una versión de debian live
@@ -81,12 +81,12 @@ echo ""
   wget -q --show-progress $vURLDescarga$vArchivo -O $vCarpAlmISO/$vArchivo
 # Asignar la ISO descargada a la máquina virtual
   echo ""
-  echo "  Asignando la ISO descargada a la lectora IDE de la máquina virtual..."
+  echo "  Asignando la ISO recién descargada a la lectora IDE de la nueva máquina virtual..."
   echo ""
   qm set $vIdMV --ide0 $vNomAlmISO:iso/$vArchivo
 # Iniciar la máquina virtual para empezar a instalar
   echo ""
-  echo "  Iniciando la máquina virtual para proceder con la instalación..."
+  echo "  Iniciando la nueva máquina virtual para proceder con la instalación de OpenWrt..."
   echo ""
   qm start $vIdMV
 
