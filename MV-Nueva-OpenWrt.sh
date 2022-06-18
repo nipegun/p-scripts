@@ -85,6 +85,7 @@ echo ""
   echo ""
   qm set $vIdMV --cdrom $vNomAlmISO:iso/$vArchivo
   sed -i -e 's|ide2:|ide0:|g' /etc/pve/qemu-server/$vIdMV.conf
+  sed -i -e 's|boot: order=ide0;sata0;ide2|boot: order=ide0;sata0|g' /etc/pve/qemu-server/$vIdMV.conf
 # Iniciar la máquina virtual para empezar a instalar
   echo ""
   echo "  Iniciando la nueva máquina virtual para proceder con la instalación de OpenWrt..."
