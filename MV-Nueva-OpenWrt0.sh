@@ -48,7 +48,7 @@ echo ""
   echo "onboot: 1"                                              >> /etc/pve/qemu-server/$vIdMV.conf
   echo "machine: q35"                                           >> /etc/pve/qemu-server/$vIdMV.conf
   echo "balloon: 512"                                           >> /etc/pve/qemu-server/$vIdMV.conf
-  echo "memory: 2048"                                           >> /etc/pve/qemu-server/$vIdMV.conf
+  echo "memory: 1024"                                           >> /etc/pve/qemu-server/$vIdMV.conf
   echo "numa: 0"                                                >> /etc/pve/qemu-server/$vIdMV.conf
   echo "sockets: 1"                                             >> /etc/pve/qemu-server/$vIdMV.conf
   echo "cores: 2"                                               >> /etc/pve/qemu-server/$vIdMV.conf
