@@ -34,6 +34,9 @@ echo ""
   echo ""
   echo "  Borrando la MV o CT $vIdMV, si es que existe..."
   echo ""
+  # Quitar la protección a la MV
+    sed -i -e 's-protection: 1--'g /etc/pve/qemu-server/$vIdMV.conf 2> /dev/null
+  # Borrarla
   qm destroy $vIdMV  2> /dev/null
   pct destroy $vIdMV 2> /dev/null
 # Crear archivo de configuración para la máquina nueva
