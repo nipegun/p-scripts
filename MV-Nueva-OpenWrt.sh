@@ -89,4 +89,5 @@ echo ""
   echo "  Iniciando la nueva máquina virtual para proceder con la instalación de OpenWrt..."
   echo ""
   qm start $vIdMV
+  echo ""
 
