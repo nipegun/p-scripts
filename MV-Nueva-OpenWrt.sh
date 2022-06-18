@@ -5,9 +5,12 @@
 # Si se te llena la boca hablando de libertad entonces hazlo realmente libre.
 # No tienes que aceptar ningún tipo de términos de uso o licencia para utilizarlo o modificarlo porque va sin CopyLeft.
 
-#------------------------------------------------------------------------------------------------
+# ----------
 #  Script de NiPeGun para crear una máquina virtual para OpenWrt desde la terminal de ProxmoxVE
-#------------------------------------------------------------------------------------------------
+#
+#  Ejecución remota:
+#  curl -s https://raw.githubusercontent.com/nipegun/p-scripts/master/MV-Nueva-OpenWrt.sh | bash
+# ----------
 
 vIdMV="201"
 vAlmISO="PVE"
