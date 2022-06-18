@@ -41,7 +41,8 @@ echo ""
   echo "  Creando archivo de configuración para la MV $vIdMV..."
   echo ""
   touch /etc/pve/qemu-server/$vIdMV.conf
-  echo "name: openwrt"                                          >> /etc/pve/qemu-server/$vIdMV.conf
+  echo "name: openwrt"                                           > /etc/pve/qemu-server/$vIdMV.conf
+  echo "onboot: 1"                                              >> /etc/pve/qemu-server/$vIdMV.conf
   echo "machine: q35"                                           >> /etc/pve/qemu-server/$vIdMV.conf
   echo "balloon: 512"                                           >> /etc/pve/qemu-server/$vIdMV.conf
   echo "memory: 2048"                                           >> /etc/pve/qemu-server/$vIdMV.conf
@@ -54,6 +55,7 @@ echo ""
   echo "bios: ovmf"                                             >> /etc/pve/qemu-server/$vIdMV.conf
   echo "boot: order=ide0;sata0"                                 >> /etc/pve/qemu-server/$vIdMV.conf
   echo "ostype: l26"                                            >> /etc/pve/qemu-server/$vIdMV.conf
+  echo "protection: 1"                                          >> /etc/pve/qemu-server/$vIdMV.conf
 # Crear disco para la máquina nueva
   echo ""
   echo "  Agregando un disco duro a la máquina virtual $vIdMV..."
@@ -81,7 +83,7 @@ echo ""
   qm set $vIdMV --ide0 $vNomAlmISO:iso/$vArchivo
 # Iniciar la máquina virtual para empezar a instalar
   echo ""
-  echo "  rrancando la máquina virtual para proceder con la instalación..."
+  echo "  Iniciando la máquina virtual para proceder con la instalación..."
   echo ""
   qm start $vIdMV
 
