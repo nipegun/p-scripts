@@ -13,8 +13,9 @@
 # ----------
 
 vIdMV="201"
-vAlmISO="PVE"
-vCarpISO="/PVE/template/iso"
+vNomAlmMV="PVE"
+vNomAlmISO="PVE"
+vCarpAlmISO="/PVE/template/iso"
 vURLDescarga="https://cdimage.debian.org/debian-cd/current-live/amd64/iso-hybrid/"
 
 # Detener la MV o CT si es que existe y está encendida/o
@@ -51,7 +52,7 @@ vURLDescarga="https://cdimage.debian.org/debian-cd/current-live/amd64/iso-hybrid
   echo ""
   echo "  Agregando un disco duro a la máquina virtual $vIdMV..."
   echo ""
-  qm set $vIdMV --sata0 $vAlmacenam:28
+  qm set $vIdMV --sata0 $vNomAlmMV:28
 # Descargar una versión de debian live
   echo ""
   echo "  Descargando la última versión de Debian Live con escritorio Mate..."
@@ -66,12 +67,12 @@ vURLDescarga="https://cdimage.debian.org/debian-cd/current-live/amd64/iso-hybrid
     sudo apt-get -y install wget
     echo ""
   fi
-  wget $vURLDescarga$vArchivo -O $vCarpISO/$vArchivo
+  wget $vURLDescarga$vArchivo -O $vCarpAlmISO/$vArchivo
 # Asignar la ISO descargada a la máquina virtual
   echo ""
   echo "  Asignando la ISO descargada a la lectora IDE de la máquina virtual..."
   echo ""
-  qm set $vIdMV --ide0 $vAlmISO:iso/$vArchivo
+  qm set $vIdMV --ide0 $vNomAlmISO:iso/$vArchivo
 # Iniciar la máquina virtual para empezar a instalar
   echo ""
   echo "  rrancando la máquina virtual para proceder con la instalación..."
