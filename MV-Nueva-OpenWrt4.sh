@@ -54,7 +54,6 @@ echo ""
   echo "cores: 2"                                               >> /etc/pve/qemu-server/$vIdMV.conf
   echo "net0: virtio=00:00:00:00:02:01,bridge=vmbr0,firewall=1" >> /etc/pve/qemu-server/$vIdMV.conf
   echo "scsihw: virtio-scsi-pci"                                >> /etc/pve/qemu-server/$vIdMV.conf
-  echo "ide0: none,media=cdrom"                                 >> /etc/pve/qemu-server/$vIdMV.conf
   echo "bios: ovmf"                                             >> /etc/pve/qemu-server/$vIdMV.conf
   echo "boot: order=ide0;sata0"                                 >> /etc/pve/qemu-server/$vIdMV.conf
   echo "ostype: l26"                                            >> /etc/pve/qemu-server/$vIdMV.conf
@@ -85,6 +84,7 @@ echo ""
   echo "  Asignando la ISO recién descargada a la lectora IDE de la nueva máquina virtual..."
   echo ""
   qm set $vIdMV --cdrom $vNomAlmISO:iso/$vArchivo
+  sed -i -e 's|ide2:|ide0:|g' /etc/pve/qemu-server/$vIdMV.conf
 # Iniciar la máquina virtual para empezar a instalar
   echo ""
   echo "  Iniciando la nueva máquina virtual para proceder con la instalación de OpenWrt..."
