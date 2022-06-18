@@ -30,13 +30,13 @@ echo ""
 
 # Detener la MV o CT si es que existe y está encendida/o
   echo ""
-  echo -e "${ColorAzulClaro}  Deteniendo la MV o CT $vIdMV, si es que existe y está encendida/o...${FinColor}"
+  echo -e "${ColorAzulClaro}    Deteniendo la MV o CT $vIdMV, si es que existe y está encendida/o...${FinColor}"
   echo ""
   qm stop $vIdMV     2> /dev/null
   pct stop $vIdMV    2> /dev/null
 # Borrar la MV existente
   echo ""
-  echo -e "${ColorAzulClaro}  Borrando la MV o CT $vIdMV, si es que existe...${FinColor}"
+  echo -e "${ColorAzulClaro}    Borrando la MV o CT $vIdMV, si es que existe...${FinColor}"
   echo ""
   # Quitar la protección a la MV
     sed -i -e 's-protection: 1--'g /etc/pve/qemu-server/$vIdMV.conf 2> /dev/null
@@ -45,7 +45,7 @@ echo ""
   pct destroy $vIdMV 2> /dev/null
 # Crear archivo de configuración para la máquina nueva
   echo ""
-  echo -e "${ColorAzulClaro}  Creando un nuevo archivo de configuración para la MV $vIdMV...${FinColor}"
+  echo -e "${ColorAzulClaro}    Creando un nuevo archivo de configuración para la MV $vIdMV...${FinColor}"
   echo ""
   touch /etc/pve/qemu-server/$vIdMV.conf
   echo "name: openwrt"                                           > /etc/pve/qemu-server/$vIdMV.conf
@@ -64,19 +64,19 @@ echo ""
   echo "protection: 1"                                          >> /etc/pve/qemu-server/$vIdMV.conf
 # Crear disco para la máquina nueva
   echo ""
-  echo -e "${ColorAzulClaro}  Agregando un nuevo disco duro a la máquina virtual $vIdMV...${FinColor}"
+  echo -e "${ColorAzulClaro}    Agregando un nuevo disco duro a la máquina virtual $vIdMV...${FinColor}"
   echo ""
   qm set $vIdMV --sata0 $vNomAlmMV:28
 # Descargar una versión de debian live
   echo ""
-  echo -e "${ColorAzulClaro}  Descargando la última versión de Debian Live...${FinColor}"
+  echo -e "${ColorAzulClaro}    Descargando la última versión de Debian Live...${FinColor}"
   echo ""
   #vArchivo=$(curl -s $vURLDescarga | sed 's->->\n-g' | grep href |grep "mate.iso" | tail -n 1 | cut -d'"' -f2)
   vArchivo=$(curl -s $vURLDescarga | sed 's->->\n-g' | grep href |grep "standard.iso" | tail -n 1 | cut -d'"' -f2)
   # Comprobar si el paquete wget está instalado. Si no lo está, instalarlo.
     if [[ $(dpkg-query -s wget 2>/dev/null | grep installed) == "" ]]; then
       echo ""
-      echo -e "${ColorRojo}  wget no está instalado. Iniciando su instalación...${FinColor}"
+      echo -e "${ColorRojo}    wget no está instalado. Iniciando su instalación...${FinColor}"
       echo ""
       sudo apt-get -y update
       sudo apt-get -y install wget
@@ -85,14 +85,14 @@ echo ""
   wget -q --show-progress $vURLDescarga$vArchivo -O $vCarpAlmISO/$vArchivo
 # Asignar la ISO descargada a la máquina virtual
   echo ""
-  echo -e "${ColorAzulClaro}  Asignando la ISO recién descargada a la lectora IDE de la nueva máquina virtual...${FinColor}"
+  echo -e "${ColorAzulClaro}    Asignando la ISO recién descargada a la lectora IDE de la nueva máquina virtual...${FinColor}"
   echo ""
   qm set $vIdMV --cdrom $vNomAlmISO:iso/$vArchivo
   sed -i -e 's|ide2:|ide0:|g' /etc/pve/qemu-server/$vIdMV.conf
   sed -i -e 's|boot: order=ide0;sata0;ide2|boot: order=ide0;sata0|g' /etc/pve/qemu-server/$vIdMV.conf
 # Iniciar la máquina virtual para empezar a instalar
   echo ""
-  echo -e "${ColorAzulClaro}  Iniciando la nueva máquina virtual para proceder con la instalación de OpenWrt...${FinColor}"
+  echo -e "${ColorAzulClaro}    Iniciando la nueva máquina virtual para proceder con la instalación de OpenWrt...${FinColor}"
   echo ""
   qm start $vIdMV
   echo ""
