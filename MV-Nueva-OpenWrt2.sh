@@ -67,7 +67,7 @@ vURLDescarga="https://cdimage.debian.org/debian-cd/current-live/amd64/iso-hybrid
     sudo apt-get -y install wget
     echo ""
   fi
-  wget $vURLDescarga$vArchivo -O $vCarpAlmISO/$vArchivo
+  wget -nv $vURLDescarga$vArchivo -O $vCarpAlmISO/$vArchivo
 # Asignar la ISO descargada a la máquina virtual
   echo ""
   echo "  Asignando la ISO descargada a la lectora IDE de la máquina virtual..."
