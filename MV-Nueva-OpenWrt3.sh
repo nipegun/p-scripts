@@ -84,7 +84,7 @@ echo ""
   echo ""
   echo "  Asignando la ISO recién descargada a la lectora IDE de la nueva máquina virtual..."
   echo ""
-  qm set $vIdMV --ide0 --cdrom $vNomAlmISO:iso/$vArchivo
+  qm set $vIdMV --cdrom $vNomAlmISO:iso/$vArchivo
 # Iniciar la máquina virtual para empezar a instalar
   echo ""
   echo "  Iniciando la nueva máquina virtual para proceder con la instalación de OpenWrt..."
