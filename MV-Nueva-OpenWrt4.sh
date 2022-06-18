@@ -18,6 +18,12 @@ vNomAlmISO="PVE"
 vCarpAlmISO="/PVE/template/iso"
 vURLDescarga="https://cdimage.debian.org/debian-cd/current-live/amd64/iso-hybrid/"
 
+echo ""
+echo "---------------------------------------------------------------------------------"
+echo "  Iniciando el script de creación de máquina virtual de OpenWrt para Proxmox..."
+echo "---------------------------------------------------------------------------------"
+echo ""
+
 # Detener la MV o CT si es que existe y está encendida/o
   echo ""
   echo "  Deteniendo la MV o CT $vIdMV, si es que existe y está encendida/o..."
