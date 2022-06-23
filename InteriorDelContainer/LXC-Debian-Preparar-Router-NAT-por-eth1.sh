@@ -187,7 +187,7 @@ elif [ $OS_VERS == "11" ]; then
 
   # Agregar las reglas a los ComandosPostArranque
     sed -i -e 's|nft --file /etc/nftables.conf||g' /root/scripts/ComandosPostArranque.sh
-    echo "nft --file /etc/nftables.conf"        >> /root/scripts/ComandosPostArranque.sh
+    echo "nft --file /etc/nftables.conf" >>        /root/scripts/ComandosPostArranque.sh
 
 fi
 
