@@ -6,7 +6,7 @@
 # No tienes que aceptar ningún tipo de términos de uso o licencia para utilizarlo o modificarlo porque va sin CopyLeft.
 
 # ----------
-#  Script de NiPeGun para preparar un container LXC de Debian para natear
+#  Script de NiPeGun para preparar un container LXC de Debian para routear con NAT
 #
 #  Ejecución remota:
 #  curl -s https://raw.githubusercontent.com/nipegun/p-scripts/master/InteriorDelContainer/LXC-Debian-Preparar-Router-por-eth1-con-NAT.sh | bash
@@ -15,6 +15,10 @@
 ColorRojo='\033[1;31m'
 ColorVerde='\033[1;32m'
 FinColor='\033[0m'
+
+vIntEth0="eth0"
+vIntEth1="eth1"
+vRed="192.168.100"
 
 # Determinar la versión de Debian
 
@@ -45,9 +49,9 @@ FinColor='\033[0m'
 if [ $OS_VERS == "7" ]; then
 
   echo ""
-  echo "----------------------------------------------------------------------------------------"
-  echo "  Iniciando el script de preparación del container de Debian 7 (Wheezy) para NATear..."
-  echo "----------------------------------------------------------------------------------------"
+  echo "-------------------------------------------------------------------------------------------------"
+  echo "  Iniciando el script de preparación del container de Debian 7 (Wheezy) para routear con NAT..."
+  echo "-------------------------------------------------------------------------------------------------"
   echo ""
 
   echo ""
@@ -57,9 +61,9 @@ if [ $OS_VERS == "7" ]; then
 elif [ $OS_VERS == "8" ]; then
 
   echo ""
-  echo "----------------------------------------------------------------------------------------"
-  echo "  Iniciando el script de preparación del container de Debian 8 (Jessie) para NATear..."
-  echo "----------------------------------------------------------------------------------------"
+  echo "-------------------------------------------------------------------------------------------------"
+  echo "  Iniciando el script de preparación del container de Debian 8 (Jessie) para routear con NAT..."
+  echo "-------------------------------------------------------------------------------------------------"
   echo ""
 
   echo ""
@@ -69,9 +73,9 @@ elif [ $OS_VERS == "8" ]; then
 elif [ $OS_VERS == "9" ]; then
 
   echo ""
-  echo "-----------------------------------------------------------------------------------------"
-  echo "  Iniciando el script de preparación del container de Debian 9 (Stretch) para NATear..."
-  echo "-----------------------------------------------------------------------------------------"
+  echo "--------------------------------------------------------------------------------------------------"
+  echo "  Iniciando el script de preparación del container de Debian 9 (Stretch) para routear con NAT..."
+  echo "--------------------------------------------------------------------------------------------------"
   echo ""
 
   echo ""
@@ -91,12 +95,12 @@ elif [ $OS_VERS == "9" ]; then
   echo "  iptables -P FORWARD DROP"                                                                       >> /root/scripts/ReglasIPTablesNAT.sh
   echo "# Crear las reglas de reenvío"                                                                    >> /root/scripts/ReglasIPTablesNAT.sh
   echo "  # Reenviar paquetes ICMP desde la interfaz WAN hacia la interfaz LAN"                           >> /root/scripts/ReglasIPTablesNAT.sh
-  echo "    iptables -A FORWARD -i eth0 -o eth1 -p icmp -j ACCEPT"                                        >> /root/scripts/ReglasIPTablesNAT.sh
+  echo "    iptables -A FORWARD -i $vIntEth0 -o $vIntEth0 -p icmp -j ACCEPT"                              >> /root/scripts/ReglasIPTablesNAT.sh
   echo "  # Reenviar paquetes ICMP desde la interfaz LAN hacia la interfaz WAN"                           >> /root/scripts/ReglasIPTablesNAT.sh
-  echo "    iptables -A FORWARD -i eth1 -o eth0 -p icmp -j ACCEPT"                                        >> /root/scripts/ReglasIPTablesNAT.sh
+  echo "    iptables -A FORWARD -i $vIntEth1 -o $vIntEth0 -p icmp -j ACCEPT"                              >> /root/scripts/ReglasIPTablesNAT.sh
   echo "# Crear las reglas de NAT"                                                                        >> /root/scripts/ReglasIPTablesNAT.sh
   echo "  # Enmascarar bajo la misma IP todo lo que vaya desde la subred de la LAN hacia la interfaz WAN" >> /root/scripts/ReglasIPTablesNAT.sh
-  echo "    iptables -A POSTROUTING -s 10.0.0.0/8 -o eth0 -j MASQUERADE"                                  >> /root/scripts/ReglasIPTablesNAT.sh
+  echo "    iptables -A POSTROUTING -s $vRed.0/24 -o $vIntEth0 -j MASQUERADE"                             >> /root/scripts/ReglasIPTablesNAT.sh
   chmod +x /root/scripts/ReglasIPTablesNAT.sh
 
   # Ejecutar las reglas
@@ -109,9 +113,9 @@ elif [ $OS_VERS == "9" ]; then
 elif [ $OS_VERS == "10" ]; then
 
   echo ""
-  echo "-----------------------------------------------------------------------------------------"
-  echo "  Iniciando el script de preparación del container de Debian 10 (Buster) para NATear..."
-  echo "-----------------------------------------------------------------------------------------"
+  echo "--------------------------------------------------------------------------------------------------"
+  echo "  Iniciando el script de preparación del container de Debian 10 (Buster) para routear con NAT..."
+  echo "--------------------------------------------------------------------------------------------------"
   echo ""
 
   echo ""
@@ -131,12 +135,12 @@ elif [ $OS_VERS == "10" ]; then
   echo "  iptables -P FORWARD DROP"                                                                       >> /root/scripts/ReglasIPTablesNAT.sh
   echo "# Crear las reglas de reenvío"                                                                    >> /root/scripts/ReglasIPTablesNAT.sh
   echo "  # Reenviar paquetes ICMP desde la interfaz WAN hacia la interfaz LAN"                           >> /root/scripts/ReglasIPTablesNAT.sh
-  echo "    iptables -A FORWARD -i eth0 -o eth1 -p icmp -j ACCEPT"                                        >> /root/scripts/ReglasIPTablesNAT.sh
+  echo "    iptables -A FORWARD -i $vIntEth0 -o $vIntEth1 -p icmp -j ACCEPT"                              >> /root/scripts/ReglasIPTablesNAT.sh
   echo "  # Reenviar paquetes ICMP desde la interfaz LAN hacia la interfaz WAN"                           >> /root/scripts/ReglasIPTablesNAT.sh
-  echo "    iptables -A FORWARD -i eth1 -o eth0 -p icmp -j ACCEPT"                                        >> /root/scripts/ReglasIPTablesNAT.sh
+  echo "    iptables -A FORWARD -i $vIntEth1 -o $vIntEth0 -p icmp -j ACCEPT"                              >> /root/scripts/ReglasIPTablesNAT.sh
   echo "# Crear las reglas de NAT"                                                                        >> /root/scripts/ReglasIPTablesNAT.sh
   echo "  # Enmascarar bajo la misma IP todo lo que vaya desde la subred de la LAN hacia la interfaz WAN" >> /root/scripts/ReglasIPTablesNAT.sh
-  echo "    iptables -A POSTROUTING -s 10.0.0.0/8 -o eth0 -j MASQUERADE"                                  >> /root/scripts/ReglasIPTablesNAT.sh
+  echo "    iptables -A POSTROUTING -s $vRed.0/24 -o $vIntEth0 -j MASQUERADE"                             >> /root/scripts/ReglasIPTablesNAT.sh
   chmod +x /root/scripts/ReglasIPTablesNAT.sh
 
   # Ejecutar las reglas
@@ -149,9 +153,9 @@ elif [ $OS_VERS == "10" ]; then
 elif [ $OS_VERS == "11" ]; then
 
   echo ""
-  echo "-------------------------------------------------------------------------------------------"
-  echo "  Iniciando el script de preparación del container de Debian 11 (Bullseye) para NATear..."
-  echo "-------------------------------------------------------------------------------------------"
+  echo "----------------------------------------------------------------------------------------------------"
+  echo "  Iniciando el script de preparación del container de Debian 11 (Bullseye) para routear con NAT..."
+  echo "----------------------------------------------------------------------------------------------------"
   echo ""
 
   echo ""
@@ -161,22 +165,22 @@ elif [ $OS_VERS == "11" ]; then
   sed -i -e 's|#net.ipv4.ip_forward=1|net.ipv4.ip_forward=1|g' /etc/sysctl.conf
 
   # Crear las reglas
-    echo "table inet filter {"                                                    > /root/ReglasNFTablesNAT.rules
-    echo "}"                                                                     >> /root/ReglasNFTablesNAT.rules
-    echo ""                                                                      >> /root/ReglasNFTablesNAT.rules
-    echo "table ip nat {"                                                        >> /root/ReglasNFTablesNAT.rules
-    echo "  chain postrouting {"                                                 >> /root/ReglasNFTablesNAT.rules
-    echo "    type nat hook postrouting priority 100; policy accept;"            >> /root/ReglasNFTablesNAT.rules
-    echo '    oifname "eth0" ip saddr 192.168.100.0/24 counter masquerade'       >> /root/ReglasNFTablesNAT.rules
-    echo "  }"                                                                   >> /root/ReglasNFTablesNAT.rules
-    echo ""                                                                      >> /root/ReglasNFTablesNAT.rules
-    echo "  chain prerouting {"                                                  >> /root/ReglasNFTablesNAT.rules
-    echo "    type nat hook prerouting priority 0; policy accept;"               >> /root/ReglasNFTablesNAT.rules
-    echo '    iifname "eth0" tcp dport 33892 counter dnat to 192.168.100.2:3389' >> /root/ReglasNFTablesNAT.rules
-    echo '    iifname "eth0" tcp dport 33893 counter dnat to 192.168.100.3:3389' >> /root/ReglasNFTablesNAT.rules
-    echo '    iifname "eth0" tcp dport 33894 counter dnat to 192.168.100.4:3389' >> /root/ReglasNFTablesNAT.rules
-    echo "  }"                                                                   >> /root/ReglasNFTablesNAT.rules
-    echo "}"                                                                     >> /root/ReglasNFTablesNAT.rules
+    echo "table inet filter {"                                                > /root/ReglasNFTablesNAT.rules
+    echo "}"                                                                 >> /root/ReglasNFTablesNAT.rules
+    echo ""                                                                  >> /root/ReglasNFTablesNAT.rules
+    echo "table ip nat {"                                                    >> /root/ReglasNFTablesNAT.rules
+    echo "  chain postrouting {"                                             >> /root/ReglasNFTablesNAT.rules
+    echo "    type nat hook postrouting priority 100; policy accept;"        >> /root/ReglasNFTablesNAT.rules
+    echo '    oifname "eth0" ip saddr "$vRed".0/24 counter masquerade'       >> /root/ReglasNFTablesNAT.rules
+    echo "  }"                                                               >> /root/ReglasNFTablesNAT.rules
+    echo ""                                                                  >> /root/ReglasNFTablesNAT.rules
+    echo "  chain prerouting {"                                              >> /root/ReglasNFTablesNAT.rules
+    echo "    type nat hook prerouting priority 0; policy accept;"           >> /root/ReglasNFTablesNAT.rules
+    echo '    iifname "eth0" tcp dport 33892 counter dnat to "$vRed".2:3389' >> /root/ReglasNFTablesNAT.rules
+    echo '    iifname "eth0" tcp dport 33893 counter dnat to "$vRed".3:3389' >> /root/ReglasNFTablesNAT.rules
+    echo '    iifname "eth0" tcp dport 33894 counter dnat to "$vRed".4:3389' >> /root/ReglasNFTablesNAT.rules
+    echo "  }"                                                               >> /root/ReglasNFTablesNAT.rules
+    echo "}"                                                                 >> /root/ReglasNFTablesNAT.rules
 
   # Agregar las reglas al archivo de configuración de NFTables
     sed -i '/^flush ruleset/a include "/root/ReglasNFTablesNAT.rules"' /etc/nftables.conf
