@@ -165,22 +165,22 @@ elif [ $OS_VERS == "11" ]; then
   sed -i -e 's|#net.ipv4.ip_forward=1|net.ipv4.ip_forward=1|g' /etc/sysctl.conf
 
   # Crear las reglas
-    echo "table inet filter {"                                                > /root/ReglasNFTablesNAT.rules
-    echo "}"                                                                 >> /root/ReglasNFTablesNAT.rules
-    echo ""                                                                  >> /root/ReglasNFTablesNAT.rules
-    echo "table ip nat {"                                                    >> /root/ReglasNFTablesNAT.rules
-    echo "  chain postrouting {"                                             >> /root/ReglasNFTablesNAT.rules
-    echo "    type nat hook postrouting priority 100; policy accept;"        >> /root/ReglasNFTablesNAT.rules
-    echo '    oifname "eth0" ip saddr "$vRed".0/24 counter masquerade'       >> /root/ReglasNFTablesNAT.rules
-    echo "  }"                                                               >> /root/ReglasNFTablesNAT.rules
-    echo ""                                                                  >> /root/ReglasNFTablesNAT.rules
-    echo "  chain prerouting {"                                              >> /root/ReglasNFTablesNAT.rules
-    echo "    type nat hook prerouting priority 0; policy accept;"           >> /root/ReglasNFTablesNAT.rules
-    echo '    iifname "eth0" tcp dport 33892 counter dnat to "$vRed".2:3389' >> /root/ReglasNFTablesNAT.rules
-    echo '    iifname "eth0" tcp dport 33893 counter dnat to "$vRed".3:3389' >> /root/ReglasNFTablesNAT.rules
-    echo '    iifname "eth0" tcp dport 33894 counter dnat to "$vRed".4:3389' >> /root/ReglasNFTablesNAT.rules
-    echo "  }"                                                               >> /root/ReglasNFTablesNAT.rules
-    echo "}"                                                                 >> /root/ReglasNFTablesNAT.rules
+    echo "table inet filter {"                                                             > /root/ReglasNFTablesNAT.rules
+    echo "}"                                                                              >> /root/ReglasNFTablesNAT.rules
+    echo ""                                                                               >> /root/ReglasNFTablesNAT.rules
+    echo "table ip nat {"                                                                 >> /root/ReglasNFTablesNAT.rules
+    echo "  chain postrouting {"                                                          >> /root/ReglasNFTablesNAT.rules
+    echo "    type nat hook postrouting priority 100; policy accept;"                     >> /root/ReglasNFTablesNAT.rules
+    echo '    oifname "'"$vIntEth0"'" ip saddr "'"$vRed"'".0/24 counter masquerade'       >> /root/ReglasNFTablesNAT.rules
+    echo "  }"                                                                            >> /root/ReglasNFTablesNAT.rules
+    echo ""                                                                               >> /root/ReglasNFTablesNAT.rules
+    echo "  chain prerouting {"                                                           >> /root/ReglasNFTablesNAT.rules
+    echo "    type nat hook prerouting priority 0; policy accept;"                        >> /root/ReglasNFTablesNAT.rules
+    echo '    iifname "'"$vIntEth0"'" tcp dport 33892 counter dnat to "'"$vRed"'".2:3389' >> /root/ReglasNFTablesNAT.rules
+    echo '    iifname "'"$vIntEth0"'" tcp dport 33893 counter dnat to "'"$vRed"'".3:3389' >> /root/ReglasNFTablesNAT.rules
+    echo '    iifname "'"$vIntEth0"'" tcp dport 33894 counter dnat to "'"$vRed"'".4:3389' >> /root/ReglasNFTablesNAT.rules
+    echo "  }"                                                                            >> /root/ReglasNFTablesNAT.rules
+    echo "}"                                                                              >> /root/ReglasNFTablesNAT.rules
 
   # Agregar las reglas al archivo de configuración de NFTables
     sed -i '/^flush ruleset/a include "/root/ReglasNFTablesNAT.rules"' /etc/nftables.conf
@@ -192,6 +192,47 @@ elif [ $OS_VERS == "11" ]; then
   # Agregar las reglas a los ComandosPostArranque
     sed -i -e 's|nft --file /etc/nftables.conf||g' /root/scripts/ComandosPostArranque.sh
     echo "nft --file /etc/nftables.conf" >>        /root/scripts/ComandosPostArranque.sh
+
+  # Instalar el servidor DHCP
+    echo ""
+    echo "  Instalando el servidor DHCP..."
+    echo ""
+    apt-get -y update && apt-get -y install isc-dhcp-server
+
+    # Indicar la ubicación del archivo de configuración del demonio
+      echo ""
+      echo "  Indicando la ubicación del archivo de configuración del demonio dhcpd"
+      echo "  y la interfaz sobre la que correrá..."
+      echo ""
+      cp /etc/default/isc-dhcp-server /etc/default/isc-dhcp-server.bak
+      echo 'DHCPDv4_CONF=/etc/dhcp/dhcpd.conf'  > /etc/default/isc-dhcp-server
+      echo 'INTERFACESv4="$interfazcableada2"' >> /etc/default/isc-dhcp-server
+      echo 'INTERFACESv6=""'                   >> /etc/default/isc-dhcp-server
+
+    # Configurar servidor DHCP
+      echo ""
+      echo "  Configurando el servidor DHCP..."
+      echo ""
+      cp /etc/dhcp/dhcpd.conf /etc/dhcp/dhcpd.conf.bak
+      echo "authoritative;"                                  > /etc/dhcp/dhcpd.conf
+      echo "subnet $vRed.0 netmask 255.255.255.0 {"         >> /etc/dhcp/dhcpd.conf
+      echo "  range $vRed.100 $vRed.199;"                   >> /etc/dhcp/dhcpd.conf
+      echo "  option routers $vRed.1;"                      >> /etc/dhcp/dhcpd.conf
+      echo "  option domain-name-servers 1.1.1.1, 1.0.0.1;" >> /etc/dhcp/dhcpd.conf
+      echo "  default-lease-time 600;"                      >> /etc/dhcp/dhcpd.conf
+      echo "  max-lease-time 7200;"                         >> /etc/dhcp/dhcpd.conf
+      echo ""                                               >> /etc/dhcp/dhcpd.conf
+      echo "  host PrimeraReserva {"                        >> /etc/dhcp/dhcpd.conf
+      echo "    hardware ethernet 00:00:00:00:00:01;"       >> /etc/dhcp/dhcpd.conf
+      echo "    fixed-address $vRed.10;"                    >> /etc/dhcp/dhcpd.conf
+      echo "  }"                                            >> /etc/dhcp/dhcpd.conf
+      echo "}"                                              >> /etc/dhcp/dhcpd.conf
+
+    # Descargar archivo de nombres de fabricantes
+      echo ""
+      echo "  Descargando archivo de nombres de fabricantes..."
+      echo ""
+      wget -O /usr/local/etc/oui.txt http://standards-oui.ieee.org/oui/oui.txt
 
 fi
 
