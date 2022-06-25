@@ -10,6 +10,8 @@
 #
 #  Ejecución remota:
 #  curl -s https://raw.githubusercontent.com/nipegun/p-scripts/master/MV-Nueva-OpenWrt.sh | bash
+#  curl -s https://raw.githubusercontent.com/nipegun/p-scripts/master/MV-Nueva-OpenWrt.sh |sed 's-vIdMV="201"-vIdMV="999"-g' | bash
+#  curl -s https://raw.githubusercontent.com/nipegun/p-scripts/master/MV-Nueva-OpenWrt.sh |sed 's-vIdMV="201"-vIdMV="999"-g' | sed 's-vNomAlmMV="PVE"-vNomAlmMV="local-lvm"-g' | bash
 # ----------
 
 vIdMV="201"
