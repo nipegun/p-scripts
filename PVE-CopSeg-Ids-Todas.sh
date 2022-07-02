@@ -46,6 +46,7 @@ echo ""
       # Determinar si es máquina virtual o contenedor
         if [ -f /etc/pve/lxc/$vId.conf ]; then # Si es contenedor
           echo -e "${ColorAzulClaro}    Ejecutando copia de seguridad del contenedor $vId...${FinColor}"
+          echo ""
           # Determinar el estado actual del contenedor
             vEstadoLXC=$(pct status $vId | sed 's- --g' | cut -d':' -f2)
             if [ $vEstadoLXC == "running" ]; then
@@ -90,6 +91,7 @@ echo ""
             fi
         elif [ -f /etc/pve/qemu-server/$vId.conf ]; then # Si es máquina virtual
           echo -e "${ColorAzulClaro}  Ejecutando copia de seguridad de la máquina virtual $vId...${FinColor}"
+          echo ""
           # Determinar el estado actual de la máquina virtual
             vEstadoMV=$(qm status $vId | sed 's- --g' | cut -d':' -f2)
             if [ $vEstadoMV == "running" ]; then
