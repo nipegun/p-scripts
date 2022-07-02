@@ -10,6 +10,7 @@
 #
 #  Ejecución remota:
 #  curl -s https://raw.githubusercontent.com/nipegun/p-scripts/master/PVE-CopSeg-Ids-Todas.sh | bash
+#  curl -s https://raw.githubusercontent.com/nipegun/p-scripts/master/PVE-CopSeg-Ids-Todas.sh | sed 's-vIdIni=100-vIdIni=202-g' | sed 's-vIdFin=999-vIdIni=207-g' | bash
 # ----------
 
 # Modificar sólo esto antes de ejecutar el script
@@ -146,7 +147,7 @@ echo ""
 
 # Apuntar fecha en el log
   touch /var/log/CopiasDeSeguridad.log
-  echo "$vFechaDeEjec - Terminada la copia de seguridad de todas las máquinas virtuales." >> /var/log/CopiasDeSeguridad.log
+  echo "$vFechaDeEjec - Terminada la copia de seguridad de todas las IDs de Promxox." >> /var/log/CopiasDeSeguridad.log
 
 # Notificar fin del script
   echo ""
