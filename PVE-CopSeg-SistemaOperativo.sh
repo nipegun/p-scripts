@@ -54,6 +54,7 @@ echo ""
   echo "    Creando copia de seguridad de la base de datos Proxmox Cluster File System (pmxcfs)..."
   echo ""
   # https://hacks4geeks.com/entendiendo-el-sistema-de-archivos-del-culster-de-proxmox/
+  mkdir -p /CopSegInt/$vFechaDeEjec/BD/SQLite3/ 2> /dev/null
   # Comprobar si el paquete sqlite3 está instalado. Si no lo está, instalarlo.
     if [[ $(dpkg-query -s sqlite3 2>/dev/null | grep installed) == "" ]]; then
       echo ""
