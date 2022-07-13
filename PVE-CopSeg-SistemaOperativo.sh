@@ -80,73 +80,71 @@ echo ""
 
 # Crear copia de seguridad del tree
   sqlite3 /var/lib/pve-cluster/config.db 'select * from tree;' > /CopSegInt/$vFechaDeEjec/BD/tree.txt
+
+
 # Crear copia de seguridad de los archivos de dentro de la base de datos
-  
+  # /etc/pve/firewall/
+    /etc/pve/firewall/cluster.fw                  # Firewall configuration applied to all nodes
+    /etc/pve/firewall/*.fw                        # Firewall configuration for individual nodes
+    /etc/pve/firewall/*.fw                        # Firewall configuration for VMs and containers
+  # /etc/pve/ha/
+    /etc/pve/ha/crm_commands                      # Displays HA operations that are currently being carried out by the CRM
+    /etc/pve/ha/manager_status                    # JSON-formatted information regarding HA services on the cluster
+    /etc/pve/ha/resources.cfg                     # Resources managed by high availability, and their current state
+  # /etc/pve/local/       (Enlace simbólico a /etc/pve/nodes/<LOCAL_HOST_NAME>)
+    #
+  # /etc/pve/lxc/         (Enlace simbólico a /etc/pve/nodes/<LOCAL_HOST_NAME>/lxc/)
+    #
+  # /etc/pve/nodes/
+    # Obtener el nombre del nodo
+      vNombreNodo=$(ls /etc/pve/nodes/ | cut -d' ' -f1)
+    /etc/pve/nodes/$vNombreNodo/lxc/*.conf              # VM configuration data for LXC containers
+    /etc/pve/nodes/$vNombreNodo/openvz/*                # Prior to PVE 4.0, used for container configuration data (deprecated, removed soon)
+    /etc/pve/nodes/$vNombreNodo/priv/*
+    /etc/pve/nodes/$vNombreNodo/qemu-server/*.conf      # VM configuration data for KVM VMs
+    /etc/pve/nodes/$vNombreNodo/pve-ssl.key             # Private SSL key for pve-ssl.pem
+    /etc/pve/nodes/$vNombreNodo/pve-ssl.pem             # Public SSL certificate for web server (signed by cluster CA)
+    /etc/pve/nodes/$vNombreNodo/pveproxy-ssl.key        # Private SSL key for pveproxy-ssl.pem (optional)
+    /etc/pve/nodes/$vNombreNodo/pveproxy-ssl.pem        # Public SSL certificate (chain) for web server (optional override for pve-ssl.pem)
+    /etc/pve/nodes/$vNombreNodo/config                  # Node-specific configuration
+  # /etc/pve/openvz/      (Enlace simbólico a /etc/pve/nodes/<LOCAL_HOST_NAME>/openvz/ (deprecated, removed soon))
+    #
+  # /etc/pve/priv/
+    /etc/pve/priv/acme/*
+    /etc/pve/priv/lock/*                  # Lock files used by various services to ensure safe cluster-wide operations
+    /etc/pve/priv/storage/*.pw            # Contains the password of a storage in plain text
+    /etc/pve/priv/authkey.key             # Private key used by ticket system
+    /etc/pve/priv/authorized_keys         # SSH keys of cluster members for authentication
+    /etc/pve/priv/ceph*                   # Ceph authentication keys and associated capabilities
+    /etc/pve/priv/known_hosts             # SSH keys of the cluster members for verification
+    /etc/pve/priv/pve-root-ca.key         # Private key of cluster CA
+    /etc/pve/priv/pve-root-ca.srl
+    /etc/pve/priv/shadow.cfg              # Shadow password file for PVE Realm users
+    /etc/pve/priv/token.cfg               # API token secrets of all tokens
+    /etc/pve/priv/tfa.cfg                 # Base64-encoded two-factor authentication configuration
+  # /etc/pve/qemu-server/ (Enlace simbólico a /etc/pve/nodes/<LOCAL_HOST_NAME>/qemu-server/)    
+    #
+  # /etc/pve/sdn/
+    /etc/pve/sdn/*           # Shared configuration files for Software Defined Networking (SDN)
+  # /etc/pve/virtual-guest/
+    /etc/pve/virtual-guest/cpu-models.conf # For storing custom CPU models
+  # /etc/pve/*
+    /etc/pve/.clusterlog      # Cluster log (last 50 entries)
+    /etc/pve/.debug
+    /etc/pve/.members         # Info about cluster members
+    /etc/pve/.rrd             # RRD data (most recent entries)
+    /etc/pve/.version         # File versions (to detect file modifications)
+    /etc/pve/.vmlist          # List of all VMs
+    /etc/pve/authkey.pub      # Public key used by the ticket system
+    /etc/pve/ceph.conf        # Ceph configuration file (note: /etc/ceph/ceph.conf is a symbolic link to this)
+    /etc/pve/corosync.conf    # Corosync cluster configuration file (prior to Proxmox VE 4.x, this file was called cluster.conf)
+    /etc/pve/datacenter.cfg   # Proxmox VE data center-wide configuration (keyboard layout, proxy, …)
+    /etc/pve/domains.cfg      # Proxmox VE authentication domains
+    /etc/pve/pve-root-ca.pem  # Public certificate of cluster CA
+    /etc/pve/pve-www.key      # Private key used for generating CSRF tokens
+    /etc/pve/status.cfg       # Proxmox VE external metrics server configuration
+    /etc/pve/replication.conf
+    /etc/pve/storage.cfg      # Proxmox VE storage configuration
+    /etc/pve/user.cfg         # Proxmox VE access control configuration (users/groups/…)
+    /etc/pve/vzdump.cron      # Cluster-wide vzdump backup-job schedule
 
-/etc/pve/
-
-
-
-/etc/pve/authkey.pub    # Public key used by the ticket system
-/etc/pve/ceph.conf      # Ceph configuration file (note: /etc/ceph/ceph.conf is a symbolic link to this)
-/etc/pve/corosync.conf  # Corosync cluster configuration file (prior to Proxmox VE 4.x, this file was called cluster.conf)
-/etc/pve/datacenter.cfg # Proxmox VE data center-wide configuration (keyboard layout, proxy, …)
-/etc/pve/domains.cfg    # Proxmox VE authentication domains
-
-/etc/pve/firewall/cluster.fw # Firewall configuration applied to all nodes
-/etc/pve/firewall/<NAME>.fw  # Firewall configuration for individual nodes
-/etc/pve/firewall/<VMID>.fw  # Firewall configuration for VMs and containers
-
-/etc/pve/ha/crm_commands   # Displays HA operations that are currently being carried out by the CRM
-/etc/pve/ha/manager_status # JSON-formatted information regarding HA services on the cluster
-/etc/pve/ha/resources.cfg  # Resources managed by high availability, and their current state
-
-/etc/pve/nodes/<NAME>/config           # Node-specific configuration
-
-/etc/pve/nodes/<NAME>/lxc/<VMID>.conf  # VM configuration data for LXC containers
-
-/etc/pve/nodes/<NAME>/openvz/          # Prior to PVE 4.0, used for container configuration data (deprecated, removed soon)
-
-/etc/pve/nodes/<NAME>/pve-ssl.key      # Private SSL key for pve-ssl.pem
-/etc/pve/nodes/<NAME>/pve-ssl.pem      # Public SSL certificate for web server (signed by cluster CA)
-/etc/pve/nodes/<NAME>/pveproxy-ssl.key # Private SSL key for pveproxy-ssl.pem (optional)
-/etc/pve/nodes/<NAME>/pveproxy-ssl.pem # Public SSL certificate (chain) for web server (optional override for pve-ssl.pem)
-/etc/pve/nodes/<NAME>/qemu-server/<VMID>.conf # VM configuration data for KVM VMs
-
-/etc/pve/priv/authkey.key             # Private key used by ticket system
-/etc/pve/priv/authorized_keys         # SSH keys of cluster members for authentication
-/etc/pve/priv/ceph*                   # Ceph authentication keys and associated capabilities
-/etc/pve/priv/known_hosts             # SSH keys of the cluster members for verification
-/etc/pve/priv/lock/*                  # Lock files used by various services to ensure safe cluster-wide operations
-/etc/pve/priv/pve-root-ca.key         # Private key of cluster CA
-/etc/pve/priv/shadow.cfg              # Shadow password file for PVE Realm users
-/etc/pve/priv/storage/<STORAGE-ID>.pw # Contains the password of a storage in plain text
-/etc/pve/priv/tfa.cfg                 # Base64-encoded two-factor authentication configuration
-/etc/pve/priv/token.cfg               # API token secrets of all tokens
-
-/etc/pve/pve-root-ca.pem # Public certificate of cluster CA
-/etc/pve/pve-www.key     # Private key used for generating CSRF tokens
-/etc/pve/sdn/*           # Shared configuration files for Software Defined Networking (SDN)
-/etc/pve/status.cfg      # Proxmox VE external metrics server configuration
-/etc/pve/storage.cfg     # Proxmox VE storage configuration
-/etc/pve/user.cfg        # Proxmox VE access control configuration (users/groups/…)
-
-/etc/pve/virtual-guest/cpu-models.conf # For storing custom CPU models
-
-/etc/pve/vzdump.cron # Cluster-wide vzdump backup-job schedule
-
-Symbolic links
-
-Certain directories within the cluster file system use symbolic links, in order to point to a node’s own configuration files. Thus, the files pointed to in the table below refer to different files on each node of the cluster.
-
-local > nodes/<LOCAL_HOST_NAME>
-lxc > nodes/<LOCAL_HOST_NAME>/lxc/
-openvz > nodes/<LOCAL_HOST_NAME>/openvz/ (deprecated, removed soon)
-qemu-server > nodes/<LOCAL_HOST_NAME>/qemu-server/
-
-
-.version    # File versions (to detect file modifications)
-.members    # Info about cluster members
-.vmlist     # List of all VMs
-.clusterlog # Cluster log (last 50 entries)
-.rrd        # RRD data (most recent entries)
