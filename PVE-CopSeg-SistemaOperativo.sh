@@ -39,19 +39,19 @@ echo ""
 
 # Ejecutar copia de seguridad de /etc/
   echo ""
-  echo "    Haciendo copia de seguridad de la carpeta /etc/..."
+  echo "    Creando copia de seguridad de la carpeta /etc/..."
   echo ""
   cp -L -r /etc/* /CopSegInt/$vFechaDeEjec/etc/
 
 # Ejecutar copia de seguridad de /root/
   echo ""
-  echo "    Haciendo copia de seguridad de la carpeta /root/..."
+  echo "    Creando copia de seguridad de la carpeta /root/..."
   echo ""
   cp -L -r /root/* /CopSegInt/$vFechaDeEjec/root/
 
 # Ejecutar copia de seguridad de la base de datos
   echo ""
-  echo "    Haciendo copia de seguridad de la base de datos Proxmox Cluster File System (pmxcfs)..."
+  echo "    Creando copia de seguridad de la base de datos Proxmox Cluster File System (pmxcfs)..."
   echo ""
   # https://hacks4geeks.com/entendiendo-el-sistema-de-archivos-del-culster-de-proxmox/
   # Comprobar si el paquete sqlite3 está instalado. Si no lo está, instalarlo.
@@ -96,7 +96,7 @@ echo ""
 
   # Crear copia de seguridad del tree
     echo ""
-    echo "    Exportando la tabla tree de la base de datos hacía el archivo tree.txt..."
+    echo "    Creando exportación de la tabla tree de la base de datos hacia el archivo tree.txt..."
     echo ""
     sqlite3 /var/lib/pve-cluster/config.db 'select * from tree;' > /CopSegInt/$vFechaDeEjec/BD/tree.txt
 
