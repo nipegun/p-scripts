@@ -39,25 +39,25 @@ echo ""
 
 # Ejecutar copia de seguridad de /etc/
   echo ""
-  echo "  Haciendo copia de seguridad de la carpeta /etc/..."
+  echo "    Haciendo copia de seguridad de la carpeta /etc/..."
   echo ""
   cp -L -r /etc/* /CopSegInt/$vFechaDeEjec/etc/
 
 # Ejecutar copia de seguridad de /root/
   echo ""
-  echo "  Haciendo copia de seguridad de la carpeta /root/..."
+  echo "    Haciendo copia de seguridad de la carpeta /root/..."
   echo ""
   cp -L -r /root/* /CopSegInt/$vFechaDeEjec/root/
 
 # Ejecutar copia de seguridad de la base de datos
   echo ""
-  echo "  Haciendo copia de seguridad de la base de datos Proxmox Cluster File System (pmxcfs)..."
+  echo "    Haciendo copia de seguridad de la base de datos Proxmox Cluster File System (pmxcfs)..."
   echo ""
   # https://hacks4geeks.com/entendiendo-el-sistema-de-archivos-del-culster-de-proxmox/
   # Comprobar si el paquete sqlite3 está instalado. Si no lo está, instalarlo.
     if [[ $(dpkg-query -s sqlite3 2>/dev/null | grep installed) == "" ]]; then
       echo ""
-      echo -e "${ColorRojo}    sqlite3 no está instalado. Iniciando su instalación...${FinColor}"
+      echo -e "${ColorRojo}      sqlite3 no está instalado. Iniciando su instalación...${FinColor}"
       echo ""
       apt-get -y update > /dev/null && apt-get -y install sqlite3
       echo ""
@@ -65,7 +65,7 @@ echo ""
   vEstadoDeLaBaseDeDatosDePVE=$(sqlite3 /var/lib/pve-cluster/config.db "PRAGMA integrity_check;")
   if [ $vEstadoDeLaBaseDeDatosDePVE == "ok" ]; then
     echo ""
-    echo "    El estado de la base de datos es consistente. Procediendo con la copia de seguridad..."
+    echo -e "${ColorVerde}      El estado de la base de datos es consistente. Procediendo con la copia de seguridad...${FinColor}"
     echo ""
     rm -f /var/lib/pve-cluster/config.db.sql 2> /dev/null
     rm -f /var/lib/pve-cluster/config.db.bak 2> /dev/null
@@ -74,7 +74,7 @@ echo ""
     # Comprobar si el paquete sqlformat está instalado. Si no lo está, instalarlo.
       if [[ $(dpkg-query -s sqlformat 2>/dev/null | grep installed) == "" ]]; then
         echo ""
-        echo -e "${ColorRojo}    sqlformat no está instalado. Iniciando su instalación...${FinColor}"
+        echo -e "${ColorRojo}      sqlformat no está instalado. Iniciando su instalación...${FinColor}"
         echo ""
         apt-get -y update > /dev/null && apt-get -y install sqlformat
         echo ""
@@ -88,7 +88,7 @@ echo ""
     echo "El archivo config.db debe ubicarse en /var/lib/pve-cluster/" > /CopSegInt/$vFechaDeEjec/BD/UbicDelArchivoConfigDB.txt
   else
     echo ""
-    echo "    El estado de la base de datos no es consistente. Intentando exportar lo que se pueda..."
+    echo -e "${ColorRojo}      El estado de la base de datos no es consistente. Intentando exportar lo que se pueda...${FinColor}"
     echo ""
     sqlite3 /var/lib/pve-cluster/config.db ".recover" | sqlite3 /var/lib/pve-cluster/config.db.recover
     sqlite3 /var/lib/pve-cluster/config.db ".dump" | sed -e 's|^ROLLBACK;\( -- due to errors\)*$|COMMIT;|g' | sqlite3 /var/lib/pve-cluster/config.db.dump-before-rollback
