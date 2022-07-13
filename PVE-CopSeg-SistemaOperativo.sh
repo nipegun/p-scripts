@@ -83,9 +83,9 @@ echo ""
     cat /var/lib/pve-cluster/config.db.sql.tmp2 | sed 's/tree (/tree (\n/g' | sed 's/VALUES(/VALUES(\n  /g' | sed 's-,-,\n  -g'  | sed 's-);-\n);\n-g' | sed 's-    -  -g' > /var/lib/pve-cluster/config.db.sql
     rm -f /var/lib/pve-cluster/config.db.sql.tmp1 2> /dev/null
     rm -f /var/lib/pve-cluster/config.db.sql.tmp2 2> /dev/null
-    mv /var/lib/pve-cluster/config.db.bak /CopSegInt/$vFechaDeEjec/BD/config.db
-    mv /var/lib/pve-cluster/config.db.sql /CopSegInt/$vFechaDeEjec/BD/config.db.sql
-    echo "El archivo config.db debe ubicarse en /var/lib/pve-cluster/" > /CopSegInt/$vFechaDeEjec/BD/UbicDelArchivoConfigDB.txt
+    mv /var/lib/pve-cluster/config.db.bak /CopSegInt/$vFechaDeEjec/BD/SQLite3/config.db
+    mv /var/lib/pve-cluster/config.db.sql /CopSegInt/$vFechaDeEjec/BD/SQLite3/config.db.sql
+    echo "El archivo config.db debe ubicarse en /var/lib/pve-cluster/" > /CopSegInt/$vFechaDeEjec/BD/SQLite3/UbicDelArchivoConfigDB.txt
   else
     echo ""
     echo -e "${ColorRojo}      El estado de la base de datos no es consistente. Intentando exportar lo que se pueda...${FinColor}"
@@ -96,13 +96,14 @@ echo ""
 
   # Crear copia de seguridad del tree
     echo ""
-    echo "    Creando exportación de la tabla tree de la base de datos hacia el archivo tree.txt..."
+    echo "    Creando exportación del contenido de la tabla tree..."
     echo ""
-    sqlite3 /var/lib/pve-cluster/config.db 'select * from tree;' > /CopSegInt/$vFechaDeEjec/BD/tree.txt
+    mkdir -p /CopSegInt/$vFechaDeEjec/BD/TablaTree/ 2> /dev/null
+    sqlite3 /var/lib/pve-cluster/config.db 'select * from tree;' > /CopSegInt/$vFechaDeEjec/BD/TablaTree/Contenido.txt
 
   # Crear copia de seguridad de los archivos de dentro de la base de datos
     echo ""
     echo "    Creando copia de seguridad de los archivos de dentro de la base de datos..."
     echo ""
-    mkdir -p /CopSegInt/$vFechaDeEjec/BD/etc/pve/ 2> /dev/null
-    cp -rfL /etc/pve/. /CopSegInt/$vFechaDeEjec/BD/etc/pve/
+    mkdir -p /CopSegInt/$vFechaDeEjec/BD/Archivos/etc/pve/ 2> /dev/null
+    cp -rfL /etc/pve/. /CopSegInt/$vFechaDeEjec/BD/Archivos/etc/pve/
