@@ -65,7 +65,7 @@ echo ""
   vEstadoDeLaBaseDeDatosDePVE=$(sqlite3 /var/lib/pve-cluster/config.db "PRAGMA integrity_check;")
   if [ $vEstadoDeLaBaseDeDatosDePVE == "ok" ]; then
     echo ""
-    echo -e "${ColorVerde}      El estado de la base de datos es consistente. Procediendo con la copia de seguridad...${FinColor}"
+    echo "      El estado de la base de datos es consistente. Procediendo con la copia de seguridad..."
     echo ""
     rm -f /var/lib/pve-cluster/config.db.sql 2> /dev/null
     rm -f /var/lib/pve-cluster/config.db.bak 2> /dev/null
