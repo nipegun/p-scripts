@@ -78,3 +78,7 @@ echo ""
     sqlite3 /var/lib/pve-cluster/config.db ".dump" | sed -e 's|^ROLLBACK;\( -- due to errors\)*$|COMMIT;|g' | sqlite3 /var/lib/pve-cluster/config.db.dump-before-rollback
   fi
 
+# Crear copia de seguridad del tree
+  sqlite3 /var/lib/pve-cluster/config.db 'select * from tree;' > /CopSegInt/$vFechaDeEjec/BD/tree.txt
+# Crear copia de seguridad de los archivos de dentro de la base de datos
+  
