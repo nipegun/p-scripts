@@ -108,3 +108,4 @@ echo ""
     echo ""
     mkdir -p /CopSegInt/$vFechaDeEjec/BD/Archivos/etc/pve/ 2> /dev/null
     cp -rfL /etc/pve/. /CopSegInt/$vFechaDeEjec/BD/Archivos/etc/pve/
+
