@@ -12,12 +12,20 @@
 #  curl -s https://raw.githubusercontent.com/nipegun/p-scripts/master/PVE-CopSeg-SistemaOperativo.sh | bash
 # ----------
 
-ColorRojo='\033[1;31m'
+# Comprobar si el script está corriendo como root
+  if [ $(id -u) -ne 0 ]; then
+    echo "Este script está preparado para ejecutarse como root y no lo has ejecutado como root." >&2
+    exit 1
+  fi
+
+ColorAzul="\033[0;34m"
+ColorAzulClaro="\033[1;34m"
 ColorVerde='\033[1;32m'
+ColorRojo='\033[1;31m'
 FinColor='\033[0m'
 
 echo ""
-echo -e "${ColorVerde}  Iniciando script de copia de seguridad interna de ProxmoxVE...${FinColor}"
+echo -e "${ColorAzulClaro}  Iniciando script de copia de seguridad interna de ProxmoxVE...${FinColor}"
 echo ""
 
 # Definir la fecha de ejecución del script
@@ -49,7 +57,7 @@ echo ""
   # Comprobar si el paquete sqlite3 está instalado. Si no lo está, instalarlo.
     if [[ $(dpkg-query -s sqlite3 2>/dev/null | grep installed) == "" ]]; then
       echo ""
-      echo "    sqlite3 no está instalado. Iniciando su instalación..."
+      echo -e "${ColorRojo}    sqlite3 no está instalado. Iniciando su instalación...${FinColor}"
       echo ""
       apt-get -y update > /dev/null && apt-get -y install sqlite3
       echo ""
@@ -66,10 +74,9 @@ echo ""
     # Comprobar si el paquete sqlformat está instalado. Si no lo está, instalarlo.
       if [[ $(dpkg-query -s sqlformat 2>/dev/null | grep installed) == "" ]]; then
         echo ""
-        echo "    sqlformat no está instalado. Iniciando su instalación..."
+        echo -e "${ColorRojo}    sqlformat no está instalado. Iniciando su instalación...${FinColor}"
         echo ""
-        apt-get -y update > /dev/null
-        apt-get -y install sqlformat
+        apt-get -y update > /dev/null && apt-get -y install sqlformat
         echo ""
       fi
     sqlformat --keywords upper --identifiers lower /var/lib/pve-cluster/config.db.sql.tmp1 > /var/lib/pve-cluster/config.db.sql.tmp2
