@@ -47,7 +47,7 @@ echo ""
   echo ""
   echo "    Creando copia de seguridad de la carpeta /root/..."
   echo ""
-  cp -L -r /root/* /CopSegInt/$vFechaDeEjec/root/
+  cp -rL /root/* /CopSegInt/$vFechaDeEjec/root/ 2> /dev/null
 
 # Ejecutar copia de seguridad de la base de datos
   echo ""
