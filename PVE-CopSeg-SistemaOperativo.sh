@@ -41,7 +41,7 @@ echo ""
   echo ""
   echo "    Creando copia de seguridad de la carpeta /etc/..."
   echo ""
-  cp -L -r /etc/* /CopSegInt/$vFechaDeEjec/etc/
+  cp -L -r /etc/* /CopSegInt/$vFechaDeEjec/etc/ 2> /dev/null
 
 # Ejecutar copia de seguridad de /root/
   echo ""
