@@ -28,7 +28,7 @@ if [ $# -ne $CantArgsEsperados ]
     echo -e "$0 ${ColorArgumentos}[IDDelNuevoContainer] [RutaAbsolutaAlArchivo] [Almacenamiento]${FinColor}"
     echo ""
     echo "Ejemplo:"
-    echo "$0 130 /root/copias/vzdump-lxc-777.tar local-lvm" 
+    echo "$0 130 '/root/copias/vzdump-lxc-777.tar' local-lvm" 
     echo "------------------------------------------------------------------------------"
     echo ""
     exit $ArgsInsuficientes
