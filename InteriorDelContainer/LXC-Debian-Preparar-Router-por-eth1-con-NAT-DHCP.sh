@@ -232,6 +232,14 @@ elif [ $OS_VERS == "11" ]; then
       echo ""
       echo "  Descargando archivo de nombres de fabricantes..."
       echo ""
+      # Comprobar si el paquete wget está instalado. Si no lo está, instalarlo.
+        if [[ $(dpkg-query -s wget 2>/dev/null | grep installed) == "" ]]; then
+          echo ""
+          echo -e "${vColorRojo}wget no está instalado. Iniciando su instalación...${vFinColor}"
+          echo ""
+          apt-get -y update && apt-get -y install wget
+          echo ""
+        fi
       wget -O /usr/local/etc/oui.txt http://standards-oui.ieee.org/oui/oui.txt
 
 fi
