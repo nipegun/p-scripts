@@ -10,13 +10,13 @@
 #
 #  Ejecución remota:
 #  curl -s https://raw.githubusercontent.com/nipegun/p-scripts/master/PVE-CopSeg-Ids-Todas.sh | bash
-#  curl -s https://raw.githubusercontent.com/nipegun/p-scripts/master/PVE-CopSeg-Ids-Todas.sh | sed 's-vIdIni=100-vIdIni=202-g' | sed 's-vIdFin=999-vIdIni=207-g' | bash
+#  curl -s https://raw.githubusercontent.com/nipegun/p-scripts/master/PVE-CopSeg-Ids-Todas.sh | sed 's-vIdIni=100-vIdIni=202-g' | sed 's-vIdFin=99999-vIdIni=207-g' | bash
 # ----------
 
 # Modificar sólo esto antes de ejecutar el script
 vCarpetaCopSeg="/tmp/" # La ubicación de la carpeta para las copias debe acabar con /
 vIdIni=100
-vIdFin=999
+vIdFin=99999
 
 vFechaDeEjec=$(date +A%YM%mD%d@%T)
 
