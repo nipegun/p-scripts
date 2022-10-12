@@ -23,7 +23,7 @@ echo "vfio_pci"         >> /etc/modules
 echo "vfio_virqfd"      >> /etc/modules
 
 echo "options vfio_iommu_type1 allow_unsafe_interrupts=1" > /etc/modprobe.d/pci-passthrough.conf
-update-initramfs -u
+update-initramfs -u -k all
 
 echo ""
 echo -e "${ColorVerde}PCI Passthrough estará disponible a partir del próximo reinicio.${FinColor}"
