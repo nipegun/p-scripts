@@ -1,12 +1,11 @@
 echo "args: -device isa-applesmc,osk="ourhardworkbythesewordsguardedpleasedontsteal(c)AppleComputerInc" -smbios type=2 -device usb-kbd,bus=ehci.0,port=2 -global nec-usb-xhci.msi=off -global ICH9-LPC.acpi-pci-hotplug-with-bridge-support=off -cpu Haswell,vendor=GenuineIntel,+kvm_pv_eoi,+kvm_pv_unhalt,+hypervisor,kvm=on"
-echo "agent: 1"
 echo "balloon: 0"
 echo "bios: ovmf"
-echo "boot: order=virtio0"
+echo "boot: order=ide2;virtio0"
 echo "cores: 4"
 echo "cpu: Haswell"
 echo "ide0: none,cache=unsafe"
-echo "ide2: none,cache=unsafe"
+echo "ide2: PVE:iso/OpenCoreMacOS10.13.iso,cache=unsafe"
 echo "machine: q35"
 echo "memory: 4096"
 echo "name: mimacosventura"
@@ -17,4 +16,11 @@ echo "scsihw: virtio-scsi-single"
 echo "sockets: 1"
 echo "vga: vmware"
 
+
 echo "efidisk0: NVMeMVs:20514/vm-20514-disk-0.raw,efitype=4m,size=528K"
+
+echo "efidisk0: local-lvm:vm-100-disk-0,efitype=4m,size=4M"
+echo "ide0: local:iso/Ventura-full.img,cache=unsafe,size=14G"
+echo "ide2: local:iso/OpenCore-v17.iso,cache=unsafe,size=150M"
+echo "virtio0: local-lvm:vm-100-disk-1,cache=unsafe,discard=on,iothread=1,size=64"
+
