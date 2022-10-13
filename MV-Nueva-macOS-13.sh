@@ -24,3 +24,10 @@ echo "ide0: local:iso/Ventura-full.img,cache=unsafe,size=14G"
 echo "ide2: local:iso/OpenCore-v17.iso,cache=unsafe,size=150M"
 echo "virtio0: local-lvm:vm-100-disk-1,cache=unsafe,discard=on,iothread=1,size=64"
 
+echo ""
+echo "  Activando ignorar msrs para evitar loop de arranque..."
+echo ""
+echo 1 > /sys/module/kvm/parameters/ignore_msrs
+echo "options kvm ignore_msrs=Y" >> /etc/modprobe.d/macos.conf
+update-initramfs -u -k all
+
