@@ -45,6 +45,22 @@ echo "ide2: local:iso/OpenCore-v17.iso,cache=unsafe,size=150M"                  
 echo "virtio0: local-lvm:vm-100-disk-1,cache=unsafe,discard=on,iothread=1,size=64" >> /etc/pve/qemu-server/$vIdMV.conf
 
 echo ""
+echo "  Clonando el repositorio OSX-KVM the NickDude..."
+echo ""
+rm /root/SoftInst/macOS/ -R 2> /dev/null
+mkdir -p /root/SoftInst/macOS/ 2> /dev/null
+cd /root/SoftInst/macOS/
+# Comprobar si el paquete git está instalado. Si no lo está, instalarlo.
+  if [[ $(dpkg-query -s git 2>/dev/null | grep installed) == "" ]]; then
+    echo ""
+    echo "  git no está instalado. Iniciando su instalación..."
+    echo ""
+    apt-get -y update && apt-get -y install git
+    echo ""
+  fi
+git clone --depth=1 https://github.com/thenickdude/OSX-KVM
+
+echo ""
 echo "  Activando ignorar msrs para evitar loop de arranque en macOS..."
 echo ""
 echo 1 > /sys/module/kvm/parameters/ignore_msrs
