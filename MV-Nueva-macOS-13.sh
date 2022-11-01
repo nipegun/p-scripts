@@ -9,7 +9,7 @@
 #  Script de NiPeGun para instalar y configurar xxxxxxxxx en Debian
 #
 #  Ejecución remota:
-#  curl -s x | bash
+#  curl -s https://raw.githubusercontent.com/nipegun/p-scripts/master/MV-Nueva-macOS-13.sh | bash
 # ----------
 
 vIdMV=888888
