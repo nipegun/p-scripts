@@ -14,6 +14,7 @@
 
 vIdMV=888888
 vAlmacenamiento=PVE
+vCarpetaISO="/PVE/template/iso/"
 
 echo 'args: -device isa-applesmc,osk="ourhardworkbythesewordsguardedpleasedontsteal(c)AppleComputerInc" \
 -smbios type=2 \
@@ -65,8 +66,9 @@ echo "  Preparando la ISO..."
 echo ""
 #apt-get -y install qemu-utils
 apt-get -y install make
-cd /root/SoftInst/macOS/OSX-KVM/scripts/ventura
+cd /root/SoftInst/macOS/OSX-KVM/scripts/ventura/
 make Ventura-recovery.img
+mv /root/SoftInst/macOS/OSX-KVM/scripts/ventura/Ventura-recovery.img $vCarpetaISO
 
 echo ""
 echo "  Activando ignorar msrs para evitar loop de arranque de macOS..."
