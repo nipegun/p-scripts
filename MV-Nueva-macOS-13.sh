@@ -61,6 +61,14 @@ cd /root/SoftInst/macOS/
 git clone --depth=1 https://github.com/thenickdude/OSX-KVM
 
 echo ""
+echo "  Preparando la ISO..."
+echo ""
+#apt-get -y install qemu-utils
+apt-get -y install make
+cd /root/SoftInst/macOS/OSX-KVM/scripts/ventura
+make Ventura-recovery.img
+
+echo ""
 echo "  Activando ignorar msrs para evitar loop de arranque de macOS..."
 echo ""
 echo 1 > /sys/module/kvm/parameters/ignore_msrs
