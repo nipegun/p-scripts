@@ -21,7 +21,7 @@ echo "  Iniciando el script de preparación de la máquina virtual de macOS Vent
 echo ""
 
 echo ""
-echo "  Clonando el repositorio OSX-KVM the NickDude..."
+echo "    Clonando el repositorio OSX-KVM the NickDude..."
 echo ""
 rm /root/SoftInst/macOS/ -R 2> /dev/null
 mkdir -p /root/SoftInst/macOS/ 2> /dev/null
@@ -29,7 +29,7 @@ cd /root/SoftInst/macOS/
 # Comprobar si el paquete git está instalado. Si no lo está, instalarlo.
   if [[ $(dpkg-query -s git 2>/dev/null | grep installed) == "" ]]; then
     echo ""
-    echo "  git no está instalado. Iniciando su instalación..."
+    echo "     git no está instalado. Iniciando su instalación..."
     echo ""
     apt-get -y update && apt-get -y install git
     echo ""
@@ -37,7 +37,7 @@ cd /root/SoftInst/macOS/
 git clone --depth=1 https://github.com/thenickdude/OSX-KVM
 
 echo ""
-echo "  Preparando la ISO..."
+echo "    Preparando la ISO..."
 echo ""
 apt-get -y install make
 cd /root/SoftInst/macOS/OSX-KVM/scripts/ventura/
@@ -47,7 +47,7 @@ vUltVersKVMOC=$(curl -sL https://github.com/thenickdude/KVM-Opencore/tags | sed 
 # Comprobar si el paquete wget está instalado. Si no lo está, instalarlo.
   if [[ $(dpkg-query -s wget 2>/dev/null | grep installed) == "" ]]; then
     echo ""
-    echo "  wget no está instalado. Iniciando su instalación..."
+    echo "      wget no está instalado. Iniciando su instalación..."
     echo ""
     apt-get -y update && apt-get -y install wget
     echo ""
@@ -57,7 +57,7 @@ wget https://github.com/thenickdude/KVM-Opencore/releases/download/$vUltVersKVMO
 # Comprobar si el paquete gzip está instalado. Si no lo está, instalarlo.
   if [[ $(dpkg-query -s gzip 2>/dev/null | grep installed) == "" ]]; then
     echo ""
-    echo "  gzip no está instalado. Iniciando su instalación..."
+    echo "      gzip no está instalado. Iniciando su instalación..."
     echo ""
     apt-get -y update && apt-get -y install gzip
     echo ""
@@ -66,14 +66,14 @@ gzip -d /root/SoftInst/macOS/OpenCore-$vUltVersKVMOC.iso.gz
 mv /root/SoftInst/macOS/OpenCore-$vUltVersKVMOC.iso $vCarpetaISO
 
 echo ""
-echo "  Activando ignorar msrs para evitar loop de arranque de macOS..."
+echo "    Activando ignorar msrs para evitar loop de arranque de macOS..."
 echo ""
 echo 1 > /sys/module/kvm/parameters/ignore_msrs
 echo "options kvm ignore_msrs=Y" >> /etc/modprobe.d/macos.conf
 update-initramfs -u -k all
 
 echo ""
-echo "  Creando el archivo de configuración de la máquina virtual..."
+echo "    Creando el archivo de configuración de la máquina virtual..."
 echo ""
 echo 'args: -device isa-applesmc,osk="ourhardworkbythesewordsguardedpleasedontsteal(c)AppleComputerInc" -smbios type=2 -device usb-kbd,bus=ehci.0,port=2 -global nec-usb-xhci.msi=off -global ICH9-LPC.acpi-pci-hotplug-with-bridge-support=off -cpu Haswell-noTSX,vendor=GenuineIntel,+invtsc,+hypervisor,kvm=on,vmware-cpuid-freq=on' > /etc/pve/qemu-server/$vIdMV.conf
 echo "balloon: 0"                                                                            >> /etc/pve/qemu-server/$vIdMV.conf
