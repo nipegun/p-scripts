@@ -61,7 +61,7 @@ cd /root/SoftInst/macOS/
 git clone --depth=1 https://github.com/thenickdude/OSX-KVM
 
 echo ""
-echo "  Activando ignorar msrs para evitar loop de arranque en macOS..."
+echo "  Activando ignorar msrs para evitar loop de arranque de macOS..."
 echo ""
 echo 1 > /sys/module/kvm/parameters/ignore_msrs
 echo "options kvm ignore_msrs=Y" >> /etc/modprobe.d/macos.conf
