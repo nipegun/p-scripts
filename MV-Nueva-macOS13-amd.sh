@@ -17,6 +17,10 @@ vAlmacenamiento=PVE
 vCarpetaISO="/PVE/template/iso/"
 
 echo ""
+echo "  Iniciando el script de preparación de la máquina virtual de macOS Ventura para Proxmox..."
+echo ""
+
+echo ""
 echo "  Clonando el repositorio OSX-KVM the NickDude..."
 echo ""
 rm /root/SoftInst/macOS/ -R 2> /dev/null
