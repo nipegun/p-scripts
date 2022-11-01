@@ -69,6 +69,10 @@ apt-get -y install make
 cd /root/SoftInst/macOS/OSX-KVM/scripts/ventura/
 make Ventura-recovery.img
 mv /root/SoftInst/macOS/OSX-KVM/scripts/ventura/Ventura-recovery.img $vCarpetaISO
+vUltVersKVMOC=$(curl -sL https://github.com/thenickdude/KVM-Opencore/tags | sed 's-href-\nhref-g' | grep href | grep .zip | head -n1 | cut -d'"' -f2 | cut -d'/' -f7 | sed 's-.zip--g')
+https://github.com/thenickdude/KVM-Opencore/releases/download/$vUltVersKVMOC/OpenCore-$vUltVersKVMOC.iso.gz
+
+
 
 echo ""
 echo "  Activando ignorar msrs para evitar loop de arranque de macOS..."
