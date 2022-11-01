@@ -64,15 +64,31 @@ git clone --depth=1 https://github.com/thenickdude/OSX-KVM
 echo ""
 echo "  Preparando la ISO..."
 echo ""
-#apt-get -y install qemu-utils
 apt-get -y install make
 cd /root/SoftInst/macOS/OSX-KVM/scripts/ventura/
 make Ventura-recovery.img
 mv /root/SoftInst/macOS/OSX-KVM/scripts/ventura/Ventura-recovery.img $vCarpetaISO
 vUltVersKVMOC=$(curl -sL https://github.com/thenickdude/KVM-Opencore/tags | sed 's-href-\nhref-g' | grep href | grep .zip | head -n1 | cut -d'"' -f2 | cut -d'/' -f7 | sed 's-.zip--g')
-https://github.com/thenickdude/KVM-Opencore/releases/download/$vUltVersKVMOC/OpenCore-$vUltVersKVMOC.iso.gz
-
-
+# Comprobar si el paquete wget está instalado. Si no lo está, instalarlo.
+  if [[ $(dpkg-query -s wget 2>/dev/null | grep installed) == "" ]]; then
+    echo ""
+    echo "  wget no está instalado. Iniciando su instalación..."
+    echo ""
+    apt-get -y update && apt-get -y install wget
+    echo ""
+  fi
+cd /root/SoftInst/macOS/
+wget https://github.com/thenickdude/KVM-Opencore/releases/download/$vUltVersKVMOC/OpenCore-$vUltVersKVMOC.iso.gz
+# Comprobar si el paquete gzip está instalado. Si no lo está, instalarlo.
+  if [[ $(dpkg-query -s gzip 2>/dev/null | grep installed) == "" ]]; then
+    echo ""
+    echo "  gzip no está instalado. Iniciando su instalación..."
+    echo ""
+    apt-get -y update && apt-get -y install gzip
+    echo ""
+  fi
+gzip -d /root/SoftInst/macOS/OpenCore-$vUltVersKVMOC.iso.gz
+mv /root/SoftInst/macOS/OpenCore-$vUltVersKVMOC.iso $vCarpetaISO
 
 echo ""
 echo "  Activando ignorar msrs para evitar loop de arranque de macOS..."
