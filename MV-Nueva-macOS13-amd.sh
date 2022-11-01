@@ -12,7 +12,7 @@
 #  curl -s https://raw.githubusercontent.com/nipegun/p-scripts/master/MV-Nueva-macOS13-amd.sh | bash
 # ----------
 
-vIdMV=888888
+vIdMV=88888
 vAlmacenamiento=PVE
 vCarpetaISO="/PVE/template/iso/"
 
@@ -71,12 +71,7 @@ update-initramfs -u -k all
 echo ""
 echo "  Creando el archivo de configuración de la máquina virtual..."
 echo ""
-echo 'args: -device isa-applesmc,osk="ourhardworkbythesewordsguardedpleasedontsteal(c)AppleComputerInc" \
--smbios type=2 \
--device usb-kbd,bus=ehci.0,port=2 \
--global nec-usb-xhci.msi=off \
--global ICH9-LPC.acpi-pci-hotplug-with-bridge-support=off \
--cpu Haswell-noTSX,vendor=GenuineIntel,+invtsc,+hypervisor,kvm=on,vmware-cpuid-freq=on'       > /etc/pve/qemu-server/$vIdMV.conf
+echo 'args: -device isa-applesmc,osk="ourhardworkbythesewordsguardedpleasedontsteal(c)AppleComputerInc" -smbios type=2 -device usb-kbd,bus=ehci.0,port=2 -global nec-usb-xhci.msi=off -global ICH9-LPC.acpi-pci-hotplug-with-bridge-support=off -cpu Haswell-noTSX,vendor=GenuineIntel,+invtsc,+hypervisor,kvm=on,vmware-cpuid-freq=on' > /etc/pve/qemu-server/$vIdMV.conf
 echo "balloon: 0"                                                                            >> /etc/pve/qemu-server/$vIdMV.conf
 echo "bios: ovmf"                                                                            >> /etc/pve/qemu-server/$vIdMV.conf
 echo "boot: order=ide2;virtio0"                                                              >> /etc/pve/qemu-server/$vIdMV.conf
