@@ -16,35 +16,6 @@ vIdMV=888888
 vAlmacenamiento=PVE
 vCarpetaISO="/PVE/template/iso/"
 
-echo 'args: -device isa-applesmc,osk="ourhardworkbythesewordsguardedpleasedontsteal(c)AppleComputerInc" \
--smbios type=2 \
--device usb-kbd,bus=ehci.0,port=2 \
--global nec-usb-xhci.msi=off \
--global ICH9-LPC.acpi-pci-hotplug-with-bridge-support=off \
--cpu Haswell,vendor=GenuineIntel,+kvm_pv_eoi,+kvm_pv_unhalt,+hypervisor,kvm=on'  > /etc/pve/qemu-server/$vIdMV.conf
-echo "balloon: 0"                                                               >> /etc/pve/qemu-server/$vIdMV.conf
-echo "bios: ovmf"                                                               >> /etc/pve/qemu-server/$vIdMV.conf
-echo "boot: order=ide2;virtio0"                                                 >> /etc/pve/qemu-server/$vIdMV.conf
-echo "cores: 4"                                                                 >> /etc/pve/qemu-server/$vIdMV.conf
-echo "cpu: Haswell"                                                             >> /etc/pve/qemu-server/$vIdMV.conf
-echo "ide0: none,cache=unsafe"                                                  >> /etc/pve/qemu-server/$vIdMV.conf
-echo "ide2: $vAlmacenamiento:iso/OpenCoreMacOS10.13.iso,cache=unsafe"           >> /etc/pve/qemu-server/$vIdMV.conf
-echo "machine: q35"                                                             >> /etc/pve/qemu-server/$vIdMV.conf
-echo "memory: 4096"                                                             >> /etc/pve/qemu-server/$vIdMV.conf
-echo "name: mimacosventura"                                                     >> /etc/pve/qemu-server/$vIdMV.conf
-echo "net0: virtio=00:00:00:00:00:99,bridge=vmbr0,firewall=1"                   >> /etc/pve/qemu-server/$vIdMV.conf
-echo "numa: 0"                                                                  >> /etc/pve/qemu-server/$vIdMV.conf
-echo "ostype: other"                                                            >> /etc/pve/qemu-server/$vIdMV.conf
-echo "scsihw: virtio-scsi-single"                                               >> /etc/pve/qemu-server/$vIdMV.conf
-echo "sockets: 1"                                                               >> /etc/pve/qemu-server/$vIdMV.conf
-echo "vga: vmware"                                                              >> /etc/pve/qemu-server/$vIdMV.conf
-echo "efidisk0: NVMeMVs:20514/vm-20514-disk-0.raw,efitype=4m,size=528K"         >> /etc/pve/qemu-server/$vIdMV.conf
-
-echo "efidisk0: local-lvm:vm-100-disk-0,efitype=4m,size=4M"                     >> /etc/pve/qemu-server/$vIdMV.conf
-echo "ide0: local:iso/Ventura-full.img,cache=unsafe,size=14G"                   >> /etc/pve/qemu-server/$vIdMV.conf
-echo "ide2: local:iso/OpenCore-v17.iso,cache=unsafe,size=150M"                     >> /etc/pve/qemu-server/$vIdMV.conf
-echo "virtio0: local-lvm:vm-100-disk-1,cache=unsafe,discard=on,iothread=1,size=64" >> /etc/pve/qemu-server/$vIdMV.conf
-
 echo ""
 echo "  Clonando el repositorio OSX-KVM the NickDude..."
 echo ""
@@ -96,6 +67,34 @@ echo ""
 echo 1 > /sys/module/kvm/parameters/ignore_msrs
 echo "options kvm ignore_msrs=Y" >> /etc/modprobe.d/macos.conf
 update-initramfs -u -k all
+
+echo ""
+echo "  Creando el archivo de configuración de la máquina virtual..."
+echo ""
+echo 'args: -device isa-applesmc,osk="ourhardworkbythesewordsguardedpleasedontsteal(c)AppleComputerInc" \
+-smbios type=2 \
+-device usb-kbd,bus=ehci.0,port=2 \
+-global nec-usb-xhci.msi=off \
+-global ICH9-LPC.acpi-pci-hotplug-with-bridge-support=off \
+-cpu Haswell-noTSX,vendor=GenuineIntel,+invtsc,+hypervisor,kvm=on,vmware-cpuid-freq=on'       > /etc/pve/qemu-server/$vIdMV.conf
+echo "balloon: 0"                                                                            >> /etc/pve/qemu-server/$vIdMV.conf
+echo "bios: ovmf"                                                                            >> /etc/pve/qemu-server/$vIdMV.conf
+echo "boot: order=ide2;virtio0"                                                              >> /etc/pve/qemu-server/$vIdMV.conf
+echo "cores: 4"                                                                              >> /etc/pve/qemu-server/$vIdMV.conf
+echo "cpu: Haswell"                                                                          >> /etc/pve/qemu-server/$vIdMV.conf
+echo "efidisk0: $vAlmacenamiento:$vIdMV/vm-$vIdMV-disk-0.raw,efitype=4m,size=528K"           >> /etc/pve/qemu-server/$vIdMV.conf
+echo "ide0: $vAlmacenamiento:iso/Ventura-recovery.img,cache=unsafe"                          >> /etc/pve/qemu-server/$vIdMV.conf
+echo "ide2: $vAlmacenamiento:iso/OpenCore-$vUltVersKVMOC.iso,cache=unsafe"                   >> /etc/pve/qemu-server/$vIdMV.conf
+echo "machine: q35"                                                                          >> /etc/pve/qemu-server/$vIdMV.conf
+echo "memory: 4096"                                                                          >> /etc/pve/qemu-server/$vIdMV.conf
+echo "name: mimacosventura"                                                                  >> /etc/pve/qemu-server/$vIdMV.conf
+echo "net0: virtio=00:00:00:00:00:99,bridge=vmbr0,firewall=1"                                >> /etc/pve/qemu-server/$vIdMV.conf
+echo "numa: 0"                                                                               >> /etc/pve/qemu-server/$vIdMV.conf
+echo "ostype: other"                                                                         >> /etc/pve/qemu-server/$vIdMV.conf
+echo "scsihw: virtio-scsi-single"                                                            >> /etc/pve/qemu-server/$vIdMV.conf
+echo "sockets: 1"                                                                            >> /etc/pve/qemu-server/$vIdMV.conf
+echo "vga: vmware"                                                                           >> /etc/pve/qemu-server/$vIdMV.conf
+echo "virtio0: $vAlmacenamiento:vm-$vIdMV-disk-1,cache=unsafe,discard=on,iothread=1,size=64" >> /etc/pve/qemu-server/$vIdMV.conf
 
 echo ""
 echo "  Script finalizado."
