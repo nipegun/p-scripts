@@ -34,7 +34,7 @@ if [ $# -ne $EXPECTED_ARGS ]
     mkdir /var/lib/vz/images/$1
     cd /var/lib/vz/images/$1
     wget --no-check-certificate http://hacks4geeks.com/_/premium/descargas/DSM/6.1.4/JunsMod1.02b.img
-    qm create $1 --args /var/lib/vz/images/$1/JunsMod1.02b.img --balloon 0 --boot d --cores $2 --keyboard es --memory $3 --name DSM --net0 e1000=00:11:32:2c:a7:85,bridge=vmbr0 --numa 0 --onboot 1 --ostype l26 --sata0 local-lvm:$4 --scsihw virtio-scsi-pci --serial0 socket --sockets 1 
+    qm create $1 --args /var/lib/vz/images/$1/JunsMod1.02b.img --balloon 0 --boot d --cores $2 --keyboard es --memory $3 --name DSM6 --net0 e1000=00:11:32:2c:a7:85,bridge=vmbr0 --numa 0 --onboot 1 --ostype l26 --sata0 local-lvm:$4 --scsihw virtio-scsi-pci --serial0 socket --sockets 1 
     sed -i -e '/smbios1/d' /etc/pve/qemu-server/$1.conf
     sed -i -e '/vmgenid/d' /etc/pve/qemu-server/$1.conf
     sed -i -e '/bootdisk/d' /etc/pve/qemu-server/$1.conf
