@@ -37,7 +37,7 @@ if [ $# -ne $EXPECTED_ARGS ]
 echo "agent: 1"
 echo "balloon: 0"
 echo "bios: ovmf"
-echo "boot: order=net0"
+echo "boot: order=scsi0"
 echo "cores: 2"
 echo "machine: q35"
 echo "memory: 2048"
