@@ -8,14 +8,12 @@
 # ----------
 #  Script de NiPeGun para notificar el cambio de IP WAN de un servidor Proxmox
 #
-#  Ejecución remota:
-#  curl -s x | bash
+#  Este script no puede ser ejecutado remotamente. Debe ser ejecutado desde los p-scripts.
 #
-#  Ejecución remota sin caché:
-#  curl -s -H 'Cache-Control: no-cache, no-store' x | bash
+#  El script contempla la existencia de dos archivos en dos rutas específicas:
+#    /root/scripts/Telegram/TokenDelBot.txt (Con el token del bot que enviará el mensaje)
+#    /root/scripts/Telegram/IdChat.txt      (Con el id del chat al que enviar el mensaje de Telegram)
 #
-#  Ejecución remota con parámetros:
-#  curl -s x | bash -s Parámetro1 Parámetro2
 # ----------
 
 vColorAzul="\033[0;34m"
