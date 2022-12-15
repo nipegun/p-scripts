@@ -39,7 +39,7 @@ vFinColor='\033[0m'
   if [[ $vIPWAN != "" ]]; then
     # Notificar por Telegram
       vTokenDelBot=$(cat /root/scripts/Telegram/TokenDelBot.txt)
-      vIdChat=$(cat /root/scripts/Telegram/vIDChat.txt)
+      vIdChat=$(cat /root/scripts/Telegram/vIdChat.txt)
       vMensaje="La IP pública de $(hostname) ha cambiado. Ahora es: $vIPWAN."
       /root/scripts/d-scripts/Telegram-EnviarTexto.sh  "$vTokenDelBot" "$vIdChat" "$vMensaje"
     # Actualizar este archivo para adaptar a la nueva IP
