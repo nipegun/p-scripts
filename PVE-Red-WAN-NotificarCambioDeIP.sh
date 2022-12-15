@@ -13,7 +13,6 @@
 #  El script contempla la existencia de dos archivos en dos rutas específicas:
 #    /root/scripts/Telegram/TokenDelBot.txt (Con el token del bot que enviará el mensaje)
 #    /root/scripts/Telegram/IdChat.txt      (Con el id del chat al que enviar el mensaje de Telegram)
-#
 # ----------
 
 vColorAzul="\033[0;34m"
