@@ -33,7 +33,7 @@ vFinColor='\033[0m'
       apt-get -y update && apt-get -y install curl
       echo ""
     fi
-  vIPWAN=$(curl ifconfig.me)
+  vIPWAN=$(curl -s ifconfig.me)
 
 # Comprobar si la IP WAN cambia
   if [[ $vIPWAN != "" ]]; then
