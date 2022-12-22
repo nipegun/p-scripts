@@ -37,7 +37,7 @@ vFinColor='\033[0m'
     # Notificar por Telegram
       vTokenDelBot=$(cat /root/scripts/Telegram/TokenDelBot.txt)
       vIdChat=$(cat /root/scripts/Telegram/IdChat.txt)
-      vMensaje="La IP pública de $(hostname) ha cambiado. Ahora es: $vIPWAN."
+      vMensaje="El nodo $(hostname) tiene salida a Internet a través de la siguiente IP pública: $vIPWAN."
       /root/scripts/d-scripts/Telegram-EnviarTexto.sh  "$vTokenDelBot" "$vIdChat" "$vMensaje"
     # Actualizar este archivo para adaptar a la nueva IP
       sed -i -e 's|$vIPWAN != ""|$vIPWAN != "'"$vIPWAN"'"|g' /root/scripts/p-scripts/PVE-Red-WAN-NotificarCambioDeIP.sh
