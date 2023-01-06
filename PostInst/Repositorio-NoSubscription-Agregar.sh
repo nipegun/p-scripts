@@ -120,8 +120,20 @@ elif [ $OS_VERS == "11" ]; then
   echo ""
 
   echo ""
-  echo "  Comandos para ProxmoxVE 7 todavía no preparados. Prueba ejecutar el script en otra versión de ProxmoxVE."
+  echo -e "${ColorVerde}Deshabilitando el repositorio Enterprise...${FinColor}"
   echo ""
+  cp /etc/apt/sources.list.d/pve-enterprise.list /etc/apt/sources.list.d/pve-enterprise.list.bak
+  sed -i -e 's|deb https://enterprise.proxmox.com/debian/pve bullseye pve-enterprise|# deb https://enterprise.proxmox.com/debian/pve bullseye pve-enterprise|g' /etc/apt/sources.list.d/pve-enterprise.list
+
+  echo ""
+  echo -e "${ColorVerde}Agregando el repositorio para no-suscriptores...${FinColor}"
+  echo ""
+  echo "deb http://download.proxmox.com/debian/pve bullseye pve-no-subscription" > /etc/apt/sources.list.d/pve-no-subscription.list
+
+  echo ""
+  echo -e "${ColorVerde}Activando cambios en apt...${FinColor}"
+  echo ""
+  apt-get -y update
 
 fi
 
