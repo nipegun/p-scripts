@@ -9,10 +9,10 @@
 #  Script de NiPeGun para crear una máquina virtual para DSM en el MicroServer Gen10
 #
 #  Ejecución remota:
-#  curl -s https://raw.githubusercontent.com/nipegun/p-scripts/master/MV-Nueva-DSM6.sh | bash
+#  curl -s https://raw.githubusercontent.com/nipegun/p-scripts/master/MV-Nueva-DSM6.sh | bash -s 255 2 2048 50 local-lvm
 # ----------
 
-EXPECTED_ARGS=4
+EXPECTED_ARGS=5
 E_BADARGS=65
 
 ColorAdvertencia='\033[1;31m'
@@ -25,11 +25,11 @@ if [ $# -ne $EXPECTED_ARGS ]
     echo "-------------------------------------------------------------------------"
     echo -e "${ColorAdvertencia}Mal uso del script.${FinColor} El uso correcto sería:"
     echo ""
-    echo -e "CrearMVDSMParaMSGen10 ${ColorArgumentos}[IDDeLaMV] [Núcleos] [RAM] [TamañoDiscoEnGB]${FinColor}"
+    echo -e "CrearMVDSMParaMSGen10 ${ColorArgumentos}[IDDeLaMV] [Núcleos] [RAM] [TamañoDiscoEnGB] [NombreDelAlmacenamiento]${FinColor}"
     echo ""
     echo "Ejemplo:"
     echo ""
-    echo "CrearMVDSMParaMSGen10 200 2 2048 32"
+    echo "CrearMVDSMParaMSGen10 200 2 2048 32 locallvm"
     echo "-------------------------------------------------------------------------"
     echo ""
     exit $E_BADARGS
@@ -55,7 +55,7 @@ if [ $# -ne $EXPECTED_ARGS ]
       --keyboard es \
       --boot d \
       --numa 0 \
-      --sata0 local-lvm:$4 \
+      --sata0 $5:$4 \
       --onboot 1
       sed -i -e '/smbios1/d' /etc/pve/qemu-server/$1.conf
       sed -i -e '/vmgenid/d' /etc/pve/qemu-server/$1.conf
