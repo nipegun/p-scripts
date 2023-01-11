@@ -61,10 +61,16 @@ if [ $# -ne $EXPECTED_ARGS ]
       sed -i -e '/vmgenid/d' /etc/pve/qemu-server/$1.conf
       sed -i -e '/bootdisk/d' /etc/pve/qemu-server/$1.conf
     # Agregar un disco SATA raw de 50GB
-      qm set $1 --sata0 local:$4
+      #qm set $1 --sata0 local:$4
     # Iniciar la MV
+      echo ""
+      echo "  Iniciando la máquina virtual..."
+      echo ""
       qm start $1
     # Mostrar el archivo de configuración
+      echo ""
+      echo "  El archivo de configuración ha quedado así:"
+      echo ""
       cat /etc/pve/qemu-server/$1.conf
 
     echo ""
