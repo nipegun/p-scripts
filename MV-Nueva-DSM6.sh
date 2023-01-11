@@ -31,15 +31,38 @@ if [ $# -ne $EXPECTED_ARGS ]
     echo ""
     exit $E_BADARGS
   else
-    mkdir /var/lib/vz/images/$1
-    cd /var/lib/vz/images/$1
-    wget --no-check-certificate http://hacks4geeks.com/_/premium/descargas/DSM/6.1.4/JunsMod1.02b.img
-    qm create $1 --args /var/lib/vz/images/$1/JunsMod1.02b.img --balloon 0 --boot d --cores $2 --keyboard es --memory $3 --name DSM6 --net0 e1000=00:11:32:2c:a7:85,bridge=vmbr0 --numa 0 --onboot 1 --ostype l26 --sata0 local-lvm:$4 --scsihw virtio-scsi-pci --serial0 socket --sockets 1 
-    sed -i -e '/smbios1/d' /etc/pve/qemu-server/$1.conf
-    sed -i -e '/vmgenid/d' /etc/pve/qemu-server/$1.conf
-    sed -i -e '/bootdisk/d' /etc/pve/qemu-server/$1.conf
-    qm start $1
-    cat /etc/pve/qemu-server/$1.conf
+    # Descargar el Loader
+      mkdir /root/Loaders
+      cd /root/Loaders
+      wget --no-check-certificate http://hacks4geeks.com/_/premium/descargas/DSM/JunsLoader1.03b-DS3615xs.img
+    # Crear la MV
+      qm create $1 \
+      --memory $3 \
+      --balloon 0 \
+      --sockets 1 \
+      --cores $2 \
+      --vga none \
+      --machine q35 \
+      --scsihw virtio-scsi-pci \
+      --net0 e1000=00:11:32:2c:a7:85,bridge=vmbr0 \
+      --serial0 socket \
+      --name DSM6 \
+      --ostype l26 \
+      --args /root/Loaders/JunsLoader1.03b-DS3615xs.img \
+      --keyboard es \
+      --boot d \
+      --numa 0 \
+      --sata0 local-lvm:$4 \
+      --onboot 1
+      sed -i -e '/smbios1/d' /etc/pve/qemu-server/$1.conf
+      sed -i -e '/vmgenid/d' /etc/pve/qemu-server/$1.conf
+      sed -i -e '/bootdisk/d' /etc/pve/qemu-server/$1.conf
+    # Agregar un disco SATA raw de 50GB
+      qm set $1 --sata0 local:$4
+    # Iniciar la MV
+      qm start $1
+    # Mostrar el archivo de configuración
+      cat /etc/pve/qemu-server/$1.conf
 
     echo ""
     echo -e "  ${ColorArgumentos}Proceso de creación de la máquina virtual, FINALIZADO.${FinColor}"
