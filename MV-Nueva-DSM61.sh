@@ -35,10 +35,16 @@ if [ $# -ne $EXPECTED_ARGS ]
     exit $E_BADARGS
   else
     # Descargar el Loader
+      echo ""
+      echo "  Descargando el loader..."
+      echo ""
       mkdir /root/Loaders
       cd /root/Loaders
       wget --no-check-certificate http://hacks4geeks.com/_/premium/descargas/DSM/JunsLoader1.03b-DS3615xs.img
     # Crear la MV
+      echo ""
+      echo "  Creando la máquina virtual..."
+      echo ""
       qm create $1 \
       --memory $3 \
       --balloon 0 \
