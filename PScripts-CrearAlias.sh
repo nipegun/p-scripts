@@ -9,17 +9,20 @@
 #  Script de NiPeGun para crear los alias de los p-scripts
 #-----------------------------------------------------------
 
-ColorVerde="\033[1;32m"
-FinColor="\033[0m"
+vColorAzul="\033[0;34m"
+vColorAzulClaro="\033[1;34m"
+vColorVerde='\033[1;32m'
+vColorRojo='\033[1;31m'
+vFinColor='\033[0m'
 
 echo ""
-echo -e "${ColorVerde}Creando alias para los p-scripts...${FinColor}"
+echo -e "${vColorAzulClaro}  Creando alias para los p-scripts...${vFinColor}"
 echo ""
 
 ln -s /root/scripts/p-scripts/PVE-Actualizar.sh                  /root/scripts/p-scripts/Alias/apve
 ln -s /root/scripts/p-scripts/PScripts-Sincronizar.sh            /root/scripts/p-scripts/Alias/sinps
 
 echo ""
-echo -e "${ColorVerde}Alias creados. Deberías poder ejecutar los p-scripts escribiendo el nombre de su alias.${FinColor}"
+echo -e "${vColorVerde}Alias creados. Deberías poder ejecutar los p-scripts escribiendo el nombre de su alias.${vFinColor}"
 echo ""
 
