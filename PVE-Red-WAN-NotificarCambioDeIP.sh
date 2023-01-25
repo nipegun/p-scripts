@@ -21,11 +21,15 @@ vColorVerde='\033[1;32m'
 vColorRojo='\033[1;31m'
 vFinColor='\033[0m'
 
+echo ""
+echo -e "${vColorAzulClaro}  Notificando la IP pública del nodo $(hostname)...${vFinColor}"
+echo ""
+
 # Guardar la IP pública en una variable
   # Comprobar si el paquete curl está instalado. Si no lo está, instalarlo.
     if [[ $(dpkg-query -s curl 2>/dev/null | grep installed) == "" ]]; then
       echo ""
-      echo -e "${vColorRojo}curl no está instalado. Iniciando su instalación...${vFinColor}"
+      echo -e "${vColorRojo}    curl no está instalado. Iniciando su instalación...${vFinColor}"
       echo ""
       apt-get -y update && apt-get -y install curl
       echo ""
