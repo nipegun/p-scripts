@@ -19,16 +19,16 @@ vColorRojo='\033[1;31m'
 vFinColor='\033[0m'
 
 # Comprobar si el paquete wget está instalado. Si no lo está, instalarlo.
-if [[ $(dpkg-query -s wget 2>/dev/null | grep installed) == "" ]]; then
+  if [[ $(dpkg-query -s wget 2>/dev/null | grep installed) == "" ]]; then
     echo ""
     echo -e "${vColorRojo}  wget no está instalado. Iniciando su instalación...${vFinColor}"
     echo ""
     apt-get -y update && apt-get -y install wget
     echo ""
-fi
+  fi
 
 # Comprobar si hay conexión a Internet antes de sincronizar los p-scripts
-wget -q --tries=10 --timeout=20 --spider https://github.com
+  wget -q --tries=10 --timeout=20 --spider https://github.com
   if [[ $? -eq 0 ]]; then
     echo ""
     echo -e "  ${vColorAzulClaro}Sincronizando los p-scripts con las últimas versiones y descargando nuevos p-scripts si es que existen...${vFinColor}"
@@ -36,15 +36,14 @@ wget -q --tries=10 --timeout=20 --spider https://github.com
     rm /root/scripts/p-scripts -R 2> /dev/null
     mkdir /root/scripts 2> /dev/null
     cd /root/scripts
-    ## Comprobar si el paquete git está instalado. Si no lo está, instalarlo.
-       if [[ $(dpkg-query -s git 2>/dev/null | grep installed) == "" ]]; then
-         echo ""
-         echo -e "${vColorRojo}    wget no está instalado. Iniciando su instalación...${vFinColor}"
-         echo ""
-         apt-get -y update > /dev/null
-         apt-get -y install git
-         echo ""
-       fi
+    # Comprobar si el paquete git está instalado. Si no lo está, instalarlo.
+      if [[ $(dpkg-query -s git 2>/dev/null | grep installed) == "" ]]; then
+        echo ""
+        echo -e "${vColorRojo}    wget no está instalado. Iniciando su instalación...${vFinColor}"
+        echo ""
+        apt-get -y update && apt-get -y install git
+        echo ""
+      fi
     git clone --depth=1 https://github.com/nipegun/p-scripts
     mkdir -p /root/scripts/p-scripts/Alias/
     rm /root/scripts/p-scripts/.git -R 2> /dev/null
@@ -53,6 +52,7 @@ wget -q --tries=10 --timeout=20 --spider https://github.com
     echo -e "  ${vColorVerde}  p-scripts sincronizados correctamente.${vFinColor}"
     echo ""
     /root/scripts/p-scripts/PScripts-CrearAlias.sh
+    find /root/scripts/p-scripts/Alias -type f -exec chmod +x {} \;
   else
     echo ""
     echo -e "${vColorRojo}  No se pudo iniciar la sincronización de los p-scripts porque no se detectó conexión a Internet.${vFinColor}"
