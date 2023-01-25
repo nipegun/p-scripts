@@ -11,8 +11,9 @@
 
 sed -i -e 's|GRUB_CMDLINE_LINUX_DEFAULT="quiet"|GRUB_CMDLINE_LINUX_DEFAULT="quiet amd_iommu=on"|g' /etc/default/grub
 update-grub
-echo "vfio" >> /etc/modules
+echo "vfio"             >> /etc/modules
 echo "vfio_iommu_type1" >> /etc/modules
-echo "vfio_pci" >> /etc/modules
-echo "vfio_virqfd" >> /etc/modules
+echo "vfio_pci"         >> /etc/modules
+echo "vfio_virqfd"      >> /etc/modules
+update-initramfs -u -k all
 
