@@ -16,6 +16,7 @@
 # ----------
 
 vFecha=$(date +a%Ym%md%d@%T)
+vFecha=$(date +%Y/%m/%d@%T)
 
 vColorAzul="\033[0;34m"
 vColorAzulClaro="\033[1;34m"
