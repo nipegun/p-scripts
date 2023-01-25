@@ -31,10 +31,7 @@ fi
 wget -q --tries=10 --timeout=20 --spider https://github.com
   if [[ $? -eq 0 ]]; then
     echo ""
-    echo "---------------------------------------------------------"
-    echo -e "  ${vColorAzulClaro}Sincronizando los p-scripts con las últimas versiones${vFinColor}"
-    echo -e "  ${vColorAzulClaro} y descargando nuevos p-scripts si es que existen...${vFinColor}"
-    echo "---------------------------------------------------------"
+    echo -e "  ${vColorAzulClaro}Sincronizando los p-scripts con las últimas versiones y descargando nuevos p-scripts si es que existen...${vFinColor}"
     echo ""
     rm /root/scripts/p-scripts -R 2> /dev/null
     mkdir /root/scripts 2> /dev/null
@@ -54,15 +51,11 @@ wget -q --tries=10 --timeout=20 --spider https://github.com
     find /root/scripts/p-scripts/ -type f -iname "*.sh" -exec chmod +x {} \;
     /root/scripts/p-scripts/PScripts-CrearAlias.sh
     echo ""
-    echo "-----------------------------------------"
-    echo -e "  ${vColorVerde}p-scripts sincronizados correctamente${vFinColor}"
-    echo "-----------------------------------------"
+    echo -e "  ${vColorVerde}  p-scripts sincronizados correctamente${vFinColor}"
     echo ""
   else
     echo ""
-    echo "---------------------------------------------------------------------------------------------------"
-    echo -e "${vColorRojo}No se pudo iniciar la sincronización de los p-scripts porque no se detectó conexión a Internet.${vFinColor}"
-    echo "---------------------------------------------------------------------------------------------------"
+    echo -e "${vColorRojo}  No se pudo iniciar la sincronización de los p-scripts porque no se detectó conexión a Internet.${vFinColor}"
     echo ""
   fi
 
