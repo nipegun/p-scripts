@@ -17,6 +17,9 @@ vCarpetaCopSeg="/CopSegInt/" # La ubicación de la carpeta para las copias debe 
 vIdIni=100
 vIdFin=99999
 
+vArchivoListaLXC="ListaLXC.txt"
+vArchivoListaQEMU="ListaQEMU.txt"
+
 vFechaDeEjec=$(date +A%YM%mD%d@%T)
 
 ColorAzul="\033[0;34m"
@@ -46,12 +49,14 @@ echo ""
   echo ""
   echo "  Importando contenedores LXC..."
   echo ""
-  find $vCarpetaCopSeg -print -type f -name "*tar.gz" | grep "tar.gz" | grep lxc
+  find $vCarpetaCopSeg -print -type f -name "*tar.gz" | grep "tar.gz" | grep lxc > $vCarpetaCopSeg$vArchivoListaLXC
+  cat $vCarpetaCopSeg$vArchivoListaLXC
 
 # Importar las máquinas virtuales
   echo ""
   echo "  Importando máquinas virtuales QEMU..."
   echo ""
-  find $vCarpetaCopSeg -print -type f -name "*vma.gz" | grep "vma.gz" | grep qemu
+  find $vCarpetaCopSeg -print -type f -name "*vma.gz" | grep "vma.gz" | grep qemu > $vCarpetaCopSeg$vArchivoListaQEMU
+  cat $vCarpetaCopSeg$vArchivoListaQEMU
 
 
