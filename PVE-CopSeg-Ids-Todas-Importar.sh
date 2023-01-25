@@ -46,12 +46,12 @@ echo ""
   echo ""
   echo "  Importando contenedores LXC..."
   echo ""
-  find $vCarpetaCopSeg -print -type f -name "tar.gz"
+  find $vCarpetaCopSeg -print -type f -name "*tar.gz"
 
 # Importar las máquinas virtuales
   echo ""
   echo "  Importando máquinas virtuales QEMU..."
   echo ""
-  find $vCarpetaCopSeg -print -type f -name "vma.gz"
+  find $vCarpetaCopSeg -print -type f -name "*vma.gz"
 
 
