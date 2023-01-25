@@ -15,7 +15,6 @@
 #    /root/scripts/Telegram/IdChat.txt      (Con el id del chat al que enviar el mensaje de Telegram)
 # ----------
 
-vFecha=$(date +a%Ym%md%d@%T)
 vFecha=$(date +%Y/%m/%d@%T)
 
 vColorAzul="\033[0;34m"
