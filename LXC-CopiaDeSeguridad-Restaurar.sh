@@ -25,16 +25,16 @@ if [ $# -ne $CantArgsEsperados ]
     echo "------------------------------------------------------------------------------"
     echo -e "${ColorAdvertencia}Mal uso del script.${FinColor} El uso correcto sería:"
     echo ""
-    echo -e "$0 ${ColorArgumentos}[IDDelNuevoContainer] [RutaAbsolutaAlArchivo] [Almacenamiento]${FinColor}"
+    echo -e "$0 ${ColorArgumentos}[RutaAbsolutaAlArchivo] [IDDelNuevoContainer] [Almacenamiento]${FinColor}"
     echo ""
     echo "Ejemplo:"
-    echo "$0 130 '/root/copias/vzdump-lxc-777.tar' local-lvm" 
+    echo "$0 '/root/copias/vzdump-lxc-777.tar' 130 local-lvm" 
     echo "------------------------------------------------------------------------------"
     echo ""
     exit $ArgsInsuficientes
   else
     echo ""
-    pct restore $1 $2 -storage $3
+    pct restore $2 $1 -storage $3
     echo ""
 fi
 
