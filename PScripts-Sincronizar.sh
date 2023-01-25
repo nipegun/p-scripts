@@ -49,10 +49,10 @@ wget -q --tries=10 --timeout=20 --spider https://github.com
     mkdir -p /root/scripts/p-scripts/Alias/
     rm /root/scripts/p-scripts/.git -R 2> /dev/null
     find /root/scripts/p-scripts/ -type f -iname "*.sh" -exec chmod +x {} \;
-    /root/scripts/p-scripts/PScripts-CrearAlias.sh
     echo ""
     echo -e "  ${vColorVerde}  p-scripts sincronizados correctamente${vFinColor}"
     echo ""
+    /root/scripts/p-scripts/PScripts-CrearAlias.sh
   else
     echo ""
     echo -e "${vColorRojo}  No se pudo iniciar la sincronización de los p-scripts porque no se detectó conexión a Internet.${vFinColor}"
