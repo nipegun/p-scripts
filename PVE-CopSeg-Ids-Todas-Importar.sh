@@ -70,7 +70,7 @@ echo ""
   vContenedores=$(cat $vCarpetaCopSeg$vArchivoListaLXC)
   for linea in $vContenedores
     do
-      echo $linea
+      echo "$linea"
     done 
 
 # Importar las máquinas virtuales
@@ -83,6 +83,6 @@ echo ""
   vMaquinasVirtuales=$(cat $vCarpetaCopSeg$vArchivoListaLXC)
   for linea in $vMaquinasVirtuales
     do
-      echo $linea
+      echo "$linea"
     done 
 
