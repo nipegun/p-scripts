@@ -14,11 +14,12 @@
 
 # Modificar sólo esto antes de ejecutar el script
 vCarpetaCopSeg="/CopSegInt/" # La ubicación de la carpeta para las copias debe acabar con /
-vIdIni=100
-vIdFin=99999
-
 vArchivoListaLXC="ListaLXC.txt"
 vArchivoListaQEMU="ListaQEMU.txt"
+#vAlmacenamiento="PVE"
+#vAlmacenamiento="local-lvm"
+#vAlmacenamiento="local"
+vAlmacenamiento="local-btrfs"
 
 vFechaDeEjec=$(date +A%YM%mD%d@%T)
 
@@ -63,13 +64,13 @@ echo ""
   echo ""
   echo "  Importando contenedores LXC..."
   echo ""
-  sed -i -e "s|$vCarpetaCopSeg|/root/scripts/p-scripts/LXC-CopiaDeSeguridad-Restaurar.sh $vCarpetaCopSeg|g" $vCarpetaCopSeg$vArchivoListaLXC
+  sed -i -e "s|$vCarpetaCopSeg|/root/scripts/p-scripts/LXC-CopiaDeSeguridad-Restaurar.sh $vCarpetaCopSeg $vAlmacenamiento|g" $vCarpetaCopSeg$vArchivoListaLXC
   cat $vCarpetaCopSeg$vArchivoListaLXC
 
 # Importar las máquinas virtuales
   echo ""
   echo "  Importando máquinas virtuales QEMU..."
   echo ""
-  sed -i -e "s|$vCarpetaCopSeg|/root/scripts/p-scripts/MV-CopiaDeSeguridad-Restaurar.sh $vCarpetaCopSeg|g" $vCarpetaCopSeg$vArchivoListaQEMU
+  sed -i -e "s|$vCarpetaCopSeg|/root/scripts/p-scripts/MV-CopiaDeSeguridad-Restaurar.sh $vCarpetaCopSeg $vAlmacenamiento|g" $vCarpetaCopSeg$vArchivoListaQEMU
   cat $vCarpetaCopSeg$vArchivoListaQEMU
 
