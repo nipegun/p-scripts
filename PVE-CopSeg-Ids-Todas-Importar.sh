@@ -67,6 +67,11 @@ echo ""
   sed -i -e "s|$vCarpetaCopSeg|/root/scripts/p-scripts/LXC-CopiaDeSeguridad-Restaurar.sh $vCarpetaCopSeg|g" $vCarpetaCopSeg$vArchivoListaLXC
   sed -i -e "s|.tar.gz|.tar.gz $vAlmacenamiento|g"                                                          $vCarpetaCopSeg$vArchivoListaLXC
   cat $vCarpetaCopSeg$vArchivoListaLXC
+  vContenedores=$(cat $vCarpetaCopSeg$vArchivoListaLXC)
+  for linea in $vContenedores
+    do
+      echo $linea
+    done 
 
 # Importar las máquinas virtuales
   echo ""
@@ -75,4 +80,9 @@ echo ""
   sed -i -e "s|$vCarpetaCopSeg|/root/scripts/p-scripts/MV-CopiaDeSeguridad-Restaurar.sh $vCarpetaCopSeg|g" $vCarpetaCopSeg$vArchivoListaQEMU
   sed -i -e "s|.vma.gz|.vma.gz $vAlmacenamiento|g"                                                         $vCarpetaCopSeg$vArchivoListaQEMU
   cat $vCarpetaCopSeg$vArchivoListaQEMU
+  vMaquinasVirtuales=$(cat $vCarpetaCopSeg$vArchivoListaLXC)
+  for linea in $vMaquinasVirtuales
+    do
+      echo $linea
+    done 
 
