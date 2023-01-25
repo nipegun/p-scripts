@@ -15,6 +15,8 @@
 #    /root/scripts/Telegram/IdChat.txt      (Con el id del chat al que enviar el mensaje de Telegram)
 # ----------
 
+vFecha=$(date +A%YM%mD%d@%T)
+
 vColorAzul="\033[0;34m"
 vColorAzulClaro="\033[1;34m"
 vColorVerde='\033[1;32m'
@@ -41,9 +43,9 @@ echo ""
     # Notificar por Telegram
       vTokenDelBot=$(cat /root/scripts/Telegram/TokenDelBot.txt)
       vIdChat=$(cat /root/scripts/Telegram/IdChat.txt)
-      vMensaje="El nodo $(hostname) tiene salida a Internet a través de la siguiente IP pública: $vIPWAN."
+      vMensaje="$vFecha - El nodo $(hostname) ahora tiene salida a Internet a través de la siguiente IP pública: $vIPWAN."
       /root/scripts/d-scripts/Telegram-EnviarTexto.sh  "$vTokenDelBot" "$vIdChat" "$vMensaje"
     # Actualizar este archivo para adaptar a la nueva IP
-      sed -i -e 's|$vIPWAN != ""|$vIPWAN != "'"$vIPWAN"'"|g' /root/scripts/p-scripts/PVE-Red-WAN-NotificarCambioDeIP.sh
+      sed -i -e 's|$vIPWAN != ""|$vIPWAN != "'"$vIPWAN"'"|g' /root/scripts/p-scripts/PVE-Red-WAN-NotificarCambioDeIP-PorTelegram.sh
   fi
 
