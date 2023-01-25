@@ -50,7 +50,7 @@ wget -q --tries=10 --timeout=20 --spider https://github.com
     rm /root/scripts/p-scripts/.git -R 2> /dev/null
     find /root/scripts/p-scripts/ -type f -iname "*.sh" -exec chmod +x {} \;
     echo ""
-    echo -e "  ${vColorVerde}  p-scripts sincronizados correctamente${vFinColor}"
+    echo -e "  ${vColorVerde}  p-scripts sincronizados correctamente.${vFinColor}"
     echo ""
     /root/scripts/p-scripts/PScripts-CrearAlias.sh
   else
