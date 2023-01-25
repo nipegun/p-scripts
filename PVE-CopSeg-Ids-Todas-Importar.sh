@@ -45,18 +45,31 @@ echo ""
     exit 1
   fi
 
+# Obtener lista de contenedores LXC a importar
+  echo ""
+  echo "  Obteniendo lista de contenedores LXC a importar..."
+  echo ""
+  find $vCarpetaCopSeg -print -type f -name "*tar.gz" | grep "tar.gz" | grep lxc > $vCarpetaCopSeg$vArchivoListaLXC
+  cat $vCarpetaCopSeg$vArchivoListaLXC
+
+# Obtener lista de máquinas virtuales QEMU a importar
+  echo ""
+  echo "  Obteniendo lista de máquinas virtuales QEMU a importar..."
+  echo ""
+  find $vCarpetaCopSeg -print -type f -name "*vma.gz" | grep "vma.gz" | grep qemu > $vCarpetaCopSeg$vArchivoListaQEMU
+  cat $vCarpetaCopSeg$vArchivoListaQEMU
+
 # Importar los contenedores
   echo ""
   echo "  Importando contenedores LXC..."
   echo ""
-  find $vCarpetaCopSeg -print -type f -name "*tar.gz" | grep "tar.gz" | grep lxc > $vCarpetaCopSeg$vArchivoListaLXC
+  sed -i -e "s|$vCarpetaCopSeg|/root/scripts/p-scripts/LXC-CopiaDeSeguridad-Restaurar.sh $vCarpetaCopSeg|g" $vCarpetaCopSeg$vArchivoListaLXC
   cat $vCarpetaCopSeg$vArchivoListaLXC
 
 # Importar las máquinas virtuales
   echo ""
   echo "  Importando máquinas virtuales QEMU..."
   echo ""
-  find $vCarpetaCopSeg -print -type f -name "*vma.gz" | grep "vma.gz" | grep qemu > $vCarpetaCopSeg$vArchivoListaQEMU
+  sed -i -e "s|$vCarpetaCopSeg|/root/scripts/p-scripts/MV-CopiaDeSeguridad-Restaurar.sh $vCarpetaCopSeg|g" $vCarpetaCopSeg$vArchivoListaQEMU
   cat $vCarpetaCopSeg$vArchivoListaQEMU
-
 
