@@ -46,6 +46,6 @@ echo ""
       vMensaje="$vFecha - El nodo $(hostname) ahora tiene salida a Internet a través de la siguiente IP pública: $vIPWAN."
       /root/scripts/d-scripts/Telegram-EnviarTexto.sh  "$vTokenDelBot" "$vIdChat" "$vMensaje"
     # Actualizar este archivo para adaptar a la nueva IP
-      sed -i -e 's|$vIPWAN != ""|$vIPWAN != "'"$vIPWAN"'"|g' /root/scripts/p-scripts/PVE-Red-WAN-NotificarCambioDeIP-PorTelegram.sh
+      sed -i -e 's|$vIPWAN != ""|$vIPWAN != "'"$vIPWAN"'"|g' /root/scripts/p-scripts/PVE-Telegram-Notificar-CambioDeWan.sh
   fi
 
