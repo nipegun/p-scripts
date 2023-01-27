@@ -16,10 +16,10 @@
 vCarpetaCopSeg="/CopSegInt/" # La ubicación de la carpeta para las copias debe acabar con /
 vArchivoListaLXC="ListaLXC.txt"
 vArchivoListaQEMU="ListaQEMU.txt"
-#vAlmacenamiento="PVE"
+vAlmacenamiento="PVE"
 #vAlmacenamiento="local-lvm"
 #vAlmacenamiento="local"
-vAlmacenamiento="local-btrfs"
+#vAlmacenamiento="local-btrfs"
 
 vFechaDeEjec=$(date +A%YM%mD%d@%T)
 
