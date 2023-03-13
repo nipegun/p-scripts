@@ -9,7 +9,7 @@
 #  Script de NiPeGun para instalar y configurar xxxxxxxxx en Proxmox
 #
 #  Ejecución remota:
-#  curl -s x | bash
+#  curl -s https://raw.githubusercontent.com/nipegun/p-scripts/master/PostInst/PostInst.sh | bash
 # ----------
 
 vColorAzul="\033[0;34m"
@@ -206,7 +206,6 @@ elif [ $OS_VERS == "11" ]; then
         shutdown -r now
 
     fi
-
 
 fi
 
