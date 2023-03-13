@@ -9,7 +9,7 @@
 #  Script de NiPeGun para instalar el escritorio Mate en ProxmoxVE
 #
 #  Ejecución remota:
-#  curl -s https://raw.githubusercontent.com/nipegun/p-scripts/master/PostInst/EscritorioMate-Instalar.sh | bash
+#  curl -s https://raw.githubusercontent.com/nipegun/p-scripts/master/PostInst/Escritorio-Mate-Instalar.sh | bash
 # ----------
 
 ColorRojo='\033[1;31m'
