@@ -7,6 +7,9 @@
 
 # ----------
 #  Script de NiPeGun para instalar y configurar el escritorio Gnome en Proxmox
+#
+#  Ejecución remota:
+#  curl -s x | bash
 # ----------
 
 vColorAzul="\033[0;34m"
