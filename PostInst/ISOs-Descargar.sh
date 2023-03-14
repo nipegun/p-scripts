@@ -9,7 +9,7 @@
 #  Script de NiPeGun para descargar las últimas versiones de los ISOs más utilizados
 #
 #  Ejecución remota:
-#  curl -s https://raw.githubusercontent.com/nipegun/p-scripts/master/PostInst/Containers-LXC-Descargar.sh | bash
+#  https://raw.githubusercontent.com/nipegun/p-scripts/master/PostInst/ISOs-Descargar.sh | bash
 # ----------
 
 vColorAzul="\033[0;34m"
