@@ -114,8 +114,34 @@ elif [ $OS_VERS == "11" ]; then
         echo "  bridge_fd 0"                       >> /etc/network/interfaces
         echo "  hwaddress 00:00:00:00:02:00"       >> /etc/network/interfaces
 
+      # Activar IOMMU
+        # Determinar si el procesador es Intel o AMD
+          vArquitec="x"
+        # Modificar /etc/default/grub según arquitectura
+          if [ vArquitect == "Intel" ]; then
+            sed -i -e 's|GRUB_CMDLINE_LINUX_DEFAULT=.*|GRUB_CMDLINE_LINUX_DEFAULT="quiet intel_iommu=on iommu=pt pcie_acs_override=downstream"|g' /etc/default/grub
+          elif [ vArquitect == "AMD" ]; then
+            sed -i -e 's|GRUB_CMDLINE_LINUX_DEFAULT=.*|GRUB_CMDLINE_LINUX_DEFAULT="quiet amd_iommu=on iommu=pt pcie_acs_override=downstream"|g' /etc/default/grub
+          else
+            echo ""
+            echo -e "${vColorRojo}    No se pudo activar IOMMU en grub porque no se pudo determinar la arquitectura del procesador.${vFinColor}"
+            echo ""
+          fi
+
+      # Poner la política de entrada del cortafuegos en ACCEPT y activar el cortafuegos
+
+
+      # Agregar las reglas de cortafuegos del cluster
+
+
       # Crear el archivo de fase 1 completada
         touch /root/Fase1Compt.txt
+
+      # Notificar fin de fase 1
+        echo ""
+        echo -e "${vColorVerde}    Fase 1 del script completada.${vFinColor}"
+        echo -e "${vColorVerde}    La siguiente vez que ejecutes el script se ejecutará la fase 2.${vFinColor}"
+        echo ""
 
       # Reiniciar el sistema
         shutdown -r now
@@ -145,6 +171,12 @@ elif [ $OS_VERS == "11" ]; then
       # Crear el archivo de fase 2 completada
         touch /root/Fase2Comp.txt
 
+      # Notificar fin de fase 2
+        echo ""
+        echo -e "${vColorVerde}    Fase 2 del script completada.${vFinColor}"
+        echo -e "${vColorVerde}    La siguiente vez que ejecutes el script se ejecutará la fase 3.${vFinColor}"
+        echo ""
+
       # Reiniciar el sistema
         shutdown -r now
 
@@ -154,7 +186,7 @@ elif [ $OS_VERS == "11" ]; then
     if [ ! -f /root/Fase3Comp.txt ]; then
 
       # Instalar curl
-        apt-get -y install curl mc git
+        apt-get -y install curl
 
       # Instalar los p-scripts
         curl -s https://raw.githubusercontent.com/nipegun/p-scripts/master/PScripts-Sincronizar.sh | bash
@@ -175,10 +207,30 @@ elif [ $OS_VERS == "11" ]; then
         cp /usr/share/perl5/PVE/API2/Subscription.pm /usr/share/perl5/PVE/API2/Subscription.pm.bak
         sed -i -e 's|status => "NotFound",|status => "Active",|g' /usr/share/perl5/PVE/API2/Subscription.pm
 
-      # Crear el usuario de escritorio
-        adduser nipegun
+      # Descargar plantillas de contenedores
+        curl -s https://raw.githubusercontent.com/nipegun/p-scripts/master/PostInst/Containers-LXC-Descargar.sh | bash
 
-      # Instalar el escritorio
+      # Descargar ISOs más utilizadas
+        curl -s https://raw.githubusercontent.com/nipegun/p-scripts/master/PostInst/ISOs-Descargar.sh | bash
+
+      # Crear el archivo de fase 3 completada
+        touch /root/Fase3Comp.txt
+
+      # Notificar fin de fase 3
+        echo ""
+        echo -e "${vColorVerde}    Fase 3 del script completada.${vFinColor}"
+        echo -e "${vColorVerde}    La siguiente vez que ejecutes el script se ejecutará la fase 4.${vFinColor}"
+        echo ""
+
+      # Reiniciar el sistema
+        shutdown -r now
+
+    fi
+
+  # Si no existe el archivo /root/Fase4Comp.txt
+    if [ ! -f /root/Fase4Comp.txt ]; then
+
+      # Instalar el escritorio mate
         curl -s https://raw.githubusercontent.com/nipegun/d-scripts/master/PostInst/Escritorio/EscritorioMate-Instalar.sh | bash
 
       # Instalar el servidor de escritorio remoto
@@ -199,8 +251,17 @@ elif [ $OS_VERS == "11" ]; then
       # Configurar el arranque para modo texto
         curl -s https://raw.githubusercontent.com/nipegun/d-scripts/master/Interfaz-ModoCLI.sh | bash
 
-      # Crear el archivo de fase 3 completada
-        touch /root/Fase3Comp.txt
+      # Crear el usuario de escritorio
+        adduser usuariox
+
+      # Crear el archivo de fase 4 completada
+        touch /root/Fase4Comp.txt
+
+      # Notificar fin de fase 4
+        echo ""
+        echo -e "${vColorVerde}    Fase 4 del script completada.${vFinColor}"
+        echo -e "${vColorVerde}    La siguiente vez que ejecutes el script se ejecutará la fase 5.${vFinColor}"
+        echo ""
 
       # Reiniciar el sistema
         shutdown -r now
