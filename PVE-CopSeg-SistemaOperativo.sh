@@ -111,3 +111,10 @@ echo ""
     mkdir -p "$vCarpetaCopSeg/$vFechaDeEjec/BD/Archivos/etc/pve/" 2> /dev/null
     cp -rfL /etc/pve/. "$vCarpetaCopSeg/$vFechaDeEjec/BD/Archivos/etc/pve/"
 
+# Loguear el trabajo
+  echo "$vFechaDeEjec - Terminada la copia de seguridad interna de ProxmoxVE." >> /var/log/CopiasDeSeguridad.log
+
+echo ""
+echo -e "${vColorVerde}    Ejecución del script, finalizada.${vFinColor}"
+echo ""
+
