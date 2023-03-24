@@ -60,7 +60,7 @@ echo ""
               vzdump $vId --mode stop --compress gzip --dumpdir "$vCarpetaCopSeg$vId"/
               # Cambiar de nombre la carpeta de la copia
                 vNombreDelContenedor=$(find "$vCarpetaCopSeg$vId" -maxdepth 1 -type f -name *.log -exec grep "CT Name" {} \; | cut -d' ' -f6)
-                if [ -d $vCarpetaCopSeg$vId"-lxc-"$vNombreDelContenedor ]; then                                                   # Si ya existe una carpeta con el nombre completo
+                if [ -d "$vCarpetaCopSeg$vId"-lxc-"$vNombreDelContenedor" ]; then                                                 # Si ya existe una carpeta con el nombre completo
                   mv $vCarpetaCopSeg$vId/* $vCarpetaCopSeg$vId"-lxc-"$vNombreDelContenedor/                                       # mover todos los archivos a ella
                   rm -rf "$vCarpetaCopSeg$vId"                                                                                    # y borrar la carpeta que sólo tiene el id del contenedor.
                 else                                                                                                              # Si no existe una carpeta con el mismo nombre
@@ -74,7 +74,7 @@ echo ""
               mkdir -p "$vCarpetaCopSeg$vId" 2> /dev/null
               vzdump $vId --mode stop --compress gzip --dumpdir $vCarpetaCopSeg$vId/
               # Cambiar de nombre la carpeta de la copia
-                vNombreDelContenedor=$(find $vCarpetaCopSeg$vId -maxdepth 1 -type f -name *.log -exec grep "CT Name" {} \; | cut -d' ' -f6)
+                vNombreDelContenedor=$(find "$vCarpetaCopSeg$vId" -maxdepth 1 -type f -name *.log -exec grep "CT Name" {} \; | cut -d' ' -f6)
                 if [ -d "$vCarpetaCopSeg$vId"-lxc-"$vNombreDelContenedor" ]; then                                                   # Si ya existe una carpeta con el nombre completo
                   mv "$vCarpetaCopSeg$vId"/* "$vCarpetaCopSeg$vId"-lxc-"$vNombreDelContenedor"/                                     # mover todos los archivos a ella
                   rm -rf $vCarpetaCopSeg$vId                                                                                        # y borrar la carpeta que sólo tiene el id del contenedor.
