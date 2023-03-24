@@ -146,7 +146,7 @@ echo ""
 #find $CarpetaCopSeg -type d -empty -delete
 
 # Apuntar fecha en el log
-  touch /var/log/CopiasDeSeguridad.log
+  touch /var/log/CopiasDeSeguridad.log 2> /dev/null
   echo "$vFechaDeEjec - Terminada la copia de seguridad de todas las IDs de Promxox." >> /var/log/CopiasDeSeguridad.log
 
 # Notificar fin del script
