@@ -12,53 +12,55 @@
 #  curl -s https://raw.githubusercontent.com/nipegun/p-scripts/master/PVE-CopSeg-SistemaOperativo.sh | bash
 # ----------
 
+vCarpetaCopSeg="/CopSegInt" # No debe acabar c on /
+
 # Comprobar si el script está corriendo como root
   if [ $(id -u) -ne 0 ]; then
     echo "Este script está preparado para ejecutarse como root y no lo has ejecutado como root." >&2
     exit 1
   fi
 
-ColorAzul="\033[0;34m"
-ColorAzulClaro="\033[1;34m"
-ColorVerde='\033[1;32m'
-ColorRojo='\033[1;31m'
-FinColor='\033[0m'
+vColorAzul="\033[0;34m"
+vColorAzulClaro="\033[1;34m"
+vColorVerde='\033[1;32m'
+vColorRojo='\033[1;31m'
+vFinColor='\033[0m'
 
 echo ""
-echo -e "${ColorAzulClaro}  Iniciando script de copia de seguridad interna de ProxmoxVE...${FinColor}"
+echo -e "${vColorAzulClaro}  Iniciando script de copia de seguridad interna de ProxmoxVE...${vFinColor}"
 echo ""
 
 # Definir la fecha de ejecución del script
   vFechaDeEjec=$(date +A%YM%mD%d@%T)
 
 # Crear las carpetas de copias de seguridad interna (en caso de que no existan)
-  mkdir -p /CopSegInt/$vFechaDeEjec/BD/ 2> /dev/null
-  mkdir -p /CopSegInt/$vFechaDeEjec/etc/ 2> /dev/null
-  mkdir -p /CopSegInt/$vFechaDeEjec/home/ 2> /dev/null
-  mkdir -p /CopSegInt/$vFechaDeEjec/root/ 2> /dev/null
+  mkdir -p "$vCarpetaCopSeg/$vFechaDeEjec/BD/" 2> /dev/null
+  mkdir -p "$vCarpetaCopSeg/$vFechaDeEjec/etc/" 2> /dev/null
+  mkdir -p "$vCarpetaCopSeg/$vFechaDeEjec/home/" 2> /dev/null
+  mkdir -p "$vCarpetaCopSeg/$vFechaDeEjec/root/" 2> /dev/null
 
 # Ejecutar copia de seguridad de /etc/
   echo ""
   echo "    Creando copia de seguridad de la carpeta /etc/..."
   echo ""
-  cp -L -r /etc/* /CopSegInt/$vFechaDeEjec/etc/ 2> /dev/null
+  cp -L -r /etc/* "$vCarpetaCopSeg/$vFechaDeEjec/etc/" 2> /dev/null
 
 # Ejecutar copia de seguridad de /root/
   echo ""
   echo "    Creando copia de seguridad de la carpeta /root/..."
   echo ""
-  cp -rL /root/* /CopSegInt/$vFechaDeEjec/root/ 2> /dev/null
+  cp -rL /root/* "$vCarpetaCopSeg/$vFechaDeEjec/root/" 2> /dev/null
 
 # Ejecutar copia de seguridad de la base de datos
   echo ""
   echo "    Creando copia de seguridad de la base de datos Proxmox Cluster File System (pmxcfs)..."
   echo ""
   # https://hacks4geeks.com/entendiendo-el-sistema-de-archivos-del-culster-de-proxmox/
-  mkdir -p /CopSegInt/$vFechaDeEjec/BD/SQLite3/ 2> /dev/null
+  mkdir -p "$vCarpetaCopSeg/$vFechaDeEjec/BD/SQLite3/" 2> /dev/null
   # Comprobar si el paquete sqlite3 está instalado. Si no lo está, instalarlo.
     if [[ $(dpkg-query -s sqlite3 2>/dev/null | grep installed) == "" ]]; then
       echo ""
-      echo -e "${ColorRojo}      sqlite3 no está instalado. Iniciando su instalación...${FinColor}"
+      echo -e "${vColorRojo}      sqlite3 no está instalado. Iniciando su instalación...${vFinColor}"
       echo ""
       apt-get -y update > /dev/null && apt-get -y install sqlite3
       echo ""
@@ -75,7 +77,7 @@ echo ""
     # Comprobar si el paquete sqlformat está instalado. Si no lo está, instalarlo.
       if [[ $(dpkg-query -s sqlformat 2>/dev/null | grep installed) == "" ]]; then
         echo ""
-        echo -e "${ColorRojo}      sqlformat no está instalado. Iniciando su instalación...${FinColor}"
+        echo -e "${vColorRojo}      sqlformat no está instalado. Iniciando su instalación...${vFinColor}"
         echo ""
         apt-get -y update > /dev/null && apt-get -y install sqlformat
         echo ""
@@ -84,12 +86,12 @@ echo ""
     cat /var/lib/pve-cluster/config.db.sql.tmp2 | sed 's/tree (/tree (\n/g' | sed 's/VALUES(/VALUES(\n  /g' | sed 's-,-,\n  -g'  | sed 's-);-\n);\n-g' | sed 's-    -  -g' > /var/lib/pve-cluster/config.db.sql
     rm -f /var/lib/pve-cluster/config.db.sql.tmp1 2> /dev/null
     rm -f /var/lib/pve-cluster/config.db.sql.tmp2 2> /dev/null
-    mv /var/lib/pve-cluster/config.db.bak /CopSegInt/$vFechaDeEjec/BD/SQLite3/config.db
-    mv /var/lib/pve-cluster/config.db.sql /CopSegInt/$vFechaDeEjec/BD/SQLite3/config.db.sql
-    echo "El archivo config.db debe ubicarse en /var/lib/pve-cluster/" > /CopSegInt/$vFechaDeEjec/BD/SQLite3/UbicDelArchivoConfigDB.txt
+    mv /var/lib/pve-cluster/config.db.bak "$vCarpetaCopSeg/$vFechaDeEjec/BD/SQLite3/config.db"
+    mv /var/lib/pve-cluster/config.db.sql "$vCarpetaCopSeg/$vFechaDeEjec/BD/SQLite3/config.db.sql"
+    echo "El archivo config.db debe ubicarse en /var/lib/pve-cluster/" > "$vCarpetaCopSeg/$vFechaDeEjec/BD/SQLite3/UbicDelArchivoConfigDB.txt"
   else
     echo ""
-    echo -e "${ColorRojo}      El estado de la base de datos no es consistente. Intentando exportar lo que se pueda...${FinColor}"
+    echo -e "${vColorRojo}      El estado de la base de datos no es consistente. Intentando exportar lo que se pueda...${vFinColor}"
     echo ""
     sqlite3 /var/lib/pve-cluster/config.db ".recover" | sqlite3 /var/lib/pve-cluster/config.db.recover
     sqlite3 /var/lib/pve-cluster/config.db ".dump" | sed -e 's|^ROLLBACK;\( -- due to errors\)*$|COMMIT;|g' | sqlite3 /var/lib/pve-cluster/config.db.dump-before-rollback
@@ -99,13 +101,13 @@ echo ""
     echo ""
     echo "    Creando exportación del contenido de la tabla tree..."
     echo ""
-    mkdir -p /CopSegInt/$vFechaDeEjec/BD/TablaTree/ 2> /dev/null
-    sqlite3 /var/lib/pve-cluster/config.db 'select * from tree;' > /CopSegInt/$vFechaDeEjec/BD/TablaTree/Contenido.txt
+    mkdir -p "$vCarpetaCopSeg/$vFechaDeEjec/BD/TablaTree/" 2> /dev/null
+    sqlite3 /var/lib/pve-cluster/config.db 'select * from tree;' > "$vCarpetaCopSeg/$vFechaDeEjec/BD/TablaTree/Contenido.txt"
 
   # Crear copia de seguridad de los archivos de dentro de la base de datos
     echo ""
     echo "    Creando copia de seguridad de los archivos de dentro de la base de datos..."
     echo ""
-    mkdir -p /CopSegInt/$vFechaDeEjec/BD/Archivos/etc/pve/ 2> /dev/null
-    cp -rfL /etc/pve/. /CopSegInt/$vFechaDeEjec/BD/Archivos/etc/pve/
+    mkdir -p "$vCarpetaCopSeg/$vFechaDeEjec/BD/Archivos/etc/pve/" 2> /dev/null
+    cp -rfL /etc/pve/. "$vCarpetaCopSeg/$vFechaDeEjec/BD/Archivos/etc/pve/"
 
