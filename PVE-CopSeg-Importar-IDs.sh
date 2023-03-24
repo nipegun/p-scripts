@@ -9,7 +9,7 @@
 #  Script de NiPeGun para importar en Proxmox todas las copias de seguridad de contenedores y máquinas virtuales que haya en una carpeta dada
 #
 #  Ejecución remota:
-#    curl -s https://raw.githubusercontent.com/nipegun/p-scripts/master/PVE-CopSeg-Ids-Todas-Importar.sh | bash
+#    curl -s https://raw.githubusercontent.com/nipegun/p-scripts/master/PVE-CopSeg-Importar-IDs.sh | bash
 # ----------
 
 # Modificar sólo esto antes de ejecutar el script
