@@ -9,8 +9,8 @@
 #  Script de NiPeGun para hacer copia de seguridad de todos los contenedores y las máquinas virtuales de Proxmox
 #
 #  Ejecución remota:
-#    curl -s https://raw.githubusercontent.com/nipegun/p-scripts/master/PVE-CopSeg-Ids-Todas-Exportar.sh | bash
-#    curl -s https://raw.githubusercontent.com/nipegun/p-scripts/master/PVE-CopSeg-Ids-Todas-Exportar.sh | sed 's-vIdIni=100-vIdIni=202-g' | sed 's-vIdFin=99999-vIdIni=207-g' | bash
+#    curl -s https://raw.githubusercontent.com/nipegun/p-scripts/master/PVE-CopSeg-Ids.sh | bash
+#    curl -s https://raw.githubusercontent.com/nipegun/p-scripts/master/PVE-CopSeg-Ids.sh | sed 's-vIdIni=100-vIdIni=202-g' | sed 's-vIdFin=99999-vIdIni=207-g' | bash
 # ----------
 
 # Modificar sólo esto antes de ejecutar el script
