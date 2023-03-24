@@ -151,6 +151,6 @@ echo ""
 
 # Notificar fin del script
   echo ""
-  echo -e "${vColorVerde}  Ejecución del script, finalizada.${vFinColor}"
+  echo -e "${vColorVerde}    Ejecución del script, finalizada.${vFinColor}"
   echo ""
 
