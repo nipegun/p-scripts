@@ -14,7 +14,7 @@
 # ----------
 
 # Modificar sólo esto antes de ejecutar el script
-vCarpetaCopSeg="/tmp/" # La ubicación de la carpeta para las copias debe acabar con /
+vCarpetaCopSeg="/CopSegInt/" # La ubicación de la carpeta para las copias debe acabar con /
 vIdIni=100
 vIdFin=99999
 
