@@ -122,7 +122,7 @@ echo ""
                 vNombreDeLaMV=$(find "$vCarpetaCopSeg$vId" -maxdepth 1 -type f -name *.log -exec grep "VM Name" {} \; | cut -d' ' -f6)
                 if [ -d "$vCarpetaCopSeg$vId"-mv-"$vNombreDeLaMV" ]; then                                                   # Si ya existe una carpeta con el nombre completo
                   mv "$vCarpetaCopSeg$vId"/* "$vCarpetaCopSeg$vId"-mv-"$vNombreDeLaMV"/                                     # mover todos los archivos a ella
-                  rm -rf $vCarpetaCopSeg$vId                                                                                # y borrar la carpeta que sólo tiene el id de la MV.
+                  rm -rf "$vCarpetaCopSeg$vId"                                                                              # y borrar la carpeta que sólo tiene el id de la MV.
                 else                                                                                                        # Si no existe una carpeta con el mismo nombre
                   find $vCarpetaCopSeg -depth -type d -name "$vId" -exec mv {} "$vCarpetaCopSeg$vId"-mv-"$vNombreDeLaMV" \; # mover la carpeta de sólo número a una carpeta con nombre completo.
                 fi
