@@ -9,7 +9,7 @@
 #  Script de NiPeGun para hacer copia de seguridad interna de ProxmoxVE
 #
 #  Ejecución remota:
-#  curl -s https://raw.githubusercontent.com/nipegun/p-scripts/master/PVE-CopSeg-SistemaOperativo.sh | bash
+#    curl -s https://raw.githubusercontent.com/nipegun/p-scripts/master/PVE-CopSeg-SistemaOperativo.sh | bash
 # ----------
 
 vCarpetaCopSeg="/CopSegInt" # No debe acabar c on /
@@ -112,7 +112,7 @@ echo ""
     cp -rfL /etc/pve/. "$vCarpetaCopSeg/$vFechaDeEjec/BD/Archivos/etc/pve/"
 
 # Apuntar fecha en el log
-  touch /var/log/CopiasDeSeguridad.log
+  touch /var/log/CopiasDeSeguridad.log 2> /dev/null
   echo "$vFechaDeEjec - Terminada la copia de seguridad interna de ProxmoxVE." >> /var/log/CopiasDeSeguridad.log
 
 # Notificar fin del script
