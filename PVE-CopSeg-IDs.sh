@@ -61,7 +61,7 @@ echo ""
               # Cambiar de nombre la carpeta de la copia
                 vNombreDelContenedor=$(find "$vCarpetaCopSeg$vId" -maxdepth 1 -type f -name *.log -exec grep "CT Name" {} \; | cut -d' ' -f6)
                 if [ -d "$vCarpetaCopSeg$vId"-lxc-"$vNombreDelContenedor" ]; then                                                 # Si ya existe una carpeta con el nombre completo
-                  mv $vCarpetaCopSeg$vId/* $vCarpetaCopSeg$vId"-lxc-"$vNombreDelContenedor/                                       # mover todos los archivos a ella
+                  mv "$vCarpetaCopSeg$vId"/* "$vCarpetaCopSeg$vId"-lxc-"$vNombreDelContenedor"/                                   # mover todos los archivos a ella
                   rm -rf "$vCarpetaCopSeg$vId"                                                                                    # y borrar la carpeta que sólo tiene el id del contenedor.
                 else                                                                                                              # Si no existe una carpeta con el mismo nombre
                   find $vCarpetaCopSeg -depth -type d -name "$vId" -exec mv {} $vCarpetaCopSeg$vId"-lxc-"$vNombreDelContenedor \; # mover la carpeta de sólo número a una carpeta con nombre completo.
