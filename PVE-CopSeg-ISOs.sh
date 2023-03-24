@@ -47,10 +47,12 @@ echo ""
   mkdir -p                                         "$vCarpetaCopSeg/ISOs/$vFechaDeEjec/var/lib/pve/local-btrfs/template/iso/"
   cp -L -r /var/lib/pve/local-btrfs/template/iso/* "$vCarpetaCopSeg/ISOs/$vFechaDeEjec/var/lib/pve/local-btrfs/template/iso/" 2> /dev/null
 
-# Loguear el trabajo
+# Apuntar fecha en el log
+  touch /var/log/CopiasDeSeguridad.log 2> /dev/null
   echo "$vFechaDeEjec - Terminada la copia de seguridad de los ISOs de ProxmoxVE." >> /var/log/CopiasDeSeguridad.log
 
-echo ""
-echo -e "${vColorVerde}    Ejecución del script, finalizada.${vFinColor}"
-echo ""
+# Notificar fin del script
+  echo ""
+  echo -e "${vColorVerde}    Ejecución del script, finalizada.${vFinColor}"
+  echo ""
 
