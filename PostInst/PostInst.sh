@@ -233,6 +233,9 @@ elif [ $OS_VERS == "11" ]; then
       # Instalar el escritorio mate
         curl -s https://raw.githubusercontent.com/nipegun/d-scripts/master/PostInst/Escritorio/EscritorioMate-Instalar.sh | bash
 
+      # Personalizar el escritorio mate
+        curl
+
       # Instalar el servidor de escritorio remoto
         apt-get -y install xrdp
 
