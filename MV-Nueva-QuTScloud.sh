@@ -9,10 +9,10 @@
 # Script de NiPeGun para crear una máquina virtual de QuTScloud en Proxmox
 #
 # Ejecución remota:
-#   curl -sL x | bash
+#   curl -sL https://raw.githubusercontent.com/nipegun/p-scripts/master/MV-Nueva-QuTScloud.sh | bash
 # ----------
 
-Hay que empezar bajando el vmdk desde aquí:
-
-# https://download.qnap.com/Storage/QuTScloud/TS-KVM-CLD/
+# Hay que empezar bajando el vmdk desde aquí:
+# https://download.qnap.com/Storage/QuTScloud/TS-KVM-CLD/xxxxxxxx.vmdk
+# Pero no se puede acceder a la descarga directamente.
 
