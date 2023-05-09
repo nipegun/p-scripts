@@ -9,11 +9,16 @@
 # Script de NiPeGun para mostrar los kernels instalados en ProxmoxVE
 #
 # Ejecución remota:
-#   curl -s https://raw.githubusercontent.com/nipegun/p-scripts/master/Kernel-MostrarInstalados.sh | bash
+#   curl -s https://raw.githubusercontent.com/nipegun/p-scripts/master/Kernels-Instalados-Mostrar.sh | bash
 # ----------
 
-echo ""
-echo "  Kernels instalados en este servidor Proxmox:"
-echo ""
-dpkg-query -l | grep pve-kernel | cut -d ' ' -f3 | grep -v firmware | grep -v helper | grep "\-pve"
+# Determinar kernels instalados
+  /root/scripts/p-scripts/Kernel-MostrarInstalados.sh | grep pve | grep "\-pve" > /tmp/KernelsInstalados.txt
+
+# Mostrar los kernels instalados
+  echo ""
+  echo "  Kernels instalados en este servidor Proxmox:"
+  echo ""
+  cat /tmp/KernelsInstalados.txt
+  echo ""
 
