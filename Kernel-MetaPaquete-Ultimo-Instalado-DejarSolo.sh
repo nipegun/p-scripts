@@ -85,16 +85,16 @@ elif [ $OS_VERS == "11" ]; then
   # Determinar metapaquetes del kernel instalados en el sistema
     apt list --installed | grep pve-kernel | grep all | cut -d'/' -f1 > /tmp/KernelsMetapaquetesInstalados.txt
   # Crear script
-    echo '#!/bin/bash'                                       > /tmp/KernelMetapaqueteUltimoDejarSolo.sh
-    echo ""                                                 >> /tmp/KernelMetapaqueteUltimoDejarSolo.sh
-    cat /tmp/KernelsMetapaquetesInstalados.txt | head -n -1 >> /tmp/KernelMetapaqueteUltimoDejarSolo.sh
-    sed -i -e 's|pve-kernel|apt-get -y remove pve-kernel|g'    /tmp/KernelMetapaqueteUltimoDejarSolo.sh
-    echo ""                                                 >> /tmp/KernelMetapaqueteUltimoDejarSolo.sh
-    echo "apt-get -y autoremove"                            >> /tmp/KernelMetapaqueteUltimoDejarSolo.sh
+    echo '#!/bin/bash'                                       > /tmp/KernelMetapaqueteUltimoInstaladoDejarSolo.sh
+    echo ""                                                 >> /tmp/KernelMetapaqueteUltimoInstaladoDejarSolo.sh
+    cat /tmp/KernelsMetapaquetesInstalados.txt | head -n -1 >> /tmp/KernelMetapaqueteUltimoInstaladoDejarSolo.sh
+    sed -i -e 's|pve-kernel|apt-get -y remove pve-kernel|g'    /tmp/KernelMetapaqueteUltimoInstaladoDejarSolo.sh
+    echo ""                                                 >> /tmp/KernelMetapaqueteUltimoInstaladoDejarSolo.sh
+    echo "apt-get -y autoremove"                            >> /tmp/KernelMetapaqueteUltimoInstaladoDejarSolo.sh
   # Dar permisos de ejecución al script
-    chmod +x /tmp/KernelMetapaqueteUltimoDejarSolo.sh
+    chmod +x /tmp/KernelMetapaqueteUltimoInstaladoDejarSolo.sh
   # Ejecutar script
-    /tmp/KernelMetapaqueteUltimoDejarSolo.sh
+    /tmp/KernelMetapaqueteUltimoInstaladoDejarSolo.sh
 
 fi
 
