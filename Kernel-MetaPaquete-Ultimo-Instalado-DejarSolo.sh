@@ -83,7 +83,7 @@ elif [ $OS_VERS == "11" ]; then
   echo ""
 
   # Determinar metapaquetes del kernel instalados en el sistema
-    dpkg-query --list 'pve-kernel*' | grep atest | sed 's/.*pve-kernel/pve-kernel/' | cut -d' ' -f1 > /tmp/KernelsMetapaquetesInstalados.txt
+    apt list --installed | grep pve-kernel | grep all | cut -d'/' -f1 > /tmp/KernelsMetapaquetesInstalados.txt
   # Crear script
     echo '#!/bin/bash'                                       > /tmp/KernelMetapaqueteUltimoDejarSolo.sh
     echo ""                                                 >> /tmp/KernelMetapaqueteUltimoDejarSolo.sh
