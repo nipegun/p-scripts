@@ -9,7 +9,7 @@
 #  Script de NiPeGun para instalar el último metapaquete del kernel disponible en ProxmoxVE
 #
 #  Ejecución remota:
-#    curl -s https://raw.githubusercontent.com/nipegun/p-scripts/master/Kernel-Metapaquete-Ultimo-Instalar.sh | bash
+#    curl -s https://raw.githubusercontent.com/nipegun/p-scripts/master/Kernel-Metapaquete-Ultimo-Disponible-Instalar.sh | bash
 # ----------
 
 vColorRojo='\033[1;31m'
