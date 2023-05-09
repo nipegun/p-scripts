@@ -13,7 +13,7 @@
 # ----------
 
 # Determinar kernels instalados
-  /root/scripts/p-scripts/Kernel-MostrarInstalados.sh | grep pve | grep "\-pve" > /tmp/KernelsInstalados.txt
+  apt list --installed | grep pve-kernel | grep -v all | cut -d'/' -f1 > /tmp/KernelsInstalados.txt
 
 # Mostrar los kernels instalados
   echo ""
