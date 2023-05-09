@@ -83,7 +83,7 @@ elif [ $OS_VERS == "11" ]; then
   echo ""
 
   # Determinar kernels instalados
-    /root/scripts/p-scripts/Kernel-MostrarInstalados.sh | grep pve > /tmp/KernelsInstalados.txt
+    /root/scripts/p-scripts/Kernel-MostrarInstalados.sh | grep pve | grep "\-pve" > /tmp/KernelsInstalados.txt
   # Crear script
     echo '#!/bin/bash'                                    > /tmp/BorrarKernelsViejos.sh
     echo ""                                              >> /tmp/BorrarKernelsViejos.sh
