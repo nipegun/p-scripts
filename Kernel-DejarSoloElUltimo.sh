@@ -72,18 +72,9 @@ elif [ $OS_VERS == "10" ]; then
   echo "  Iniciando el script para dejar sólo el último kernel instalado en ProxmoxVE 6..."
   echo ""
 
-  dpkg-query -l | grep pve-kernel | cut -d ' ' -f3 | grep -v firmware | grep -v helper > /tmp/KernelsInstalados.txt
-  echo '#!/bin/bash '                                   > /tmp/BorrarKernelsViejos.sh
-  echo ""                                              >> /tmp/BorrarKernelsViejos.sh
-  cat /tmp/KernelsInstalados.txt | head -n -1          >> /tmp/BorrarKernelsViejos.sh
-  sed -i -e 's|pve-kernel|apt-get -y remove pve-kernel|g' /tmp/BorrarKernelsViejos.sh
-  echo ""                                              >> /tmp/BorrarKernelsViejos.sh
-  echo "apt-get -y autoremove"                         >> /tmp/BorrarKernelsViejos.sh
-  chmod +x                                                /tmp/BorrarKernelsViejos.sh
-  /tmp/BorrarKernelsViejos.sh
-
-  # apt-get -y remove pve-kernel-4.15.18-10-pve --purge
-  # apt-get -y remove pve-headers-4.15.18-10-pve --purge
+  echo ""
+  echo "  Comandos para Proxmox 6 todavía no preparados. Prueba ejecutarlo en otra versión de Proxmox"
+  echo ""
 
 elif [ $OS_VERS == "11" ]; then
 
@@ -91,15 +82,19 @@ elif [ $OS_VERS == "11" ]; then
   echo "  Iniciando el script para dejar sólo el último kernel instalado en ProxmoxVE 7..."
   echo ""
 
-  dpkg-query -l | grep pve-kernel | cut -d ' ' -f3 | grep -v firmware | grep -v helper > /tmp/KernelsInstalados.txt
-  echo '#!/bin/bash '                                   > /tmp/BorrarKernelsViejos.sh
-  echo ""                                              >> /tmp/BorrarKernelsViejos.sh
-  cat /tmp/KernelsInstalados.txt | head -n -1          >> /tmp/BorrarKernelsViejos.sh
-  sed -i -e 's|pve-kernel|apt-get -y remove pve-kernel|g' /tmp/BorrarKernelsViejos.sh
-  echo ""                                              >> /tmp/BorrarKernelsViejos.sh
-  echo "apt-get -y autoremove"                         >> /tmp/BorrarKernelsViejos.sh
-  chmod +x                                                /tmp/BorrarKernelsViejos.sh
-  /tmp/BorrarKernelsViejos.sh
+  # Determinar kernels instalados
+    /root/scripts/p-scripts/Kernel-MostrarInstalados.sh | grep pve > /tmp/KernelsInstalados.txt
+  # Crear script
+    echo '#!/bin/bash'                                    > /tmp/BorrarKernelsViejos.sh
+    echo ""                                              >> /tmp/BorrarKernelsViejos.sh
+    cat /tmp/KernelsInstalados.txt | head -n -1          >> /tmp/BorrarKernelsViejos.sh
+    sed -i -e 's|pve-kernel|apt-get -y remove pve-kernel|g' /tmp/BorrarKernelsViejos.sh
+    echo ""                                              >> /tmp/BorrarKernelsViejos.sh
+    echo "apt-get -y autoremove"                         >> /tmp/BorrarKernelsViejos.sh
+  # Dar permisos de ejecución al script
+    chmod +x /tmp/BorrarKernelsViejos.sh
+  # Ejecutar script
+    /tmp/BorrarKernelsViejos.sh
 
 fi
 
