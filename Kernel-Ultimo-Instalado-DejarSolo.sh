@@ -9,7 +9,7 @@
 #  Script de NiPeGun para dejar sólo el último kernel instalado en ProxmoxVE
 #
 #  Ejecución remota:
-#    curl -s https://raw.githubusercontent.com/nipegun/p-scripts/master/Kernel-DejarSoloElUltimo.sh | bash
+#    curl -s https://raw.githubusercontent.com/nipegun/p-scripts/master/Kernel-Ultimo-Instalado-DejarSolo.sh | bash
 # ----------
 
 vColorRojo='\033[1;31m'
@@ -85,16 +85,16 @@ elif [ $OS_VERS == "11" ]; then
   # Determinar kernels instalados
     /root/scripts/p-scripts/Kernel-MostrarInstalados.sh | grep pve | grep "\-pve" > /tmp/KernelsInstalados.txt
   # Crear script
-    echo '#!/bin/bash'                                    > /tmp/BorrarKernelsViejos.sh
-    echo ""                                              >> /tmp/BorrarKernelsViejos.sh
-    cat /tmp/KernelsInstalados.txt | head -n -1          >> /tmp/BorrarKernelsViejos.sh
-    sed -i -e 's|pve-kernel|apt-get -y remove pve-kernel|g' /tmp/BorrarKernelsViejos.sh
-    echo ""                                              >> /tmp/BorrarKernelsViejos.sh
-    echo "apt-get -y autoremove"                         >> /tmp/BorrarKernelsViejos.sh
+    echo '#!/bin/bash'                                    > /tmp/KernelUltimoInstaladoDejarSolo.sh
+    echo ""                                              >> /tmp/KernelUltimoInstaladoDejarSolo.sh
+    cat /tmp/KernelsInstalados.txt | head -n -1          >> /tmp/KernelUltimoInstaladoDejarSolo.sh
+    sed -i -e 's|pve-kernel|apt-get -y remove pve-kernel|g' /tmp/KernelUltimoInstaladoDejarSolo.sh
+    echo ""                                              >> /tmp/KernelUltimoInstaladoDejarSolo.sh
+    echo "apt-get -y autoremove"                         >> /tmp/KernelUltimoInstaladoDejarSolo.sh
   # Dar permisos de ejecución al script
-    chmod +x /tmp/BorrarKernelsViejos.sh
+    chmod +x /tmp/KernelUltimoInstaladoDejarSolo.sh
   # Ejecutar script
-    /tmp/BorrarKernelsViejos.sh
+    /tmp/KernelUltimoInstaladoDejarSolo.sh
 
 fi
 
