@@ -13,7 +13,7 @@
 # ----------
 
 # Determinar metapaquetes de kernels instalados
-  apt list --installed 2> /dev/null | grep pve-kernel | grep -v all | cut -d'/' -f1 > /tmp/KernelsMetapaquetesInstalados.txt
+  apt list --installed 2> /dev/null | grep pve-kernel | grep all | cut -d'/' -f1 > /tmp/KernelsMetapaquetesInstalados.txt
 # Mostrar los metapaquetes de kernels instalados
   echo ""
   echo "  Kernels instalados en este servidor Proxmox:"
