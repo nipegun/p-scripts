@@ -9,7 +9,7 @@
 #  Script de NiPeGun para instalar el último kernel disponible en ProxmoxVExmoxVE
 #
 #  Ejecución remota:
-#    curl -s https://raw.githubusercontent.com/nipegun/p-scripts/master/Kernel-UltVers-Instalar.sh | bash
+#    curl -s https://raw.githubusercontent.com/nipegun/p-scripts/master/Kernel-Ultimo-Disponible-Instalar.sh | bash
 # ----------
 
 vColorRojo='\033[1;31m'
