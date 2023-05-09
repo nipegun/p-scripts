@@ -13,7 +13,7 @@
 # ----------
 
 # Determinar kernels instalados
-  apt list --installed | grep pve-kernel | grep -v all | cut -d'/' -f1 > /tmp/KernelsInstalados.txt 2> /dev/null
+  apt list --installed | grep pve-kernel | grep -v all | cut -d'/' -f1 > /tmp/KernelsInstalados.txt 2>&1
 
 # Mostrar los kernels instalados
   echo ""
