@@ -6,16 +6,10 @@
 # No tienes que aceptar ningún tipo de términos de uso o licencia para utilizarlo o modificarlo porque va sin CopyLeft.
 
 # ----------
-#  Script de NiPeGun para montar la partición donde se van a hacer las copias de seguridad de PVE
+# Script de NiPeGun para montar la partición donde se van a hacer las copias de seguridad de PVE
 #
-#  Ejecución remota:
-#  curl -sL https://raw.githubusercontent.com/nipegun/p-scripts/master/Part-CopSeg-PVE-Montar.sh | bash
-#
-#  Ejecución remota sin caché:
-#  curl -s -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/nipegun/p-scripts/master/Part-CopSeg-PVE-Montar.sh | bash
-#
-#  Ejecución remota con parámetros:
-#  curl -s https://raw.githubusercontent.com/nipegun/p-scripts/master/Part-CopSeg-PVE-Montar.sh | bash -s Parámetro1 Parámetro2
+# Ejecución remota:
+#   curl -sL https://raw.githubusercontent.com/nipegun/p-scripts/master/Part-CopSeg-PVE-Montar.sh | bash
 # ----------
 
 # Definir variables de color
