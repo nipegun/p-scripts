@@ -9,7 +9,7 @@
 # Script de NiPeGun para montar la partición donde se van a hacer las copias de seguridad de PVE
 #
 # Ejecución remota:
-#   curl -sL https://raw.githubusercontent.com/nipegun/p-scripts/master/Part-CopSeg-PVE-Montar.sh | bash
+#   curl -sL https://raw.githubusercontent.com/nipegun/p-scripts/master/Part-CopSegPVE-Montar.sh | bash
 # ----------
 
 # Definir variables de color
