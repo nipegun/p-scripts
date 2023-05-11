@@ -9,13 +9,13 @@
 #  Script de NiPeGun para montar la partición donde se van a hacer las copias de seguridad de PVE
 #
 #  Ejecución remota:
-#  curl -s x | bash
+#  curl -sL https://raw.githubusercontent.com/nipegun/p-scripts/master/Part-CopSeg-PVE-Montar.sh | bash
 #
 #  Ejecución remota sin caché:
-#  curl -s -H 'Cache-Control: no-cache, no-store' x | bash
+#  curl -s -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/nipegun/p-scripts/master/Part-CopSeg-PVE-Montar.sh | bash
 #
 #  Ejecución remota con parámetros:
-#  curl -s x | bash -s Parámetro1 Parámetro2
+#  curl -s https://raw.githubusercontent.com/nipegun/p-scripts/master/Part-CopSeg-PVE-Montar.sh | bash -s Parámetro1 Parámetro2
 # ----------
 
 # Definir variables de color
@@ -32,13 +32,13 @@
   fi
 
 echo ""
-echo -e "${vColorAzulClaro}  Montando la partición de copias de seguridad...${vFinColor}"
+echo -e "${vColorAzulClaro}  Montando la partición de copias de seguridad de PVE...${vFinColor}"
 echo ""
-mkdir -p /Particiones/CopSeg 2> /dev/null
-mount -t auto -v /dev/disk/by-partlabel/PartCopSeg /Particiones/CopSeg
+mkdir -p /Particiones/CopSegPVE 2> /dev/null
+mount -t auto -v /dev/disk/by-partlabel/PartCopSeg /Particiones/CopSegPVE
 
 echo ""
 echo "    Indicando que el disco que tiene la partición de copia de seguridad se apague después de 5 min. sin usar..."
 echo ""
-hdparm -S 60 /dev/disk/by-partlabel/PartCopSeg
+hdparm -S 60 /dev/disk/by-partlabel/PartCopSegPVE
 
