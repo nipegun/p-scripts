@@ -6,7 +6,7 @@
 # No tienes que aceptar ningún tipo de términos de uso o licencia para utilizarlo o modificarlo porque va sin CopyLeft.
 
 # ----------
-#  Script de NiPeGun para instalar y configurar xxxxxxxxx en Debian
+#  Script de NiPeGun para montar la partición donde se van a hacer las copias de seguridad de PVE
 #
 #  Ejecución remota:
 #  curl -s x | bash
