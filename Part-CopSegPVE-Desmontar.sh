@@ -9,7 +9,7 @@
 # Script de NiPeGun para desmontar la partición donde se van a hacer las copias de seguridad de PVE
 #
 # Ejecución remota:
-#   curl -sL https://raw.githubusercontent.com/nipegun/p-scripts/master/Part-CopSeg-PVE-Desmontar.sh | bash
+#   curl -sL https://raw.githubusercontent.com/nipegun/p-scripts/master/Part-CopSegPVE-Desmontar.sh | bash
 # ----------
 
 # Definir variables de color
