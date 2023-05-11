@@ -29,7 +29,7 @@ echo ""
 echo -e "${vColorAzulClaro}  Montando la partición de copias de seguridad de PVE...${vFinColor}"
 echo ""
 mkdir -p /Particiones/CopSegPVE 2> /dev/null
-mount -t auto -v /dev/disk/by-partlabel/PartCopSeg /Particiones/CopSegPVE
+mount -t auto -v /dev/disk/by-partlabel/PartCopSegPVE /Particiones/CopSegPVE
 
 echo ""
 echo "    Indicando que el disco que tiene la partición de copia de seguridad se apague después de 5 min. sin usar..."
