@@ -6,10 +6,10 @@
 # No tienes que aceptar ningún tipo de términos de uso o licencia para utilizarlo o modificarlo porque va sin CopyLeft.
 
 # ----------
-#  Script de NiPeGun para hacer copia de seguridad interna de ProxmoxVE
+# Script de NiPeGun para hacer copia de seguridad interna de ProxmoxVE
 #
-#  Ejecución remota:
-#    curl -s https://raw.githubusercontent.com/nipegun/p-scripts/master/PVE-CopSeg-SistemaOperativo.sh | bash
+# Ejecución remota:
+#   curl -s https://raw.githubusercontent.com/nipegun/p-scripts/master/PVE-CopSeg-SistemaOperativo.sh | bash
 # ----------
 
 vCarpetaCopSeg="/CopSegInt" # No debe acabar c on /
@@ -20,11 +20,12 @@ vCarpetaCopSeg="/CopSegInt" # No debe acabar c on /
     exit 1
   fi
 
-vColorAzul="\033[0;34m"
-vColorAzulClaro="\033[1;34m"
-vColorVerde='\033[1;32m'
-vColorRojo='\033[1;31m'
-vFinColor='\033[0m'
+# Definir variables de color
+  vColorAzul="\033[0;34m"
+  vColorAzulClaro="\033[1;34m"
+  vColorVerde='\033[1;32m'
+  vColorRojo='\033[1;31m'
+  vFinColor='\033[0m'
 
 echo ""
 echo -e "${vColorAzulClaro}  Iniciando script de copia de seguridad interna de ProxmoxVE...${vFinColor}"
@@ -62,7 +63,8 @@ echo ""
       echo ""
       echo -e "${vColorRojo}      sqlite3 no está instalado. Iniciando su instalación...${vFinColor}"
       echo ""
-      apt-get -y update > /dev/null && apt-get -y install sqlite3
+      apt-get -y update
+      apt-get -y install sqlite3
       echo ""
     fi
   vEstadoDeLaBaseDeDatosDePVE=$(sqlite3 /var/lib/pve-cluster/config.db "PRAGMA integrity_check;")
