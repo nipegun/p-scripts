@@ -9,14 +9,14 @@
 #  Script de NiPeGun para hacer copia de seguridad de todos los contenedores y las máquinas virtuales de Proxmox
 #
 #  Ejecución remota:
-#    curl -s https://raw.githubusercontent.com/nipegun/p-scripts/master/PVE-CopSeg-IDs.sh | bash
-#    curl -s https://raw.githubusercontent.com/nipegun/p-scripts/master/PVE-CopSeg-IDs.sh | sed 's-vIdIni=100-vIdIni=202-g' | sed 's-vIdFin=99999-vIdIni=207-g' | bash
+#    curl -sL https://raw.githubusercontent.com/nipegun/p-scripts/master/PVE-CopSeg-IDs.sh | bash
+#    curl -sL https://raw.githubusercontent.com/nipegun/p-scripts/master/PVE-CopSeg-IDs.sh | sed "s|vCarpetaCopSeg='/CopSegInt/'|vCarpetaCopSeg='/OtraCarpeta/'" | sed "s|vIdIni=100|vIdIni=202|g" | sed "s|vIdFin=999999999|vIdIni=207|g" | bash
 # ----------
 
 # Modificar sólo esto antes de ejecutar el script
-vCarpetaCopSeg="/CopSegInt/" # La ubicación de la carpeta para las copias debe acabar con /
+vCarpetaCopSeg='/CopSegInt/' # La ubicación de la carpeta para las copias debe acabar con /
 vIdIni=100
-vIdFin=99999
+vIdFin=999999999
 
 vFechaDeEjec=$(date +A%YM%mD%d@%T)
 
