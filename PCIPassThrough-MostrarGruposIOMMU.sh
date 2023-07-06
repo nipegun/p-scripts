@@ -6,10 +6,10 @@
 # No tienes que aceptar ningún tipo de términos de uso o licencia para utilizarlo o modificarlo porque va sin CopyLeft.
 
 # ----------
-#  Script de NiPeGun para mostrar el aislamiento/agrupamiento IOMMU en Debian
+# Script de NiPeGun para mostrar el aislamiento/agrupamiento IOMMU en Debian
 #
-#  Ejecución remota:
-#  https://raw.githubusercontent.com/nipegun/p-scripts/master/PCIPassThrough-MostrarGruposIOMMU.sh | bash
+# Ejecución remota:
+#   curl -sL https://raw.githubusercontent.com/nipegun/p-scripts/master/PCIPassThrough-MostrarGruposIOMMU.sh | bash
 # ----------
 
 echo ""
