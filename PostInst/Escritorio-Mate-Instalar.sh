@@ -6,15 +6,24 @@
 # No tienes que aceptar ningún tipo de términos de uso o licencia para utilizarlo o modificarlo porque va sin CopyLeft.
 
 # ----------
-#  Script de NiPeGun para instalar el escritorio Mate en ProxmoxVE
+# Script de NiPeGun para instalar el escritorio Mate en ProxmoxVE
 #
-#  Ejecución remota:
-#  curl -s https://raw.githubusercontent.com/nipegun/p-scripts/master/PostInst/Escritorio-Mate-Instalar.sh | bash
+# Ejecución remota:
+#   curl -sL https://raw.githubusercontent.com/nipegun/p-scripts/master/PostInst/Escritorio-Mate-Instalar.sh | bash
 # ----------
 
-ColorRojo='\033[1;31m'
-ColorVerde='\033[1;32m'
-FinColor='\033[0m'
+# Definir variables de color
+  vColorAzul="\033[0;34m"
+  vColorAzulClaro="\033[1;34m"
+  vColorVerde='\033[1;32m'
+  vColorRojo='\033[1;31m'
+  vFinColor='\033[0m'
+
+# Comprobar si el script está corriendo como root
+  if [ $(id -u) -ne 0 ]; then
+    echo -e "${vColorRojo}  Este script está preparado para ejecutarse como root y no lo has ejecutado como root...${vFinColor}" >&2
+    exit 1
+  fi
 
 # Determinar la versión de Debian
   if [ -f /etc/os-release ]; then             # Para systemd y freedesktop.org
@@ -113,6 +122,42 @@ elif [ $OS_VERS == "11" ]; then
   echo ""
   echo "----------------------------------------------------------------------------"
   echo "  Iniciando el script de instalación del escritorio Mate en ProxmoxVE 7..."
+  echo "----------------------------------------------------------------------------"
+  echo ""
+
+  apt-get -y update
+  apt-get -y install tasksel
+  tasksel install mate-desktop
+  apt-get -y install caja-open-terminal
+  apt-get -y install caja-admin
+  apt-get -y install firefox-esr-l10n-es-es
+  apt-get -y install libreoffice-l10n-es
+
+  # Permitir caja como root
+    mkdir -p /root/.config/autostart/ 2> /dev/null
+    echo "[Desktop Entry]"                > /root/.config/autostart/caja.desktop
+    echo "Type=Application"              >> /root/.config/autostart/caja.desktop
+    echo "Exec=caja --force-desktop"     >> /root/.config/autostart/caja.desktop
+    echo "Hidden=false"                  >> /root/.config/autostart/caja.desktop
+    echo "X-MATE-Autostart-enabled=true" >> /root/.config/autostart/caja.desktop
+    echo "Name[es_ES]=Caja"              >> /root/.config/autostart/caja.desktop
+    echo "Name=Caja"                     >> /root/.config/autostart/caja.desktop
+    echo "Comment[es_ES]="               >> /root/.config/autostart/caja.desktop
+    echo "Comment="                      >> /root/.config/autostart/caja.desktop
+    echo "X-MATE-Autostart-Delay=0"      >> /root/.config/autostart/caja.desktop
+    gio set /root/.config/autostart/caja.desktop "metadata::trusted" yes
+
+  # Deshabilitar network manager
+    echo ""
+    echo "  Deshabilitando NetworkManager..."
+    echo ""
+    systemctl disable NetworkManager.service
+
+elif [ $OS_VERS == "12" ]; then
+
+  echo ""
+  echo "----------------------------------------------------------------------------"
+  echo "  Iniciando el script de instalación del escritorio Mate en ProxmoxVE 8..."
   echo "----------------------------------------------------------------------------"
   echo ""
 
