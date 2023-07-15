@@ -36,10 +36,7 @@ cFinColor='\033[0m'
 if [ $cVerSO == "7" ]; then
 
   echo ""
-  echo "--------------------------------------------------------"
-  echo "  Iniciando el script de instalación de xxxxxx"
-  echo "  para el contenedor LXC de Debian 7..."
-  echo "--------------------------------------------------------"
+  echo "  Iniciando el script de instalación de xxxxxx para el contenedor LXC de Debian 7..."
   echo ""
 
   echo ""
@@ -50,10 +47,7 @@ if [ $cVerSO == "7" ]; then
 elif [ $cVerSO == "8" ]; then
 
   echo ""
-  echo "--------------------------------------------------------"
-  echo "  Iniciando el script de instalación de xxxxxx"
-  echo "  para el contenedor LXC de Debian 8..."
-  echo "--------------------------------------------------------"
+  echo "  Iniciando el script de instalación de xxxxxx para el contenedor LXC de Debian 8..."
   echo ""
 
   echo ""
@@ -64,10 +58,7 @@ elif [ $cVerSO == "8" ]; then
 elif [ $cVerSO == "9" ]; then
 
   echo ""
-  echo "--------------------------------------------------------"
-  echo "  Iniciando el script de instalación de xxxxxx"
-  echo "  para el contenedor LXC de Debian 9..."
-  echo "--------------------------------------------------------"
+  echo "  Iniciando el script de instalación de xxxxxx para el contenedor LXC de Debian 9..."
   echo ""
 
   echo ""
@@ -78,10 +69,7 @@ elif [ $cVerSO == "9" ]; then
 elif [ $cVerSO == "10" ]; then
 
   echo ""
-  echo "--------------------------------------------------------"
-  echo "  Iniciando el script de instalación de xxxxxx"
-  echo "  para el contenedor LXC de Debian 10..."
-  echo "--------------------------------------------------------"
+  echo "  Iniciando el script de instalación de xxxxxx para el contenedor LXC de Debian 10..."
   echo ""
 
   echo ""
@@ -92,10 +80,7 @@ elif [ $cVerSO == "10" ]; then
 elif [ $cVerSO == "11" ]; then
 
   echo ""
-  echo "--------------------------------------------------------"
-  echo "  Iniciando el script de instalación de xxxxxx"
-  echo "  para el contenedor LXC de Debian 11..."
-  echo "--------------------------------------------------------"
+  echo "  Iniciando el script de instalación de xxxxxx para el contenedor LXC de Debian 11..."
   echo ""
 
   echo ""

@@ -41,9 +41,7 @@ cFinColor='\033[0m'
 if [ $cVerSO == "7" ]; then
 
   echo ""
-  echo "-----------------------------------------------------------------------------------------------------------------"
   echo "  Iniciando el script para preparar el contenedor LXC de Debian 7 (Wheezy) para correr mineros crp en docker..."
-  echo "-----------------------------------------------------------------------------------------------------------------"
   echo ""
 
   echo ""
@@ -53,9 +51,7 @@ if [ $cVerSO == "7" ]; then
 elif [ $cVerSO == "8" ]; then
 
   echo ""
-  echo "-----------------------------------------------------------------------------------------------------------------"
   echo "  Iniciando el script para preparar el contenedor LXC de Debian 8 (Jessie) para correr mineros crp en docker..."
-  echo "-----------------------------------------------------------------------------------------------------------------"
   echo ""
 
   echo ""
@@ -65,9 +61,7 @@ elif [ $cVerSO == "8" ]; then
 elif [ $cVerSO == "9" ]; then
 
   echo ""
-  echo "------------------------------------------------------------------------------------------------------------------"
   echo "  Iniciando el script para preparar el contenedor LXC de Debian 9 (Stretch) para correr mineros crp en docker..."
-  echo "------------------------------------------------------------------------------------------------------------------"
   echo ""
 
   echo ""
@@ -77,9 +71,7 @@ elif [ $cVerSO == "9" ]; then
 elif [ $cVerSO == "10" ]; then
 
   echo ""
-  echo "------------------------------------------------------------------------------------------------------------------"
   echo "  Iniciando el script para preparar el contenedor LXC de Debian 10 (Buster) para correr mineros crp en docker..."
-  echo "------------------------------------------------------------------------------------------------------------------"
   echo ""
 
   echo ""
@@ -89,9 +81,7 @@ elif [ $cVerSO == "10" ]; then
 elif [ $cVerSO == "11" ]; then
 
   echo ""
-  echo "--------------------------------------------------------------------------------------------------------------------"
   echo "  Iniciando el script para preparar el contenedor LXC de Debian 11 (Bullseye) para correr mineros crp en docker..."
-  echo "--------------------------------------------------------------------------------------------------------------------"
   echo ""
 
   # Actualizar el sistema

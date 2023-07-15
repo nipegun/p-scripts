@@ -20,38 +20,30 @@ vIntEth0="eth0"
 vIntEth1="eth1"
 vRed="192.168.100"
 
-# Determinar la versión de Debian
-
-  if [ -f /etc/os-release ]; then
-    # Para systemd y freedesktop.org
-      . /etc/os-release
-      cNomSO=$NAME
-      cVerSO=$VERSION_ID
-  elif type lsb_release >/dev/null 2>&1; then
-    # linuxbase.org
-      cNomSO=$(lsb_release -si)
-      cVerSO=$(lsb_release -sr)
-  elif [ -f /etc/lsb-release ]; then
-    # Para algunas versiones de Debian sin el comando lsb_release
-      . /etc/lsb-release
-      cNomSO=$DISTRIB_ID
-      cVerSO=$DISTRIB_RELEASE
-  elif [ -f /etc/debian_version ]; then
-    # Para versiones viejas de Debian.
-      cNomSO=Debian
-      cVerSO=$(cat /etc/debian_version)
-  else
-    # Para el viejo uname (También funciona para BSD)
-      cNomSO=$(uname -s)
-      cVerSO=$(uname -r)
+# Determinar la versión de Proxmox
+  if [ -f /etc/os-release ]; then             # Para systemd y freedesktop.org.
+    . /etc/os-release
+    cNomSO=$NAME
+    cVerSO=$VERSION_ID
+  elif type lsb_release >/dev/null 2>&1; then # Para linuxbase.org.
+    cNomSO=$(lsb_release -si)
+    cVerSO=$(lsb_release -sr)
+  elif [ -f /etc/lsb-release ]; then          # Para algunas versiones de Debian sin el comando lsb_release.
+    . /etc/lsb-release
+    cNomSO=$DISTRIB_ID
+    cVerSO=$DISTRIB_RELEASE
+  elif [ -f /etc/debian_version ]; then       # Para versiones viejas de Debian.
+    cNomSO=Debian
+    cVerSO=$(cat /etc/debian_version)
+  else                                        # Para el viejo uname (También funciona para BSD).
+    cNomSO=$(uname -s)
+    cVerSO=$(uname -r)
   fi
 
 if [ $cVerSO == "7" ]; then
 
   echo ""
-  echo "--------------------------------------------------------------------------------------------------------"
   echo "  Iniciando el script de preparación del container de Debian 7 (Wheezy) para routear con NAT y DHCP..."
-  echo "--------------------------------------------------------------------------------------------------------"
   echo ""
 
   echo ""
@@ -61,9 +53,7 @@ if [ $cVerSO == "7" ]; then
 elif [ $cVerSO == "8" ]; then
 
   echo ""
-  echo "--------------------------------------------------------------------------------------------------------"
   echo "  Iniciando el script de preparación del container de Debian 8 (Jessie) para routear con NAT y DHCP..."
-  echo "--------------------------------------------------------------------------------------------------------"
   echo ""
 
   echo ""
@@ -73,38 +63,38 @@ elif [ $cVerSO == "8" ]; then
 elif [ $cVerSO == "9" ]; then
 
   echo ""
-
   echo "  Iniciando el script de preparación del container de Debian 9 (Stretch) para routear con NAT y DHCP..."
-
   echo ""
 
-  echo ""
-  echo "  Habilitando el forwarding entre interfaces..."
-  echo ""
-  cp /etc/sysctl.conf /etc/sysctl.conf.bak
-  sed -i -e 's|#net.ipv4.ip_forward=1|net.ipv4.ip_forward=1|g' /etc/sysctl.conf
+  #
+    echo ""
+    echo "  Habilitando el forwarding entre interfaces..."
+    echo ""
+    cp /etc/sysctl.conf /etc/sysctl.conf.bak
+    sed -i -e 's|#net.ipv4.ip_forward=1|net.ipv4.ip_forward=1|g' /etc/sysctl.conf
 
-  echo ""
-  echo "  Creando las reglas de IPTables..."
-  echo ""
-  mkdir -p /root/scripts/ 2> /dev/null
-  echo '#!/bin/bash'                                                                                       > /root/scripts/ReglasIPTablesNAT.sh
-  echo "# Poner todo en DROP"                                                                             >> /root/scripts/ReglasIPTablesNAT.sh
-  echo "  iptables -P INPUT DROP"                                                                         >> /root/scripts/ReglasIPTablesNAT.sh
-  echo "  iptables -P OUTPUT DROP"                                                                        >> /root/scripts/ReglasIPTablesNAT.sh
-  echo "  iptables -P FORWARD DROP"                                                                       >> /root/scripts/ReglasIPTablesNAT.sh
-  echo "# Crear las reglas de reenvío"                                                                    >> /root/scripts/ReglasIPTablesNAT.sh
-  echo "  # Reenviar paquetes ICMP desde la interfaz WAN hacia la interfaz LAN"                           >> /root/scripts/ReglasIPTablesNAT.sh
-  echo "    iptables -A FORWARD -i $vIntEth0 -o $vIntEth0 -p icmp -j ACCEPT"                              >> /root/scripts/ReglasIPTablesNAT.sh
-  echo "  # Reenviar paquetes ICMP desde la interfaz LAN hacia la interfaz WAN"                           >> /root/scripts/ReglasIPTablesNAT.sh
-  echo "    iptables -A FORWARD -i $vIntEth1 -o $vIntEth0 -p icmp -j ACCEPT"                              >> /root/scripts/ReglasIPTablesNAT.sh
-  echo "# Crear las reglas de NAT"                                                                        >> /root/scripts/ReglasIPTablesNAT.sh
-  echo "  # Enmascarar bajo la misma IP todo lo que vaya desde la subred de la LAN hacia la interfaz WAN" >> /root/scripts/ReglasIPTablesNAT.sh
-  echo "    iptables -A POSTROUTING -s $vRed.0/24 -o $vIntEth0 -j MASQUERADE"                             >> /root/scripts/ReglasIPTablesNAT.sh
-  chmod +x /root/scripts/ReglasIPTablesNAT.sh
+  #
+    echo ""
+    echo "  Creando las reglas de IPTables..."
+    echo ""
+    mkdir -p /root/scripts/ 2> /dev/null
+    echo '#!/bin/bash'                                                                                       > /root/scripts/ReglasIPTablesNAT.sh
+    echo "# Poner todo en DROP"                                                                             >> /root/scripts/ReglasIPTablesNAT.sh
+    echo "  iptables -P INPUT DROP"                                                                         >> /root/scripts/ReglasIPTablesNAT.sh
+    echo "  iptables -P OUTPUT DROP"                                                                        >> /root/scripts/ReglasIPTablesNAT.sh
+    echo "  iptables -P FORWARD DROP"                                                                       >> /root/scripts/ReglasIPTablesNAT.sh
+    echo "# Crear las reglas de reenvío"                                                                    >> /root/scripts/ReglasIPTablesNAT.sh
+    echo "  # Reenviar paquetes ICMP desde la interfaz WAN hacia la interfaz LAN"                           >> /root/scripts/ReglasIPTablesNAT.sh
+    echo "    iptables -A FORWARD -i $vIntEth0 -o $vIntEth0 -p icmp -j ACCEPT"                              >> /root/scripts/ReglasIPTablesNAT.sh
+    echo "  # Reenviar paquetes ICMP desde la interfaz LAN hacia la interfaz WAN"                           >> /root/scripts/ReglasIPTablesNAT.sh
+    echo "    iptables -A FORWARD -i $vIntEth1 -o $vIntEth0 -p icmp -j ACCEPT"                              >> /root/scripts/ReglasIPTablesNAT.sh
+    echo "# Crear las reglas de NAT"                                                                        >> /root/scripts/ReglasIPTablesNAT.sh
+    echo "  # Enmascarar bajo la misma IP todo lo que vaya desde la subred de la LAN hacia la interfaz WAN" >> /root/scripts/ReglasIPTablesNAT.sh
+    echo "    iptables -A POSTROUTING -s $vRed.0/24 -o $vIntEth0 -j MASQUERADE"                             >> /root/scripts/ReglasIPTablesNAT.sh
+    chmod +x /root/scripts/ReglasIPTablesNAT.sh
 
   # Ejecutar las reglas
-  /root/scripts/ReglasIPTablesNAT.sh
+    /root/scripts/ReglasIPTablesNAT.sh
 
   # Agregar las reglas a los ComandosPostArranque
     sed -i -e 's|/root/scripts/ReglasIPTablesNAT.sh||g' /root/scripts/ComandosPostArranque.sh
@@ -113,9 +103,7 @@ elif [ $cVerSO == "9" ]; then
 elif [ $cVerSO == "10" ]; then
 
   echo ""
-
   echo "  Iniciando el script de preparación del container de Debian 10 (Buster) para routear con NAT y DHCP..."
-
   echo ""
 
   echo ""
@@ -144,7 +132,7 @@ elif [ $cVerSO == "10" ]; then
   chmod +x /root/scripts/ReglasIPTablesNAT.sh
 
   # Ejecutar las reglas
-  /root/scripts/ReglasIPTablesNAT.sh
+    /root/scripts/ReglasIPTablesNAT.sh
 
   # Agregar las reglas a los ComandosPostArranque
     sed -i -e 's|/root/scripts/ReglasIPTablesNAT.sh||g' /root/scripts/ComandosPostArranque.sh
@@ -153,9 +141,7 @@ elif [ $cVerSO == "10" ]; then
 elif [ $cVerSO == "11" ]; then
 
   echo ""
-  echo "-----------------------------------------------------------------------------------------------------------"
   echo "  Iniciando el script de preparación del container de Debian 11 (Bullseye) para routear con NAT y DHCP..."
-  echo "-----------------------------------------------------------------------------------------------------------"
   echo ""
 
   echo ""

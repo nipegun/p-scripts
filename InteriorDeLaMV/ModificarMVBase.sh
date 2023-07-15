@@ -13,7 +13,6 @@
 
 cCantArgumEsperados=2
 
-
 cColorRojo='\033[1;31m'
 cColorVerde='\033[1;32m'
 cFinColor='\033[0m'
@@ -22,19 +21,19 @@ if [ $# -ne $cCantArgumEsperados ]
   then
     echo ""
     echo "------------------------------------------------------------------------------"
-    echo -e "${cColorRojo}Mal uso del script.${cFinColor} El uso correcto sería:"
+    echo -e "${cColorRojo}  Mal uso del script.${cFinColor} El uso correcto sería:"
     echo ""
-    echo -e "  $0 ${cColorVerde}[NombreDeLaNuevaMV] [NombreDelUsuarioNoRoot]${cFinColor}"
+    echo -e "    $0 ${cColorVerde}[NombreDeLaNuevaMV] [NombreDelUsuarioNoRoot]${cFinColor}"
     echo ""
-    echo "Ejemplo:"
+    echo "  Ejemplo:"
     echo ""
-    echo "  $0 debianpepe pepe"
+    echo "    $0 debianpepe pepe"
     echo "------------------------------------------------------------------------------"
     echo ""
     exit
   else
     echo ""
-    echo -e "${cColorVerde}Cambiando el nombre de la MV a $1...${cFinColor}"
+    echo "  Cambiando el nombre de la MV a $1..."
     echo ""
     find /bin        -type f -exec sed -i -e "s|DebianBase|$1|g" {} \;
     find /boot       -type f -exec sed -i -e "s|DebianBase|$1|g" {} \;
@@ -56,7 +55,7 @@ if [ $# -ne $cCantArgumEsperados ]
     find /var        -type f -exec sed -i -e "s|DebianBase|$1|g" {} \;
 
     echo ""
-    echo -e "${cColorVerde}Cambiando el nombre y la carpeta del usuario no root...${cFinColor}"
+    echo "  Cambiando el nombre y la carpeta del usuario no root..."
     echo ""
     usermod -l $2 usuariox
     usermod -d /home/$2 -m $2
@@ -67,7 +66,7 @@ if [ $# -ne $cCantArgumEsperados ]
     echo -e "Nuevo password: ${cColorVerde}$2${cFinColor}"
 
     echo ""
-    echo -e "${cColorVerde}Reconfigurando las interfaces de red...${cFinColor}"
+    echo "  Reconfigurando las interfaces de red..."
     echo ""
     echo "auto lo" > /etc/network/interfaces
     echo "  iface lo inet loopback" >> /etc/network/interfaces
@@ -78,24 +77,24 @@ if [ $# -ne $cCantArgumEsperados ]
     echo "" >> /etc/network/interfaces
 
     echo ""
-    echo -e "${cColorVerde}Reseteando SSH...${cFinColor}"
+    echo "  Reseteando SSH..."
     echo ""
     rm /etc/ssh/ssh_host_*
     dpkg-reconfigure openssh-server
 
     echo ""
-    echo -e "${cColorVerde}Poniendo todos los logs a cero...${cFinColor}"
+    echo "  Poniendo todos los logs a cero..."
     echo ""
     find /var/log/ -type f -exec truncate -s 0 {} \;
 
     echo ""
-    echo -e "${cColorVerde}Borrando el historial de bash...${cFinColor}"
+    echo "  Borrando el historial de bash..."
     echo ""
     rm /root/.bash_history
     rm /home/$2/.bash_history
 
     echo ""
-    echo -e "${cColorVerde}Reiniciando el sistema...${cFinColor}"
+    echo "  Reiniciando el sistema..."
     echo ""
     shutdown -r now
 fi

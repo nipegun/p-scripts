@@ -17,10 +17,7 @@ mysql_secure_installation
 dnf install -y https://yum.centreon.com/standard/22.04/el8/stable/noarch/RPMS/centreon-release-22.04-3.el8.noarch.rpm
 dnf install centreon centreon-database
 
-
-
 yum -y install hostname
 curl -L -s https://raw.githubusercontent.com/centreon/centreon/master/unattended.sh | sh
-
 
 yum search centreon- | grep ^centreon | sed 's-\:.*--' | sed 's/^/yum -y install /' > /tmp/cent.sh

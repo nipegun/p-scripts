@@ -20,30 +20,24 @@ vIntEth0="eth0"
 vIntEth1="eth1"
 vRed="192.168.100"
 
-# Determinar la versión de Debian
-
-  if [ -f /etc/os-release ]; then
-    # Para systemd y freedesktop.org
-      . /etc/os-release
-      cNomSO=$NAME
-      cVerSO=$VERSION_ID
-  elif type lsb_release >/dev/null 2>&1; then
-    # linuxbase.org
-      cNomSO=$(lsb_release -si)
-      cVerSO=$(lsb_release -sr)
-  elif [ -f /etc/lsb-release ]; then
-    # Para algunas versiones de Debian sin el comando lsb_release
-      . /etc/lsb-release
-      cNomSO=$DISTRIB_ID
-      cVerSO=$DISTRIB_RELEASE
-  elif [ -f /etc/debian_version ]; then
-    # Para versiones viejas de Debian.
-      cNomSO=Debian
-      cVerSO=$(cat /etc/debian_version)
-  else
-    # Para el viejo uname (También funciona para BSD)
-      cNomSO=$(uname -s)
-      cVerSO=$(uname -r)
+# Determinar la versión de Proxmox
+  if [ -f /etc/os-release ]; then             # Para systemd y freedesktop.org.
+    . /etc/os-release
+    cNomSO=$NAME
+    cVerSO=$VERSION_ID
+  elif type lsb_release >/dev/null 2>&1; then # Para linuxbase.org.
+    cNomSO=$(lsb_release -si)
+    cVerSO=$(lsb_release -sr)
+  elif [ -f /etc/lsb-release ]; then          # Para algunas versiones de Debian sin el comando lsb_release.
+    . /etc/lsb-release
+    cNomSO=$DISTRIB_ID
+    cVerSO=$DISTRIB_RELEASE
+  elif [ -f /etc/debian_version ]; then       # Para versiones viejas de Debian.
+    cNomSO=Debian
+    cVerSO=$(cat /etc/debian_version)
+  else                                        # Para el viejo uname (También funciona para BSD).
+    cNomSO=$(uname -s)
+    cVerSO=$(uname -r)
   fi
 
 if [ $cVerSO == "7" ]; then

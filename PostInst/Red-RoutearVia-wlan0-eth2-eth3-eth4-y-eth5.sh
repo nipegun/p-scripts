@@ -53,9 +53,9 @@ cFinColor='\033[0m'
 if [ $cVerSO == "7" ]; then
 
   echo ""
-  echo "--------------------------------------------------------------------------------------------------------"
+
   echo "  Iniciando el script de preparación para que ProxmoxVE 3 routee por wlan0, eth2, eth3, eth4 y eth5..."
-  echo "--------------------------------------------------------------------------------------------------------"
+
   echo ""
 
   echo ""
@@ -65,9 +65,9 @@ if [ $cVerSO == "7" ]; then
 elif [ $cVerSO == "8" ]; then
 
   echo ""
-  echo "--------------------------------------------------------------------------------------------------------"
+
   echo "  Iniciando el script de preparación para que ProxmoxVE 4 routee por wlan0, eth2, eth3, eth4 y eth5..."
-  echo "--------------------------------------------------------------------------------------------------------"
+
   echo ""
 
   echo ""
@@ -77,9 +77,9 @@ elif [ $cVerSO == "8" ]; then
 elif [ $cVerSO == "9" ]; then
 
   echo ""
-  echo "--------------------------------------------------------------------------------------------------------"
+
   echo "  Iniciando el script de preparación para que ProxmoxVE 5 routee por wlan0, eth2, eth3, eth4 y eth5..."
-  echo "--------------------------------------------------------------------------------------------------------"
+
   echo ""
 
   echo ""
@@ -145,9 +145,9 @@ elif [ $cVerSO == "9" ]; then
   echo "  bridge-ports $interfazinalambrica1 $interfazcableada3 $interfazcableada4 $interfazcableada5 $interfazcableada6 " >> /etc/network/interfaces
 
   echo ""
-  echo "------------------------------------------------------------------------------------------------------------------"
+
   echo " INDICANDO LA UBICACIÓN DEL ARCHIVO DE CONFIGURACIÓN DEL DEMONIO DHCPD ASI COMO LA INTERFAZ SOBRE LA QUE CORRERÁ"
-  echo "------------------------------------------------------------------------------------------------------------------"
+
   echo ""
   cp /etc/default/isc-dhcp-server /etc/default/isc-dhcp-server.bak
   sed -i -e 's|#DHCPDv4_CONF=/etc/dhcp/dhcpd.conf|DHCPDv4_CONF=/etc/dhcp/dhcpd.conf|g' /etc/default/isc-dhcp-server
@@ -174,9 +174,9 @@ elif [ $cVerSO == "9" ]; then
   echo "}" >> /etc/dhcp/dhcpd.conf
 
   echo ""
-  echo "-----------------------------------------------------------------"
+
   echo "  INDICANDO LA UBICACIÓN DE LA CONFIGURACIÓN DEL DAEMON HOSTAPD"
-  echo "-----------------------------------------------------------------"
+
   echo ""
   cp /etc/default/hostapd /etc/default/hostapd.bak
   sed -i -e 's|#DAEMON_CONF=""|DAEMON_CONF="/etc/hostapd/hostapd.conf"|g' /etc/default/hostapd
@@ -225,9 +225,9 @@ elif [ $cVerSO == "9" ]; then
 elif [ $cVerSO == "10" ]; then
 
   echo ""
-  echo "--------------------------------------------------------------------------------------------------------"
+
   echo "  Iniciando el script de preparación para que ProxmoxVE 6 routee por wlan0, eth2, eth3, eth4 y eth5..."
-  echo "--------------------------------------------------------------------------------------------------------"
+
   echo ""
 
   echo ""
@@ -237,9 +237,9 @@ elif [ $cVerSO == "10" ]; then
 elif [ $cVerSO == "11" ]; then
 
   echo ""
-  echo "--------------------------------------------------------------------------------------------------------"
+
   echo "  Iniciando el script de preparación para que ProxmoxVE 7 routee por wlan0, eth2, eth3, eth4 y eth5..."
-  echo "--------------------------------------------------------------------------------------------------------"
+
   echo ""
 
   echo ""
