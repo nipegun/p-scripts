@@ -21,7 +21,7 @@ vAlmacenamiento="PVE"
 #vAlmacenamiento="local"
 #vAlmacenamiento="local-btrfs"
 
-vFechaEjecScript=$(date +A%YM%mD%d@%T)
+cFechaEjecScript=$(date +A%YM%mD%d@%T)
 
 cColorAzul="\033[0;34m"
 cColorAzulClaro="\033[1;34m"

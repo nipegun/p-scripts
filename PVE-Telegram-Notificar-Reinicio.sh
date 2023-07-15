@@ -15,7 +15,7 @@
 #    /root/scripts/Telegram/IdChat.txt      (Con el id del chat al que enviar el mensaje de Telegram)
 # ----------
 
-vFechaEjecScript=$(date +a%Ym%md%d@%T)
+cFechaEjecScript=$(date +a%Ym%md%d@%T)
 
 cColorAzul="\033[0;34m"
 cColorAzulClaro="\033[1;34m"
@@ -41,6 +41,6 @@ echo ""
 # Notificar por Telegram
   vTokenDelBot=$(cat /root/scripts/Telegram/TokenDelBot.txt)
   vIdChat=$(cat /root/scripts/Telegram/IdChat.txt)
-  vMensaje="$vFechaEjecScript - El nodo $(hostname) ha terminado de reiniciarse. Su IP pública es: $vIPWAN."
+  vMensaje="$cFechaEjecScript - El nodo $(hostname) ha terminado de reiniciarse. Su IP pública es: $vIPWAN."
   /root/scripts/d-scripts/Telegram-EnviarTexto.sh  "$vTokenDelBot" "$vIdChat" "$vMensaje"
 
