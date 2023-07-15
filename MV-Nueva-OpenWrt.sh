@@ -24,7 +24,7 @@ ColorAzul="\033[0;34m"
 ColorAzulClaro="\033[1;34m"
 ColorVerde='\033[1;32m'
 cColorRojo='\033[1;31m'
-FinColor='\033[0m'
+cFinColor='\033[0m'
 
 echo ""
 echo -e "${ColorAzul}  Iniciando el script de creación de máquina virtual de OpenWrt para Proxmox...${cFinColor}"

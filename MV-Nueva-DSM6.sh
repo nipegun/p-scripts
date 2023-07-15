@@ -17,7 +17,7 @@ E_BADARGS=65
 
 ColorAdvertencia='\033[1;31m'
 ColorArgumentos='\033[1;32m'
-FinColor='\033[0m'
+cFinColor='\033[0m'
 
 if [ $# -ne $EXPECTED_ARGS ]
   then

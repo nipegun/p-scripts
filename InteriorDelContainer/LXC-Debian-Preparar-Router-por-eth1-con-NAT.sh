@@ -14,7 +14,7 @@
 
 cColorRojo='\033[1;31m'
 ColorVerde='\033[1;32m'
-FinColor='\033[0m'
+cFinColor='\033[0m'
 
 vIntEth0="eth0"
 vIntEth1="eth1"

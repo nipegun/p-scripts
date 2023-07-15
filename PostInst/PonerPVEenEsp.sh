@@ -14,7 +14,7 @@
 
 cColorRojo='\033[1;31m'
 ColorVerde='\033[1;32m'
-FinColor='\033[0m'
+cFinColor='\033[0m'
 
 # Actualizar
 apt-get -y update

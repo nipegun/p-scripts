@@ -21,7 +21,7 @@ cColorAzul="\033[0;34m"
 cColorAzulClaro="\033[1;34m"
 cColorVerde='\033[1;32m'
 ccColorRojo='\033[1;31m'
-vFinColor='\033[0m'
+vcFinColor='\033[0m'
 
 echo ""
 echo -e "${cColorAzulClaro}  Notificando por Telegram el reinicio del nodo $(hostname)...${vFinColor}"

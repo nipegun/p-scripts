@@ -16,7 +16,7 @@ UtopiaPublicKey=C24C4B77698578B46CDB1C109996B0299984FEE46AAC5CD6025786F5C5C61415
 
 cColorRojo='\033[1;31m'
 ColorVerde='\033[1;32m'
-FinColor='\033[0m'
+cFinColor='\033[0m'
 
 # Determinar la versión de Debian
 

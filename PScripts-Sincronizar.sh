@@ -17,7 +17,7 @@
   cColorAzulClaro="\033[1;34m"
   cColorVerde='\033[1;32m'
   ccColorRojo='\033[1;31m'
-  vFinColor='\033[0m'
+  vcFinColor='\033[0m'
 
 # Comprobar si el paquete wget está instalado. Si no lo está, instalarlo.
   if [[ $(dpkg-query -s wget 2>/dev/null | grep installed) == "" ]]; then

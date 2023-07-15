@@ -16,7 +16,7 @@ cColorAzul="\033[0;34m"
 cColorAzulClaro="\033[1;34m"
 cColorVerde='\033[1;32m'
 ccColorRojo='\033[1;31m'
-vFinColor='\033[0m'
+vcFinColor='\033[0m'
 
 # Comprobar si el script está corriendo como root
   if [ $(id -u) -ne 0 ]; then

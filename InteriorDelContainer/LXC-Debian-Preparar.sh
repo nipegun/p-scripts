@@ -14,7 +14,7 @@
 
 cColorRojo='\033[1;31m'
 ColorVerde='\033[1;32m'
-FinColor='\033[0m'
+cFinColor='\033[0m'
 
 # Determinar la versión de Debian
 
@@ -345,7 +345,7 @@ elif [ $OS_VERS == "11" ]; then
         echo ""                                                                                                   >> /root/scripts/ComandosPostArranque.sh
         echo "cColorRojo='\033[1;31m'"                                                                             >> /root/scripts/ComandosPostArranque.sh
         echo "ColorVerde='\033[1;32m'"                                                                            >> /root/scripts/ComandosPostArranque.sh
-        echo "FinColor='\033[0m'"                                                                                 >> /root/scripts/ComandosPostArranque.sh
+        echo "cFinColor='\033[0m'"                                                                                 >> /root/scripts/ComandosPostArranque.sh
         echo ""                                                                                                   >> /root/scripts/ComandosPostArranque.sh
         echo 'FechaDeEjec=$(date +A%YM%mD%d@%T)'                                                                  >> /root/scripts/ComandosPostArranque.sh
         echo ""                                                                                                   >> /root/scripts/ComandosPostArranque.sh

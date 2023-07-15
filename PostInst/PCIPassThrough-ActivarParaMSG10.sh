@@ -11,7 +11,7 @@
 
 cColorRojo='\033[1;31m'
 ColorVerde='\033[1;32m'
-FinColor='\033[0m'
+cFinColor='\033[0m'
 
 
 sed -i -e 's|GRUB_CMDLINE_LINUX_DEFAULT="quiet"|GRUB_CMDLINE_LINUX_DEFAULT="quiet amd_iommu=on iommu=pt pcie_acs_override=downstream"|g' /etc/default/grub

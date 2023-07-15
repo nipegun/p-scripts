@@ -14,7 +14,7 @@ InterfazPuente=vmbr0
 
 cColorRojo='\033[1;31m'
 ColorVerde='\033[1;32m'
-FinColor='\033[0m'
+cFinColor='\033[0m'
 
 echo ""
 echo -e "${cColorVerde}-----------------------------------------------------------------------------${cFinColor}"

@@ -14,7 +14,7 @@ ArgumentosInsuficientes=65
 
 IniciocColorRojo='\033[1;31m'
 cColorVerde='\033[1;32m'
-FinColor='\033[0m'
+cFinColor='\033[0m'
 
 if [ $# -ne $ArgumentosNecesarios ]
   then

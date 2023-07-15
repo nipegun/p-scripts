@@ -14,7 +14,7 @@
 
 ccColorRojo='\033[1;31m'
 cColorVerde='\033[1;32m'
-vFinColor='\033[0m'
+vcFinColor='\033[0m'
 
 # Determinar la versión de Debian
   if [ -f /etc/os-release ]; then             # Para systemd y freedesktop.org
