@@ -10,7 +10,7 @@
 # ----------
 
 cColorRojo='\033[1;31m'
-ColorVerde='\033[1;32m'
+cColorVerde='\033[1;32m'
 ColorFin='\033[0m'
 
 RangoDeIPsDeLasMVs="192.168.0.201-192.168.0.254"

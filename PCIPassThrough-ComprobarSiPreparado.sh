@@ -13,7 +13,7 @@
 # -----------------------------
 
 cColorRojo='\033[1;31m'
-ColorVerde='\033[1;32m'
+cColorVerde='\033[1;32m'
 cFinColor='\033[0m'
 
 # Procesador con extensiones de virtualización
@@ -31,8 +31,8 @@ cFinColor='\033[0m'
     echo ""
   else
     echo ""
-    echo -e "${ColorRojo}  El equipo no cuenta con un procesador con extensiones de virtualización.${cFinColor}"
-    echo -e "${ColorRojo}  NO podrás pasar tarjetas físicas a máquinas virtuales.${cFinColor}"
+    echo -e "${cColorRojo}  El equipo no cuenta con un procesador con extensiones de virtualización.${cFinColor}"
+    echo -e "${cColorRojo}  NO podrás pasar tarjetas físicas a máquinas virtuales.${cFinColor}"
     echo ""
     exit
   fi
@@ -48,8 +48,8 @@ cFinColor='\033[0m'
     echo ""
   else
     echo ""
-    echo -e "${ColorRojo}  El equipo no tiene soporte IOMMU o no lo has activado en la BIOS.${cFinColor}"
-    echo -e "${ColorRojo}  NO podrás pasar tarjetas físicas a máquinas virtuales.${cFinColor}"
+    echo -e "${cColorRojo}  El equipo no tiene soporte IOMMU o no lo has activado en la BIOS.${cFinColor}"
+    echo -e "${cColorRojo}  NO podrás pasar tarjetas físicas a máquinas virtuales.${cFinColor}"
     echo ""
     exit
   fi
@@ -66,8 +66,8 @@ cFinColor='\033[0m'
       echo ""
     else
       echo ""
-      echo -e "${ColorRojo}  El equipo NO tiene soporte para Interrupt Remmaping.${cFinColor}"
-      echo -e "${ColorRojo}  NO podrás pasar tarjetas físicas a máquinas virtuales.${cFinColor}"
+      echo -e "${cColorRojo}  El equipo NO tiene soporte para Interrupt Remmaping.${cFinColor}"
+      echo -e "${cColorRojo}  NO podrás pasar tarjetas físicas a máquinas virtuales.${cFinColor}"
       echo ""
       exit
   fi
@@ -95,9 +95,9 @@ cFinColor='\033[0m'
       echo ""
     else
       echo ""
-      echo -e "${ColorRojo}  El equipo NO tiene soporte para agrupamiento IOMMU Remmaping.${cFinColor}"
-      echo -e "${ColorRojo}  Probablemente tu procesador no cuente con la característica ACS (Access Control Services).${cFinColor}"
-      echo -e "${ColorRojo}  NO podrás pasar tarjetas físicas a máquinas virtuales.${cFinColor}"
+      echo -e "${cColorRojo}  El equipo NO tiene soporte para agrupamiento IOMMU Remmaping.${cFinColor}"
+      echo -e "${cColorRojo}  Probablemente tu procesador no cuente con la característica ACS (Access Control Services).${cFinColor}"
+      echo -e "${cColorRojo}  NO podrás pasar tarjetas físicas a máquinas virtuales.${cFinColor}"
       echo ""
       exit
   fi
@@ -120,8 +120,8 @@ cFinColor='\033[0m'
         fi
     else
       echo ""
-      echo -e "${ColorRojo}   No has agregado la activación de IOMMU en /etc/default/grub.${cFinColor}"
-      echo -e "${ColorRojo}   No estás listo para pasar tarjetas PCI a máquinas virtuales.${cFinColor}"
+      echo -e "${cColorRojo}   No has agregado la activación de IOMMU en /etc/default/grub.${cFinColor}"
+      echo -e "${cColorRojo}   No estás listo para pasar tarjetas PCI a máquinas virtuales.${cFinColor}"
       echo ""
       exit
   fi
@@ -180,9 +180,9 @@ cFinColor='\033[0m'
       fi
     fi
   else
-    echo -e "${ColorRojo}   ¡Los módulos vfio no están cargados!${cFinColor}"
-    echo -e "${ColorRojo}   vfio, vfio_iommu_type1, vfio_pci y vfio_virqfd deberían estar cargados.${cFinColor}"
-    echo -e "${ColorRojo}   No estás listo para pasar tarjetas PCI a máquinas virtuales.${cFinColor}"
+    echo -e "${cColorRojo}   ¡Los módulos vfio no están cargados!${cFinColor}"
+    echo -e "${cColorRojo}   vfio, vfio_iommu_type1, vfio_pci y vfio_virqfd deberían estar cargados.${cFinColor}"
+    echo -e "${cColorRojo}   No estás listo para pasar tarjetas PCI a máquinas virtuales.${cFinColor}"
     echo ""
     exit
   fi
@@ -211,8 +211,8 @@ cFinColor='\033[0m'
       fi
     else
       echo ""
-      echo -e "${ColorRojo}  El archivo /etc/modprobe.d/pci-passthrough.conf no existe.${cFinColor}"
-      echo -e "${ColorRojo}  No parece que hayas configurado PCIPassThrough en el pasado.${cFinColor}"
+      echo -e "${cColorRojo}  El archivo /etc/modprobe.d/pci-passthrough.conf no existe.${cFinColor}"
+      echo -e "${cColorRojo}  No parece que hayas configurado PCIPassThrough en el pasado.${cFinColor}"
       echo ""
   fi
 

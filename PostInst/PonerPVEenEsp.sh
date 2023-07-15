@@ -13,7 +13,7 @@
 # ----------
 
 cColorRojo='\033[1;31m'
-ColorVerde='\033[1;32m'
+cColorVerde='\033[1;32m'
 cFinColor='\033[0m'
 
 # Actualizar

@@ -10,16 +10,12 @@
 # ----------
 
 echo ""
-echo "-----------------------------"
 echo "  Actualizando ProxmoxVE..."
-echo "-----------------------------"
 echo ""
 apt-get -y update
 apt-get -y dist-upgrade
 apt-get -y autoremove
 
 echo ""
-echo "-----------------------------------"
 echo "  Ejecución de script finalizada"
-echo "-----------------------------------"
 echo ""

@@ -11,18 +11,18 @@
 #  Este script debe correr dentro de una máquina virtual de ProxmoxVE
 # ----------
 
-CantArgsEsperados=2
-ArgsInsuficientes=65
+cCantArgumEsperados=2
+
 
 cColorRojo='\033[1;31m'
-ColorVerde='\033[1;32m'
+cColorVerde='\033[1;32m'
 cFinColor='\033[0m'
 
-if [ $# -ne $CantArgsEsperados ]
+if [ $# -ne $cCantArgumEsperados ]
   then
     echo ""
     echo "------------------------------------------------------------------------------"
-    echo -e "${ColorRojo}Mal uso del script.${cFinColor} El uso correcto sería:"
+    echo -e "${cColorRojo}Mal uso del script.${cFinColor} El uso correcto sería:"
     echo ""
     echo -e "  $0 ${cColorVerde}[NombreDeLaNuevaMV] [NombreDelUsuarioNoRoot]${cFinColor}"
     echo ""
@@ -31,7 +31,7 @@ if [ $# -ne $CantArgsEsperados ]
     echo "  $0 debianpepe pepe"
     echo "------------------------------------------------------------------------------"
     echo ""
-    exit $ArgsInsuficientes
+    exit
   else
     echo ""
     echo -e "${cColorVerde}Cambiando el nombre de la MV a $1...${cFinColor}"

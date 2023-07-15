@@ -12,14 +12,14 @@
 # curl -sL https://raw.githubusercontent.com/nipegun/p-scripts/master/MV-CopiaDeSeguridad-Restaurar.sh | bash
 # ----------
 
-CantArgsEsperados=3
-ArgsInsuficientes=65
+cCantArgumEsperados=3
+
 
 ColorAdvertencia='\033[1;31m'
 ColorArgumentos='\033[1;32m'
 cFinColor='\033[0m'
 
-if [ $# -ne $CantArgsEsperados ]
+if [ $# -ne $cCantArgumEsperados ]
   then
     echo ""
     echo "------------------------------------------------------------------------------"
@@ -31,7 +31,7 @@ if [ $# -ne $CantArgsEsperados ]
     echo "$0 windowsxp.vma.gz 130 local-lvm" 
     echo "------------------------------------------------------------------------------"
     echo ""
-    exit $ArgsInsuficientes
+    exit
   else
     echo ""
     qmrestore $1 $2 -storage $3

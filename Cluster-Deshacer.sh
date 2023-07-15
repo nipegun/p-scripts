@@ -9,24 +9,42 @@
 # Script de NiPeGun para borrar el cluster de Proxmox
 # ----------
 
-# Detener el servicio de cluster
-   systemctl stop pve-cluster
+# Detener el servicio de clúster
+  echo ""
+  echo "  Deteniendo el servicio de clúster..."
+  echo ""
+  systemctl stop pve-cluster
 
-# x
-   pmxcfs -l
+# Mostrar información de los servicios de configuración distribuida
+  echo ""
+  echo "  Mostrando información de los servicios de configuración distribuida..."
+  echo ""
+  pmxcfs -l
 
 # Borrar archivos de configuración del cluster existente
-   rm -f /etc/pve/cluster.conf
-   rm -f /etc/pve/corosync.conf
-   rm -f /etc/cluster/cluster.conf
-   rm -f /etc/corosync/corosync.conf
+  echo ""
+  echo "  Borrando archivos de configuración del cluster existente..."
+  echo ""
+  rm -f /etc/pve/cluster.conf
+  rm -f /etc/pve/corosync.conf
+  rm -f /etc/cluster/cluster.conf
+  rm -f /etc/corosync/corosync.conf
 
-# Borrar el archivo x
-   rm /var/lib/pve-cluster/.pmxcfs.lockfile
+# Borrar el archivo de bloqueo
+  echo ""
+  echo "  Borrando el archivo de bloqueo..."
+  echo ""
+  rm /var/lib/pve-cluster/.pmxcfs.lockfile
 
-# Borrar la clave de autenticación
-   #rm -f /etc/corosync/authkey
+# Borrar la clave de autenticación de CoroSync
+  #echo ""
+  #echo "  Borrando la clave de autenticación de CoroSync..."
+  #echo ""
+  #rm -f /etc/corosync/authkey
 
-# Arrancar el servicio del cluster
-   systemctl start pve-cluster
+# Volver a iniciar el servicio del clúster
+  echo ""
+  echo "  Volviendo a iniciar el servicio del cúster..."
+  echo ""
+  systemctl start pve-cluster
 

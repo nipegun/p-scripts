@@ -12,9 +12,7 @@
 # ----------
 
 echo ""
-
 echo "  Deteniendo todos los servicios de Proxmox..."
-
 echo ""
 
 service pve-cluster stop
@@ -25,6 +23,5 @@ service pveproxy stop
 service pvestatd stop
 service pve-firewall stop
 service pvefw-logger stop
-
 service pve-manager stop
 

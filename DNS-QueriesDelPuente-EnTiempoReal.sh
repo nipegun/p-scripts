@@ -12,7 +12,7 @@
 InterfazPuente=vmbr0
 
 cColorRojo='\033[1;31m'
-ColorVerde='\033[1;32m'
+cColorVerde='\033[1;32m'
 ColorFin='\033[0m'
 
 # Comprobar si el paquete tcpdump está instalado. Si no está, instalarlo.

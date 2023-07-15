@@ -17,7 +17,7 @@ IPDeIPTV="2.2.2.2"
 MacWANDelRouterMovistar="00:00:00:00:00:00"
 
 cColorRojo='\033[1;31m'
-ColorVerde='\033[1;32m'
+cColorVerde='\033[1;32m'
 cFinColor='\033[0m'
 
 echo ""

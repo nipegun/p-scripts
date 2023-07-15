@@ -22,7 +22,7 @@ vURLDescarga="https://cdimage.debian.org/debian-cd/current-live/amd64/iso-hybrid
 
 ColorAzul="\033[0;34m"
 ColorAzulClaro="\033[1;34m"
-ColorVerde='\033[1;32m'
+cColorVerde='\033[1;32m'
 cColorRojo='\033[1;31m'
 cFinColor='\033[0m'
 
@@ -78,7 +78,7 @@ echo ""
   # Comprobar si el paquete wget está instalado. Si no lo está, instalarlo.
     if [[ $(dpkg-query -s wget 2>/dev/null | grep installed) == "" ]]; then
       echo ""
-      echo -e "${ColorRojo}    wget no está instalado. Iniciando su instalación...${cFinColor}"
+      echo -e "${cColorRojo}    wget no está instalado. Iniciando su instalación...${cFinColor}"
       echo ""
       sudo apt-get -y update
       sudo apt-get -y install wget

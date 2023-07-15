@@ -10,8 +10,6 @@
 # ----------
 
 echo ""
-
 pveversion -v
-
 echo ""
 

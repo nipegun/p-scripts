@@ -12,14 +12,14 @@
 #  curl -sL https://raw.githubusercontent.com/nipegun/p-scripts/master/LXC-CopiaDeSeguridad-Crear.sh | bash
 # ------------
 
-CantArgsEsperados=1
-ArgsInsuficientes=65
+cCantArgumEsperados=1
+
 
 ColorAdvertencia='\033[1;31m'
 ColorArgumentos='\033[1;32m'
 cFinColor='\033[0m'
 
-if [ $# -ne $CantArgsEsperados ]
+if [ $# -ne $cCantArgumEsperados ]
   then
     echo ""
     echo "------------------------------------------------------------------------------"
@@ -31,7 +31,7 @@ if [ $# -ne $CantArgsEsperados ]
     echo "  script 130" 
     echo "------------------------------------------------------------------------------"
     echo ""
-    exit $ArgsInsuficientes
+    exit
   else
     echo ""
     vzdump $1 --mode stop --compress gzip --tmpdir /var/tmp --dumpdir /var/tmp

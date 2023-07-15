@@ -10,8 +10,8 @@
 # ----------
 
 # Actualizar la lista de containers disponibles
-pveam update
+  pveam update
 
 # Mostrar la lista de containers disponibles
-pveam available
+  pveam available
 

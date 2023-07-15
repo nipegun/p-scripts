@@ -9,18 +9,18 @@
 # Script de NiPeGun para descargar un container específico en Proxmox
 # ----------
 
-CantArgsEsperados=2
-ArgsInsuficientes=65
+cCantArgumEsperados=2
+
 
 cColorRojo='\033[1;31m'
-ColorVerde='\033[1;32m'
+cColorVerde='\033[1;32m'
 cFinColor='\033[0m'
 
-if [ $# -ne $CantArgsEsperados ]
+if [ $# -ne $cCantArgumEsperados ]
   then
     echo ""
     echo "-------------------------------------------------------------------------------"
-    echo -e "${ColorRojo}  Mal uso del script.${cFinColor} El uso correcto sería:"
+    echo -e "${cColorRojo}  Mal uso del script.${cFinColor} El uso correcto sería:"
     echo ""
     echo -e "  $0 ${cColorVerde}[NombreDelArchivoDePlantilla] [AlmacenamientoDeDestino]${cFinColor}"
     echo ""
@@ -32,7 +32,7 @@ if [ $# -ne $CantArgsEsperados ]
     echo ""
     echo "-------------------------------------------------------------------------------"
     echo ""
-    exit $ArgsInsuficientes
+    exit
   else
     echo ""
     pveam download $2 $1

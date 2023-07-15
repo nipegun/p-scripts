@@ -19,24 +19,24 @@ cFinColor='\033[0m'
 # Determinar la versión de Debian
   if [ -f /etc/os-release ]; then             # Para systemd y freedesktop.org
     . /etc/os-release
-    OS_NAME=$NAME
-    OS_VERS=$VERSION_ID
+    cNomSO=$NAME
+    cVerSO=$VERSION_ID
   elif type lsb_release >/dev/null 2>&1; then # linuxbase.org
-    OS_NAME=$(lsb_release -si)
-    OS_VERS=$(lsb_release -sr)
+    cNomSO=$(lsb_release -si)
+    cVerSO=$(lsb_release -sr)
   elif [ -f /etc/lsb-release ]; then          # Para algunas versiones de Debian sin el comando lsb_release
     . /etc/lsb-release
-    OS_NAME=$DISTRIB_ID
-    OS_VERS=$DISTRIB_RELEASE
+    cNomSO=$DISTRIB_ID
+    cVerSO=$DISTRIB_RELEASE
   elif [ -f /etc/debian_version ]; then        # Para versiones viejas de Debian.
-    OS_NAME=Debian
-    OS_VERS=$(cat /etc/debian_version)
+    cNomSO=Debian
+    cVerSO=$(cat /etc/debian_version)
   else                                         # Para el viejo uname (También funciona para BSD)
-    OS_NAME=$(uname -s)
-    OS_VERS=$(uname -r)
+    cNomSO=$(uname -s)
+    cVerSO=$(uname -r)
   fi
 
-if [ $OS_VERS == "7" ]; then
+if [ $cVerSO == "7" ]; then
 
   echo ""
   echo "  Iniciando el script que permitirá a los no-suscriptores actualizar ProxmoxVE 3..."
@@ -46,7 +46,7 @@ if [ $OS_VERS == "7" ]; then
   echo "    Comandos para ProxmoxVE 3 todavía no preparados. Prueba ejecutar el script en otra versión de ProxmoxVE."
   echo ""
 
-elif [ $OS_VERS == "8" ]; then
+elif [ $cVerSO == "8" ]; then
 
   echo ""
   echo "  Iniciando el script que permitirá a los no-suscriptores actualizar ProxmoxVE 4..."
@@ -56,7 +56,7 @@ elif [ $OS_VERS == "8" ]; then
   echo "    Comandos para ProxmoxVE 4 todavía no preparados. Prueba ejecutar el script en otra versión de ProxmoxVE."
   echo ""
 
-elif [ $OS_VERS == "9" ]; then
+elif [ $cVerSO == "9" ]; then
 
   echo ""
   echo "  Iniciando el script que permitirá a los no-suscriptores actualizar ProxmoxVE 5..."
@@ -78,7 +78,7 @@ elif [ $OS_VERS == "9" ]; then
   echo ""
   apt-get -y update
 
-elif [ $OS_VERS == "10" ]; then
+elif [ $cVerSO == "10" ]; then
 
   echo ""
   echo "  Iniciando el script que permitirá a los no-suscriptores actualizar ProxmoxVE 6..."
@@ -100,7 +100,7 @@ elif [ $OS_VERS == "10" ]; then
   echo ""
   apt-get -y update
 
-elif [ $OS_VERS == "11" ]; then
+elif [ $cVerSO == "11" ]; then
 
   echo ""
   echo "  Iniciando el script que permitirá a los no-suscriptores actualizar ProxmoxVE 7..."

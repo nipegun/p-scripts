@@ -12,19 +12,18 @@
 #  curl -sL https://raw.githubusercontent.com/nipegun/p-scripts/master/LXC-ExpandirRootFSaMaxCap.sh | bash -s NumContainer
 # -------------------------
 
-CantArgsEsperados=1
-ArgsInsuficientes=65
+cCantArgumEsperados=1
 
 cColorRojo='\033[1;31m'
-ColorVerde='\033[1;32m'
+cColorVerde='\033[1;32m'
 ColorAzul='\033[1;34m'
 cFinColor='\033[0m'
 
-if [ $# -ne $CantArgsEsperados ]
+if [ $# -ne $cCantArgumEsperados ]
   then
     echo ""
     echo "-------------------------------------------------------------------------------"
-    echo -e "${ColorRojo}  Mal uso del script.${cFinColor} El uso correcto sería:"
+    echo -e "${cColorRojo}  Mal uso del script.${cFinColor} El uso correcto sería:"
     echo ""
     echo -e "  $0 ${cColorVerde}[NumeroDelContainer]${cFinColor}"
     echo ""
@@ -33,7 +32,7 @@ if [ $# -ne $CantArgsEsperados ]
     echo ""
     echo "-------------------------------------------------------------------------------"
     echo ""
-    exit $ArgsInsuficientes
+    exit
   else
 
     # Apagar el contenedor
