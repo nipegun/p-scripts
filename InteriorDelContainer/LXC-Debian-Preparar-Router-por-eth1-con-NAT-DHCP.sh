@@ -235,7 +235,7 @@ elif [ $OS_VERS == "11" ]; then
       # Comprobar si el paquete wget está instalado. Si no lo está, instalarlo.
         if [[ $(dpkg-query -s wget 2>/dev/null | grep installed) == "" ]]; then
           echo ""
-          echo -e "${cColorRojo}wget no está instalado. Iniciando su instalación...${vFinColor}"
+          echo -e "${cColorRojo}wget no está instalado. Iniciando su instalación...${cFinColor}"
           echo ""
           apt-get -y update && apt-get -y install wget
           echo ""

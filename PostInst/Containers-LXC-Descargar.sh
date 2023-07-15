@@ -16,11 +16,11 @@ cColorAzul="\033[0;34m"
 cColorAzulClaro="\033[1;34m"
 cColorVerde='\033[1;32m'
 ccColorRojo='\033[1;31m'
-vcFinColor='\033[0m'
+cFinColor='\033[0m'
 
 # Comprobar si el script está corriendo como root
   if [ $(id -u) -ne 0 ]; then
-    echo -e "${cColorRojo}  Este script está preparado para ejecutarse como root y no lo has ejecutado como root...${vFinColor}" >&2
+    echo -e "${cColorRojo}  Este script está preparado para ejecutarse como root y no lo has ejecutado como root...${cFinColor}" >&2
     exit 1
   fi
 
@@ -47,47 +47,47 @@ vcFinColor='\033[0m'
 if [ $OS_VERS == "7" ]; then
 
   echo ""
-  echo -e "${cColorAzulClaro}  Iniciando el script de descarga de containers para ProxmoxVE 3...${vFinColor}"
+  echo -e "${cColorAzulClaro}  Iniciando el script de descarga de containers para ProxmoxVE 3...${cFinColor}"
   echo ""
 
   echo ""
-  echo -e "${cColorRojo}    Comandos para Proxmox 3 todavía no preparados. Prueba ejecutarlo en otra versión de Proxmox.${vFinColor}"
+  echo -e "${cColorRojo}    Comandos para Proxmox 3 todavía no preparados. Prueba ejecutarlo en otra versión de Proxmox.${cFinColor}"
   echo ""
 
 elif [ $OS_VERS == "8" ]; then
 
   echo ""
-  echo -e "${cColorAzulClaro}  Iniciando el script de descarga de containers para ProxmoxVE 4...${vFinColor}"
+  echo -e "${cColorAzulClaro}  Iniciando el script de descarga de containers para ProxmoxVE 4...${cFinColor}"
   echo ""
 
   echo ""
-  echo -e "${cColorRojo}    Comandos para Proxmox 4 todavía no preparados. Prueba ejecutarlo en otra versión de Proxmox.${vFinColor}"
+  echo -e "${cColorRojo}    Comandos para Proxmox 4 todavía no preparados. Prueba ejecutarlo en otra versión de Proxmox.${cFinColor}"
   echo ""
 
 elif [ $OS_VERS == "9" ]; then
 
   echo ""
-  echo -e "${cColorAzulClaro}  Iniciando el script de descarga de containers para ProxmoxVE 5...${vFinColor}"
+  echo -e "${cColorAzulClaro}  Iniciando el script de descarga de containers para ProxmoxVE 5...${cFinColor}"
   echo ""
 
   echo ""
-  echo -e "${cColorRojo}    Comandos para Proxmox 5 todavía no preparados. Prueba ejecutarlo en otra versión de Proxmox.${vFinColor}"
+  echo -e "${cColorRojo}    Comandos para Proxmox 5 todavía no preparados. Prueba ejecutarlo en otra versión de Proxmox.${cFinColor}"
   echo ""
 
 elif [ $OS_VERS == "10" ]; then
 
   echo ""
-  echo -e "${cColorAzulClaro}  Iniciando el script de descarga de containers para ProxmoxVE 6...${vFinColor}"
+  echo -e "${cColorAzulClaro}  Iniciando el script de descarga de containers para ProxmoxVE 6...${cFinColor}"
   echo ""
 
   echo ""
-  echo -e "${cColorRojo}    Comandos para Proxmox 6 todavía no preparados. Prueba ejecutarlo en otra versión de Proxmox.${vFinColor}"
+  echo -e "${cColorRojo}    Comandos para Proxmox 6 todavía no preparados. Prueba ejecutarlo en otra versión de Proxmox.${cFinColor}"
   echo ""
 
 elif [ $OS_VERS == "11" ]; then
 
   echo ""
-  echo -e "${cColorAzulClaro}  Iniciando el script de descarga de containers para ProxmoxVE 7...${vFinColor}"
+  echo -e "${cColorAzulClaro}  Iniciando el script de descarga de containers para ProxmoxVE 7...${cFinColor}"
   echo ""
 
   # Descargar última versión del container de Debian

@@ -17,16 +17,16 @@
   cColorAzulClaro="\033[1;34m"
   cColorVerde='\033[1;32m'
   ccColorRojo='\033[1;31m'
-  vcFinColor='\033[0m'
+  cFinColor='\033[0m'
 
 # Comprobar si el script está corriendo como root
   if [ $(id -u) -ne 0 ]; then
-    echo -e "${cColorRojo}  Este script está preparado para ejecutarse como root y no lo has ejecutado como root...${vFinColor}" >&2
+    echo -e "${cColorRojo}  Este script está preparado para ejecutarse como root y no lo has ejecutado como root...${cFinColor}" >&2
     exit 1
   fi
 
 echo ""
-echo -e "${cColorAzulClaro}  Desmontando la partición de copias de seguridad de PVE...${vFinColor}"
+echo -e "${cColorAzulClaro}  Desmontando la partición de copias de seguridad de PVE...${cFinColor}"
 echo ""
 umount /dev/disk/by-partlabel/PartCopSegPVE
 

@@ -25,10 +25,10 @@ vCarpetaCopSeg="/CopSegInt" # No debe acabar c on /
   cColorAzulClaro="\033[1;34m"
   cColorVerde='\033[1;32m'
   ccColorRojo='\033[1;31m'
-  vcFinColor='\033[0m'
+  cFinColor='\033[0m'
 
 echo ""
-echo -e "${cColorAzulClaro}  Iniciando script de copia de seguridad interna de ProxmoxVE...${vFinColor}"
+echo -e "${cColorAzulClaro}  Iniciando script de copia de seguridad interna de ProxmoxVE...${cFinColor}"
 echo ""
 
 # Definir la fecha de ejecución del script
@@ -61,7 +61,7 @@ echo ""
   # Comprobar si el paquete sqlite3 está instalado. Si no lo está, instalarlo.
     if [[ $(dpkg-query -s sqlite3 2>/dev/null | grep installed) == "" ]]; then
       echo ""
-      echo -e "${cColorRojo}      sqlite3 no está instalado. Iniciando su instalación...${vFinColor}"
+      echo -e "${cColorRojo}      sqlite3 no está instalado. Iniciando su instalación...${cFinColor}"
       echo ""
       apt-get -y update
       apt-get -y install sqlite3
@@ -79,7 +79,7 @@ echo ""
     # Comprobar si el paquete sqlformat está instalado. Si no lo está, instalarlo.
       if [[ $(dpkg-query -s sqlformat 2>/dev/null | grep installed) == "" ]]; then
         echo ""
-        echo -e "${cColorRojo}      sqlformat no está instalado. Iniciando su instalación...${vFinColor}"
+        echo -e "${cColorRojo}      sqlformat no está instalado. Iniciando su instalación...${cFinColor}"
         echo ""
         apt-get -y update > /dev/null && apt-get -y install sqlformat
         echo ""
@@ -93,7 +93,7 @@ echo ""
     echo "El archivo config.db debe ubicarse en /var/lib/pve-cluster/" > "$vCarpetaCopSeg/$vFechaDeEjec/BD/SQLite3/UbicDelArchivoConfigDB.txt"
   else
     echo ""
-    echo -e "${cColorRojo}      El estado de la base de datos no es consistente. Intentando exportar lo que se pueda...${vFinColor}"
+    echo -e "${cColorRojo}      El estado de la base de datos no es consistente. Intentando exportar lo que se pueda...${cFinColor}"
     echo ""
     sqlite3 /var/lib/pve-cluster/config.db ".recover" | sqlite3 /var/lib/pve-cluster/config.db.recover
     sqlite3 /var/lib/pve-cluster/config.db ".dump" | sed -e 's|^ROLLBACK;\( -- due to errors\)*$|COMMIT;|g' | sqlite3 /var/lib/pve-cluster/config.db.dump-before-rollback
@@ -119,6 +119,6 @@ echo ""
 
 # Notificar fin del script
   echo ""
-  echo -e "${cColorVerde}    Ejecución del script, finalizada.${vFinColor}"
+  echo -e "${cColorVerde}    Ejecución del script, finalizada.${cFinColor}"
   echo ""
 

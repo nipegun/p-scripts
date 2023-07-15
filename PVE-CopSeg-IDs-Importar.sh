@@ -27,11 +27,11 @@ cColorAzul="\033[0;34m"
 cColorAzulClaro="\033[1;34m"
 cColorVerde='\033[1;32m'
 ccColorRojo='\033[1;31m'
-vcFinColor='\033[0m'
+cFinColor='\033[0m'
 
 echo ""
-echo -e "${cColorAzulClaro}  Iniciando importación la de todos los contenedores y máquinas virtuales en la carpeta:${vFinColor}"
-echo -e "${cColorAzulClaro}  $vCarpetaCopSeg.${vFinColor}"
+echo -e "${cColorAzulClaro}  Iniciando importación la de todos los contenedores y máquinas virtuales en la carpeta:${cFinColor}"
+echo -e "${cColorAzulClaro}  $vCarpetaCopSeg.${cFinColor}"
 echo ""
 echo ""
 
@@ -40,8 +40,8 @@ echo ""
     echo ""
   else
     echo ""
-    echo -e "${cColorRojo}    No se ha encontrado la carpeta de copias de seguridad indicada en el script.${vFinColor}"
-    echo -e "${cColorRojo}    Copia de seguridad abortada.${vFinColor}"
+    echo -e "${cColorRojo}    No se ha encontrado la carpeta de copias de seguridad indicada en el script.${cFinColor}"
+    echo -e "${cColorRojo}    Copia de seguridad abortada.${cFinColor}"
     echo ""
     exit 1
   fi

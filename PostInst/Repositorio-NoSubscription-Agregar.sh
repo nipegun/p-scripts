@@ -14,7 +14,7 @@
 
 ccColorRojo='\033[1;31m'
 cColorVerde='\033[1;32m'
-vcFinColor='\033[0m'
+cFinColor='\033[0m'
 
 # Determinar la versión de Debian
   if [ -f /etc/os-release ]; then             # Para systemd y freedesktop.org
@@ -63,18 +63,18 @@ elif [ $OS_VERS == "9" ]; then
   echo ""
 
   echo ""
-  echo -e "${cColorVerde}    Deshabilitando el repositorio Enterprise...${vFinColor}"
+  echo -e "${cColorVerde}    Deshabilitando el repositorio Enterprise...${cFinColor}"
   echo ""
   cp /etc/apt/sources.list.d/pve-enterprise.list /etc/apt/sources.list.d/pve-enterprise.list.bak
   sed -i -e 's|deb https://enterprise.proxmox.com/debian/pve stretch pve-enterprise|# deb https://enterprise.proxmox.com/debian/pve stretch pve-enterprise|g' /etc/apt/sources.list.d/pve-enterprise.list
 
   echo ""
-  echo -e "${cColorVerde}    Agregando el repositorio para no-suscriptores...${vFinColor}"
+  echo -e "${cColorVerde}    Agregando el repositorio para no-suscriptores...${cFinColor}"
   echo ""
   echo "deb http://download.proxmox.com/debian/pve stretch pve-no-subscription" > /etc/apt/sources.list.d/pve-no-sub.list
 
   echo ""
-  echo -e "${cColorVerde}    Activando cambios en apt...${vFinColor}"
+  echo -e "${cColorVerde}    Activando cambios en apt...${cFinColor}"
   echo ""
   apt-get -y update
 
@@ -85,18 +85,18 @@ elif [ $OS_VERS == "10" ]; then
   echo ""
 
   echo ""
-  echo -e "${cColorVerde}    Deshabilitando el repositorio Enterprise...${vFinColor}"
+  echo -e "${cColorVerde}    Deshabilitando el repositorio Enterprise...${cFinColor}"
   echo ""
   cp /etc/apt/sources.list.d/pve-enterprise.list /etc/apt/sources.list.d/pve-enterprise.list.bak
   sed -i -e 's|deb https://enterprise.proxmox.com/debian/pve buster pve-enterprise|# deb https://enterprise.proxmox.com/debian/pve buster pve-enterprise|g' /etc/apt/sources.list.d/pve-enterprise.list
 
   echo ""
-  echo -e "${cColorVerde}    Agregando el repositorio para no-suscriptores...${vFinColor}"
+  echo -e "${cColorVerde}    Agregando el repositorio para no-suscriptores...${cFinColor}"
   echo ""
   echo "deb http://download.proxmox.com/debian/pve buster pve-no-subscription" > /etc/apt/sources.list.d/pve-no-sub.list
 
   echo ""
-  echo -e "${cColorVerde}    Activando cambios en apt...${vFinColor}"
+  echo -e "${cColorVerde}    Activando cambios en apt...${cFinColor}"
   echo ""
   apt-get -y update
 
@@ -107,18 +107,18 @@ elif [ $OS_VERS == "11" ]; then
   echo ""
 
   echo ""
-  echo -e "${cColorVerde}    Deshabilitando el repositorio Enterprise...${vFinColor}"
+  echo -e "${cColorVerde}    Deshabilitando el repositorio Enterprise...${cFinColor}"
   echo ""
   cp /etc/apt/sources.list.d/pve-enterprise.list /etc/apt/sources.list.d/pve-enterprise.list.bak
   sed -i -e 's|deb https://enterprise.proxmox.com/debian/pve bullseye pve-enterprise|# deb https://enterprise.proxmox.com/debian/pve bullseye pve-enterprise|g' /etc/apt/sources.list.d/pve-enterprise.list
 
   echo ""
-  echo -e "${cColorVerde}    Agregando el repositorio para no-suscriptores...${vFinColor}"
+  echo -e "${cColorVerde}    Agregando el repositorio para no-suscriptores...${cFinColor}"
   echo ""
   echo "deb http://download.proxmox.com/debian/pve bullseye pve-no-subscription" > /etc/apt/sources.list.d/pve-no-subscription.list
 
   echo ""
-  echo -e "${cColorVerde}    Activando cambios en apt...${vFinColor}"
+  echo -e "${cColorVerde}    Activando cambios en apt...${cFinColor}"
   echo ""
   apt-get -y update
 
