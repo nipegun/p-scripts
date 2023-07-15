@@ -21,7 +21,7 @@ vCarpetaCopSeg="/CopSegInt" # No debe acabar c on /
   fi
 
 # Definir constantes de color
-  cColorAzul="\033[0;34m"
+  ccColorAzul="\033[0;34m"
   cColorAzulClaro="\033[1;34m"
   cColorVerde='\033[1;32m'
   cColorRojo='\033[1;31m'

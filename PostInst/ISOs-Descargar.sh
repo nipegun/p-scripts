@@ -12,7 +12,7 @@
 #  https://raw.githubusercontent.com/nipegun/p-scripts/master/PostInst/ISOs-Descargar.sh | bash
 # ----------
 
-cColorAzul="\033[0;34m"
+ccColorAzul="\033[0;34m"
 cColorAzulClaro="\033[1;34m"
 cColorVerde='\033[1;32m'
 cColorRojo='\033[1;31m'
@@ -93,7 +93,7 @@ elif [ $cVerSO == "11" ]; then
   # Comprobar si el paquete curl está instalado. Si no lo está, instalarlo.
     if [[ $(dpkg-query -s curl 2>/dev/null | grep installed) == "" ]]; then
       echo ""
-      echo -e "${cColorRojo}    curl no está instalado. Iniciando su instalación...${cFinColor}"
+      echo -e "${cColorRojo}   El paquete curl no está instalado. Iniciando su instalación...${cFinColor}"
       echo ""
       apt-get -y update
       apt-get -y install curl

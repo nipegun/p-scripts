@@ -9,14 +9,14 @@
 # Script de NiPeGun para insertar una imagen de disquete en una MV de ProxmoxVE
 # ----------
 
-ArgumentosNecesarios=2
-ArgumentosInsuficientes=65
+cCantArgumEsperados=2
 
-IniciocColorRojo='\033[1;31m'
+
+cColorRojo='\033[1;31m'
 cColorVerde='\033[1;32m'
 cFinColor='\033[0m'
 
-if [ $# -ne $ArgumentosNecesarios ]
+if [ $# -ne $cCantArgumEsperados ]
   then
     echo ""
     echo "-----------------------------------------------------------------------------------------"
@@ -28,7 +28,7 @@ if [ $# -ne $ArgumentosNecesarios ]
     echo ''$0' 206 "/home/pepe/Disquete con datos.ima"'
     echo "-----------------------------------------------------------------------------------------"
     echo ""
-    exit $ArgumentosInsuficientes
+    exit
   else
     echo ""
     echo "Para insertar el disquete en la máquina virtual ésta debe primero apagarse."

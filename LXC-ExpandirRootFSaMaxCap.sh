@@ -16,7 +16,7 @@ cCantArgumEsperados=1
 
 cColorRojo='\033[1;31m'
 cColorVerde='\033[1;32m'
-ColorAzul='\033[1;34m'
+cColorAzul='\033[1;34m'
 cFinColor='\033[0m'
 
 if [ $# -ne $cCantArgumEsperados ]
@@ -37,7 +37,7 @@ if [ $# -ne $cCantArgumEsperados ]
 
     # Apagar el contenedor
       echo ""
-      echo -e "${ColorAzul}  Apagando el contendor...${cFinColor}"
+      echo -e "${cColorAzul}  Apagando el contendor...${cFinColor}"
       echo ""
       pct shutdown $1
 
@@ -52,25 +52,25 @@ if [ $# -ne $cCantArgumEsperados ]
 
     # Desmontar el disco (Si es que está montado)
       echo ""
-      echo -e "${ColorAzul}  Desmontando el disco del contendor (si es que está montado en el host de Proxmox)...${cFinColor}"
+      echo -e "${cColorAzul}  Desmontando el disco del contendor (si es que está montado en el host de Proxmox)...${cFinColor}"
       echo ""
       umount "$vCarpetaAlmacenamiento"images/$1/$vArchivoDeDisco
 
     # Forzar la aceptación de que el disco no está montado
       echo ""
-      echo -e "${ColorAzul}  Forzando el bloque MMP a limpio...${cFinColor}"
+      echo -e "${cColorAzul}  Forzando el bloque MMP a limpio...${cFinColor}"
       echo ""
       tune2fs -f -E clear_mmp "$vCarpetaAlmacenamiento"images/$1/$vArchivoDeDisco
 
     # Revisar y reparar el sistema de archivos del contenedor
       echo ""
-      echo -e "${ColorAzul}  Revisando y reparando el sistema de archivos del contendor...${cFinColor}"
+      echo -e "${cColorAzul}  Revisando y reparando el sistema de archivos del contendor...${cFinColor}"
       echo ""
       e2fsck -y -f "$vCarpetaAlmacenamiento"images/$1/$vArchivoDeDisco
 
     # Realizar la expansión
       echo ""
-      echo -e "${ColorAzul}  Efectuando la redimensión...${cFinColor}"
+      echo -e "${cColorAzul}  Efectuando la redimensión...${cFinColor}"
       echo ""
       resize2fs "$vCarpetaAlmacenamiento"images/$1/$vArchivoDeDisco
 

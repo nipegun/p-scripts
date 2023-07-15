@@ -15,17 +15,17 @@
 cCantArgumEsperados=1
 
 
-ColorAdvertencia='\033[1;31m'
-ColorArgumentos='\033[1;32m'
+cColorRojo='\033[1;31m'
+cColorVerde='\033[1;32m'
 cFinColor='\033[0m'
 
 if [ $# -ne $cCantArgumEsperados ]
   then
     echo ""
     echo "------------------------------------------------------------------------------"
-    echo -e "${ColorAdvertencia}  Mal uso del script.${cFinColor} El uso correcto sería:"
+    echo -e "${cColorRojo}  Mal uso del script.${cFinColor} El uso correcto sería:"
     echo ""
-    echo -e "  script ${ColorArgumentos}[IDDelContainer]${cFinColor}"
+    echo -e "  script ${cColorVerde}[IDDelContainer]${cFinColor}"
     echo ""
     echo "  Ejemplo:"
     echo "  script 130" 

@@ -12,8 +12,8 @@
 cCantArgumEsperados=1
 E_BADARGS=65
 
-ColorAdvertencia='\033[1;31m'
-ColorArgumentos='\033[1;32m'
+cColorRojo='\033[1;31m'
+cColorVerde='\033[1;32m'
 cFinColor='\033[0m'
 
 FechaDeExp=$(date +A%YM%mD%d@%T)
@@ -22,9 +22,9 @@ if [ $# -ne $EXPECTED_ARGS ]
   then
     echo ""
     echo "-------------------------------------------------------------------------"
-    echo -e "${ColorAdvertencia}Mal uso del script.${cFinColor} El uso correcto sería:"
+    echo -e "${cColorRojo}Mal uso del script.${cFinColor} El uso correcto sería:"
     echo ""
-    echo -e "edvm ${ColorArgumentos}[IDDeLaVM]${cFinColor}"
+    echo -e "edvm ${cColorVerde}[IDDeLaVM]${cFinColor}"
     echo ""
     echo "Ejemplo:"
     echo "edvm 101"

@@ -13,7 +13,7 @@
 # ----------
 
 # Definir constantes de color
-  cColorAzul="\033[0;34m"
+  ccColorAzul="\033[0;34m"
   cColorAzulClaro="\033[1;34m"
   cColorVerde='\033[1;32m'
   cColorRojo='\033[1;31m'
@@ -22,7 +22,7 @@
 # Comprobar si el paquete wget está instalado. Si no lo está, instalarlo.
   if [[ $(dpkg-query -s wget 2>/dev/null | grep installed) == "" ]]; then
     echo ""
-    echo -e "${cColorRojo}  wget no está instalado. Iniciando su instalación...${cFinColor}"
+    echo -e "${cColorRojo} El paquete wget no está instalado. Iniciando su instalación...${cFinColor}"
     echo ""
     apt-get -y update && apt-get -y install wget
     echo ""

@@ -9,14 +9,13 @@
 # Script de NiPeGun para aumentar el tamaño de un disco de una VM
 # ----------
 
-ArgumentosNecesarios=3
-ArgumentosInsuficientes=65
+cCantArgumEsperados=3
 
-IniciocColorRojo='\033[1;31m'
+cColorRojo='\033[1;31m'
 cColorVerde='\033[1;32m'
 cFinColor='\033[0m'
 
-if [ $# -ne $ArgumentosNecesarios ]
+if [ $# -ne $cCantArgumEsperados ]
   then
     echo ""
     echo "-------------------------------------------------------------------------"
@@ -28,7 +27,7 @@ if [ $# -ne $ArgumentosNecesarios ]
     echo "AgrandarDiscoVirtual 206 sata1 5"
     echo "-------------------------------------------------------------------------"
     echo ""
-    exit $ArgumentosInsuficientes
+    exit
   else
     qm resize $1 $2 +$3G
 fi

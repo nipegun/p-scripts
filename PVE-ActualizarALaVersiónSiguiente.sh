@@ -36,9 +36,7 @@ cFinColor='\033[0m'
 if [ $cVerSO == "7" ]; then
 
   echo ""
-  echo "------------------------------------------------------------------------"
   echo "  Iniciando el script de actualización de ProxmoxVE 3 a ProxmoxVE 4..."
-  echo "------------------------------------------------------------------------"
   echo ""
 
   echo ""
@@ -48,9 +46,7 @@ if [ $cVerSO == "7" ]; then
 elif [ $cVerSO == "8" ]; then
 
   echo ""
-  echo "------------------------------------------------------------------------"
   echo "  Iniciando el script de actualización de ProxmoxVE 4 a ProxmoxVE 5..."
-  echo "------------------------------------------------------------------------"
   echo ""
 
   echo ""
@@ -60,9 +56,7 @@ elif [ $cVerSO == "8" ]; then
 elif [ $cVerSO == "9" ]; then
 
   echo ""
-  echo "------------------------------------------------------------------------"
   echo "  Iniciando el script de actualización de ProxmoxVE 5 a ProxmoxVE 6..."
-  echo "------------------------------------------------------------------------"
   echo ""
 
   echo ""
@@ -72,9 +66,7 @@ elif [ $cVerSO == "9" ]; then
 elif [ $cVerSO == "10" ]; then
 
   echo ""
-  echo "------------------------------------------------------------------------"
   echo "  Iniciando el script de actualización de ProxmoxVE 6 a ProxmoxVE 7..."
-  echo "------------------------------------------------------------------------"
   echo ""
 
   if [ ! -f "/root/ActPVE6a7.txt" ]; then
@@ -126,9 +118,7 @@ elif [ $cVerSO == "10" ]; then
 elif [ $cVerSO == "11" ]; then
 
   echo ""
-  echo "------------------------------------------------------------------------"
   echo "  Iniciando el script de actualización de ProxmoxVE 7 a ProxmoxVE 8..."
-  echo "------------------------------------------------------------------------"
   echo ""
 
   echo ""

@@ -15,17 +15,17 @@
 cCantArgumEsperados=3
 
 
-ColorAdvertencia='\033[1;31m'
-ColorArgumentos='\033[1;32m'
+cColorRojo='\033[1;31m'
+cColorVerde='\033[1;32m'
 cFinColor='\033[0m'
 
 if [ $# -ne $cCantArgumEsperados ]
   then
     echo ""
     echo "------------------------------------------------------------------------------"
-    echo -e "${ColorAdvertencia}Mal uso del script.${cFinColor} El uso correcto sería:"
+    echo -e "${cColorRojo}Mal uso del script.${cFinColor} El uso correcto sería:"
     echo ""
-    echo -e "$0 ${ColorArgumentos}[RutaAbsolutaAlArchivo] [IDDelNuevoContainer] [Almacenamiento]${cFinColor}"
+    echo -e "$0 ${cColorVerde}[RutaAbsolutaAlArchivo] [IDDelNuevoContainer] [Almacenamiento]${cFinColor}"
     echo ""
     echo "Ejemplo:"
     echo "$0 '/root/copias/vzdump-lxc-777.tar' 130 local-lvm" 
