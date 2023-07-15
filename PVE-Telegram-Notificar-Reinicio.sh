@@ -20,7 +20,7 @@ vFecha=$(date +%Y/%m/%d@%T)
 cColorAzul="\033[0;34m"
 cColorAzulClaro="\033[1;34m"
 cColorVerde='\033[1;32m'
-ccColorRojo='\033[1;31m'
+cColorRojo='\033[1;31m'
 cFinColor='\033[0m'
 
 echo ""

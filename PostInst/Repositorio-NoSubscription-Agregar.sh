@@ -12,7 +12,7 @@
 #  curl -sL https://raw.githubusercontent.com/nipegun/p-scripts/master/PostInst/Repositorio-NoSubscription-Agregar.sh | bash
 # ----------
 
-ccColorRojo='\033[1;31m'
+cColorRojo='\033[1;31m'
 cColorVerde='\033[1;32m'
 cFinColor='\033[0m'
 
