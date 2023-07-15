@@ -9,12 +9,12 @@
 # Script de NiPeGun para re-escribir /etc/network/interfaceds con los nombres antiguos de las interfaces de red
 # ----------------
 
-ColorRojo='\033[1;31m'
+cColorRojo='\033[1;31m'
 ColorVerde='\033[1;32m'
 FinColor='\033[0m'
 
 echo ""
-echo -e "${ColorVerde}Configurando las interfaces de red...${FinColor}"
+echo -e "${cColorVerde}Configurando las interfaces de red...${cFinColor}"
 echo ""
 echo "auto lo"                              > /etc/network/interfaces
 echo "iface lo inet loopback"              >> /etc/network/interfaces

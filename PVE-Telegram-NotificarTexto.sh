@@ -20,7 +20,7 @@ vFecha=$(date +%Y/%m/%d@%T)
 cColorAzul="\033[0;34m"
 cColorAzulClaro="\033[1;34m"
 cColorVerde='\033[1;32m'
-cColorRojo='\033[1;31m'
+ccColorRojo='\033[1;31m'
 vFinColor='\033[0m'
 
 vMensaje="$1"

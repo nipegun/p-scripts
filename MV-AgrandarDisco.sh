@@ -12,17 +12,17 @@
 ArgumentosNecesarios=3
 ArgumentosInsuficientes=65
 
-InicioColorRojo='\033[1;31m'
-InicioColorVerde='\033[1;32m'
+IniciocColorRojo='\033[1;31m'
+cColorVerde='\033[1;32m'
 FinColor='\033[0m'
 
 if [ $# -ne $ArgumentosNecesarios ]
   then
     echo ""
     echo "-------------------------------------------------------------------------"
-    echo -e "${InicioColorRojo}Mal uso del script.${FinColor} El uso correcto sería:"
+    echo -e "${cColorRojo}Mal uso del script.${cFinColor} El uso correcto sería:"
     echo ""
-    echo -e "AgrandarDiscoVirtual ${InicioColorVerde}[IDDeLaVM] [PuertoDelDisco] [GigasASumar]${FinColor}"
+    echo -e "AgrandarDiscoVirtual ${cColorVerde}[IDDeLaVM] [PuertoDelDisco] [GigasASumar]${cFinColor}"
     echo ""
     echo "Ejemplo:"
     echo "AgrandarDiscoVirtual 206 sata1 5"

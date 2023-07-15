@@ -12,25 +12,25 @@
 InterfazCableada=eth0
 InterfazPuente=vmbr0
 
-ColorRojo='\033[1;31m'
+cColorRojo='\033[1;31m'
 ColorVerde='\033[1;32m'
 FinColor='\033[0m'
 
 echo ""
-echo -e "${ColorVerde}-----------------------------------------------------------------------------${FinColor}"
-echo -e "${ColorVerde}Iniciando el script de conexión de Proxmox a un router en modo enmascarado...${FinColor}"
-echo -e "${ColorVerde}-----------------------------------------------------------------------------${FinColor}"
+echo -e "${cColorVerde}-----------------------------------------------------------------------------${cFinColor}"
+echo -e "${cColorVerde}Iniciando el script de conexión de Proxmox a un router en modo enmascarado...${cFinColor}"
+echo -e "${cColorVerde}-----------------------------------------------------------------------------${cFinColor}"
 echo ""
 
 echo ""
-echo -e "${ColorVerde}Configurando la interfaz loopback...${FinColor}"
+echo -e "${cColorVerde}Configurando la interfaz loopback...${cFinColor}"
 echo ""
 echo "auto lo"                   > /etc/network/interfaces
 echo "  iface lo inet loopback" >> /etc/network/interfaces
 echo ""                         >> /etc/network/interfaces
 
 echo ""
-echo -e "${ColorVerde}Configurando el puerto ethernet...${FinColor}"
+echo -e "${cColorVerde}Configurando el puerto ethernet...${cFinColor}"
 echo ""
 echo "auto $InterfazCableada"               >> /etc/network/interfaces
 echo "iface $InterfazCableada inet dhcp"    >> /etc/network/interfaces
@@ -38,7 +38,7 @@ echo "  hwaddress ether 00:00:00:00:02:00"  >> /etc/network/interfaces
 echo ""                                     >> /etc/network/interfaces
 
 echo ""
-echo -e "${ColorVerde}Configurando el puente para las MVs...${FinColor}"
+echo -e "${cColorVerde}Configurando el puente para las MVs...${cFinColor}"
 echo ""
 echo "  iface $InterfazPuente inet static"                                                               >> /etc/network/interfaces
 echo "  address 192.168.0.200"                                                                           >> /etc/network/interfaces
@@ -55,8 +55,8 @@ echo "  post-up   iptables -t raw -I PREROUTING -i fwbr+ -j CT --zone 1"        
 echo "  post-down iptables -t raw -D PREROUTING -i fwbr+ -j CT --zone 1"                                 >> /etc/network/interfaces
 
 echo ""
-echo -e "${ColorVerde}Indicando la ubicación del archivo de configuración del demonio dhcpd${FinColor}"
-echo -e "${ColorVerde}y la interfaz sobre la que correrá...${FinColor}"
+echo -e "${cColorVerde}Indicando la ubicación del archivo de configuración del demonio dhcpd${cFinColor}"
+echo -e "${cColorVerde}y la interfaz sobre la que correrá...${cFinColor}"
 echo ""
 cp /etc/default/isc-dhcp-server /etc/default/isc-dhcp-server.bak
 echo 'DHCPDv4_CONF=/etc/dhcp/dhcpd.conf'  > /etc/default/isc-dhcp-server
@@ -64,7 +64,7 @@ echo 'INTERFACESv4="$InterfazPuente"'    >> /etc/default/isc-dhcp-server
 echo 'INTERFACESv6=""'                   >> /etc/default/isc-dhcp-server
 
 echo ""
-echo -e "${ColorVerde}Configurando el servidor DHCP...${FinColor}"
+echo -e "${cColorVerde}Configurando el servidor DHCP...${cFinColor}"
 echo ""
 cp /etc/dhcp/dhcpd.conf /etc/dhcp/dhcpd.conf.bak
 echo "authoritative;"                                  > /etc/dhcp/dhcpd.conf
@@ -348,13 +348,13 @@ echo ""                                               >> /etc/dhcp/dhcpd.conf
 echo "}"                                              >> /etc/dhcp/dhcpd.conf
 
 echo ""
-echo -e "${ColorVerde}--------------------------------------------------------------------------------------------${FinColor}"
-echo -e "${ColorVerde}Ejecución del script de conexión de Proxmox a un router normal, finalizada.${FinColor}"
+echo -e "${cColorVerde}--------------------------------------------------------------------------------------------${cFinColor}"
+echo -e "${cColorVerde}Ejecución del script de conexión de Proxmox a un router normal, finalizada.${cFinColor}"
 echo ""
-echo -e "${ColorVerde}Ya puedes apagar Proxmox ejecutando:${FinColor}"
+echo -e "${cColorVerde}Ya puedes apagar Proxmox ejecutando:${cFinColor}"
 echo "shutdown -h now"
-echo -e "${ColorVerde}y conectarle el cable ethernet a cualquier puerto LAN del router.${FinColor}"
+echo -e "${cColorVerde}y conectarle el cable ethernet a cualquier puerto LAN del router.${cFinColor}"
 echo ""
-echo -e "${ColorVerde}Después de encenderlo de nuevo, PVE debería tener internet a través de la interfaz $InterfazCableada1${FinColor}"
-echo -e "${ColorVerde}--------------------------------------------------------------------------------------------${FinColor}"
+echo -e "${cColorVerde}Después de encenderlo de nuevo, PVE debería tener internet a través de la interfaz $InterfazCableada1${cFinColor}"
+echo -e "${cColorVerde}--------------------------------------------------------------------------------------------${cFinColor}"
 echo ""

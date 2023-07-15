@@ -23,9 +23,9 @@ if [ $# -ne $EXPECTED_ARGS ]
   then
     echo ""
     echo "-------------------------------------------------------------------------"
-    echo -e "${ColorAdvertencia}Mal uso del script.${FinColor} El uso correcto sería:"
+    echo -e "${ColorAdvertencia}Mal uso del script.${cFinColor} El uso correcto sería:"
     echo ""
-    echo -e "CrearMVDSMParaMSGen10 ${ColorArgumentos}[IDDeLaMV] [Núcleos] [RAM] [TamañoDiscoEnGB] [NombreDelAlmacenamiento]${FinColor}"
+    echo -e "CrearMVDSMParaMSGen10 ${ColorArgumentos}[IDDeLaMV] [Núcleos] [RAM] [TamañoDiscoEnGB] [NombreDelAlmacenamiento]${cFinColor}"
     echo ""
     echo "Ejemplo:"
     echo ""
@@ -80,10 +80,10 @@ if [ $# -ne $EXPECTED_ARGS ]
       cat /etc/pve/qemu-server/$1.conf
 
     echo ""
-    echo -e "  ${ColorArgumentos}Proceso de creación de la máquina virtual, FINALIZADO.${FinColor}"
-    echo -e "  ${ColorArgumentos}Ya puedes arrancar la máquina virtual normalmente.${FinColor}"
-    echo -e "  ${ColorArgumentos}Para que funcione el apagado ACPI tendrás que aplicar un parche.${FinColor}"
-    echo -e "  ${ColorArgumentos}Tienes más información al respecto en hacks4geeks.com${FinColor}"
+    echo -e "  ${ColorArgumentos}Proceso de creación de la máquina virtual, FINALIZADO.${cFinColor}"
+    echo -e "  ${ColorArgumentos}Ya puedes arrancar la máquina virtual normalmente.${cFinColor}"
+    echo -e "  ${ColorArgumentos}Para que funcione el apagado ACPI tendrás que aplicar un parche.${cFinColor}"
+    echo -e "  ${ColorArgumentos}Tienes más información al respecto en hacks4geeks.com${cFinColor}"
     echo ""
 fi
 

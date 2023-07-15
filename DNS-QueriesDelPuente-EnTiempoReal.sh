@@ -11,7 +11,7 @@
 
 InterfazPuente=vmbr0
 
-ColorRojo='\033[1;31m'
+cColorRojo='\033[1;31m'
 ColorVerde='\033[1;32m'
 ColorFin='\033[0m'
 
@@ -25,7 +25,7 @@ if [[ $(dpkg-query -s tcpdump 2>/dev/null | grep installed) == "" ]]; then
 fi
 
 echo ""
-echo -e "${ColorVerde}...${ColorFin}"
+echo -e "${cColorVerde}...${ColorFin}"
 echo ""
 
 tcpdump -i $InterfazPuente port 53

@@ -22,9 +22,9 @@ if [ $# -ne $EXPECTED_ARGS ]
   then
     echo ""
     echo "-------------------------------------------------------------------------"
-    echo -e "${ColorAdvertencia}Mal uso del script.${FinColor} El uso correcto sería:"
+    echo -e "${ColorAdvertencia}Mal uso del script.${cFinColor} El uso correcto sería:"
     echo ""
-    echo -e "edvm ${ColorArgumentos}[IDDeLaVM]${FinColor}"
+    echo -e "edvm ${ColorArgumentos}[IDDeLaVM]${cFinColor}"
     echo ""
     echo "Ejemplo:"
     echo "edvm 101"

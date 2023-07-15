@@ -15,7 +15,7 @@
 CantArgsEsperados=1
 ArgsInsuficientes=65
 
-ColorRojo='\033[1;31m'
+cColorRojo='\033[1;31m'
 ColorVerde='\033[1;32m'
 ColorAzul='\033[1;34m'
 FinColor='\033[0m'
@@ -24,9 +24,9 @@ if [ $# -ne $CantArgsEsperados ]
   then
     echo ""
     echo "-------------------------------------------------------------------------------"
-    echo -e "${ColorRojo}  Mal uso del script.${FinColor} El uso correcto sería:"
+    echo -e "${ColorRojo}  Mal uso del script.${cFinColor} El uso correcto sería:"
     echo ""
-    echo -e "  $0 ${ColorVerde}[NumeroDelContainer]${FinColor}"
+    echo -e "  $0 ${cColorVerde}[NumeroDelContainer]${cFinColor}"
     echo ""
     echo "  Ejemplo:"
     echo "  $0 115"
@@ -38,7 +38,7 @@ if [ $# -ne $CantArgsEsperados ]
 
     # Apagar el contenedor
       echo ""
-      echo -e "${ColorAzul}  Apagando el contendor...${FinColor}"
+      echo -e "${ColorAzul}  Apagando el contendor...${cFinColor}"
       echo ""
       pct shutdown $1
 
@@ -53,25 +53,25 @@ if [ $# -ne $CantArgsEsperados ]
 
     # Desmontar el disco (Si es que está montado)
       echo ""
-      echo -e "${ColorAzul}  Desmontando el disco del contendor (si es que está montado en el host de Proxmox)...${FinColor}"
+      echo -e "${ColorAzul}  Desmontando el disco del contendor (si es que está montado en el host de Proxmox)...${cFinColor}"
       echo ""
       umount "$vCarpetaAlmacenamiento"images/$1/$vArchivoDeDisco
 
     # Forzar la aceptación de que el disco no está montado
       echo ""
-      echo -e "${ColorAzul}  Forzando el bloque MMP a limpio...${FinColor}"
+      echo -e "${ColorAzul}  Forzando el bloque MMP a limpio...${cFinColor}"
       echo ""
       tune2fs -f -E clear_mmp "$vCarpetaAlmacenamiento"images/$1/$vArchivoDeDisco
 
     # Revisar y reparar el sistema de archivos del contenedor
       echo ""
-      echo -e "${ColorAzul}  Revisando y reparando el sistema de archivos del contendor...${FinColor}"
+      echo -e "${ColorAzul}  Revisando y reparando el sistema de archivos del contendor...${cFinColor}"
       echo ""
       e2fsck -y -f "$vCarpetaAlmacenamiento"images/$1/$vArchivoDeDisco
 
     # Realizar la expansión
       echo ""
-      echo -e "${ColorAzul}  Efectuando la redimensión...${FinColor}"
+      echo -e "${ColorAzul}  Efectuando la redimensión...${cFinColor}"
       echo ""
       resize2fs "$vCarpetaAlmacenamiento"images/$1/$vArchivoDeDisco
 

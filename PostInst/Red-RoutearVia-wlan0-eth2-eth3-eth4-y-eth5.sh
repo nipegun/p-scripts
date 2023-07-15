@@ -26,7 +26,7 @@ interfazcableada4=eth3
 interfazcableada5=eth4
 interfazcableada6=eth5
 
-ColorRojo='\033[1;31m'
+cColorRojo='\033[1;31m'
 ColorVerde='\033[1;32m'
 FinColor='\033[0m'
 

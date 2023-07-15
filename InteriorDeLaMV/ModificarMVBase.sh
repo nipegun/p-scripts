@@ -14,7 +14,7 @@
 CantArgsEsperados=2
 ArgsInsuficientes=65
 
-ColorRojo='\033[1;31m'
+cColorRojo='\033[1;31m'
 ColorVerde='\033[1;32m'
 FinColor='\033[0m'
 
@@ -22,9 +22,9 @@ if [ $# -ne $CantArgsEsperados ]
   then
     echo ""
     echo "------------------------------------------------------------------------------"
-    echo -e "${ColorRojo}Mal uso del script.${FinColor} El uso correcto sería:"
+    echo -e "${ColorRojo}Mal uso del script.${cFinColor} El uso correcto sería:"
     echo ""
-    echo -e "  $0 ${ColorVerde}[NombreDeLaNuevaMV] [NombreDelUsuarioNoRoot]${FinColor}"
+    echo -e "  $0 ${cColorVerde}[NombreDeLaNuevaMV] [NombreDelUsuarioNoRoot]${cFinColor}"
     echo ""
     echo "Ejemplo:"
     echo ""
@@ -34,7 +34,7 @@ if [ $# -ne $CantArgsEsperados ]
     exit $ArgsInsuficientes
   else
     echo ""
-    echo -e "${ColorVerde}Cambiando el nombre de la MV a $1...${FinColor}"
+    echo -e "${cColorVerde}Cambiando el nombre de la MV a $1...${cFinColor}"
     echo ""
     find /bin        -type f -exec sed -i -e "s|DebianBase|$1|g" {} \;
     find /boot       -type f -exec sed -i -e "s|DebianBase|$1|g" {} \;
@@ -56,18 +56,18 @@ if [ $# -ne $CantArgsEsperados ]
     find /var        -type f -exec sed -i -e "s|DebianBase|$1|g" {} \;
 
     echo ""
-    echo -e "${ColorVerde}Cambiando el nombre y la carpeta del usuario no root...${FinColor}"
+    echo -e "${cColorVerde}Cambiando el nombre y la carpeta del usuario no root...${cFinColor}"
     echo ""
     usermod -l $2 usuariox
     usermod -d /home/$2 -m $2
     groupmod -n $2 usuariox
     echo -e "$2\n$2" | passwd $2
     echo ""
-    echo -e "Nuevo nombre: ${ColorVerde}$2${FinColor}"
-    echo -e "Nuevo password: ${ColorVerde}$2${FinColor}"
+    echo -e "Nuevo nombre: ${cColorVerde}$2${cFinColor}"
+    echo -e "Nuevo password: ${cColorVerde}$2${cFinColor}"
 
     echo ""
-    echo -e "${ColorVerde}Reconfigurando las interfaces de red...${FinColor}"
+    echo -e "${cColorVerde}Reconfigurando las interfaces de red...${cFinColor}"
     echo ""
     echo "auto lo" > /etc/network/interfaces
     echo "  iface lo inet loopback" >> /etc/network/interfaces
@@ -78,24 +78,24 @@ if [ $# -ne $CantArgsEsperados ]
     echo "" >> /etc/network/interfaces
 
     echo ""
-    echo -e "${ColorVerde}Reseteando SSH...${FinColor}"
+    echo -e "${cColorVerde}Reseteando SSH...${cFinColor}"
     echo ""
     rm /etc/ssh/ssh_host_*
     dpkg-reconfigure openssh-server
 
     echo ""
-    echo -e "${ColorVerde}Poniendo todos los logs a cero...${FinColor}"
+    echo -e "${cColorVerde}Poniendo todos los logs a cero...${cFinColor}"
     echo ""
     find /var/log/ -type f -exec truncate -s 0 {} \;
 
     echo ""
-    echo -e "${ColorVerde}Borrando el historial de bash...${FinColor}"
+    echo -e "${cColorVerde}Borrando el historial de bash...${cFinColor}"
     echo ""
     rm /root/.bash_history
     rm /home/$2/.bash_history
 
     echo ""
-    echo -e "${ColorVerde}Reiniciando el sistema...${FinColor}"
+    echo -e "${cColorVerde}Reiniciando el sistema...${cFinColor}"
     echo ""
     shutdown -r now
 fi

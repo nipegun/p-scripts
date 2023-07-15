@@ -12,7 +12,7 @@
 #    curl -sL https://raw.githubusercontent.com/nipegun/p-scripts/master/Kernel-MetaPaquete-Ultimo-Instalado-DejarSolo.sh | bash
 # ----------
 
-cColorRojo='\033[1;31m'
+ccColorRojo='\033[1;31m'
 cColorVerde='\033[1;32m'
 vFinColor='\033[0m'
 

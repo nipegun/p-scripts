@@ -12,7 +12,7 @@
 CantArgsEsperados=2
 ArgsInsuficientes=65
 
-ColorRojo='\033[1;31m'
+cColorRojo='\033[1;31m'
 ColorVerde='\033[1;32m'
 FinColor='\033[0m'
 
@@ -20,9 +20,9 @@ if [ $# -ne $CantArgsEsperados ]
   then
     echo ""
     echo "------------------------------------------------------------------------------"
-    echo -e "${ColorRojo}Mal uso del script.${FinColor} El uso correcto sería:"
+    echo -e "${ColorRojo}Mal uso del script.${cFinColor} El uso correcto sería:"
     echo ""
-    echo -e "  $0 ${ColorVerde}[ArchivoRAW] [CarpetaDeMontaje]${FinColor}"
+    echo -e "  $0 ${cColorVerde}[ArchivoRAW] [CarpetaDeMontaje]${cFinColor}"
     echo ""
     echo "Ejemplo:"
     echo "  $0 /Discos/DiscosDeMVs/images/241/vm-241-disk-0.raw"
@@ -33,7 +33,7 @@ if [ $# -ne $CantArgsEsperados ]
     apt-get -y install kpartx
 
     echo ""
-    echo -e "  $0 ${ColorVerde}Montando disco RAW en el loop0...${FinColor}"
+    echo -e "  $0 ${cColorVerde}Montando disco RAW en el loop0...${cFinColor}"
     echo ""
     mkdir -p $2
     losetup /dev/loop0 $1

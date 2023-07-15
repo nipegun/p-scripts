@@ -23,9 +23,9 @@ if [ $# -ne $CantArgsEsperados ]
   then
     echo ""
     echo "------------------------------------------------------------------------------"
-    echo -e "${ColorAdvertencia}Mal uso del script.${FinColor} El uso correcto sería:"
+    echo -e "${ColorAdvertencia}Mal uso del script.${cFinColor} El uso correcto sería:"
     echo ""
-    echo -e "$0 ${ColorArgumentos}[RutaAbsolutaAlArchivo] [IDDelNuevoContainer] [Almacenamiento]${FinColor}"
+    echo -e "$0 ${ColorArgumentos}[RutaAbsolutaAlArchivo] [IDDelNuevoContainer] [Almacenamiento]${cFinColor}"
     echo ""
     echo "Ejemplo:"
     echo "$0 '/root/copias/vzdump-lxc-777.tar' 130 local-lvm" 

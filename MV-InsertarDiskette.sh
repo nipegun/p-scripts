@@ -12,17 +12,17 @@
 ArgumentosNecesarios=2
 ArgumentosInsuficientes=65
 
-InicioColorRojo='\033[1;31m'
-InicioColorVerde='\033[1;32m'
+IniciocColorRojo='\033[1;31m'
+cColorVerde='\033[1;32m'
 FinColor='\033[0m'
 
 if [ $# -ne $ArgumentosNecesarios ]
   then
     echo ""
     echo "-----------------------------------------------------------------------------------------"
-    echo -e "${InicioColorRojo}Mal uso del script.${FinColor} El uso correcto sería:"
+    echo -e "${cColorRojo}Mal uso del script.${cFinColor} El uso correcto sería:"
     echo ""
-    echo -e "$0 ${InicioColorVerde}[IDDeLaVM] [ArchivoDeImagen]${FinColor}"
+    echo -e "$0 ${cColorVerde}[IDDeLaVM] [ArchivoDeImagen]${cFinColor}"
     echo ""
     echo "Ejemplo:"
     echo ''$0' 206 "/home/pepe/Disquete con datos.ima"'

@@ -12,7 +12,7 @@
 # curl -sL https://raw.githubusercontent.com/nipegun/p-scripts/master/InteriorDelContainer/LXC-Debian-Preparar.sh | bash
 # ------------------------------
 
-ColorRojo='\033[1;31m'
+cColorRojo='\033[1;31m'
 ColorVerde='\033[1;32m'
 FinColor='\033[0m'
 
@@ -139,9 +139,9 @@ elif [ $OS_VERS == "11" ]; then
         echo ""                                                                                       >> /etc/apt/sources.list
       # Preparar tareas cron
         echo ""
-        echo -e "${ColorVerde}--------------------------------------------------------${FinColor}"
-        echo -e "${ColorVerde}  Creando el archivo para las tareas de cada minuto...${FinColor}"
-        echo -e "${ColorVerde}--------------------------------------------------------${FinColor}"
+        echo -e "${cColorVerde}--------------------------------------------------------${cFinColor}"
+        echo -e "${cColorVerde}  Creando el archivo para las tareas de cada minuto...${cFinColor}"
+        echo -e "${cColorVerde}--------------------------------------------------------${cFinColor}"
         echo ""
         mkdir -p /root/scripts/ 2> /dev/null
         echo '#!/bin/bash'                                                                                                > /root/scripts/TareasCronCadaMinuto.sh
@@ -153,20 +153,20 @@ elif [ $OS_VERS == "11" ]; then
         echo "#▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼"                                      >> /root/scripts/TareasCronCadaMinuto.sh
         echo ""                                                                                                          >> /root/scripts/TareasCronCadaMinuto.sh
         echo ""
-        echo -e "${ColorVerde}Dando permiso de ejecución al archivo...${FinColor}"
+        echo -e "${cColorVerde}Dando permiso de ejecución al archivo...${cFinColor}"
         echo ""
         chmod +x /root/scripts/TareasCronCadaMinuto.sh
         echo ""
-        echo -e "${ColorVerde}Instalando la tarea en crontab...${FinColor}"
+        echo -e "${cColorVerde}Instalando la tarea en crontab...${cFinColor}"
         echo ""
         crontab -l > /tmp/CronTemporal
         echo "* * * * * /root/scripts/TareasCronCadaMinuto.sh" >> /tmp/CronTemporal
         crontab /tmp/CronTemporal
         rm /tmp/CronTemporal
         echo ""
-        echo -e "${ColorVerde}------------------------------------------------------${FinColor}"
-        echo -e "${ColorVerde}  Creando el archivo para las tareas de cada hora...${FinColor}"
-        echo -e "${ColorVerde}------------------------------------------------------${FinColor}"
+        echo -e "${cColorVerde}------------------------------------------------------${cFinColor}"
+        echo -e "${cColorVerde}  Creando el archivo para las tareas de cada hora...${cFinColor}"
+        echo -e "${cColorVerde}------------------------------------------------------${cFinColor}"
         echo ""
         mkdir -p /root/scripts/ 2> /dev/null
         echo '#!/bin/bash'                                                                                            > /root/scripts/TareasCronCadaHora.sh
@@ -178,17 +178,17 @@ elif [ $OS_VERS == "11" ]; then
         echo "#▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼"                                    >> /root/scripts/TareasCronCadaHora.sh
         echo ""                                                                                                      >> /root/scripts/TareasCronCadaHora.sh
         echo ""
-        echo -e "${ColorVerde}Dando permiso de ejecución al archivo...${FinColor}"
+        echo -e "${cColorVerde}Dando permiso de ejecución al archivo...${cFinColor}"
         echo ""
         chmod +x /root/scripts/TareasCronCadaHora.sh
         echo ""
-        echo -e "${ColorVerde}Creando enlace hacia el archivo en /etc/cron.hourly/ ...${FinColor}"
+        echo -e "${cColorVerde}Creando enlace hacia el archivo en /etc/cron.hourly/ ...${cFinColor}"
         echo ""
         ln -s /root/scripts/TareasCronCadaHora.sh /etc/cron.hourly/TareasCronCadaHora
         echo ""
-        echo -e "${ColorVerde}------------------------------------------------------------${FinColor}"
-        echo -e "${ColorVerde}  Creando el archivo para las tareas de cada hora impar...${FinColor}"
-        echo -e "${ColorVerde}------------------------------------------------------------${FinColor}"
+        echo -e "${cColorVerde}------------------------------------------------------------${cFinColor}"
+        echo -e "${cColorVerde}  Creando el archivo para las tareas de cada hora impar...${cFinColor}"
+        echo -e "${cColorVerde}------------------------------------------------------------${cFinColor}"
         echo ""
         mkdir -p /root/scripts/ 2> /dev/null
         echo '#!/bin/bash'                                                                                                       > /root/scripts/TareasCronCadaHoraImpar.sh
@@ -200,20 +200,20 @@ elif [ $OS_VERS == "11" ]; then
         echo "#▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼"                                         >> /root/scripts/TareasCronCadaHoraImpar.sh
         echo ""                                                                                                                 >> /root/scripts/TareasCronCadaHoraImpar.sh
         echo ""
-        echo -e "${ColorVerde}Dando permiso de ejecución al archivo...${FinColor}"
+        echo -e "${cColorVerde}Dando permiso de ejecución al archivo...${cFinColor}"
         echo ""
         chmod +x /root/scripts/TareasCronCadaHoraImpar.sh
         echo ""
-        echo -e "${ColorVerde}Instalando la tarea en crontab...${FinColor}"
+        echo -e "${cColorVerde}Instalando la tarea en crontab...${cFinColor}"
         echo ""
         crontab -l > /tmp/CronTemporal
         echo "0 1-23/2 * * * /root/scripts/TareasCronCadaHoraImpar.sh" >> /tmp/CronTemporal
         crontab /tmp/CronTemporal
         rm /tmp/CronTemporal
         echo ""
-        echo -e "${ColorVerde}----------------------------------------------------------${FinColor}"
-        echo -e "${ColorVerde}  Creando el archivo para las tareas de cada hora par...${FinColor}"
-        echo -e "${ColorVerde}----------------------------------------------------------${FinColor}"
+        echo -e "${cColorVerde}----------------------------------------------------------${cFinColor}"
+        echo -e "${cColorVerde}  Creando el archivo para las tareas de cada hora par...${cFinColor}"
+        echo -e "${cColorVerde}----------------------------------------------------------${cFinColor}"
         echo ""
         mkdir -p /root/scripts/ 2> /dev/null
         echo '#!/bin/bash'                                                                                                   > /root/scripts/TareasCronCadaHoraPar.sh
@@ -225,20 +225,20 @@ elif [ $OS_VERS == "11" ]; then
         echo "#▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼"                                       >> /root/scripts/TareasCronCadaHoraPar.sh
         echo ""                                                                                                             >> /root/scripts/TareasCronCadaHoraPar.sh
         echo ""
-        echo -e "${ColorVerde}Dando permiso de ejecución al archivo...${FinColor}"
+        echo -e "${cColorVerde}Dando permiso de ejecución al archivo...${cFinColor}"
         echo ""
         chmod +x /root/scripts/TareasCronCadaHoraPar.sh
         echo ""
-        echo -e "${ColorVerde}Instalando la tarea en crontab...${FinColor}"
+        echo -e "${cColorVerde}Instalando la tarea en crontab...${cFinColor}"
         echo ""
         crontab -l > /tmp/CronTemporal
         echo "0 */2 * * * /root/scripts/TareasCronCadaHoraPar.sh" >> /tmp/CronTemporal
         crontab /tmp/CronTemporal
         rm /tmp/CronTemporal
         echo ""
-        echo -e "${ColorVerde}-----------------------------------------------------${FinColor}"
-        echo -e "${ColorVerde}  Creando el archivo para las tareas de cada día...${FinColor}"
-        echo -e "${ColorVerde}-----------------------------------------------------${FinColor}"
+        echo -e "${cColorVerde}-----------------------------------------------------${cFinColor}"
+        echo -e "${cColorVerde}  Creando el archivo para las tareas de cada día...${cFinColor}"
+        echo -e "${cColorVerde}-----------------------------------------------------${cFinColor}"
         echo ""
         echo '#!/bin/bash'                                                                                          > /root/scripts/TareasCronCadaDía.sh
         echo ""                                                                                                    >> /root/scripts/TareasCronCadaDía.sh
@@ -249,17 +249,17 @@ elif [ $OS_VERS == "11" ]; then
         echo "#▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼"                                   >> /root/scripts/TareasCronCadaDía.sh
         echo ""                                                                                                    >> /root/scripts/TareasCronCadaDía.sh
         echo ""
-        echo -e "${ColorVerde}Dando permiso de ejecución al archivo...${FinColor}"
+        echo -e "${cColorVerde}Dando permiso de ejecución al archivo...${cFinColor}"
         echo ""
         chmod +x /root/scripts/TareasCronCadaDía.sh
         echo ""
-        echo -e "${ColorVerde}Creando enlace hacia el archivo en /etc/cron.daily/ ...${FinColor}"
+        echo -e "${cColorVerde}Creando enlace hacia el archivo en /etc/cron.daily/ ...${cFinColor}"
         echo ""
         ln -s /root/scripts/TareasCronCadaDía.sh /etc/cron.daily/TareasCronCadaDía
         echo ""
-        echo -e "${ColorVerde}--------------------------------------------------------${FinColor}"
-        echo -e "${ColorVerde}  Creando el archivo para las tareas de cada semana...${FinColor}"
-        echo -e "${ColorVerde}--------------------------------------------------------${FinColor}"
+        echo -e "${cColorVerde}--------------------------------------------------------${cFinColor}"
+        echo -e "${cColorVerde}  Creando el archivo para las tareas de cada semana...${cFinColor}"
+        echo -e "${cColorVerde}--------------------------------------------------------${cFinColor}"
         echo ""
         echo '#!/bin/bash'                                                                                                > /root/scripts/TareasCronCadaSemana.sh
         echo ""                                                                                                          >> /root/scripts/TareasCronCadaSemana.sh
@@ -270,17 +270,17 @@ elif [ $OS_VERS == "11" ]; then
         echo "#▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼"                                      >> /root/scripts/TareasCronCadaSemana.sh
         echo ""                                                                                                          >> /root/scripts/TareasCronCadaSemana.sh
         echo ""
-        echo -e "${ColorVerde}Dando permiso de ejecución al archivo...${FinColor}"
+        echo -e "${cColorVerde}Dando permiso de ejecución al archivo...${cFinColor}"
         echo ""
         chmod +x /root/scripts/TareasCronCadaSemana.sh
         echo ""
-        echo -e "${ColorVerde}Creando enlace hacia el archivo en /etc/cron.weekly/ ...${FinColor}"
+        echo -e "${cColorVerde}Creando enlace hacia el archivo en /etc/cron.weekly/ ...${cFinColor}"
         echo ""
         ln -s /root/scripts/TareasCronCadaSemana.sh /etc/cron.weekly/TareasCronCadaSemana
         echo ""
-        echo -e "${ColorVerde}-----------------------------------------------------${FinColor}"
-        echo -e "${ColorVerde}  Creando el archivo para las tareas de cada mes...${FinColor}"
-        echo -e "${ColorVerde}-----------------------------------------------------${FinColor}"
+        echo -e "${cColorVerde}-----------------------------------------------------${cFinColor}"
+        echo -e "${cColorVerde}  Creando el archivo para las tareas de cada mes...${cFinColor}"
+        echo -e "${cColorVerde}-----------------------------------------------------${cFinColor}"
         echo ""
         echo '#!/bin/bash'                                                                                          > /root/scripts/TareasCronCadaMes.sh
         echo ""                                                                                                    >> /root/scripts/TareasCronCadaMes.sh
@@ -291,17 +291,17 @@ elif [ $OS_VERS == "11" ]; then
         echo "#▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼"                                   >> /root/scripts/TareasCronCadaMes.sh
         echo ""                                                                                                    >> /root/scripts/TareasCronCadaMes.sh
         echo ""
-        echo -e "${ColorVerde}Dando permiso de ejecución al archivo...${FinColor}"
+        echo -e "${cColorVerde}Dando permiso de ejecución al archivo...${cFinColor}"
         echo ""
         chmod +x /root/scripts/TareasCronCadaMes.sh
         echo ""
-        echo -e "${ColorVerde}Creando enlace hacia el archivo en /etc/cron.monthly/ ...${FinColor}"
+        echo -e "${cColorVerde}Creando enlace hacia el archivo en /etc/cron.monthly/ ...${cFinColor}"
         echo ""
         ln -s /root/scripts/TareasCronCadaMes.sh /etc/cron.monthly/TareasCronCadaMes
         echo ""
-        echo -e "${ColorVerde}-------------------------------------------------------------------------------${FinColor}"
-        echo -e "${ColorVerde}  Dando permisos de lectura y ejecución solo al propietario de los scripts...${FinColor}"
-        echo -e "${ColorVerde}-------------------------------------------------------------------------------${FinColor}"
+        echo -e "${cColorVerde}-------------------------------------------------------------------------------${cFinColor}"
+        echo -e "${cColorVerde}  Dando permisos de lectura y ejecución solo al propietario de los scripts...${cFinColor}"
+        echo -e "${cColorVerde}-------------------------------------------------------------------------------${cFinColor}"
         echo ""
         # Si esto no se hace las tareas no se ejecutarán.
         chmod 700 /root/scripts/TareasCronCadaMinuto.sh
@@ -313,7 +313,7 @@ elif [ $OS_VERS == "11" ]; then
         chmod 700 /root/scripts/TareasCronCadaMes.sh
       # Preparar comandos post arranque
         echo ""
-        echo -e "${ColorVerde}Configurando el servicio...${FinColor}"
+        echo -e "${cColorVerde}Configurando el servicio...${cFinColor}"
         echo ""
         echo "[Unit]"                                   > /etc/systemd/system/rc-local.service
         echo "Description=/etc/rc.local Compatibility" >> /etc/systemd/system/rc-local.service
@@ -330,7 +330,7 @@ elif [ $OS_VERS == "11" ]; then
         echo "[Install]"                               >> /etc/systemd/system/rc-local.service
         echo "WantedBy=multi-user.target"              >> /etc/systemd/system/rc-local.service
         echo ""
-        echo -e "${ColorVerde}Creando el archivo /etc/rc.local ...${FinColor}"
+        echo -e "${cColorVerde}Creando el archivo /etc/rc.local ...${cFinColor}"
         echo ""
         echo '#!/bin/bash'                            > /etc/rc.local
         echo ""                                      >> /etc/rc.local
@@ -338,12 +338,12 @@ elif [ $OS_VERS == "11" ]; then
         echo "exit 0"                                >> /etc/rc.local
         chmod +x                                        /etc/rc.local
         echo ""
-        echo -e "${ColorVerde}Creando el archivo para meter los comandos...${FinColor}"
+        echo -e "${cColorVerde}Creando el archivo para meter los comandos...${cFinColor}"
         echo ""
         mkdir -p /root/scripts/ 2> /dev/null
         echo '#!/bin/bash'                                                                                         > /root/scripts/ComandosPostArranque.sh
         echo ""                                                                                                   >> /root/scripts/ComandosPostArranque.sh
-        echo "ColorRojo='\033[1;31m'"                                                                             >> /root/scripts/ComandosPostArranque.sh
+        echo "cColorRojo='\033[1;31m'"                                                                             >> /root/scripts/ComandosPostArranque.sh
         echo "ColorVerde='\033[1;32m'"                                                                            >> /root/scripts/ComandosPostArranque.sh
         echo "FinColor='\033[0m'"                                                                                 >> /root/scripts/ComandosPostArranque.sh
         echo ""                                                                                                   >> /root/scripts/ComandosPostArranque.sh
@@ -356,7 +356,7 @@ elif [ $OS_VERS == "11" ]; then
         echo ""                                                                                                   >> /root/scripts/ComandosPostArranque.sh
         chmod 700                                                                                                    /root/scripts/ComandosPostArranque.sh
         echo ""
-        echo -e "${ColorVerde}Activando y arrancando el servicio...${FinColor}"
+        echo -e "${cColorVerde}Activando y arrancando el servicio...${cFinColor}"
         echo ""
         systemctl enable rc-local
         systemctl start rc-local.service

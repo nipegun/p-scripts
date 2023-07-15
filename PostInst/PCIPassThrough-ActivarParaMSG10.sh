@@ -9,7 +9,7 @@
 # Script de NiPeGun para activar PCI passthrough en el MicroServer Gen10 
 # ----------
 
-ColorRojo='\033[1;31m'
+cColorRojo='\033[1;31m'
 ColorVerde='\033[1;32m'
 FinColor='\033[0m'
 
@@ -26,7 +26,7 @@ echo "options vfio_iommu_type1 allow_unsafe_interrupts=1" > /etc/modprobe.d/pci-
 update-initramfs -u -k all
 
 echo ""
-echo -e "${ColorVerde}PCI Passthrough estará disponible a partir del próximo reinicio.${FinColor}"
-echo -e "${ColorVerde}Si quieres reiniciar el sistema ahora, ejecuta: shutdown -r now.${FinColor}"
+echo -e "${cColorVerde}PCI Passthrough estará disponible a partir del próximo reinicio.${cFinColor}"
+echo -e "${cColorVerde}Si quieres reiniciar el sistema ahora, ejecuta: shutdown -r now.${cFinColor}"
 echo ""
 

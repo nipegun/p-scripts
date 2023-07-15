@@ -9,7 +9,7 @@
 # Script de NiPeGun el script para instalar el minero de Utupia en el contenedor LXC de debian standard
 # ----------
 
-ColorRojo='\033[1;31m'
+cColorRojo='\033[1;31m'
 ColorVerde='\033[1;32m'
 FinColor='\033[0m'
 
@@ -108,17 +108,17 @@ elif [ $OS_VERS == "11" ]; then
               echo ""
             fi
          UsuarioNoRoot=$(dialog --keep-tite --title "Ingresa el nombre para el usuario no-root" --inputbox "Nombre de usuario:" 8 60 3>&1 1>&2 2>&3 3>&- )
-         echo -e "${ColorVerde}  Agregando el usuario $UsuarioNoRoot...${FinColor}"
+         echo -e "${cColorVerde}  Agregando el usuario $UsuarioNoRoot...${cFinColor}"
          echo ""
          useradd -d /home/$UsuarioNoRoot/ -s /bin/bash $UsuarioNoRoot
-         echo -e "${ColorVerde}  Creando la carpeta del usuario con permisos estándar...${FinColor}"
+         echo -e "${cColorVerde}  Creando la carpeta del usuario con permisos estándar...${cFinColor}"
          echo ""
          mkdir /home/$UsuarioNoRoot/
          chown $UsuarioNoRoot:$UsuarioNoRoot /home/$UsuarioNoRoot/ -R
          find /home/$UsuarioNoRoot -type d -exec chmod 775 {} \;
          find /home/$UsuarioNoRoot -type f -exec chmod 664 {} \;
          echo ""
-         echo -e "${ColorVerde}  Denegando el acceso a la carpeta /home/$UsuarioNoRoot a los otros usuarios...${FinColor}"
+         echo -e "${cColorVerde}  Denegando el acceso a la carpeta /home/$UsuarioNoRoot a los otros usuarios...${cFinColor}"
          echo ""
          find /home/$UsuarioNoRoot -type d -exec chmod 750 {} \;
          find /home/$UsuarioNoRoot -type f -exec chmod 664 {} \;

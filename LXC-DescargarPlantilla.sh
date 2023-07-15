@@ -12,7 +12,7 @@
 CantArgsEsperados=2
 ArgsInsuficientes=65
 
-ColorRojo='\033[1;31m'
+cColorRojo='\033[1;31m'
 ColorVerde='\033[1;32m'
 FinColor='\033[0m'
 
@@ -20,9 +20,9 @@ if [ $# -ne $CantArgsEsperados ]
   then
     echo ""
     echo "-------------------------------------------------------------------------------"
-    echo -e "${ColorRojo}  Mal uso del script.${FinColor} El uso correcto sería:"
+    echo -e "${ColorRojo}  Mal uso del script.${cFinColor} El uso correcto sería:"
     echo ""
-    echo -e "  $0 ${ColorVerde}[NombreDelArchivoDePlantilla] [AlmacenamientoDeDestino]${FinColor}"
+    echo -e "  $0 ${cColorVerde}[NombreDelArchivoDePlantilla] [AlmacenamientoDeDestino]${cFinColor}"
     echo ""
     echo "  Ejemplo:"
     echo "  $0 debian-10-standard_10.7-1_amd64.tar.gz local"

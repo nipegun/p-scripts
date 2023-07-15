@@ -12,7 +12,7 @@
 #  curl -sL https://raw.githubusercontent.com/nipegun/p-scripts/master/PostInst/PonerPVEenEsp.sh | bash
 # ----------
 
-ColorRojo='\033[1;31m'
+cColorRojo='\033[1;31m'
 ColorVerde='\033[1;32m'
 FinColor='\033[0m'
 
@@ -29,6 +29,6 @@ locale-gen
 # Modificar el archivo /etc/default/locale reflejando los cambios
 echo -e 'LANG="es_ES.UTF-8"\nLANGUAGE="es_ES:es"\n' > /etc/default/locale
 
-echo -e "${ColorVerde}El idioma del sistema ha cambiado.${FinColor}"
-echo -e "${ColorVerde}Es necesario cerrar la sesión para que los cambios surjan efecto.${FinColor}"
+echo -e "${cColorVerde}El idioma del sistema ha cambiado.${cFinColor}"
+echo -e "${cColorVerde}Es necesario cerrar la sesión para que los cambios surjan efecto.${cFinColor}"
 

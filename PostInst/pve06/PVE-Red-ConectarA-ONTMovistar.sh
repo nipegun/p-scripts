@@ -16,29 +16,29 @@ ClavePPPMovistar="adslppp"
 IPDeIPTV="2.2.2.2"
 MacWANDelRouterMovistar="00:00:00:00:00:00"
 
-ColorRojo='\033[1;31m'
+cColorRojo='\033[1;31m'
 ColorVerde='\033[1;32m'
 FinColor='\033[0m'
 
 echo ""
-echo -e "${ColorVerde}-------------------------------------------------------------------${FinColor}"
-echo -e "${ColorVerde}Iniciando el script de conexión de Proxmox a una ONT de Movistar...${FinColor}"
-echo -e "${ColorVerde}-------------------------------------------------------------------${FinColor}"
+echo -e "${cColorVerde}-------------------------------------------------------------------${cFinColor}"
+echo -e "${cColorVerde}Iniciando el script de conexión de Proxmox a una ONT de Movistar...${cFinColor}"
+echo -e "${cColorVerde}-------------------------------------------------------------------${cFinColor}"
 echo ""
 
 echo ""
-echo -e "${ColorVerde}Instalando paquetes de red...${FinColor}"
+echo -e "${cColorVerde}Instalando paquetes de red...${cFinColor}"
 echo ""
 apt-get -y update
 apt-get -y install vlan pppoe isc-dhcp-server wget
 
 echo ""
-echo -e "${ColorVerde}Activando el módulo 8021q para VLANs...${FinColor}"
+echo -e "${cColorVerde}Activando el módulo 8021q para VLANs...${cFinColor}"
 echo ""
 echo 8021q >> /etc/modules
 
 echo ""
-echo -e "${ColorVerde}Configurando la interfaz loopback...${FinColor}"
+echo -e "${cColorVerde}Configurando la interfaz loopback...${cFinColor}"
 echo ""
 echo "# Interfaz LoopBack"       > /etc/network/interfaces
 echo "auto lo"                  >> /etc/network/interfaces
@@ -46,7 +46,7 @@ echo "  iface lo inet loopback" >> /etc/network/interfaces
 echo ""                         >> /etc/network/interfaces
 
 echo ""
-echo -e "${ColorVerde}Configurando la interfaz WAN...${FinColor}"
+echo -e "${cColorVerde}Configurando la interfaz WAN...${cFinColor}"
 echo ""
 echo "# Interfaz WAN"                                                                         >> /etc/network/interfaces
 echo "auto $InterfazWAN"                                                                      >> /etc/network/interfaces
@@ -56,7 +56,7 @@ echo "  # hwaddress ether $MacWANDelRouterMovistar # Necesario para evitar futur
 echo ""                                                                                       >> /etc/network/interfaces
 
 echo ""
-echo -e "${ColorVerde}Configurando la vlan de datos (6) y prioridad (1)...${FinColor}"
+echo -e "${cColorVerde}Configurando la vlan de datos (6) y prioridad (1)...${cFinColor}"
 echo ""
 echo "# VLAN de Datos"                                                                              >> /etc/network/interfaces
 echo "auto $InterfazWAN.6"                                                                          >> /etc/network/interfaces
@@ -66,7 +66,7 @@ echo "  metric 1"                                                               
 echo ""                                                                                             >> /etc/network/interfaces
 
 echo ""
-echo -e "${ColorVerde}Configurando la conexión PPP...${FinColor}"
+echo -e "${cColorVerde}Configurando la conexión PPP...${cFinColor}"
 echo ""
 echo "# Interfaz PPPoE"                            >> /etc/network/interfaces
 echo "auto MovistarWAN"                            >> /etc/network/interfaces
@@ -76,7 +76,7 @@ echo "  provider MovistarWAN"                      >> /etc/network/interfaces
 echo ""                                            >> /etc/network/interfaces
 
 echo ""
-echo -e "${ColorVerde}Configurando la vlan de voz (3) y prioridad (4)...${FinColor}"
+echo -e "${cColorVerde}Configurando la vlan de voz (3) y prioridad (4)...${cFinColor}"
 echo ""
 echo "# VLAN de VoIP"                                                                               >> /etc/network/interfaces
 echo "auto $InterfazWAN.3"                                                                          >> /etc/network/interfaces
@@ -86,7 +86,7 @@ echo "  metric 4"                                                               
 echo ""                                                                                             >> /etc/network/interfaces
 
 echo ""
-echo -e "${ColorVerde}Configurando la vlan de televisión (2) y prioridad (4)...${FinColor}"
+echo -e "${cColorVerde}Configurando la vlan de televisión (2) y prioridad (4)...${cFinColor}"
 echo ""
 echo "# VLAN de IPTV"                                                                               >> /etc/network/interfaces
 echo "auto $InterfazWAN.2"                                                                          >> /etc/network/interfaces
@@ -97,7 +97,7 @@ echo "  metric 4"                                                               
 echo ""                                                                                             >> /etc/network/interfaces
 
 echo ""
-echo -e "${ColorVerde}Configurando la interfaz para las MVs...${FinColor}"
+echo -e "${cColorVerde}Configurando la interfaz para las MVs...${cFinColor}"
 echo ""
 echo "auto $InterfazPuente"                                                                 >> /etc/network/interfaces
 echo "  iface $InterfazPuente inet static"                                                  >> /etc/network/interfaces
@@ -115,7 +115,7 @@ echo "  post-down iptables -t raw -D PREROUTING -i fwbr+ -j CT --zone 1"        
 echo ""                                                                                     >> /etc/network/interfaces
 
 echo ""
-echo -e "${ColorVerde}Creando el archivo para el proveedor PPPoE...${FinColor}"
+echo -e "${cColorVerde}Creando el archivo para el proveedor PPPoE...${cFinColor}"
 echo ""
 echo "connect /bin/true"             > /etc/ppp/peers/MovistarWAN
 echo "default-asyncmap"             >> /etc/ppp/peers/MovistarWAN
@@ -146,18 +146,18 @@ echo "usepeerdns"                   >> /etc/ppp/peers/MovistarWAN
 echo 'user "'$UsuarioPPPMovistar'"' >> /etc/ppp/peers/MovistarWAN
 
 echo ""
-echo -e "${ColorVerde}Creando el archivo chap-secrets...${FinColor}"
+echo -e "${cColorVerde}Creando el archivo chap-secrets...${cFinColor}"
 echo ""
 echo '"'$UsuarioPPPMovistar'" * "'$ClavePPPMovistar'"' > /etc/ppp/chap-secrets
 
 echo ""
-echo -e "${ColorVerde}Agregando datos al archivo pap-secrets...${FinColor}"
+echo -e "${cColorVerde}Agregando datos al archivo pap-secrets...${cFinColor}"
 echo ""
 echo '"'$UsuarioPPPMovistar'" * "'$ClavePPPMovistar'"' >> /etc/ppp/pap-secrets
 
 echo ""
-echo -e "${ColorVerde}Indicando la ubicación del archivo de configuración del demonio dhcpd${FinColor}"
-echo -e "${ColorVerde}y la interfaz sobre la que correrá...${FinColor}"
+echo -e "${cColorVerde}Indicando la ubicación del archivo de configuración del demonio dhcpd${cFinColor}"
+echo -e "${cColorVerde}y la interfaz sobre la que correrá...${cFinColor}"
 echo ""
 cp /etc/default/isc-dhcp-server /etc/default/isc-dhcp-server.bak
 echo 'DHCPDv4_CONF=/etc/dhcp/dhcpd.conf'  > /etc/default/isc-dhcp-server
@@ -165,7 +165,7 @@ echo 'INTERFACESv4="$InterfazPuente"'    >> /etc/default/isc-dhcp-server
 echo 'INTERFACESv6=""'                   >> /etc/default/isc-dhcp-server
 
 echo ""
-echo -e "${ColorVerde}Configurando el servidor DHCP...${FinColor}"
+echo -e "${cColorVerde}Configurando el servidor DHCP...${cFinColor}"
 echo ""
 cp /etc/dhcp/dhcpd.conf /etc/dhcp/dhcpd.conf.bak
 echo "authoritative;"                                  > /etc/dhcp/dhcpd.conf
@@ -449,26 +449,26 @@ echo ""                                               >> /etc/dhcp/dhcpd.conf
 echo "}"                                              >> /etc/dhcp/dhcpd.conf
 
 echo ""
-echo -e "${ColorVerde}Descargando archivos de nombres de fabricantes...${FinColor}"
+echo -e "${cColorVerde}Descargando archivos de nombres de fabricantes...${cFinColor}"
 echo ""
 wget -O /usr/local/etc/oui.txt http://standards-oui.ieee.org/oui/oui.txt
 
 #echo ""
-#echo -e "${ColorVerde}Agregando la conexión ppp0 a los ComandosPostArranque...${FinColor}"
+#echo -e "${cColorVerde}Agregando la conexión ppp0 a los ComandosPostArranque...${cFinColor}"
 #echo ""
 #echo "pon MovistarWAN" >> /root/scripts/ComandosPostArranque.sh
 
 echo ""
-echo -e "${ColorVerde}--------------------------------------------------------------------------------------------${FinColor}"
-echo -e "${ColorVerde}Ejecución del script de conexión de Proxmox a la fibra de Movistar, finalizada.${FinColor}"
+echo -e "${cColorVerde}--------------------------------------------------------------------------------------------${cFinColor}"
+echo -e "${cColorVerde}Ejecución del script de conexión de Proxmox a la fibra de Movistar, finalizada.${cFinColor}"
 echo ""
-echo -e "${ColorVerde}Ya puedes apagar Proxmox ejecutando:${FinColor}"
+echo -e "${cColorVerde}Ya puedes apagar Proxmox ejecutando:${cFinColor}"
 echo "shutdown -h now"
-echo -e "${ColorVerde}y conectarle el cable ethernet a la ONT the Movistar.${FinColor}"
+echo -e "${cColorVerde}y conectarle el cable ethernet a la ONT the Movistar.${cFinColor}"
 echo ""
-echo -e "${ColorVerde}Después de encenderlo de nuevo, PVE debería tener internet a través de la interfaz ppp0${FinColor}"
-echo -e "${ColorVerde}Si por alguna razón la interfaz ppp0 no se levanta, puedes levantarla manualmente ejecutando:${FinColor}"
+echo -e "${cColorVerde}Después de encenderlo de nuevo, PVE debería tener internet a través de la interfaz ppp0${cFinColor}"
+echo -e "${cColorVerde}Si por alguna razón la interfaz ppp0 no se levanta, puedes levantarla manualmente ejecutando:${cFinColor}"
 echo "pon MovistarWAN"
-echo -e "${ColorVerde}--------------------------------------------------------------------------------------------${FinColor}"
+echo -e "${cColorVerde}--------------------------------------------------------------------------------------------${cFinColor}"
 echo ""
 

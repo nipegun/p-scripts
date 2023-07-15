@@ -12,7 +12,7 @@
 #  curl -sL https://raw.githubusercontent.com/nipegun/p-scripts/master/PCIPassThrough-ComprobarSiPreparado.sh | bash
 # -----------------------------
 
-ColorRojo='\033[1;31m'
+cColorRojo='\033[1;31m'
 ColorVerde='\033[1;32m'
 FinColor='\033[0m'
 
@@ -23,16 +23,16 @@ FinColor='\033[0m'
 
   if [[ $(cat /proc/cpuinfo | grep -o -E "svm|vmx" | head -n1) == "svm" ]]; then
     echo ""
-    echo -e "${ColorVerde}  Parece que el equipo tiene un procesador AMD con extensiones de virtualización.${FinColor}"
+    echo -e "${cColorVerde}  Parece que el equipo tiene un procesador AMD con extensiones de virtualización.${cFinColor}"
     echo ""
   elif [[ $(cat /proc/cpuinfo | grep -o -E "svm|vmx" | head -n1) == "vmx" ]]; then
     echo ""
-    echo -e "${ColorVerde}  Parece que el equipo tiene un procesador Intel con extensiones de virtualización.${FinColor}"
+    echo -e "${cColorVerde}  Parece que el equipo tiene un procesador Intel con extensiones de virtualización.${cFinColor}"
     echo ""
   else
     echo ""
-    echo -e "${ColorRojo}  El equipo no cuenta con un procesador con extensiones de virtualización.${FinColor}"
-    echo -e "${ColorRojo}  NO podrás pasar tarjetas físicas a máquinas virtuales.${FinColor}"
+    echo -e "${ColorRojo}  El equipo no cuenta con un procesador con extensiones de virtualización.${cFinColor}"
+    echo -e "${ColorRojo}  NO podrás pasar tarjetas físicas a máquinas virtuales.${cFinColor}"
     echo ""
     exit
   fi
@@ -44,12 +44,12 @@ FinColor='\033[0m'
 
   if [[ $(dmesg | grep -e DMAR -e IOMMU | grep ound) != "" ]]; then
     echo ""
-    echo -e "${ColorVerde}  Parece que el equipo tiene soporte para IOMMU.${FinColor}"
+    echo -e "${cColorVerde}  Parece que el equipo tiene soporte para IOMMU.${cFinColor}"
     echo ""
   else
     echo ""
-    echo -e "${ColorRojo}  El equipo no tiene soporte IOMMU o no lo has activado en la BIOS.${FinColor}"
-    echo -e "${ColorRojo}  NO podrás pasar tarjetas físicas a máquinas virtuales.${FinColor}"
+    echo -e "${ColorRojo}  El equipo no tiene soporte IOMMU o no lo has activado en la BIOS.${cFinColor}"
+    echo -e "${ColorRojo}  NO podrás pasar tarjetas físicas a máquinas virtuales.${cFinColor}"
     echo ""
     exit
   fi
@@ -62,12 +62,12 @@ FinColor='\033[0m'
   if [[ $(dmesg | grep emapp | grep "emapping") != "" ]];
     then
       echo ""
-      echo -e "${ColorVerde}  Parece que el equipo tiene soporte para Interrupt Remmaping.${FinColor}"
+      echo -e "${cColorVerde}  Parece que el equipo tiene soporte para Interrupt Remmaping.${cFinColor}"
       echo ""
     else
       echo ""
-      echo -e "${ColorRojo}  El equipo NO tiene soporte para Interrupt Remmaping.${FinColor}"
-      echo -e "${ColorRojo}  NO podrás pasar tarjetas físicas a máquinas virtuales.${FinColor}"
+      echo -e "${ColorRojo}  El equipo NO tiene soporte para Interrupt Remmaping.${cFinColor}"
+      echo -e "${ColorRojo}  NO podrás pasar tarjetas físicas a máquinas virtuales.${cFinColor}"
       echo ""
       exit
   fi
@@ -90,14 +90,14 @@ FinColor='\033[0m'
   if [[ $(/root/MostrarGruposIOMMU.sh) != "" ]];
     then
       echo ""
-      echo -e "${ColorVerde}  Parece que el equipo tiene soporte para agrupamiento IOMMU.${FinColor}"
-      echo -e "${ColorVerde}  Tendrás que asegurarte que la tarjeta que quieras pasar esté aislada en su propio grupo.${FinColor}"
+      echo -e "${cColorVerde}  Parece que el equipo tiene soporte para agrupamiento IOMMU.${cFinColor}"
+      echo -e "${cColorVerde}  Tendrás que asegurarte que la tarjeta que quieras pasar esté aislada en su propio grupo.${cFinColor}"
       echo ""
     else
       echo ""
-      echo -e "${ColorRojo}  El equipo NO tiene soporte para agrupamiento IOMMU Remmaping.${FinColor}"
-      echo -e "${ColorRojo}  Probablemente tu procesador no cuente con la característica ACS (Access Control Services).${FinColor}"
-      echo -e "${ColorRojo}  NO podrás pasar tarjetas físicas a máquinas virtuales.${FinColor}"
+      echo -e "${ColorRojo}  El equipo NO tiene soporte para agrupamiento IOMMU Remmaping.${cFinColor}"
+      echo -e "${ColorRojo}  Probablemente tu procesador no cuente con la característica ACS (Access Control Services).${cFinColor}"
+      echo -e "${ColorRojo}  NO podrás pasar tarjetas físicas a máquinas virtuales.${cFinColor}"
       echo ""
       exit
   fi
@@ -110,18 +110,18 @@ FinColor='\033[0m'
   if [[ $(cat /etc/default/grub | grep "_iommu=on") != "" ]];
     then
       echo ""
-      echo -e "${ColorVerde}  Parece que has agregado la activación de IOMMU en el archivo /etc/default/grub.${FinColor}"
+      echo -e "${cColorVerde}  Parece que has agregado la activación de IOMMU en el archivo /etc/default/grub.${cFinColor}"
       echo ""
         if [[ $(cat /etc/default/grub | grep "acs_override") != "" ]];
           then
             echo ""
-            echo -e "${ColorVerde}    Parece que has permitido las interrupciones inseguras de Interrupt Remmaping en el archivo /etc/default/grub.${FinColor}"
+            echo -e "${cColorVerde}    Parece que has permitido las interrupciones inseguras de Interrupt Remmaping en el archivo /etc/default/grub.${cFinColor}"
             echo ""
         fi
     else
       echo ""
-      echo -e "${ColorRojo}   No has agregado la activación de IOMMU en /etc/default/grub.${FinColor}"
-      echo -e "${ColorRojo}   No estás listo para pasar tarjetas PCI a máquinas virtuales.${FinColor}"
+      echo -e "${ColorRojo}   No has agregado la activación de IOMMU en /etc/default/grub.${cFinColor}"
+      echo -e "${ColorRojo}   No estás listo para pasar tarjetas PCI a máquinas virtuales.${cFinColor}"
       echo ""
       exit
   fi
@@ -142,13 +142,13 @@ FinColor='\033[0m'
   vVFIO4=$(sed -n 4p /tmp/ModulosEnEtcModules.txt)
 
   if [[ "$vVFIO1" == "vfio" ]] ; then
-    echo -e "${ColorVerde}  El módulo $vVFIO1             está agregado a /etc/modules${FinColor}"
+    echo -e "${cColorVerde}  El módulo $vVFIO1             está agregado a /etc/modules${cFinColor}"
     if [[ "$vVFIO2" == "vfio_iommu_type1" ]] ; then
-      echo -e "${ColorVerde}  El módulo $vVFIO2 está agregado a /etc/modules${FinColor}"
+      echo -e "${cColorVerde}  El módulo $vVFIO2 está agregado a /etc/modules${cFinColor}"
       if [[ "$vVFIO3" == "vfio_pci" ]] ; then
-        echo -e "${ColorVerde}  El módulo $vVFIO3         está agregado a /etc/modules${FinColor}"
+        echo -e "${cColorVerde}  El módulo $vVFIO3         está agregado a /etc/modules${cFinColor}"
         if [[ "$vVFIO4" == "vfio_virqfd" ]] ; then
-          echo -e "${ColorVerde}  El módulo $vVFIO4      está agregado a /etc/modules${FinColor}"
+          echo -e "${cColorVerde}  El módulo $vVFIO4      está agregado a /etc/modules${cFinColor}"
         fi
       fi
     fi
@@ -169,20 +169,20 @@ FinColor='\033[0m'
   vVFIOcar4=$(sed -n 4p /tmp/ModulosVFIOCargados.txt)
 
   if [[ "$vVFIOcar1" == "vfio" ]] ; then
-    echo -e "${ColorVerde}  El módulo $vVFIOcar1             está cargado.${FinColor}"
+    echo -e "${cColorVerde}  El módulo $vVFIOcar1             está cargado.${cFinColor}"
     if [[ "$vVFIOcar2" == "vfio_iommu_type1" ]] ; then
-      echo -e "${ColorVerde}  El módulo $vVFIOcar2 está cargado.${FinColor}"
+      echo -e "${cColorVerde}  El módulo $vVFIOcar2 está cargado.${cFinColor}"
       if [[ "$vVFIOcar3" == "vfio_pci" ]] ; then
-        echo -e "${ColorVerde}  El módulo $vVFIOcar3         está cargado.${FinColor}"
+        echo -e "${cColorVerde}  El módulo $vVFIOcar3         está cargado.${cFinColor}"
         if [[ "$vVFIOcar4" == "vfio_virqfd" ]] ; then
-          echo -e "${ColorVerde}  El módulo $vVFIOcar4      está cargado.${FinColor}"
+          echo -e "${cColorVerde}  El módulo $vVFIOcar4      está cargado.${cFinColor}"
         fi
       fi
     fi
   else
-    echo -e "${ColorRojo}   ¡Los módulos vfio no están cargados!${FinColor}"
-    echo -e "${ColorRojo}   vfio, vfio_iommu_type1, vfio_pci y vfio_virqfd deberían estar cargados.${FinColor}"
-    echo -e "${ColorRojo}   No estás listo para pasar tarjetas PCI a máquinas virtuales.${FinColor}"
+    echo -e "${ColorRojo}   ¡Los módulos vfio no están cargados!${cFinColor}"
+    echo -e "${ColorRojo}   vfio, vfio_iommu_type1, vfio_pci y vfio_virqfd deberían estar cargados.${cFinColor}"
+    echo -e "${ColorRojo}   No estás listo para pasar tarjetas PCI a máquinas virtuales.${cFinColor}"
     echo ""
     exit
   fi
@@ -195,24 +195,24 @@ FinColor='\033[0m'
   if [ -e /etc/modprobe.d/pci-passthrough.conf ];
     then
       echo ""
-      echo -e "${ColorVerde}  El archivo /etc/modprobe.d/pci-passthrough.conf existe${FinColor}"
+      echo -e "${cColorVerde}  El archivo /etc/modprobe.d/pci-passthrough.conf existe${cFinColor}"
       echo ""
       if [[ $(cat /etc/modprobe.d/pci-passthrough.conf | grep "options vfio_iommu_type1 allow_unsafe_interrupts=1") != "" ]];
         then
           echo ""
-          echo -e "${ColorVerde}    Parece que has permitido las interrupciones inseguras de Interrupt Remmaping en el archivo pci-passthrough.conf.${FinColor}"
+          echo -e "${cColorVerde}    Parece que has permitido las interrupciones inseguras de Interrupt Remmaping en el archivo pci-passthrough.conf.${cFinColor}"
           echo ""
       fi
       if [[ $(cat /etc/modprobe.d/pci-passthrough.conf | grep "vfio-pci ids=") != "" ]];
         then
           echo ""
-          echo -e "${ColorVerde}    Parece que ya has intentado pasar alguna pciid de algún dispositivo.${FinColor}"
+          echo -e "${cColorVerde}    Parece que ya has intentado pasar alguna pciid de algún dispositivo.${cFinColor}"
           echo ""
       fi
     else
       echo ""
-      echo -e "${ColorRojo}  El archivo /etc/modprobe.d/pci-passthrough.conf no existe.${FinColor}"
-      echo -e "${ColorRojo}  No parece que hayas configurado PCIPassThrough en el pasado.${FinColor}"
+      echo -e "${ColorRojo}  El archivo /etc/modprobe.d/pci-passthrough.conf no existe.${cFinColor}"
+      echo -e "${ColorRojo}  No parece que hayas configurado PCIPassThrough en el pasado.${cFinColor}"
       echo ""
   fi
 

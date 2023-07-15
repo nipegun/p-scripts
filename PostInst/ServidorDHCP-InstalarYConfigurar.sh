@@ -9,7 +9,7 @@
 # Script de NiPeGun para instalar y configurar el servidor DHCP en ProxmoxPVE
 # ----------
 
-ColorRojo='\033[1;31m'
+cColorRojo='\033[1;31m'
 ColorVerde='\033[1;32m'
 FinColor='\033[0m'
 
