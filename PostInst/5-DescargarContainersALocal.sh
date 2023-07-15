@@ -5,12 +5,12 @@
 # Si se te llena la boca hablando de libertad entonces hazlo realmente libre.
 # No tienes que aceptar ningún tipo de términos de uso o licencia para utilizarlo o modificarlo porque va sin CopyLeft.
 
-#---------------------------------------------------------------------------------
+# ----------
 # Script de NiPeGun para descargar los containers más interesantes de ProxmoxVE
 #
 #  Los containers son de TrunKey Linux y tienes ms info sobre ellos en:
 #  https://github.com/turnkeylinux-apps
-#---------------------------------------------------------------------------------
+# ----------
 
 # mail
 pveam download local proxmox-mailgateway-5.2-standard_5.2-1_amd64.tar.gz

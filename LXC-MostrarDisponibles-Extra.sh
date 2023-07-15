@@ -5,12 +5,12 @@
 # Si se te llena la boca hablando de libertad entonces hazlo realmente libre.
 # No tienes que aceptar ningún tipo de términos de uso o licencia para utilizarlo o modificarlo porque va sin CopyLeft.
 
-#-----------------------------------------------------------------------------------------------------------------------
+# ----------------------
 # Script de NiPeGun para mostrar los containers LXC extra disponibles para descargar en ProxmoxVE, fuera del propio PVE
 #
 # Ejecución remota:
 #  curl -sL https://raw.githubusercontent.com/nipegun/p-scripts/master/LXC-MostrarDisponibles-Extra.sh | bash
-#-----------------------------------------------------------------------------------------------------------------------
+# ----------------------
 
 URLBase="https://uk.lxd.images.canonical.com/images/"
 URLKali="$URLBase"kali/current/amd64/default/

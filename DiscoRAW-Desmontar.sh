@@ -5,9 +5,9 @@
 # Si se te llena la boca hablando de libertad entonces hazlo realmente libre.
 # No tienes que aceptar ningún tipo de términos de uso o licencia para utilizarlo o modificarlo porque va sin CopyLeft.
 
-#-----------------------------------------------------------------------------------------------------------
+# ----------
 # Script de NiPeGun para desmontar el disco de una MV de ProxmoxVE montado en una carpeta indicada del host
-#-----------------------------------------------------------------------------------------------------------
+# ----------
 
 ColorRojo='\033[1;31m'
 ColorVerde='\033[1;32m'

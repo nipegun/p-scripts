@@ -5,7 +5,7 @@
 # Si se te llena la boca hablando de libertad entonces hazlo realmente libre.
 # No tienes que aceptar ningún tipo de términos de uso o licencia para utilizarlo o modificarlo porque va sin CopyLeft.
 
-#----------------------------------------------------------------------
+# ----------
 # Script de NiPeGun para TRANSFORMAR UN PROXMOXVE RECIÉN INSTALADO
 #  EN UN ROUTER WIFI QUE SIRVA IPs EN LA INTERFAZ INALÁMBRICA
 #  ES NECESARIO QUE EL ORDENADOR CUENTE CON, AL MENOS, UNA INTER-
@@ -14,7 +14,7 @@
 #  PROXMOX ESTÁ EN UNA SUBRED DISTINTA DE 192.168.1 PORQUE AL
 #  FINALIZAR LA EJECUCIÓN DEL SCRIPT, EL ORDENADOR PROPORCIONARÁ
 #  IPS EN ESA SUBRED (de 192.168.1.100 hasta 192.168.1.255)
-#----------------------------------------------------------------------
+# ----------
 
 # !!!! DEBES REEMPLAZAR LOS VALORES DE LAS 2 VARIABLES DE ABAJO !!!!
 # !!!!!!!!!!!!!!!!!!! ANTES DE EJECUTAR EL SCRIPT !!!!!!!!!!!!!!!!!!

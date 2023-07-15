@@ -5,9 +5,9 @@
 # Si se te llena la boca hablando de libertad entonces hazlo realmente libre.
 # No tienes que aceptar ningún tipo de términos de uso o licencia para utilizarlo o modificarlo porque va sin CopyLeft.
 
-#------------------------------------------------------------------------------------------------
+# ----------
 # Script de NiPeGun para montar el disco de una MV de ProxmoxVE en una carpeta indicada del host
-#------------------------------------------------------------------------------------------------
+# ----------
 
 CantArgsEsperados=2
 ArgsInsuficientes=65

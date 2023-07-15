@@ -5,11 +5,11 @@
 # Si se te llena la boca hablando de libertad entonces hazlo realmente libre.
 # No tienes que aceptar ningún tipo de términos de uso o licencia para utilizarlo o modificarlo porque va sin CopyLeft.
 
-#--------------------------------------------------------------------------------------
+# ----------
 # Script de NiPeGun para modificar una MV Base para adaptarla a una nueva MV Clonada
 #
 #  Este script debe correr dentro de una máquina virtual de ProxmoxVE
-#--------------------------------------------------------------------------------------
+# ----------
 
 CantArgsEsperados=2
 ArgsInsuficientes=65
