@@ -21,9 +21,7 @@ cColorVerde='\033[1;32m'
 cFinColor='\033[0m'
 
 echo ""
-echo -e "${cColorVerde}-------------------------------------------------------------------${cFinColor}"
 echo -e "${cColorVerde}Iniciando el script de conexión de Proxmox a una ONT de Movistar...${cFinColor}"
-echo -e "${cColorVerde}-------------------------------------------------------------------${cFinColor}"
 echo ""
 
 echo ""

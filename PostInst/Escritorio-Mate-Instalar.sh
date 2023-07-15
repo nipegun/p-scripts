@@ -48,9 +48,7 @@
 if [ $cVerSO == "7" ]; then
 
   echo ""
-  echo "----------------------------------------------------------------------------"
   echo "  Iniciando el script de instalación del escritorio Mate en ProxmoxVE 3..."
-  echo "----------------------------------------------------------------------------"
   echo ""
 
   echo ""
@@ -60,9 +58,7 @@ if [ $cVerSO == "7" ]; then
 elif [ $cVerSO == "8" ]; then
 
   echo ""
-  echo "----------------------------------------------------------------------------"
   echo "  Iniciando el script de instalación del escritorio Mate en ProxmoxVE 4..."
-  echo "----------------------------------------------------------------------------"
   echo ""
 
   echo ""
@@ -72,9 +68,7 @@ elif [ $cVerSO == "8" ]; then
 elif [ $cVerSO == "9" ]; then
 
   echo ""
-  echo "----------------------------------------------------------------------------"
   echo "  Iniciando el script de instalación del escritorio Mate en ProxmoxVE 5..."
-  echo "----------------------------------------------------------------------------"
   echo ""
 
   tasksel install mate-desktop
@@ -84,9 +78,7 @@ elif [ $cVerSO == "9" ]; then
 elif [ $cVerSO == "10" ]; then
 
   echo ""
-  echo "----------------------------------------------------------------------------"
   echo "  Iniciando el script de instalación del escritorio Mate en ProxmoxVE 6..."
-  echo "----------------------------------------------------------------------------"
   echo ""
 
   apt-get -y update
@@ -120,9 +112,7 @@ elif [ $cVerSO == "10" ]; then
 elif [ $cVerSO == "11" ]; then
 
   echo ""
-  echo "----------------------------------------------------------------------------"
   echo "  Iniciando el script de instalación del escritorio Mate en ProxmoxVE 7..."
-  echo "----------------------------------------------------------------------------"
   echo ""
 
   apt-get -y update
@@ -156,9 +146,7 @@ elif [ $cVerSO == "11" ]; then
 elif [ $cVerSO == "12" ]; then
 
   echo ""
-  echo "----------------------------------------------------------------------------"
   echo "  Iniciando el script de instalación del escritorio Mate en ProxmoxVE 8..."
-  echo "----------------------------------------------------------------------------"
   echo ""
 
   apt-get -y update

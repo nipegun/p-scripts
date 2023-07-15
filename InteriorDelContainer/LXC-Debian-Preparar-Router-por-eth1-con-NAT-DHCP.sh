@@ -73,9 +73,9 @@ elif [ $cVerSO == "8" ]; then
 elif [ $cVerSO == "9" ]; then
 
   echo ""
-  echo "---------------------------------------------------------------------------------------------------------"
+
   echo "  Iniciando el script de preparación del container de Debian 9 (Stretch) para routear con NAT y DHCP..."
-  echo "---------------------------------------------------------------------------------------------------------"
+
   echo ""
 
   echo ""
@@ -113,9 +113,9 @@ elif [ $cVerSO == "9" ]; then
 elif [ $cVerSO == "10" ]; then
 
   echo ""
-  echo "---------------------------------------------------------------------------------------------------------"
+
   echo "  Iniciando el script de preparación del container de Debian 10 (Buster) para routear con NAT y DHCP..."
-  echo "---------------------------------------------------------------------------------------------------------"
+
   echo ""
 
   echo ""

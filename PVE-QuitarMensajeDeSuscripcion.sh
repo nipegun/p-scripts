@@ -5,13 +5,13 @@
 # Si se te llena la boca hablando de libertad entonces hazlo realmente libre.
 # No tienes que aceptar ningún tipo de términos de uso o licencia para utilizarlo o modificarlo porque va sin CopyLeft.
 
-# --------------------------
+# --------------------
 # Script de NiPeGun para quitar el mensaje de suscripción no válida al conectarse a la web de administración de ProxmoxVE
 #
 # Ejecución remota:
 #  curl -sL https://raw.githubusercontent.com/nipegun/p-scripts/master/PVE-QuitarMensajeDeSuscripcion.sh | bash
 #
-# --------------------------
+# --------------------
 
 sed -i.bak 's|status => "NotFound",|status => "Active",|g' /usr/share/perl5/PVE/API2/Subscription.pm
 systemctl restart pveproxy.service

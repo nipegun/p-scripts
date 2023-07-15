@@ -13,38 +13,30 @@ cColorRojo='\033[1;31m'
 cColorVerde='\033[1;32m'
 cFinColor='\033[0m'
 
-# Determinar la versión de Debian
-
-   if [ -f /etc/os-release ]; then
-       # Para systemd y freedesktop.org
-       . /etc/os-release
-       cNomSO=$NAME
-       cVerSO=$VERSION_ID
-   elif type lsb_release >/dev/null 2>&1; then
-       # linuxbase.org
-       cNomSO=$(lsb_release -si)
-       cVerSO=$(lsb_release -sr)
-   elif [ -f /etc/lsb-release ]; then
-       # Para algunas versiones de Debian sin el comando lsb_release
-       . /etc/lsb-release
-       cNomSO=$DISTRIB_ID
-       cVerSO=$DISTRIB_RELEASE
-   elif [ -f /etc/debian_version ]; then
-       # Para versiones viejas de Debian.
-       cNomSO=Debian
-       cVerSO=$(cat /etc/debian_version)
-   else
-       # Para el viejo uname (También funciona para BSD)
-       cNomSO=$(uname -s)
-       cVerSO=$(uname -r)
-   fi
+# Determinar la versión de Proxmox
+  if [ -f /etc/os-release ]; then             # Para systemd y freedesktop.org.
+    . /etc/os-release
+    cNomSO=$NAME
+    cVerSO=$VERSION_ID
+  elif type lsb_release >/dev/null 2>&1; then # Para linuxbase.org.
+    cNomSO=$(lsb_release -si)
+    cVerSO=$(lsb_release -sr)
+  elif [ -f /etc/lsb-release ]; then          # Para algunas versiones de Debian sin el comando lsb_release.
+    . /etc/lsb-release
+    cNomSO=$DISTRIB_ID
+    cVerSO=$DISTRIB_RELEASE
+  elif [ -f /etc/debian_version ]; then       # Para versiones viejas de Debian.
+    cNomSO=Debian
+    cVerSO=$(cat /etc/debian_version)
+  else                                        # Para el viejo uname (También funciona para BSD).
+    cNomSO=$(uname -s)
+    cVerSO=$(uname -r)
+  fi
 
 if [ $cVerSO == "7" ]; then
 
   echo ""
-  echo "------------------------------------------------------------------------------------------------------"
   echo "  Iniciando el script para instalar el minero de Utupia en el contenedor LXC de Debian 7 (Wheezy)..."
-  echo "------------------------------------------------------------------------------------------------------"
   echo ""
 
   echo ""
@@ -54,9 +46,7 @@ if [ $cVerSO == "7" ]; then
 elif [ $cVerSO == "8" ]; then
 
   echo ""
-  echo "------------------------------------------------------------------------------------------------------"
   echo "  Iniciando el script para instalar el minero de Utupia en el contenedor LXC de Debian 8 (Jessie)..."
-  echo "------------------------------------------------------------------------------------------------------"
   echo ""
 
   echo ""
@@ -66,9 +56,7 @@ elif [ $cVerSO == "8" ]; then
 elif [ $cVerSO == "9" ]; then
 
   echo ""
-  echo "-------------------------------------------------------------------------------------------------------"
   echo "  Iniciando el script para instalar el minero de Utupia en el contenedor LXC de Debian 9 (Stretch)..."
-  echo "-------------------------------------------------------------------------------------------------------"
   echo ""
 
   echo ""
@@ -78,9 +66,7 @@ elif [ $cVerSO == "9" ]; then
 elif [ $cVerSO == "10" ]; then
 
   echo ""
-  echo "-------------------------------------------------------------------------------------------------------"
   echo "  Iniciando el script para instalar el minero de Utupia en el contenedor LXC de Debian 10 (Buster)..."
-  echo "-------------------------------------------------------------------------------------------------------"
   echo ""
 
   echo ""
@@ -90,9 +76,7 @@ elif [ $cVerSO == "10" ]; then
 elif [ $cVerSO == "11" ]; then
 
   echo ""
-  echo "---------------------------------------------------------------------------------------------------------"
   echo "  Iniciando el script para instalar el minero de Utupia en el contenedor LXC de Debian 11 (Bullseye)..."
-  echo "---------------------------------------------------------------------------------------------------------"
   echo ""
 
   if [ ! -f /root/Fase1MineroCRPComp.txt ]
@@ -142,8 +126,8 @@ elif [ $cVerSO == "11" ]; then
       echo ""
       echo "  Ya se ha ejecutado la instalación del minero de Utopia en este contenedor."
       echo ""
-         
+
   fi
-  
+
 fi
 
