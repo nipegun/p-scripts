@@ -18,7 +18,7 @@ vCarpetaCopSeg='/CopSegInt/' # La ubicación de la carpeta para las copias debe 
 vIdIni=100
 vIdFin=999999999
 
-vFechaDeEjec=$(date +A%YM%mD%d@%T)
+vFechaEjecScript=$(date +A%YM%mD%d@%T)
 
 cColorAzul="\033[0;34m"
 cColorAzulClaro="\033[1;34m"
@@ -147,7 +147,7 @@ echo ""
 
 # Apuntar fecha en el log
   touch /var/log/CopiasDeSeguridad.log 2> /dev/null
-  echo "$vFechaDeEjec - Terminada la copia de seguridad de todas las IDs de Promxox." >> /var/log/CopiasDeSeguridad.log
+  echo "$vFechaEjecScript - Terminada la copia de seguridad de todas las IDs de Promxox." >> /var/log/CopiasDeSeguridad.log
 
 # Notificar fin del script
   echo ""

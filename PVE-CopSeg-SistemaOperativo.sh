@@ -32,32 +32,32 @@ echo -e "${cColorAzulClaro}  Iniciando script de copia de seguridad interna de P
 echo ""
 
 # Definir la fecha de ejecución del script
-  vFechaDeEjec=$(date +A%YM%mD%d@%T)
+  vFechaEjecScript=$(date +A%YM%mD%d@%T)
 
 # Crear las carpetas de copias de seguridad interna (en caso de que no existan)
-  mkdir -p "$vCarpetaCopSeg/$vFechaDeEjec/BD/" 2> /dev/null
-  mkdir -p "$vCarpetaCopSeg/$vFechaDeEjec/etc/" 2> /dev/null
-  mkdir -p "$vCarpetaCopSeg/$vFechaDeEjec/home/" 2> /dev/null
-  mkdir -p "$vCarpetaCopSeg/$vFechaDeEjec/root/" 2> /dev/null
+  mkdir -p "$vCarpetaCopSeg/$vFechaEjecScript/BD/" 2> /dev/null
+  mkdir -p "$vCarpetaCopSeg/$vFechaEjecScript/etc/" 2> /dev/null
+  mkdir -p "$vCarpetaCopSeg/$vFechaEjecScript/home/" 2> /dev/null
+  mkdir -p "$vCarpetaCopSeg/$vFechaEjecScript/root/" 2> /dev/null
 
 # Ejecutar copia de seguridad de /etc/
   echo ""
   echo "    Creando copia de seguridad de la carpeta /etc/..."
   echo ""
-  cp -L -r /etc/* "$vCarpetaCopSeg/$vFechaDeEjec/etc/" 2> /dev/null
+  cp -L -r /etc/* "$vCarpetaCopSeg/$vFechaEjecScript/etc/" 2> /dev/null
 
 # Ejecutar copia de seguridad de /root/
   echo ""
   echo "    Creando copia de seguridad de la carpeta /root/..."
   echo ""
-  cp -rL /root/* "$vCarpetaCopSeg/$vFechaDeEjec/root/" 2> /dev/null
+  cp -rL /root/* "$vCarpetaCopSeg/$vFechaEjecScript/root/" 2> /dev/null
 
 # Ejecutar copia de seguridad de la base de datos
   echo ""
   echo "    Creando copia de seguridad de la base de datos Proxmox Cluster File System (pmxcfs)..."
   echo ""
   # https://hacks4geeks.com/entendiendo-el-sistema-de-archivos-del-culster-de-proxmox/
-  mkdir -p "$vCarpetaCopSeg/$vFechaDeEjec/BD/SQLite3/" 2> /dev/null
+  mkdir -p "$vCarpetaCopSeg/$vFechaEjecScript/BD/SQLite3/" 2> /dev/null
   # Comprobar si el paquete sqlite3 está instalado. Si no lo está, instalarlo.
     if [[ $(dpkg-query -s sqlite3 2>/dev/null | grep installed) == "" ]]; then
       echo ""
@@ -88,9 +88,9 @@ echo ""
     cat /var/lib/pve-cluster/config.db.sql.tmp2 | sed 's/tree (/tree (\n/g' | sed 's/VALUES(/VALUES(\n  /g' | sed 's-,-,\n  -g'  | sed 's-);-\n);\n-g' | sed 's-    -  -g' > /var/lib/pve-cluster/config.db.sql
     rm -f /var/lib/pve-cluster/config.db.sql.tmp1 2> /dev/null
     rm -f /var/lib/pve-cluster/config.db.sql.tmp2 2> /dev/null
-    mv /var/lib/pve-cluster/config.db.bak "$vCarpetaCopSeg/$vFechaDeEjec/BD/SQLite3/config.db"
-    mv /var/lib/pve-cluster/config.db.sql "$vCarpetaCopSeg/$vFechaDeEjec/BD/SQLite3/config.db.sql"
-    echo "El archivo config.db debe ubicarse en /var/lib/pve-cluster/" > "$vCarpetaCopSeg/$vFechaDeEjec/BD/SQLite3/UbicDelArchivoConfigDB.txt"
+    mv /var/lib/pve-cluster/config.db.bak "$vCarpetaCopSeg/$vFechaEjecScript/BD/SQLite3/config.db"
+    mv /var/lib/pve-cluster/config.db.sql "$vCarpetaCopSeg/$vFechaEjecScript/BD/SQLite3/config.db.sql"
+    echo "El archivo config.db debe ubicarse en /var/lib/pve-cluster/" > "$vCarpetaCopSeg/$vFechaEjecScript/BD/SQLite3/UbicDelArchivoConfigDB.txt"
   else
     echo ""
     echo -e "${cColorRojo}      El estado de la base de datos no es consistente. Intentando exportar lo que se pueda...${cFinColor}"
@@ -103,19 +103,19 @@ echo ""
     echo ""
     echo "    Creando exportación del contenido de la tabla tree..."
     echo ""
-    mkdir -p "$vCarpetaCopSeg/$vFechaDeEjec/BD/TablaTree/" 2> /dev/null
-    sqlite3 /var/lib/pve-cluster/config.db 'select * from tree;' > "$vCarpetaCopSeg/$vFechaDeEjec/BD/TablaTree/Contenido.txt"
+    mkdir -p "$vCarpetaCopSeg/$vFechaEjecScript/BD/TablaTree/" 2> /dev/null
+    sqlite3 /var/lib/pve-cluster/config.db 'select * from tree;' > "$vCarpetaCopSeg/$vFechaEjecScript/BD/TablaTree/Contenido.txt"
 
   # Crear copia de seguridad de los archivos de dentro de la base de datos
     echo ""
     echo "    Creando copia de seguridad de los archivos de dentro de la base de datos..."
     echo ""
-    mkdir -p "$vCarpetaCopSeg/$vFechaDeEjec/BD/Archivos/etc/pve/" 2> /dev/null
-    cp -rfL /etc/pve/. "$vCarpetaCopSeg/$vFechaDeEjec/BD/Archivos/etc/pve/"
+    mkdir -p "$vCarpetaCopSeg/$vFechaEjecScript/BD/Archivos/etc/pve/" 2> /dev/null
+    cp -rfL /etc/pve/. "$vCarpetaCopSeg/$vFechaEjecScript/BD/Archivos/etc/pve/"
 
 # Apuntar fecha en el log
   touch /var/log/CopiasDeSeguridad.log 2> /dev/null
-  echo "$vFechaDeEjec - Terminada la copia de seguridad interna de ProxmoxVE." >> /var/log/CopiasDeSeguridad.log
+  echo "$vFechaEjecScript - Terminada la copia de seguridad interna de ProxmoxVE." >> /var/log/CopiasDeSeguridad.log
 
 # Notificar fin del script
   echo ""

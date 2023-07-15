@@ -31,25 +31,25 @@ echo -e "${cColorAzulClaro}  Iniciando script de copia de seguridad de ISOs de P
 echo ""
 
 # Definir la fecha de ejecución del script
-  vFechaDeEjec=$(date +A%YM%mD%d@%T)
+  vFechaEjecScript=$(date +A%YM%mD%d@%T)
 
 # Ejecutar copia de seguridad de /var/lib/vz/template/iso/
   echo ""
   echo "    Creando copia de seguridad de la carpeta /var/lib/vz/template/iso/..."
   echo ""
-  mkdir -p                            "$vCarpetaCopSeg/ISOs/$vFechaDeEjec/var/lib/vz/template/iso/"
-  cp -L -r /var/lib/vz/template/iso/* "$vCarpetaCopSeg/ISOs/$vFechaDeEjec/var/lib/vz/template/iso/" 2> /dev/null
+  mkdir -p                            "$vCarpetaCopSeg/ISOs/$vFechaEjecScript/var/lib/vz/template/iso/"
+  cp -L -r /var/lib/vz/template/iso/* "$vCarpetaCopSeg/ISOs/$vFechaEjecScript/var/lib/vz/template/iso/" 2> /dev/null
 
 # Ejecutar copia de seguridad de /var/lib/pve/local-btrfs/template/iso/
   echo ""
   echo "    Creando copia de seguridad de la carpeta /var/lib/pve/local-btrfs/template/iso/..."
   echo ""
-  mkdir -p                                         "$vCarpetaCopSeg/ISOs/$vFechaDeEjec/var/lib/pve/local-btrfs/template/iso/"
-  cp -L -r /var/lib/pve/local-btrfs/template/iso/* "$vCarpetaCopSeg/ISOs/$vFechaDeEjec/var/lib/pve/local-btrfs/template/iso/" 2> /dev/null
+  mkdir -p                                         "$vCarpetaCopSeg/ISOs/$vFechaEjecScript/var/lib/pve/local-btrfs/template/iso/"
+  cp -L -r /var/lib/pve/local-btrfs/template/iso/* "$vCarpetaCopSeg/ISOs/$vFechaEjecScript/var/lib/pve/local-btrfs/template/iso/" 2> /dev/null
 
 # Apuntar fecha en el log
   touch /var/log/CopiasDeSeguridad.log 2> /dev/null
-  echo "$vFechaDeEjec - Terminada la copia de seguridad de los ISOs de ProxmoxVE." >> /var/log/CopiasDeSeguridad.log
+  echo "$vFechaEjecScript - Terminada la copia de seguridad de los ISOs de ProxmoxVE." >> /var/log/CopiasDeSeguridad.log
 
 # Notificar fin del script
   echo ""
