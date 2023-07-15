@@ -13,7 +13,7 @@
 # ----------
 
 cCantArgumEsperados=5
-E_BADARGS=65
+
 
 cColorRojo='\033[1;31m'
 cColorVerde='\033[1;32m'

@@ -11,7 +11,6 @@
 
 cCantArgumEsperados=2
 
-
 cColorRojo='\033[1;31m'
 cColorVerde='\033[1;32m'
 cFinColor='\033[0m'

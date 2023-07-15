@@ -14,7 +14,6 @@
 
 cCantArgumEsperados=1
 
-
 cColorRojo='\033[1;31m'
 cColorVerde='\033[1;32m'
 cFinColor='\033[0m'
@@ -28,7 +27,7 @@ if [ $# -ne $cCantArgumEsperados ]
     echo -e "  script ${cColorVerde}[IDDelContainer]${cFinColor}"
     echo ""
     echo "  Ejemplo:"
-    echo "  script 130" 
+    echo "  script 130"
     echo "------------------------------------------------------------------------------"
     echo ""
     exit

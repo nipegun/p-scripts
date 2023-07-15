@@ -209,7 +209,7 @@ elif [ $cVerSO == "9" ]; then
   echo "wpa_passphrase=RouterX86" >> /etc/hostapd/hostapd.conf
 
   echo ""
-  echo "----------------------------------------------------------------------"
+  echo ""
   echo "  EJECUCIÓN DEL SCRIPT FINALIZADA"
   echo ""
   echo "  Para aplicar los cambios reincia el sistema con:"
@@ -219,7 +219,7 @@ elif [ $cVerSO == "9" ]; then
   echo "  SEGUNDA INTERFAZ CABLEADA POR UN LADO E INALÁMBRICAMENTE POR EL OTRO."
   echo "  SI NECESITAS MÁS DE UNA CONEXIÓN ETHERNET PUEDES CONECTARLE UN"
   echo "  SWITCH EN MODO PUENTE A ESE SEGUNDO PUERTO ETHERNET."
-  echo "----------------------------------------------------------------------"
+  echo ""
   echo ""
 
 elif [ $cVerSO == "10" ]; then

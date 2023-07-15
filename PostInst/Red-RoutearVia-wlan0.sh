@@ -49,9 +49,7 @@ cFinColor='\033[0m'
 if [ $cVerSO == "7" ]; then
 
   echo ""
-  echo "---------------------------------------------------------------------------------"
   echo "  Iniciando el script preparación para que ProxmoxVE 3 routee mediante wlan0..."
-  echo "---------------------------------------------------------------------------------"
   echo ""
 
   echo ""
@@ -61,9 +59,7 @@ if [ $cVerSO == "7" ]; then
 elif [ $cVerSO == "8" ]; then
 
   echo ""
-  echo "---------------------------------------------------------------------------------"
   echo "  Iniciando el script preparación para que ProxmoxVE 4 routee mediante wlan0..."
-  echo "---------------------------------------------------------------------------------"
   echo ""
 
   echo ""
@@ -73,9 +69,7 @@ elif [ $cVerSO == "8" ]; then
 elif [ $cVerSO == "9" ]; then
 
   echo ""
-  echo "---------------------------------------------------------------------------------"
   echo "  Iniciando el script preparación para que ProxmoxVE 5 routee mediante wlan0..."
-  echo "---------------------------------------------------------------------------------"
   echo ""
 
   echo ""
@@ -203,7 +197,7 @@ elif [ $cVerSO == "9" ]; then
   echo "rsn_pairwise=CCMP"                                                                                         >> /etc/hostapd/hostapd.conf
   echo "wpa_passphrase=RouterX86"                                                                                  >> /etc/hostapd/hostapd.conf
 
-  echo "----------------------------------------------------------------------"
+  echo ""
   echo "  EJECUCIÓN DEL SCRIPT FINALIZADA"
   echo ""
   echo "  Para aplicar los cambios reincia el sistema con:"
@@ -212,14 +206,12 @@ elif [ $cVerSO == "9" ]; then
   echo "  DESPUÉS DE REINICIAR TU PROXMOXVE DEBERÍA ESTAR COMPARTIENDO"
   echo "  INALÁMBRICAMENTE LA CONEXIÓN DE LA PRIMERA INTERFAZ CABLEADA"
   echo "  Y OPERANDO COMO ROUTER."
-  echo "----------------------------------------------------------------------"
+  echo ""
 
 elif [ $cVerSO == "10" ]; then
 
   echo ""
-  echo "---------------------------------------------------------------------------------"
   echo "  Iniciando el script preparación para que ProxmoxVE 6 routee mediante wlan0..."
-  echo "---------------------------------------------------------------------------------"
   echo ""
 
   echo ""
@@ -229,9 +221,7 @@ elif [ $cVerSO == "10" ]; then
 elif [ $cVerSO == "11" ]; then
 
   echo ""
-  echo "---------------------------------------------------------------------------------"
   echo "  Iniciando el script preparación para que ProxmoxVE 7 routee mediante wlan0..."
-  echo "---------------------------------------------------------------------------------"
   echo ""
 
   echo ""

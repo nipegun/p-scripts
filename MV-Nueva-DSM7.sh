@@ -10,7 +10,6 @@
 # ----------
 
 cCantArgumEsperados=4
-E_BADARGS=65
 
 cColorRojo='\033[1;31m'
 cColorVerde='\033[1;32m'
@@ -34,24 +33,22 @@ if [ $# -ne $EXPECTED_ARGS ]
     mkdir /var/lib/vz/images/$1
     cd /var/lib/vz/images/$1
 
-echo "agent: 1"
-echo "balloon: 0"
-echo "bios: ovmf"
-echo "boot: order=scsi0"
-echo "cores: 2"
-echo "machine: q35"
-echo "memory: 2048"
-echo "name: dsm7"
-echo "net0: vmxnet3=00:00:00:00:02:52,bridge=vmbr0,firewall=1"
-echo "numa: 0"
-echo "ostype: l26"
-echo "scsihw: virtio-scsi-single"
-echo "sockets: 1"
+    echo "agent: 1"
+    echo "balloon: 0"
+    echo "bios: ovmf"
+    echo "boot: order=scsi0"
+    echo "cores: 2"
+    echo "machine: q35"
+    echo "memory: 2048"
+    echo "name: dsm7"
+    echo "net0: vmxnet3=00:00:00:00:02:52,bridge=vmbr0,firewall=1"
+    echo "numa: 0"
+    echo "ostype: l26"
+    echo "scsihw: virtio-scsi-single"
+    echo "sockets: 1"
 
-
-
-wget --no-check-certificate http://hacks4geeks.com/_/premium/descargas/DSM/6.1.4/JunsMod1.02b.img
-    qm create $1 --args /var/lib/vz/images/$1/JunsMod1.02b.img --balloon 0 --boot d --cores $2 --keyboard es --memory $3 --name DSM7 --net0 e1000=00:11:32:2c:a7:85,bridge=vmbr0 --numa 0 --onboot 1 --ostype l26 --sata0 local-lvm:$4 --scsihw virtio-scsi-pci --serial0 socket --sockets 1 
+    wget --no-check-certificate http://hacks4geeks.com/_/premium/descargas/DSM/6.1.4/JunsMod1.02b.img
+    qm create $1 --args /var/lib/vz/images/$1/JunsMod1.02b.img --balloon 0 --boot d --cores $2 --keyboard es --memory $3 --name DSM7 --net0 e1000=00:11:32:2c:a7:85,bridge=vmbr0 --numa 0 --onboot 1 --ostype l26 --sata0 local-lvm:$4 --scsihw virtio-scsi-pci --serial0 socket --sockets 1
     sed -i -e '/smbios1/d' /etc/pve/qemu-server/$1.conf
     sed -i -e '/vmgenid/d' /etc/pve/qemu-server/$1.conf
     sed -i -e '/bootdisk/d' /etc/pve/qemu-server/$1.conf
@@ -64,5 +61,6 @@ wget --no-check-certificate http://hacks4geeks.com/_/premium/descargas/DSM/6.1.4
     echo -e "  ${cColorVerde}Para que funcione el apagado ACPI tendrás que aplicar un parche.${cFinColor}"
     echo -e "  ${cColorVerde}Tienes más información al respecto en hacks4geeks.com${cFinColor}"
     echo ""
+
 fi
 

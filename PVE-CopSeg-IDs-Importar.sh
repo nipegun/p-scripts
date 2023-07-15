@@ -23,7 +23,7 @@ vAlmacenamiento="PVE"
 
 cFechaEjecScript=$(date +A%YM%mD%d@%T)
 
-ccColorAzul="\033[0;34m"
+cColorAzul="\033[0;34m"
 cColorAzulClaro="\033[1;34m"
 cColorVerde='\033[1;32m'
 cColorRojo='\033[1;31m'

@@ -170,7 +170,7 @@ elif [ $cVerSO == "9" ]; then
   echo "}" >> /etc/dhcp/dhcpd.conf
 
   echo ""
-  echo "----------------------------------------------------------------------"
+  echo ""
   echo "  EJECUCIÓN DEL SCRIPT FINALIZADA"
   echo ""
   echo "  Para aplicar los cambios reincia el sistema con:"
@@ -182,7 +182,7 @@ elif [ $cVerSO == "9" ]; then
   echo "  SWITCH EN MODO PUENTE A ESE SEGUNDO PUERTO ETHERNET."
   echo "  SI LO QUE QUIERES ES ADEMÁS TENER WIFI, EN VEZ DE UN SWITCH"
   echo "  CONÉCTALE UN ROUTER WIFI EN MODO PUENTE."
-  echo "----------------------------------------------------------------------"
+  echo ""
   echo ""
 
 elif [ $cVerSO == "10" ]; then

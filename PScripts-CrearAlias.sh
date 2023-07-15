@@ -9,7 +9,7 @@
 # Script de NiPeGun para crear los alias de los p-scripts
 # ----------
 
-ccColorAzul="\033[0;34m"
+cColorAzul="\033[0;34m"
 cColorAzulClaro="\033[1;34m"
 cColorVerde='\033[1;32m'
 cColorRojo='\033[1;31m'

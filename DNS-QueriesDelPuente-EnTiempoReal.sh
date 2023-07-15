@@ -13,19 +13,19 @@ InterfazPuente=vmbr0
 
 cColorRojo='\033[1;31m'
 cColorVerde='\033[1;32m'
-ColorFin='\033[0m'
+cFinColor='\033[0m'
 
 # Comprobar si el paquete tcpdump está instalado. Si no está, instalarlo.
-if [[ $(dpkg-query -s tcpdump 2>/dev/null | grep installed) == "" ]]; then
+  if [[ $(dpkg-query -s tcpdump 2>/dev/null | grep installed) == "" ]]; then
     echo ""
     echo "tcpdump no está instalado. Iniciando su instalación..."
     echo ""
     apt-get -y update
     apt-get -y install tcpdump
-fi
+  fi
 
 echo ""
-echo -e "${cColorVerde}...${ColorFin}"
+echo -e "${cColorVerde}...${cFinColor}"
 echo ""
 
 tcpdump -i $InterfazPuente port 53

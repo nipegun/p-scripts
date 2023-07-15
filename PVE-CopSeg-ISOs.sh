@@ -12,7 +12,8 @@
 #    curl -sL https://raw.githubusercontent.com/nipegun/p-scripts/master/PVE-CopSeg-ISOs.sh | bash
 # ----------
 
-vCarpetaCopSeg="/CopSegInt" # No debe acabar c on /
+# Definir carpeta de copia de seguridad
+  vCarpetaCopSeg="/CopSegInt" # No debe acabar c on /
 
 # Comprobar si el script está corriendo como root
   if [ $(id -u) -ne 0 ]; then
@@ -20,15 +21,17 @@ vCarpetaCopSeg="/CopSegInt" # No debe acabar c on /
     exit 1
   fi
 
-ccColorAzul="\033[0;34m"
-cColorAzulClaro="\033[1;34m"
-cColorVerde='\033[1;32m'
-cColorRojo='\033[1;31m'
-cFinColor='\033[0m'
+# Definir constantes de color
+  cColorAzul="\033[0;34m"
+  cColorAzulClaro="\033[1;34m"
+  cColorVerde='\033[1;32m'
+  cColorRojo='\033[1;31m'
+  cFinColor='\033[0m'
 
-echo ""
-echo -e "${cColorAzulClaro}  Iniciando script de copia de seguridad de ISOs de ProxmoxVE...${cFinColor}"
-echo ""
+# Notificar inicio de ejecución del script
+  echo ""
+  echo -e "${cColorAzulClaro}  Iniciando script de copia de seguridad de ISOs de ProxmoxVE...${cFinColor}"
+  echo ""
 
 # Definir la fecha de ejecución del script
   cFechaEjecScript=$(date +A%YM%mD%d@%T)
