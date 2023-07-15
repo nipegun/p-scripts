@@ -6,63 +6,63 @@
 # No tienes que aceptar ningún tipo de términos de uso o licencia para utilizarlo o modificarlo porque va sin CopyLeft.
 
 #-----------------------------------------------------------------------------
-#  Script de NiPeGun para borrar todos los entornos de escritorio de Proxmox
+# Script de NiPeGun para borrar todos los entornos de escritorio de Proxmox
 #-----------------------------------------------------------------------------
 
-## XRDP
+# XRDP
    systemctl stop xrdp.service
    apt-get -y purge xrdp
    apt-get -y autoremove
    tasksel remove desktop
 
-## cinnamon
+# cinnamon
    tasksel remove cinnamon-desktop
    apt-get -y purge cinnamon-session
    apt-get -y autoremove --purge cinnamon*
    apt-get -y autoremove
 
-## gnome
+# gnome
    tasksel remove gnome-desktop
    apt-get -y purge gnome-session
    apt-get -y autoremove --purge gnome*
    apt-get -y autoremove
 
-## kde
+# kde
    tasksel remove kde-desktop
    apt-get -y purge kde-plasma-desktop
    apt-get -y autoremove --purge kde*
    apt-get -y autoremove --purge plasma*
    apt-get -y autoremove
 
-## lxde
+# lxde
    tasksel remove lxde-desktop
    apt-get -y autoremove --purge lxde*
    apt-get -y autoremove
 
-## lxqt
+# lxqt
    tasksel remove lxqt-desktop
    apt-get -y purge lxqt-session
    apt-get -y autoremove --purge lxqt*
    apt-get -y autoremove
 
-## mate
+# mate
    tasksel remove mate-desktop
    apt-get -y purge mate-session-manager
    apt-get -y autoremove --purge mate*
    apt-get -y autoremove
 
-## xfce
+# xfce
    tasksel remove xfce-desktop
    apt-get -y autoremove --purge xfce*
 
-## Gestores de ventanas
+# Gestores de ventanas
    apt-get -y purge gdm3
 
-## Re-Instalar lo necesario
+# Re-Instalar lo necesario
    tasksel install mate-desktop
    apt-get -y install xrdp
 
-## Otras cosas a borrar
+# Otras cosas a borrar
 apt-get -y remove akregator
    apt-get -y remove ark
    apt-get -y remove dolphin

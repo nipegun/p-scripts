@@ -6,7 +6,7 @@
 # No tienes que aceptar ningún tipo de términos de uso o licencia para utilizarlo o modificarlo porque va sin CopyLeft.
 
 #-------------------------------------------------------------------
-#  Script de NiPeGun para aumentar el tamaño de un disco de una VM
+# Script de NiPeGun para aumentar el tamaño de un disco de una VM
 #-------------------------------------------------------------------
 
 ArgumentosNecesarios=3

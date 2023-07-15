@@ -6,10 +6,10 @@
 # No tienes que aceptar ningún tipo de términos de uso o licencia para utilizarlo o modificarlo porque va sin CopyLeft.
 
 # ----------
-#  Script de NiPeGun para poner ProxmoxVE en español
+# Script de NiPeGun para poner ProxmoxVE en español
 #
-#  Ejecución remota:
-#  curl -s https://raw.githubusercontent.com/nipegun/p-scripts/master/PostInst/PonerPVEenEsp.sh | bash
+# Ejecución remota:
+#  curl -sL https://raw.githubusercontent.com/nipegun/p-scripts/master/PostInst/PonerPVEenEsp.sh | bash
 # ----------
 
 ColorRojo='\033[1;31m'

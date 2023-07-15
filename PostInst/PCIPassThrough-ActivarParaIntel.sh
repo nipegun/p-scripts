@@ -6,7 +6,7 @@
 # No tienes que aceptar ningún tipo de términos de uso o licencia para utilizarlo o modificarlo porque va sin CopyLeft.
 
 #--------------------------------------------------------------------------------------------
-#  Script de NiPeGun para activar PCI PassThrough en un host ProxmoxVE con procesador Intel
+# Script de NiPeGun para activar PCI PassThrough en un host ProxmoxVE con procesador Intel
 #--------------------------------------------------------------------------------------------
 
 sed -i -e 's|GRUB_CMDLINE_LINUX_DEFAULT="quiet"|GRUB_CMDLINE_LINUX_DEFAULT="quiet intel_iommu=on"|g' /etc/default/grub

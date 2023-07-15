@@ -6,7 +6,7 @@
 # No tienes que aceptar ningún tipo de términos de uso o licencia para utilizarlo o modificarlo porque va sin CopyLeft.
 
 #--------------------------------------------------------------------------------------
-#  Script de NiPeGun para modificar una MV Base para adaptarla a una nueva MV Clonada
+# Script de NiPeGun para modificar una MV Base para adaptarla a una nueva MV Clonada
 #
 #  Este script debe correr dentro de una máquina virtual de ProxmoxVE
 #--------------------------------------------------------------------------------------

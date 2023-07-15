@@ -6,9 +6,9 @@
 # No tienes que aceptar ningún tipo de términos de uso o licencia para utilizarlo o modificarlo porque va sin CopyLeft.
 
 #-----------------------------------------------------------------------------------------------------
-#  Script de NiPeGun para activar el autologueo del usuario minerocrp en un contenedor LXC de Debian
+# Script de NiPeGun para activar el autologueo del usuario minerocrp en un contenedor LXC de Debian
 #
-#  Ejecución con curl:
+# Ejecución con curl:
 #  curl --silent https://raw.githubusercontent.com/nipegun/p-scripts/master/InteriorDelContainer/LXC-Debian-Usuarios-AutoLogueo-minerocrp-Activar.sh | bash
 #
 #-----------------------------------------------------------------------------------------------------
@@ -17,7 +17,7 @@ ColorRojo='\033[1;31m'
 ColorVerde='\033[1;32m'
 FinColor='\033[0m'
 
-## Determinar la versión de Debian
+# Determinar la versión de Debian
 
    if [ -f /etc/os-release ]; then
        # Para systemd y freedesktop.org
@@ -120,9 +120,9 @@ elif [ $OS_VERS == "11" ]; then
 
   # Esta solución es temporal y puede que se revierta en alguna actualización del sistema
 
-  ## Borrar la línea que empieza por ExecStart
+  # Borrar la línea que empieza por ExecStart
      sed -i '/^ExecStart/d' /lib/systemd/system/container-getty@.service
-  ## Reemplazar la línea Type=idle por la línea de ejecucion, un saldo de línea y nuevamente type idle
+  # Reemplazar la línea Type=idle por la línea de ejecucion, un saldo de línea y nuevamente type idle
      sed -i -e 's|Type=idle|ExecStart=-/sbin/agetty --noclear -a minerocrp --keep-baud tty%I 115200,38400,9600 $TERM\nType=idle|g' /lib/systemd/system/container-getty@.service
 
 fi

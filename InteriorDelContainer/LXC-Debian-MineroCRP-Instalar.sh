@@ -6,14 +6,14 @@
 # No tienes que aceptar ningún tipo de términos de uso o licencia para utilizarlo o modificarlo porque va sin CopyLeft.
 
 #---------------------------------------------------------------------------------------------------------
-#  Script de NiPeGun el script para instalar el minero de Utupia en el contenedor LXC de debian standard
+# Script de NiPeGun el script para instalar el minero de Utupia en el contenedor LXC de debian standard
 #---------------------------------------------------------------------------------------------------------
 
 ColorRojo='\033[1;31m'
 ColorVerde='\033[1;32m'
 FinColor='\033[0m'
 
-## Determinar la versión de Debian
+# Determinar la versión de Debian
 
    if [ -f /etc/os-release ]; then
        # Para systemd y freedesktop.org
@@ -97,8 +97,8 @@ elif [ $OS_VERS == "11" ]; then
 
   if [ ! -f /root/Fase1MineroCRPComp.txt ]
     then
-      ## Crear el usuario no-root
-         ## Comprobar si el paquete dialog está instalado. Si no lo está, instalarlo.
+      # Crear el usuario no-root
+         # Comprobar si el paquete dialog está instalado. Si no lo está, instalarlo.
             if [[ $(dpkg-query -s dialog 2>/dev/null | grep installed) == "" ]]; then
               echo ""
               echo "  dialog no está instalado. Iniciando su instalación..."
@@ -122,9 +122,9 @@ elif [ $OS_VERS == "11" ]; then
          echo ""
          find /home/$UsuarioNoRoot -type d -exec chmod 750 {} \;
          find /home/$UsuarioNoRoot -type f -exec chmod 664 {} \;
-      ## Instalar el minero CRP
+      # Instalar el minero CRP
          curl --silent https://raw.githubusercontent.com/nipegun/d-scripts/master/SoftInst/Consola/Cryptos-CRP-Minero-InstalarOActualizar.sh | bash
-      ## Activar auto-logueo del usuario no-root
+      # Activar auto-logueo del usuario no-root
          #mkdir -p /etc/systemd/system/console-getty.service.d/ 2> /dev/null
          #echo "[Service]"                                                                                           > /etc/systemd/system/console-getty.service.d/override.conf
          #echo "ExecStart="                                                                                         >> /etc/systemd/system/console-getty.service.d/override.conf
@@ -133,9 +133,9 @@ elif [ $OS_VERS == "11" ]; then
          #echo "[Service]"                                                                                          > /etc/systemd/system/container-getty@.service.d/override.conf
          #echo "ExecStart="                                                                                        >> /etc/systemd/system/container-getty@.service.d/override.conf
          #echo "ExecStart=-/sbin/agetty --noclear --autologin usuariox --keep-baud pts/%I 115200,38400,9600 $TERM" >> /etc/systemd/system/container-getty@.service.d/override.conf
-      ## Activar auto-ejecución del minero al auto-loguearse con el usuario no-root
+      # Activar auto-ejecución del minero al auto-loguearse con el usuario no-root
 
-      ## Indicar que la fase 1 ya se ha completado
+      # Indicar que la fase 1 ya se ha completado
          touch /root/Fase1MineroCRPComp.txt
     else
 

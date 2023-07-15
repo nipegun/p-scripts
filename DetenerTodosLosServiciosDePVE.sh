@@ -6,7 +6,7 @@
 # No tienes que aceptar ningún tipo de términos de uso o licencia para utilizarlo o modificarlo porque va sin CopyLeft.
 
 #-------------------------------------------------------------------
-#  SCRIPT DE NIPEGUN PARA DETENER TODOS LOS SERVICIOS DE PROXMOXVE
+# Script de NiPeGun para DETENER TODOS LOS SERVICIOS DE PROXMOXVE
 #  PARA, POR EJEMPLO, HACER CAMBIOS MANUALES EN LOS ARCHIVOS DE
 #  CONFIGURACIÓN
 #-------------------------------------------------------------------

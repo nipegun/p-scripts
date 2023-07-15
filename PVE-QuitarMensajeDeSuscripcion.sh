@@ -6,10 +6,10 @@
 # No tienes que aceptar ningún tipo de términos de uso o licencia para utilizarlo o modificarlo porque va sin CopyLeft.
 
 #---------------------------------------------------------------------------------------------------------------------------
-#  Script de NiPeGun para quitar el mensaje de suscripción no válida al conectarse a la web de administración de ProxmoxVE
+# Script de NiPeGun para quitar el mensaje de suscripción no válida al conectarse a la web de administración de ProxmoxVE
 #
-#  Ejecución remota:
-#  curl -s https://raw.githubusercontent.com/nipegun/p-scripts/master/PVE-QuitarMensajeDeSuscripcion.sh | bash
+# Ejecución remota:
+#  curl -sL https://raw.githubusercontent.com/nipegun/p-scripts/master/PVE-QuitarMensajeDeSuscripcion.sh | bash
 #
 #---------------------------------------------------------------------------------------------------------------------------
 

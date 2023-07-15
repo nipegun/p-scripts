@@ -6,10 +6,10 @@
 # No tienes que aceptar ningún tipo de términos de uso o licencia para utilizarlo o modificarlo porque va sin CopyLeft.
 
 # ----------
-#  Script de NiPeGun para hacer copia de seguridad interna de los ISOs de ProxmoxVE
+# Script de NiPeGun para hacer copia de seguridad interna de los ISOs de ProxmoxVE
 #
-#  Ejecución remota:
-#    curl -s https://raw.githubusercontent.com/nipegun/p-scripts/master/PVE-CopSeg-ISOs.sh | bash
+# Ejecución remota:
+#    curl -sL https://raw.githubusercontent.com/nipegun/p-scripts/master/PVE-CopSeg-ISOs.sh | bash
 # ----------
 
 vCarpetaCopSeg="/CopSegInt" # No debe acabar c on /
@@ -20,14 +20,14 @@ vCarpetaCopSeg="/CopSegInt" # No debe acabar c on /
     exit 1
   fi
 
-vColorAzul="\033[0;34m"
-vColorAzulClaro="\033[1;34m"
-vColorVerde='\033[1;32m'
-vColorRojo='\033[1;31m'
+cColorAzul="\033[0;34m"
+cColorAzulClaro="\033[1;34m"
+cColorVerde='\033[1;32m'
+cColorRojo='\033[1;31m'
 vFinColor='\033[0m'
 
 echo ""
-echo -e "${vColorAzulClaro}  Iniciando script de copia de seguridad de ISOs de ProxmoxVE...${vFinColor}"
+echo -e "${cColorAzulClaro}  Iniciando script de copia de seguridad de ISOs de ProxmoxVE...${vFinColor}"
 echo ""
 
 # Definir la fecha de ejecución del script
@@ -53,6 +53,6 @@ echo ""
 
 # Notificar fin del script
   echo ""
-  echo -e "${vColorVerde}    Ejecución del script, finalizada.${vFinColor}"
+  echo -e "${cColorVerde}    Ejecución del script, finalizada.${vFinColor}"
   echo ""
 

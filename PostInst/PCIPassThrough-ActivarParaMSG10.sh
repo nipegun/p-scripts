@@ -6,7 +6,7 @@
 # No tienes que aceptar ningún tipo de términos de uso o licencia para utilizarlo o modificarlo porque va sin CopyLeft.
 
 #--------------------------------------------------------------------------
-#  Script de NiPeGun para activar PCI passthrough en el MicroServer Gen10 
+# Script de NiPeGun para activar PCI passthrough en el MicroServer Gen10 
 #--------------------------------------------------------------------------
 
 ColorRojo='\033[1;31m'

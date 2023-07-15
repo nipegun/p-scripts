@@ -9,7 +9,7 @@
 # Script de NiPeGun para crear una máquina virtual para DSM en el MicroServer Gen10
 # ----------
 
-EXPECTED_ARGS=4
+cCantArgumEsperados=4
 E_BADARGS=65
 
 ColorAdvertencia='\033[1;31m'
@@ -29,7 +29,7 @@ if [ $# -ne $EXPECTED_ARGS ]
     echo "CrearMVDSMParaMSGen10 200 2 2048 32"
     echo "-------------------------------------------------------------------------"
     echo ""
-    exit $E_BADARGS
+    exit
   else
     mkdir /var/lib/vz/images/$1
     cd /var/lib/vz/images/$1

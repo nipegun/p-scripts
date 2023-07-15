@@ -6,10 +6,10 @@
 # No tienes que aceptar ningún tipo de términos de uso o licencia para utilizarlo o modificarlo porque va sin CopyLeft.
 
 #------------------------------------------------------------------------------------------------------------------------------
-#  Script de NiPeGun para comprobar si Proxmox está preparado para pasar dispositivos PCI a las máquinas virtuales
+# Script de NiPeGun para comprobar si Proxmox está preparado para pasar dispositivos PCI a las máquinas virtuales
 #
-#  Ejecución remota:
-#  curl -s https://raw.githubusercontent.com/nipegun/p-scripts/master/PCIPassThrough-ComprobarSiPreparado.sh | bash
+# Ejecución remota:
+#  curl -sL https://raw.githubusercontent.com/nipegun/p-scripts/master/PCIPassThrough-ComprobarSiPreparado.sh | bash
 #------------------------------------------------------------------------------------------------------------------------------
 
 ColorRojo='\033[1;31m'

@@ -6,23 +6,23 @@
 # No tienes que aceptar ningún tipo de términos de uso o licencia para utilizarlo o modificarlo porque va sin CopyLeft.
 
 #-----------------------------------------------------------
-#  Script de NiPeGun para crear los alias de los p-scripts
+# Script de NiPeGun para crear los alias de los p-scripts
 #-----------------------------------------------------------
 
-vColorAzul="\033[0;34m"
-vColorAzulClaro="\033[1;34m"
-vColorVerde='\033[1;32m'
-vColorRojo='\033[1;31m'
+cColorAzul="\033[0;34m"
+cColorAzulClaro="\033[1;34m"
+cColorVerde='\033[1;32m'
+cColorRojo='\033[1;31m'
 vFinColor='\033[0m'
 
 echo ""
-echo -e "${vColorAzulClaro}  Creando alias para los p-scripts...${vFinColor}"
+echo -e "${cColorAzulClaro}  Creando alias para los p-scripts...${vFinColor}"
 echo ""
 
 ln -s /root/scripts/p-scripts/PVE-Actualizar.sh                  /root/scripts/p-scripts/Alias/apve
 ln -s /root/scripts/p-scripts/PScripts-Sincronizar.sh            /root/scripts/p-scripts/Alias/sinps
 
 echo ""
-echo -e "${vColorVerde}    Alias creados. Deberías poder ejecutar los p-scripts escribiendo el nombre de su alias.${vFinColor}"
+echo -e "${cColorVerde}    Alias creados. Deberías poder ejecutar los p-scripts escribiendo el nombre de su alias.${vFinColor}"
 echo ""
 

@@ -6,7 +6,7 @@
 # No tienes que aceptar ningún tipo de términos de uso o licencia para utilizarlo o modificarlo porque va sin CopyLeft.
 
 # ----------
-#  Script de NiPeGun para borrar el cluster de Proxmox
+# Script de NiPeGun para borrar el cluster de Proxmox
 # ----------
 
 # Detener el servicio de cluster

@@ -6,7 +6,7 @@
 # No tienes que aceptar ningún tipo de términos de uso o licencia para utilizarlo o modificarlo porque va sin CopyLeft.
 
 #----------------------------------------------------------------------------------------------
-#  Script de NiPeGun para desactivar el reenvio de todo el tráfico DNS hacia la IP de Proxmox
+# Script de NiPeGun para desactivar el reenvio de todo el tráfico DNS hacia la IP de Proxmox
 #----------------------------------------------------------------------------------------------
 
 # Borrar el archivo de reglas

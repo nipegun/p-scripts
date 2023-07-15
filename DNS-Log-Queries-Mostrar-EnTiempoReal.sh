@@ -6,7 +6,7 @@
 # No tienes que aceptar ningún tipo de términos de uso o licencia para utilizarlo o modificarlo porque va sin CopyLeft.
 
 #-----------------------------------------------------------------------
-#  Script de NiPeGun para ver los logs del servidor DNS en tiempo real
+# Script de NiPeGun para ver los logs del servidor DNS en tiempo real
 #-----------------------------------------------------------------------
 
 tail -f /var/log/named/queries.log

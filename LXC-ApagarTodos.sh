@@ -5,7 +5,7 @@
 # No tienes que aceptar ningún tipo de términos de uso o licencia para utilizarlo o modificarlo porque va sin CopyLeft.
 
 # ----------
-#  Script de NiPeGun para apagar todas las máquinas virtuales
+# Script de NiPeGun para apagar todas las máquinas virtuales
 # ----------
 
 lxcini=100

@@ -6,13 +6,13 @@
 # No tienes que aceptar ningún tipo de términos de uso o licencia para utilizarlo o modificarlo porque va sin CopyLeft.
 
 # ----------
-#  Script de NiPeGun para crear una máquina virtual para DSM en el MicroServer Gen10
+# Script de NiPeGun para crear una máquina virtual para DSM en el MicroServer Gen10
 #
-#  Ejecución remota:
-#  curl -s https://raw.githubusercontent.com/nipegun/p-scripts/master/MV-Nueva-DSM6.sh | bash -s 255 2 2048 50 local-lvm
+# Ejecución remota:
+#  curl -sL https://raw.githubusercontent.com/nipegun/p-scripts/master/MV-Nueva-DSM6.sh | bash -s 255 2 2048 50 local-lvm
 # ----------
 
-EXPECTED_ARGS=5
+cCantArgumEsperados=5
 E_BADARGS=65
 
 ColorAdvertencia='\033[1;31m'
@@ -32,7 +32,7 @@ if [ $# -ne $EXPECTED_ARGS ]
     echo "CrearMVDSMParaMSGen10 200 2 2048 32 locallvm"
     echo "-------------------------------------------------------------------------"
     echo ""
-    exit $E_BADARGS
+    exit
   else
     # Descargar el Loader
       echo ""

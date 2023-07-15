@@ -6,7 +6,7 @@
 # No tienes que aceptar ningún tipo de términos de uso o licencia para utilizarlo o modificarlo porque va sin CopyLeft.
 
 #----------------------------------------------------------------------------
-#  Script de NiPeGun para mostrar los intentos de autentificación en la Web
+# Script de NiPeGun para mostrar los intentos de autentificación en la Web
 #----------------------------------------------------------------------------
 
 cat /var/log/syslog | grep pvedaemon | grep "auth"

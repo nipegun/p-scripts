@@ -6,7 +6,7 @@
 # No tienes que aceptar ningún tipo de términos de uso o licencia para utilizarlo o modificarlo porque va sin CopyLeft.
 
 # ----------
-#  Script de NiPeGun para activar PCI PassThrough en un host ProxmoxVE con procesador AMD 
+# Script de NiPeGun para activar PCI PassThrough en un host ProxmoxVE con procesador AMD 
 # ----------
 
 echo ""

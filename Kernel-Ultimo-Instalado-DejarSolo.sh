@@ -6,14 +6,14 @@
 # No tienes que aceptar ningún tipo de términos de uso o licencia para utilizarlo o modificarlo porque va sin CopyLeft.
 
 # ----------
-#  Script de NiPeGun para dejar sólo el último kernel instalado en ProxmoxVE
+# Script de NiPeGun para dejar sólo el último kernel instalado en ProxmoxVE
 #
-#  Ejecución remota:
-#    curl -s https://raw.githubusercontent.com/nipegun/p-scripts/master/Kernel-Ultimo-Instalado-DejarSolo.sh | bash
+# Ejecución remota:
+#    curl -sL https://raw.githubusercontent.com/nipegun/p-scripts/master/Kernel-Ultimo-Instalado-DejarSolo.sh | bash
 # ----------
 
-vColorRojo='\033[1;31m'
-vColorVerde='\033[1;32m'
+cColorRojo='\033[1;31m'
+cColorVerde='\033[1;32m'
 vFinColor='\033[0m'
 
 # Determinar la versión de Debian

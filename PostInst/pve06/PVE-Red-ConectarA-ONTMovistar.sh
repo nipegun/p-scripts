@@ -6,7 +6,7 @@
 # No tienes que aceptar ningún tipo de términos de uso o licencia para utilizarlo o modificarlo porque va sin CopyLeft.
 
 #-------------------------------------------------------------------
-#  Script de NiPeGun para conectar ProxmoxVE a una ONT de Movistar
+# Script de NiPeGun para conectar ProxmoxVE a una ONT de Movistar
 #-------------------------------------------------------------------
 
 InterfazWAN=eth0

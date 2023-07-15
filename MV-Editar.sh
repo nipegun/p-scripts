@@ -6,10 +6,10 @@
 # No tienes que aceptar ningún tipo de términos de uso o licencia para utilizarlo o modificarlo porque va sin CopyLeft.
 
 #-----------------------------------------------------------------------
-#  SCRIPT DE NIPEGUN PARA EDITAR EL ARCHIVO DE CONFIGURACIÓN DE UNA VM
+# Script de NiPeGun para EDITAR EL ARCHIVO DE CONFIGURACIÓN DE UNA VM
 #-----------------------------------------------------------------------
 
-EXPECTED_ARGS=1
+cCantArgumEsperados=1
 E_BADARGS=65
 
 ColorAdvertencia='\033[1;31m'
@@ -30,7 +30,7 @@ if [ $# -ne $EXPECTED_ARGS ]
     echo "edvm 101"
     echo "-------------------------------------------------------------------------"
     echo ""
-    exit $E_BADARGS
+    exit
   else
     nano /etc/pve/qemu-server/$1.conf
 fi

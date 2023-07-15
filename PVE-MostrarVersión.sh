@@ -6,7 +6,7 @@
 # No tienes que aceptar ningún tipo de términos de uso o licencia para utilizarlo o modificarlo porque va sin CopyLeft.
 
 #----------------------------------------------------------------------------
-#  SCRIPT DE NIPEGUN PARA MOSTRAR LA VERSIN DE LOS COMPONENTES DE PROXMOXVE
+# Script de NiPeGun para MOSTRAR LA VERSIN DE LOS COMPONENTES DE PROXMOXVE
 #----------------------------------------------------------------------------
 
 echo ""

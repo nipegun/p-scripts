@@ -6,21 +6,21 @@
 # No tienes que aceptar ningún tipo de términos de uso o licencia para utilizarlo o modificarlo porque va sin CopyLeft.
 
 # ----------
-#  Script de NiPeGun para instalar y configurar xxxxxxxxx en Proxmox
+# Script de NiPeGun para instalar y configurar xxxxxxxxx en Proxmox
 #
-#  Ejecución remota:
-#  curl -s https://raw.githubusercontent.com/nipegun/p-scripts/master/PostInst/PostInst.sh | bash
+# Ejecución remota:
+#  curl -sL https://raw.githubusercontent.com/nipegun/p-scripts/master/PostInst/PostInst.sh | bash
 # ----------
 
-vColorAzul="\033[0;34m"
-vColorAzulClaro="\033[1;34m"
-vColorVerde='\033[1;32m'
-vColorRojo='\033[1;31m'
+cColorAzul="\033[0;34m"
+cColorAzulClaro="\033[1;34m"
+cColorVerde='\033[1;32m'
+cColorRojo='\033[1;31m'
 vFinColor='\033[0m'
 
 # Comprobar si el script está corriendo como root
   if [ $(id -u) -ne 0 ]; then
-    echo -e "${vColorRojo}  Este script está preparado para ejecutarse como root y no lo has ejecutado como root...${vFinColor}" >&2
+    echo -e "${cColorRojo}  Este script está preparado para ejecutarse como root y no lo has ejecutado como root...${vFinColor}" >&2
     exit 1
   fi
 
@@ -47,47 +47,47 @@ vFinColor='\033[0m'
 if [ $OS_VERS == "7" ]; then
 
   echo ""
-  echo -e "${vColorAzulClaro}  Iniciando el script de post-instalación para ProxmoxVE 3...${vFinColor}"
+  echo -e "${cColorAzulClaro}  Iniciando el script de post-instalación para ProxmoxVE 3...${vFinColor}"
   echo ""
 
   echo ""
-  echo -e "${vColorRojo}    Comandos para Proxmox 3 todavía no preparados. Prueba ejecutarlo en otra versión de Proxmox.${vFinColor}"
+  echo -e "${cColorRojo}    Comandos para Proxmox 3 todavía no preparados. Prueba ejecutarlo en otra versión de Proxmox.${vFinColor}"
   echo ""
 
 elif [ $OS_VERS == "8" ]; then
 
   echo ""
-  echo -e "${vColorAzulClaro}  Iniciando el script de post-instalación para ProxmoxVE 4...${vFinColor}"
+  echo -e "${cColorAzulClaro}  Iniciando el script de post-instalación para ProxmoxVE 4...${vFinColor}"
   echo ""
 
   echo ""
-  echo -e "${vColorRojo}    Comandos para Proxmox 4 todavía no preparados. Prueba ejecutarlo en otra versión de Proxmox.${vFinColor}"
+  echo -e "${cColorRojo}    Comandos para Proxmox 4 todavía no preparados. Prueba ejecutarlo en otra versión de Proxmox.${vFinColor}"
   echo ""
 
 elif [ $OS_VERS == "9" ]; then
 
   echo ""
-  echo -e "${vColorAzulClaro}  Iniciando el script de post-instalación para ProxmoxVE 5...${vFinColor}"
+  echo -e "${cColorAzulClaro}  Iniciando el script de post-instalación para ProxmoxVE 5...${vFinColor}"
   echo ""
 
   echo ""
-  echo -e "${vColorRojo}    Comandos para Proxmox 5 todavía no preparados. Prueba ejecutarlo en otra versión de Proxmox.${vFinColor}"
+  echo -e "${cColorRojo}    Comandos para Proxmox 5 todavía no preparados. Prueba ejecutarlo en otra versión de Proxmox.${vFinColor}"
   echo ""
 
 elif [ $OS_VERS == "10" ]; then
 
   echo ""
-  echo -e "${vColorAzulClaro}  Iniciando el script de post-instalación para ProxmoxVE 6...${vFinColor}"
+  echo -e "${cColorAzulClaro}  Iniciando el script de post-instalación para ProxmoxVE 6...${vFinColor}"
   echo ""
 
   echo ""
-  echo -e "${vColorRojo}    Comandos para Proxmox 6 todavía no preparados. Prueba ejecutarlo en otra versión de Proxmox.${vFinColor}"
+  echo -e "${cColorRojo}    Comandos para Proxmox 6 todavía no preparados. Prueba ejecutarlo en otra versión de Proxmox.${vFinColor}"
   echo ""
 
 elif [ $OS_VERS == "11" ]; then
 
   echo ""
-  echo -e "${vColorAzulClaro}  Iniciando el script de post-instalación para ProxmoxVE 7...${vFinColor}"
+  echo -e "${cColorAzulClaro}  Iniciando el script de post-instalación para ProxmoxVE 7...${vFinColor}"
   echo ""
 
   # Si no existe el archivo /root/Fase1Comp.txt
@@ -124,7 +124,7 @@ elif [ $OS_VERS == "11" ]; then
             sed -i -e 's|GRUB_CMDLINE_LINUX_DEFAULT=.*|GRUB_CMDLINE_LINUX_DEFAULT="quiet amd_iommu=on iommu=pt pcie_acs_override=downstream"|g' /etc/default/grub
           else
             echo ""
-            echo -e "${vColorRojo}    No se pudo activar IOMMU en grub porque no se pudo determinar la arquitectura del procesador.${vFinColor}"
+            echo -e "${cColorRojo}    No se pudo activar IOMMU en grub porque no se pudo determinar la arquitectura del procesador.${vFinColor}"
             echo ""
           fi
 
@@ -139,8 +139,8 @@ elif [ $OS_VERS == "11" ]; then
 
       # Notificar fin de fase 1
         echo ""
-        echo -e "${vColorVerde}    Fase 1 del script completada.${vFinColor}"
-        echo -e "${vColorVerde}    La siguiente vez que ejecutes el script se ejecutará la fase 2.${vFinColor}"
+        echo -e "${cColorVerde}    Fase 1 del script completada.${vFinColor}"
+        echo -e "${cColorVerde}    La siguiente vez que ejecutes el script se ejecutará la fase 2.${vFinColor}"
         echo ""
 
       # Reiniciar el sistema
@@ -173,8 +173,8 @@ elif [ $OS_VERS == "11" ]; then
 
       # Notificar fin de fase 2
         echo ""
-        echo -e "${vColorVerde}    Fase 2 del script completada.${vFinColor}"
-        echo -e "${vColorVerde}    La siguiente vez que ejecutes el script se ejecutará la fase 3.${vFinColor}"
+        echo -e "${cColorVerde}    Fase 2 del script completada.${vFinColor}"
+        echo -e "${cColorVerde}    La siguiente vez que ejecutes el script se ejecutará la fase 3.${vFinColor}"
         echo ""
 
       # Reiniciar el sistema
@@ -189,37 +189,37 @@ elif [ $OS_VERS == "11" ]; then
         apt-get -y install curl
 
       # Instalar los p-scripts
-        curl -s https://raw.githubusercontent.com/nipegun/p-scripts/master/PScripts-Sincronizar.sh | bash
+        curl -sL https://raw.githubusercontent.com/nipegun/p-scripts/master/PScripts-Sincronizar.sh | bash
 
       # Instalar los d-scripts
-        curl -s https://raw.githubusercontent.com/nipegun/d-scripts/master/DScripts-Sincronizar.sh | bash
+        curl -sL https://raw.githubusercontent.com/nipegun/d-scripts/master/DScripts-Sincronizar.sh | bash
 
       # Preparar tareas cron
-        curl -s https://raw.githubusercontent.com/nipegun/d-scripts/master/PostInst/Consola/TareasCron-Preparar.sh | bash
+        curl -sL https://raw.githubusercontent.com/nipegun/d-scripts/master/PostInst/Consola/TareasCron-Preparar.sh | bash
 
       # Preparar comandos post arranque
-        curl -s https://raw.githubusercontent.com/nipegun/d-scripts/master/PostInst/Consola/ComandosPostArranque-Preparar.sh | bash
+        curl -sL https://raw.githubusercontent.com/nipegun/d-scripts/master/PostInst/Consola/ComandosPostArranque-Preparar.sh | bash
 
       # Preparar el cortafuegos
-        curl -s https://raw.githubusercontent.com/nipegun/d-scripts/master/PostInst/Consola/Cortafuegos-Preparar.sh | bash
+        curl -sL https://raw.githubusercontent.com/nipegun/d-scripts/master/PostInst/Consola/Cortafuegos-Preparar.sh | bash
 
       # Quitar mensaje de suscripción
         cp /usr/share/perl5/PVE/API2/Subscription.pm /usr/share/perl5/PVE/API2/Subscription.pm.bak
         sed -i -e 's|status => "NotFound",|status => "Active",|g' /usr/share/perl5/PVE/API2/Subscription.pm
 
       # Descargar plantillas de contenedores
-        curl -s https://raw.githubusercontent.com/nipegun/p-scripts/master/PostInst/Containers-LXC-Descargar.sh | bash
+        curl -sL https://raw.githubusercontent.com/nipegun/p-scripts/master/PostInst/Containers-LXC-Descargar.sh | bash
 
       # Descargar ISOs más utilizadas
-        curl -s https://raw.githubusercontent.com/nipegun/p-scripts/master/PostInst/ISOs-Descargar.sh | bash
+        curl -sL https://raw.githubusercontent.com/nipegun/p-scripts/master/PostInst/ISOs-Descargar.sh | bash
 
       # Crear el archivo de fase 3 completada
         touch /root/Fase3Comp.txt
 
       # Notificar fin de fase 3
         echo ""
-        echo -e "${vColorVerde}    Fase 3 del script completada.${vFinColor}"
-        echo -e "${vColorVerde}    La siguiente vez que ejecutes el script se ejecutará la fase 4.${vFinColor}"
+        echo -e "${cColorVerde}    Fase 3 del script completada.${vFinColor}"
+        echo -e "${cColorVerde}    La siguiente vez que ejecutes el script se ejecutará la fase 4.${vFinColor}"
         echo ""
 
       # Reiniciar el sistema
@@ -231,7 +231,7 @@ elif [ $OS_VERS == "11" ]; then
     if [ ! -f /root/Fase4Comp.txt ]; then
 
       # Instalar el escritorio mate
-        curl -s https://raw.githubusercontent.com/nipegun/d-scripts/master/PostInst/Escritorio/EscritorioMate-Instalar.sh | bash
+        curl -sL https://raw.githubusercontent.com/nipegun/d-scripts/master/PostInst/Escritorio/EscritorioMate-Instalar.sh | bash
 
       # Personalizar el escritorio mate
         curl
@@ -252,7 +252,7 @@ elif [ $OS_VERS == "11" ]; then
           systemctl restart systemd-logind.service
 
       # Configurar el arranque para modo texto
-        curl -s https://raw.githubusercontent.com/nipegun/d-scripts/master/Interfaz-ModoCLI.sh | bash
+        curl -sL https://raw.githubusercontent.com/nipegun/d-scripts/master/Interfaz-ModoCLI.sh | bash
 
       # Crear el usuario de escritorio
         adduser usuariox
@@ -262,8 +262,8 @@ elif [ $OS_VERS == "11" ]; then
 
       # Notificar fin de fase 4
         echo ""
-        echo -e "${vColorVerde}    Fase 4 del script completada.${vFinColor}"
-        echo -e "${vColorVerde}    La siguiente vez que ejecutes el script se ejecutará la fase 5.${vFinColor}"
+        echo -e "${cColorVerde}    Fase 4 del script completada.${vFinColor}"
+        echo -e "${cColorVerde}    La siguiente vez que ejecutes el script se ejecutará la fase 5.${vFinColor}"
         echo ""
 
       # Reiniciar el sistema

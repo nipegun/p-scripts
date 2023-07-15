@@ -6,10 +6,10 @@
 # No tienes que aceptar ningún tipo de términos de uso o licencia para utilizarlo o modificarlo porque va sin CopyLeft.
 
 # ----------
-#  Script de NiPeGun para preparar un container LXC de Debian para routear con NAT
+# Script de NiPeGun para preparar un container LXC de Debian para routear con NAT
 #
-#  Ejecución remota:
-#  curl -s https://raw.githubusercontent.com/nipegun/p-scripts/master/InteriorDelContainer/LXC-Debian-Preparar-Router-por-eth1-con-NAT.sh | bash
+# Ejecución remota:
+#  curl -sL https://raw.githubusercontent.com/nipegun/p-scripts/master/InteriorDelContainer/LXC-Debian-Preparar-Router-por-eth1-con-NAT.sh | bash
 # ----------
 
 ColorRojo='\033[1;31m'

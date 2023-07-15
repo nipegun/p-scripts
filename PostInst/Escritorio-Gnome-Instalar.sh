@@ -6,21 +6,21 @@
 # No tienes que aceptar ningún tipo de términos de uso o licencia para utilizarlo o modificarlo porque va sin CopyLeft.
 
 # ----------
-#  Script de NiPeGun para instalar y configurar el escritorio Gnome en Proxmox
+# Script de NiPeGun para instalar y configurar el escritorio Gnome en Proxmox
 #
-#  Ejecución remota:
-#  curl -s https://raw.githubusercontent.com/nipegun/p-scripts/master/PostInst/Escritorio-Gnome-Instalar.sh | bash
+# Ejecución remota:
+#  curl -sL https://raw.githubusercontent.com/nipegun/p-scripts/master/PostInst/Escritorio-Gnome-Instalar.sh | bash
 # ----------
 
-vColorAzul="\033[0;34m"
-vColorAzulClaro="\033[1;34m"
-vColorVerde='\033[1;32m'
-vColorRojo='\033[1;31m'
+cColorAzul="\033[0;34m"
+cColorAzulClaro="\033[1;34m"
+cColorVerde='\033[1;32m'
+cColorRojo='\033[1;31m'
 vFinColor='\033[0m'
 
 # Comprobar si el script está corriendo como root
   if [ $(id -u) -ne 0 ]; then
-    echo -e "${vColorRojo}  Este script está preparado para ejecutarse como root y no lo has ejecutado como root...${vFinColor}" >&2
+    echo -e "${cColorRojo}  Este script está preparado para ejecutarse como root y no lo has ejecutado como root...${vFinColor}" >&2
     exit 1
   fi
 
@@ -47,47 +47,47 @@ vFinColor='\033[0m'
 if [ $OS_VERS == "7" ]; then
 
   echo ""
-  echo -e "${vColorAzulClaro}  Iniciando el script de instalación y configuración de Gnome para ProxmoxVE 3...${vFinColor}"
+  echo -e "${cColorAzulClaro}  Iniciando el script de instalación y configuración de Gnome para ProxmoxVE 3...${vFinColor}"
   echo ""
 
   echo ""
-  echo -e "${vColorRojo}    Comandos para Proxmox 3 todavía no preparados. Prueba ejecutarlo en otra versión de Proxmox.${vFinColor}"
+  echo -e "${cColorRojo}    Comandos para Proxmox 3 todavía no preparados. Prueba ejecutarlo en otra versión de Proxmox.${vFinColor}"
   echo ""
 
 elif [ $OS_VERS == "8" ]; then
 
   echo ""
-  echo -e "${vColorAzulClaro}  Iniciando el script de instalación y configuración de Gnome para ProxmoxVE 4...${vFinColor}"
+  echo -e "${cColorAzulClaro}  Iniciando el script de instalación y configuración de Gnome para ProxmoxVE 4...${vFinColor}"
   echo ""
 
   echo ""
-  echo -e "${vColorRojo}    Comandos para Proxmox 4 todavía no preparados. Prueba ejecutarlo en otra versión de Proxmox.${vFinColor}"
+  echo -e "${cColorRojo}    Comandos para Proxmox 4 todavía no preparados. Prueba ejecutarlo en otra versión de Proxmox.${vFinColor}"
   echo ""
 
 elif [ $OS_VERS == "9" ]; then
 
   echo ""
-  echo -e "${vColorAzulClaro}  Iniciando el script de instalación y configuración de Gnome para ProxmoxVE 5...${vFinColor}"
+  echo -e "${cColorAzulClaro}  Iniciando el script de instalación y configuración de Gnome para ProxmoxVE 5...${vFinColor}"
   echo ""
 
   echo ""
-  echo -e "${vColorRojo}    Comandos para Proxmox 5 todavía no preparados. Prueba ejecutarlo en otra versión de Proxmox.${vFinColor}"
+  echo -e "${cColorRojo}    Comandos para Proxmox 5 todavía no preparados. Prueba ejecutarlo en otra versión de Proxmox.${vFinColor}"
   echo ""
 
 elif [ $OS_VERS == "10" ]; then
 
   echo ""
-  echo -e "${vColorAzulClaro}  Iniciando el script de instalación y configuración de Gnome para ProxmoxVE 6...${vFinColor}"
+  echo -e "${cColorAzulClaro}  Iniciando el script de instalación y configuración de Gnome para ProxmoxVE 6...${vFinColor}"
   echo ""
 
   echo ""
-  echo -e "${vColorRojo}    Comandos para Proxmox 6 todavía no preparados. Prueba ejecutarlo en otra versión de Proxmox.${vFinColor}"
+  echo -e "${cColorRojo}    Comandos para Proxmox 6 todavía no preparados. Prueba ejecutarlo en otra versión de Proxmox.${vFinColor}"
   echo ""
 
 elif [ $OS_VERS == "11" ]; then
 
   echo ""
-  echo -e "${vColorAzulClaro}  Iniciando el script de instalación y configuración de Gnome para ProxmoxVE 7...${vFinColor}"
+  echo -e "${cColorAzulClaro}  Iniciando el script de instalación y configuración de Gnome para ProxmoxVE 7...${vFinColor}"
   echo ""
 
   # Actualizar la lista de paquetes
@@ -115,8 +115,8 @@ elif [ $OS_VERS == "11" ]; then
     systemctl disable NetworkManager.service
 
   echo ""
-  echo -e "${vColorVerde}    Escritorio Gnome instalado.${vFinColor}"
-  echo -e "${vColorVerde}    Recuerda desactivar el ahorro de energía en todas las cuentas para las que se active el inicie sesión.${vFinColor}"
+  echo -e "${cColorVerde}    Escritorio Gnome instalado.${vFinColor}"
+  echo -e "${cColorVerde}    Recuerda desactivar el ahorro de energía en todas las cuentas para las que se active el inicie sesión.${vFinColor}"
   echo ""
 
 fi

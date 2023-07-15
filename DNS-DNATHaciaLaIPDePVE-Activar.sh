@@ -6,7 +6,7 @@
 # No tienes que aceptar ningún tipo de términos de uso o licencia para utilizarlo o modificarlo porque va sin CopyLeft.
 
 #-------------------------------------------------------------------------------------------
-#  Script de NiPeGun para activar el reenvio de todo el tráfico DNS hacia la IP de Proxmox
+# Script de NiPeGun para activar el reenvio de todo el tráfico DNS hacia la IP de Proxmox
 #-------------------------------------------------------------------------------------------
 
 ColorRojo='\033[1;31m'

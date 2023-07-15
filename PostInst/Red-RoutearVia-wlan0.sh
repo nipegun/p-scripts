@@ -6,7 +6,7 @@
 # No tienes que aceptar ningún tipo de términos de uso o licencia para utilizarlo o modificarlo porque va sin CopyLeft.
 
 #----------------------------------------------------------------------
-#  SCRIPT DE NIPEGUN PARA TRANSFORMAR UN PROXMOXVE RECIÉN INSTALADO
+# Script de NiPeGun para TRANSFORMAR UN PROXMOXVE RECIÉN INSTALADO
 #  EN UN ROUTER WIFI QUE SIRVA IPs EN LA INTERFAZ INALÁMBRICA
 #  ES NECESARIO QUE EL ORDENADOR CUENTE CON, AL MENOS, UNA INTER-
 #  FAZ CABLEADA Y UNA INTERFAZ INALÁMBRICA.
@@ -26,7 +26,7 @@ ColorRojo='\033[1;31m'
 ColorVerde='\033[1;32m'
 FinColor='\033[0m'
 
-## Determinar la versión de Debian
+# Determinar la versión de Debian
 
    if [ -f /etc/os-release ]; then
        # Para systemd y freedesktop.org

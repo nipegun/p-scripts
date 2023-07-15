@@ -6,9 +6,9 @@
 # No tienes que aceptar ningún tipo de términos de uso o licencia para utilizarlo o modificarlo porque va sin CopyLeft.
 
 # ----------
-#  Script de NiPeGun para hacer copia de seguridad de todos los contenedores y las máquinas virtuales de Proxmox
+# Script de NiPeGun para hacer copia de seguridad de todos los contenedores y las máquinas virtuales de Proxmox
 #
-#  Ejecución remota:
+# Ejecución remota:
 #    curl -sL https://raw.githubusercontent.com/nipegun/p-scripts/master/PVE-CopSeg-IDs.sh | bash
 #    curl -sL https://raw.githubusercontent.com/nipegun/p-scripts/master/PVE-CopSeg-IDs.sh | sed "s|vCarpetaCopSeg='/CopSegInt/'|vCarpetaCopSeg='/OtraCarpeta/'" | sed "s|vIdIni=100|vIdIni=202|g" | sed "s|vIdFin=999999999|vIdIni=207|g" | bash
 # ----------
@@ -20,14 +20,14 @@ vIdFin=999999999
 
 vFechaDeEjec=$(date +A%YM%mD%d@%T)
 
-vColorAzul="\033[0;34m"
-vColorAzulClaro="\033[1;34m"
-vColorVerde='\033[1;32m'
-vColorRojo='\033[1;31m'
+cColorAzul="\033[0;34m"
+cColorAzulClaro="\033[1;34m"
+cColorVerde='\033[1;32m'
+cColorRojo='\033[1;31m'
 vFinColor='\033[0m'
 
 echo ""
-echo -e "${vColorAzulClaro}  Iniciando copia de seguridad de todos los contenedores y máquinas virtuales...${vFinColor}"
+echo -e "${cColorAzulClaro}  Iniciando copia de seguridad de todos los contenedores y máquinas virtuales...${vFinColor}"
 echo ""
 
 # Abortar script si no existe la carpeta de copias de seguridad
@@ -35,8 +35,8 @@ echo ""
     echo ""
   else
     echo ""
-    echo -e "${vColorRojo}    No se ha encontrado la carpeta de copias de seguridad indicada en el script.${vFinColor}"
-    echo -e "${vColorRojo}    Copia de seguridad abortada.${vFinColor}"
+    echo -e "${cColorRojo}    No se ha encontrado la carpeta de copias de seguridad indicada en el script.${vFinColor}"
+    echo -e "${cColorRojo}    Copia de seguridad abortada.${vFinColor}"
     echo ""
     exit 1
   fi
@@ -67,7 +67,7 @@ echo ""
                   find $vCarpetaCopSeg -depth -type d -name "$vId" -exec mv {} "$vCarpetaCopSeg$vId"-lxc-"$vNombreDelContenedor" \; # mover la carpeta de sólo número a una carpeta con nombre completo.
                 fi
               echo ""
-              echo -e "${vColorVerde}      Copia de seguridad realizada. Encendiendo nuevamente el contenedor...${vFinColor}"
+              echo -e "${cColorVerde}      Copia de seguridad realizada. Encendiendo nuevamente el contenedor...${vFinColor}"
               echo ""
               pct start $vId
             elif [ $vEstadoLXC == "stopped" ]; then
@@ -82,12 +82,12 @@ echo ""
                   find $vCarpetaCopSeg -depth -type d -name "$vId" -exec mv {} "$vCarpetaCopSeg$vId"-lxc-"$vNombreDelContenedor" \; # mover la carpeta de sólo número a una carpeta con nombre completo.
                 fi
               echo ""
-              echo -e "${vColorVerde}      Copia de seguridad realizada.${vFinColor}"
+              echo -e "${cColorVerde}      Copia de seguridad realizada.${vFinColor}"
               echo ""
             else # No se puede determinar si está apagado o encendido
               echo ""
-              echo -e "${vColorRojo}      No se ha podido determinar si el contenedor $vId está apagado o encendido.${vFinColor}"
-              echo -e "${vColorRojo}      Se aborta su copia de seguridad.${vFinColor}"
+              echo -e "${cColorRojo}      No se ha podido determinar si el contenedor $vId está apagado o encendido.${vFinColor}"
+              echo -e "${cColorRojo}      Se aborta su copia de seguridad.${vFinColor}"
               echo ""
             fi
         elif [ -f /etc/pve/qemu-server/$vId.conf ]; then # Si es máquina virtual
@@ -112,7 +112,7 @@ echo ""
                   find $vCarpetaCopSeg -depth -type d -name "$vId" -exec mv {} "$vCarpetaCopSeg$vId"-mv-"$vNombreDeLaMV" \; # mover la carpeta de sólo número a una carpeta con nombre completo.
                 fi
               echo ""
-              echo -e "${vColorVerde}      Copia de seguridad realizada. Encendiendo nuevamente la máquina virtual...${vFinColor}"
+              echo -e "${cColorVerde}      Copia de seguridad realizada. Encendiendo nuevamente la máquina virtual...${vFinColor}"
               echo ""
               qm start $vId
             elif [ $vEstadoMV == "stopped" ]; then
@@ -127,12 +127,12 @@ echo ""
                   find $vCarpetaCopSeg -depth -type d -name "$vId" -exec mv {} "$vCarpetaCopSeg$vId"-mv-"$vNombreDeLaMV" \; # mover la carpeta de sólo número a una carpeta con nombre completo.
                 fi
               echo ""
-              echo -e "${vColorVerde}      Copia de seguridad realizada.${vFinColor}"
+              echo -e "${cColorVerde}      Copia de seguridad realizada.${vFinColor}"
               echo ""
             else # No se puede determinar si está apagado o encendido
               echo ""
-              echo -e "${vColorRojo}      No se ha podido determinar si la máquina virtual $vId está apagada o encendida.${vFinColor}"
-              echo -e "${vColorRojo}      Se aborta su copia de seguridad.${vFinColor}"
+              echo -e "${cColorRojo}      No se ha podido determinar si la máquina virtual $vId está apagada o encendida.${vFinColor}"
+              echo -e "${cColorRojo}      Se aborta su copia de seguridad.${vFinColor}"
               echo ""
             fi
         #else
@@ -151,6 +151,6 @@ echo ""
 
 # Notificar fin del script
   echo ""
-  echo -e "${vColorVerde}    Ejecución del script, finalizada.${vFinColor}"
+  echo -e "${cColorVerde}    Ejecución del script, finalizada.${vFinColor}"
   echo ""
 

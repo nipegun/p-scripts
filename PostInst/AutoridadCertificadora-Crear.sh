@@ -6,7 +6,7 @@
 # No tienes que aceptar ningún tipo de términos de uso o licencia para utilizarlo o modificarlo porque va sin CopyLeft.
 
 #--------------------------------------------------------------------------------------
-#  Script de NiPeGun para crear una Autoridad Certificadora en el host de ProxmoxVE 5
+# Script de NiPeGun para crear una Autoridad Certificadora en el host de ProxmoxVE 5
 #--------------------------------------------------------------------------------------
 
 wget --no-check-certificate -P /root/ https://github.com/OpenVPN/easy-rsa/releases/download/v3.0.6/EasyRSA-unix-v3.0.6.tgz

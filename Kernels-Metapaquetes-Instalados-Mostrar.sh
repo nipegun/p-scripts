@@ -9,7 +9,7 @@
 # Script de NiPeGun para mostrar los metapaquetes de kernels instalados en ProxmoxVE
 #
 # Ejecución remota:
-#   curl -s https://raw.githubusercontent.com/nipegun/p-scripts/master/Kernels-Metapaquetes-Instalados-Mostrar.sh | bash
+#   curl -sL https://raw.githubusercontent.com/nipegun/p-scripts/master/Kernels-Metapaquetes-Instalados-Mostrar.sh | bash
 # ----------
 
 # Determinar metapaquetes de kernels instalados

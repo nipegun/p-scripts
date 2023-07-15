@@ -6,10 +6,10 @@
 # No tienes que aceptar ningún tipo de términos de uso o licencia para utilizarlo o modificarlo porque va sin CopyLeft.
 
 # ----------
-#  Script de NiPeGun para importar una copia de seguridad de una MV
+# Script de NiPeGun para importar una copia de seguridad de una MV
 #
-#  Ejecución remota:
-# curl -s https://raw.githubusercontent.com/nipegun/p-scripts/master/MV-CopiaDeSeguridad-Restaurar.sh | bash
+# Ejecución remota:
+# curl -sL https://raw.githubusercontent.com/nipegun/p-scripts/master/MV-CopiaDeSeguridad-Restaurar.sh | bash
 # ----------
 
 CantArgsEsperados=3

@@ -6,7 +6,7 @@
 # No tienes que aceptar ningún tipo de términos de uso o licencia para utilizarlo o modificarlo porque va sin CopyLeft.
 
 #-----------------------------------------------------------------------------
-#  SCRIPT DE NIPEGUN PARA IR A LA CARPETA DE MÁQUINAS VIRTUALES DE PROXMOXVE
+# Script de NiPeGun para IR A LA CARPETA DE MÁQUINAS VIRTUALES DE PROXMOXVE
 #-----------------------------------------------------------------------------
 
 cd /etc/pve/qemu-server/

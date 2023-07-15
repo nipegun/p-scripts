@@ -6,7 +6,7 @@
 # No tienes que aceptar ningún tipo de términos de uso o licencia para utilizarlo o modificarlo porque va sin CopyLeft.
 
 #---------------------------------------------------------------------------------
-#  Script de NiPeGun para insertar una imagen de disquete en una MV de ProxmoxVE
+# Script de NiPeGun para insertar una imagen de disquete en una MV de ProxmoxVE
 #---------------------------------------------------------------------------------
 
 ArgumentosNecesarios=2

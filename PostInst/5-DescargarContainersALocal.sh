@@ -6,7 +6,7 @@
 # No tienes que aceptar ningún tipo de términos de uso o licencia para utilizarlo o modificarlo porque va sin CopyLeft.
 
 #---------------------------------------------------------------------------------
-#  Script de NiPeGun para descargar los containers más interesantes de ProxmoxVE
+# Script de NiPeGun para descargar los containers más interesantes de ProxmoxVE
 #
 #  Los containers son de TrunKey Linux y tienes ms info sobre ellos en:
 #  https://github.com/turnkeylinux-apps

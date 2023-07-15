@@ -6,17 +6,17 @@
 # No tienes que aceptar ningún tipo de términos de uso o licencia para utilizarlo o modificarlo porque va sin CopyLeft.
 
 #-------------------------------------------------------------------------------------------------------------------------------
-#  Script de NiPeGun para customizar el contenedor LXC de debian standard
+# Script de NiPeGun para customizar el contenedor LXC de debian standard
 #
 # Ejecución remota:
-# curl -s https://raw.githubusercontent.com/nipegun/p-scripts/master/InteriorDelContainer/LXC-Debian-Preparar.sh | bash
+# curl -sL https://raw.githubusercontent.com/nipegun/p-scripts/master/InteriorDelContainer/LXC-Debian-Preparar.sh | bash
 #-------------------------------------------------------------------------------------------------------------------------------
 
 ColorRojo='\033[1;31m'
 ColorVerde='\033[1;32m'
 FinColor='\033[0m'
 
-## Determinar la versión de Debian
+# Determinar la versión de Debian
 
    if [ -f /etc/os-release ]; then
        # Para systemd y freedesktop.org
@@ -370,9 +370,9 @@ elif [ $OS_VERS == "11" ]; then
         apt-get -y install git
         apt-get -y install nmap
       # Instalar y configurar Fail2Ban
-        curl -s https://raw.githubusercontent.com/nipegun/d-scripts/master/SoftInst/Consola/Fail2Ban-InstalarYConfigurar.sh | bash
+        curl -sL https://raw.githubusercontent.com/nipegun/d-scripts/master/SoftInst/Consola/Fail2Ban-InstalarYConfigurar.sh | bash
       # Instalar los d-scripts
-        curl -s https://raw.githubusercontent.com/nipegun/d-scripts/master/DScripts-Sincronizar.sh | bash
+        curl -sL https://raw.githubusercontent.com/nipegun/d-scripts/master/DScripts-Sincronizar.sh | bash
         echo "export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/root/scripts/d-scripts/Alias/" >> /root/.bashrc
       # Bejar al mínimo la utilización de espacio de intercambio
         echo "vm.swappiness=0" >> /etc/sysctl.conf

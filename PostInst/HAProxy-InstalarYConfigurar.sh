@@ -6,7 +6,7 @@
 # No tienes que aceptar ningún tipo de términos de uso o licencia para utilizarlo o modificarlo porque va sin CopyLeft.
 
 #----------------------------------------------------------------------------------------------------------------------------
-#  Script de NiPeGun para instalar y configurar HAProxy en ProxmoxVE.
+# Script de NiPeGun para instalar y configurar HAProxy en ProxmoxVE.
 #
 #  El objetivo es correr muchos serviores web en PVE y routear el tráfico que llega al host Proxmox hacia cada servidor web
 #  correspondiente basándose en el nombre de dominio (SNI).

@@ -6,27 +6,27 @@
 # No tienes que aceptar ningún tipo de términos de uso o licencia para utilizarlo o modificarlo porque va sin CopyLeft.
 
 #-------------------------------------------------------
-#  Script de NiPeGun para borrar el cluster de Proxmox
+# Script de NiPeGun para borrar el cluster de Proxmox
 #-------------------------------------------------------
 
-## Detener el servicio de cluster
+# Detener el servicio de cluster
    systemctl stop pve-cluster
 
-## x
+# x
    pmxcfs -l
 
-## Borrar archivos de configuración del cluster existente
+# Borrar archivos de configuración del cluster existente
    rm -f /etc/pve/cluster.conf
    rm -f /etc/pve/corosync.conf
    rm -f /etc/cluster/cluster.conf
    rm -f /etc/corosync/corosync.conf
 
-## Borrar el archivo x
+# Borrar el archivo x
    rm /var/lib/pve-cluster/.pmxcfs.lockfile
 
-## Borrar la clave de autenticación
+# Borrar la clave de autenticación
    #rm -f /etc/corosync/authkey
 
-## Arrancar el servicio del cluster
+# Arrancar el servicio del cluster
    systemctl start pve-cluster
 

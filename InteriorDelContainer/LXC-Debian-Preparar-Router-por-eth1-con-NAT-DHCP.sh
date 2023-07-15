@@ -6,10 +6,10 @@
 # No tienes que aceptar ningún tipo de términos de uso o licencia para utilizarlo o modificarlo porque va sin CopyLeft.
 
 # ----------
-#  Script de NiPeGun para preparar un container LXC de Debian para routear con NAT y DHCP
+# Script de NiPeGun para preparar un container LXC de Debian para routear con NAT y DHCP
 #
-#  Ejecución remota:
-#  curl -s https://raw.githubusercontent.com/nipegun/p-scripts/master/InteriorDelContainer/LXC-Debian-Preparar-Router-por-eth1-con-NAT-DHCP.sh | bash
+# Ejecución remota:
+#  curl -sL https://raw.githubusercontent.com/nipegun/p-scripts/master/InteriorDelContainer/LXC-Debian-Preparar-Router-por-eth1-con-NAT-DHCP.sh | bash
 # ----------
 
 ColorRojo='\033[1;31m'
@@ -235,7 +235,7 @@ elif [ $OS_VERS == "11" ]; then
       # Comprobar si el paquete wget está instalado. Si no lo está, instalarlo.
         if [[ $(dpkg-query -s wget 2>/dev/null | grep installed) == "" ]]; then
           echo ""
-          echo -e "${vColorRojo}wget no está instalado. Iniciando su instalación...${vFinColor}"
+          echo -e "${cColorRojo}wget no está instalado. Iniciando su instalación...${vFinColor}"
           echo ""
           apt-get -y update && apt-get -y install wget
           echo ""

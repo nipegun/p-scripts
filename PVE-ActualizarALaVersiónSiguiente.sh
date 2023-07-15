@@ -6,14 +6,14 @@
 # No tienes que aceptar ningún tipo de términos de uso o licencia para utilizarlo o modificarlo porque va sin CopyLeft.
 
 #-----------------------------------------------------------------------------------------------------
-#  Script de NiPeGun para actualizar cada versión de ProxmoxVE a la versión inmediatamente siguiente
+# Script de NiPeGun para actualizar cada versión de ProxmoxVE a la versión inmediatamente siguiente
 #-----------------------------------------------------------------------------------------------------
 
 ColorRojo='\033[1;31m'
 ColorVerde='\033[1;32m'
 FinColor='\033[0m'
 
-## Determinar la versión de Debian
+# Determinar la versión de Debian
 
    if [ -f /etc/os-release ]; then
        # Para systemd y freedesktop.org

@@ -6,7 +6,7 @@
 # No tienes que aceptar ningún tipo de términos de uso o licencia para utilizarlo o modificarlo porque va sin CopyLeft.
 
 #-----------------------------------------------------------------------
-#  Script de NiPeGun para descargar un container específico en Proxmox
+# Script de NiPeGun para descargar un container específico en Proxmox
 #-----------------------------------------------------------------------
 
 CantArgsEsperados=2

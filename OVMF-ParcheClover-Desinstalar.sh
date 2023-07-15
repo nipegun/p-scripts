@@ -6,7 +6,7 @@
 # No tienes que aceptar ningún tipo de términos de uso o licencia para utilizarlo o modificarlo porque va sin CopyLeft.
 
 #---------------------------------------------------------------------------------------------
-#  Script de NiPeGun para parchear el OVMF de Clover para que pueda usarse Clover BootLoader
+# Script de NiPeGun para parchear el OVMF de Clover para que pueda usarse Clover BootLoader
 #---------------------------------------------------------------------------------------------
 
 ColorRojo='\033[1;31m'

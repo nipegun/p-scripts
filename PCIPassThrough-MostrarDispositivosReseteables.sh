@@ -6,10 +6,10 @@
 # No tienes que aceptar ningún tipo de términos de uso o licencia para utilizarlo o modificarlo porque va sin CopyLeft.
 
 #------------------------------------------------------------------------------------------------------------------------------
-#  Script de NiPeGun para mostrar que dispositivos PCI aceptan ser reseteados
+# Script de NiPeGun para mostrar que dispositivos PCI aceptan ser reseteados
 #
-#  Ejecución remota:
-#  curl -s https://raw.githubusercontent.com/nipegun/p-scripts/master/PCIPassThrough-MostrarDispositivosReseteables.sh | bash
+# Ejecución remota:
+#  curl -sL https://raw.githubusercontent.com/nipegun/p-scripts/master/PCIPassThrough-MostrarDispositivosReseteables.sh | bash
 #------------------------------------------------------------------------------------------------------------------------------
 
 for iommu_group in $(find /sys/kernel/iommu_groups/ -maxdepth 1 -mindepth 1 -type d)

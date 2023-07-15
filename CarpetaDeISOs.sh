@@ -6,7 +6,7 @@
 # No tienes que aceptar ningún tipo de términos de uso o licencia para utilizarlo o modificarlo porque va sin CopyLeft.
 
 #---------------------------------------------------------------
-#  Script de NiPeGun para ir a la carpeta de ISOs de ProxmoxVE
+# Script de NiPeGun para ir a la carpeta de ISOs de ProxmoxVE
 #---------------------------------------------------------------
 
 cd /var/lib/vz/template/iso

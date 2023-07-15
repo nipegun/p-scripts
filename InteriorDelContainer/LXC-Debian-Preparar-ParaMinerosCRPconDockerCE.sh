@@ -6,10 +6,10 @@
 # No tienes que aceptar ningún tipo de términos de uso o licencia para utilizarlo o modificarlo porque va sin CopyLeft.
 
 # ----------
-#  Script de NiPeGun para preparar el contenedor LXC de debian para correr mineros CRP con docker
+# Script de NiPeGun para preparar el contenedor LXC de debian para correr mineros CRP con docker
 #
 # Ejecución remota:
-# curl -s https://raw.githubusercontent.com/nipegun/p-scripts/master/InteriorDelContainer/LXC-Debian-Preparar-ParaMinerosCRPconDockerCE.sh | bash
+# curl -sL https://raw.githubusercontent.com/nipegun/p-scripts/master/InteriorDelContainer/LXC-Debian-Preparar-ParaMinerosCRPconDockerCE.sh | bash
 # ----------
 
 UtopiaPublicKey=C24C4B77698578B46CDB1C109996B0299984FEE46AAC5CD6025786F5C5C61415
@@ -18,7 +18,7 @@ ColorRojo='\033[1;31m'
 ColorVerde='\033[1;32m'
 FinColor='\033[0m'
 
-## Determinar la versión de Debian
+# Determinar la versión de Debian
 
    if [ -f /etc/os-release ]; then
        # Para systemd y freedesktop.org
@@ -100,26 +100,26 @@ elif [ $OS_VERS == "11" ]; then
   echo "--------------------------------------------------------------------------------------------------------------------"
   echo ""
 
-  ## Actualizar el sistema
+  # Actualizar el sistema
      apt-get -y update
      apt-get -y upgrade
      apt-get -y dist-upgrade
      apt-get -y autoremove
 
-  ## Instalar paquetes necesarios
+  # Instalar paquetes necesarios
      #apt-get -y install ethtool
      #apt-get -y install nload
      #apt-get -y install screen
      #apt-get -y install htop
      #apt-get -y install docker.io
 
-  ## Instalar DockerCE
-     curl -s https://raw.githubusercontent.com/nipegun/d-scripts/master/SoftInst/Consola/DockerCE-Instalar.sh | bash
+  # Instalar DockerCE
+     curl -sL https://raw.githubusercontent.com/nipegun/d-scripts/master/SoftInst/Consola/DockerCE-Instalar.sh | bash
 
-  ## Instalar PortainerCE
-     curl -s https://raw.githubusercontent.com/nipegun/d-scripts/master/SoftInst/Consola/DockerCE-InstalarContenedor-PortainerCE.sh | bash
+  # Instalar PortainerCE
+     curl -sL https://raw.githubusercontent.com/nipegun/d-scripts/master/SoftInst/Consola/DockerCE-InstalarContenedor-PortainerCE.sh | bash
 
-  ## Instalar miniupnpd
+  # Instalar miniupnpd
      echo ""
      echo "  Instalando miniupnpd.."
      echo ""
@@ -136,7 +136,7 @@ elif [ $OS_VERS == "11" ]; then
      sed -i -e 's|IPTABLES=$(which ip6tables)|IPTABLES=$(which ip6tables-legacy)|g'         /etc/miniupnpd/miniupnpd_functions.sh
      sed -i -e 's|#net.ipv4.ip_forward=1|net.ipv4.ip_forward=1|g'                           /etc/sysctl.conf
 
-  ## Creando el dockerfile
+  # Creando el dockerfile
      echo "FROM debian:bullseye-slim"                                                                                                   > /root/DockerFileMineroCRP
      echo "RUN \\"                                                                                                                     >> /root/DockerFileMineroCRP
      echo "  cd /tmp                                                                                                            && \\" >> /root/DockerFileMineroCRP
@@ -159,10 +159,10 @@ elif [ $OS_VERS == "11" ]; then
      echo "CMD /root/EjecutarMinero.sh"                                                                                                >> /root/DockerFileMineroCRP
      nano /root/DockerFileMineroCRP
 
-  ## Construit la imagen
+  # Construit la imagen
      docker build -t nipegun:minerocrp - < /root/DockerFileMineroCRP
 
-  ## Ejecutar el contenedor
+  # Ejecutar el contenedor
      docker run -d --restart=always --cap-add=IPC_LOCK --name minerocrp1 -v /Host/MineroCRP1:/data nipegun:minerocrp
 
 fi

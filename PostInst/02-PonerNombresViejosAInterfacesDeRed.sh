@@ -6,7 +6,7 @@
 # No tienes que aceptar ningún tipo de términos de uso o licencia para utilizarlo o modificarlo porque va sin CopyLeft.
 
 #-----------------------------------------------------------------------------------------------------------------
-#  Script de NiPeGun para re-escribir /etc/network/interfaceds con los nombres antiguos de las interfaces de red
+# Script de NiPeGun para re-escribir /etc/network/interfaceds con los nombres antiguos de las interfaces de red
 #-----------------------------------------------------------------------------------------------------------------
 
 ColorRojo='\033[1;31m'

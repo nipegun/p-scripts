@@ -6,12 +6,12 @@
 # No tienes que aceptar ningún tipo de términos de uso o licencia para utilizarlo o modificarlo porque va sin CopyLeft.
 
 # ----------
-#  Script de NiPeGun para crear una máquina virtual para OpenWrt desde la terminal de ProxmoxVE
+# Script de NiPeGun para crear una máquina virtual para OpenWrt desde la terminal de ProxmoxVE
 #
-#  Ejecución remota:
-#  curl -s https://raw.githubusercontent.com/nipegun/p-scripts/master/MV-Nueva-OpenWrt.sh | bash
-#  curl -s https://raw.githubusercontent.com/nipegun/p-scripts/master/MV-Nueva-OpenWrt.sh |sed 's-vIdMV="201"-vIdMV="999"-g' | bash
-#  curl -s https://raw.githubusercontent.com/nipegun/p-scripts/master/MV-Nueva-OpenWrt.sh |sed 's-vIdMV="201"-vIdMV="999"-g' | sed 's-vNomAlmMV="PVE"-vNomAlmMV="local-lvm"-g' | bash
+# Ejecución remota:
+#  curl -sL https://raw.githubusercontent.com/nipegun/p-scripts/master/MV-Nueva-OpenWrt.sh | bash
+#  curl -sL https://raw.githubusercontent.com/nipegun/p-scripts/master/MV-Nueva-OpenWrt.sh |sed 's-vIdMV="201"-vIdMV="999"-g' | bash
+#  curl -sL https://raw.githubusercontent.com/nipegun/p-scripts/master/MV-Nueva-OpenWrt.sh |sed 's-vIdMV="201"-vIdMV="999"-g' | sed 's-vNomAlmMV="PVE"-vNomAlmMV="local-lvm"-g' | bash
 # ----------
 
 vIdMV="201"
@@ -73,8 +73,8 @@ echo ""
   echo ""
   echo -e "${ColorAzulClaro}    Descargando la última versión de Debian Live...${FinColor}"
   echo ""
-  #vArchivo=$(curl -s $vURLDescarga | sed 's->->\n-g' | grep href |grep "mate.iso" | tail -n 1 | cut -d'"' -f2)
-  vArchivo=$(curl -s $vURLDescarga | sed 's->->\n-g' | grep href |grep "standard.iso" | tail -n 1 | cut -d'"' -f2)
+  #vArchivo=$(curl -sL $vURLDescarga | sed 's->->\n-g' | grep href |grep "mate.iso" | tail -n 1 | cut -d'"' -f2)
+  vArchivo=$(curl -sL $vURLDescarga | sed 's->->\n-g' | grep href |grep "standard.iso" | tail -n 1 | cut -d'"' -f2)
   # Comprobar si el paquete wget está instalado. Si no lo está, instalarlo.
     if [[ $(dpkg-query -s wget 2>/dev/null | grep installed) == "" ]]; then
       echo ""

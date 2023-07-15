@@ -6,10 +6,10 @@
 # No tienes que aceptar ningún tipo de términos de uso o licencia para utilizarlo o modificarlo porque va sin CopyLeft.
 
 # ----------
-#  Script de NiPeGun para importar en Proxmox todas las copias de seguridad de contenedores y máquinas virtuales que haya en una carpeta dada
+# Script de NiPeGun para importar en Proxmox todas las copias de seguridad de contenedores y máquinas virtuales que haya en una carpeta dada
 #
-#  Ejecución remota:
-#    curl -s https://raw.githubusercontent.com/nipegun/p-scripts/master/PVE-CopSeg-IDs-Importar.sh | bash
+# Ejecución remota:
+#    curl -sL https://raw.githubusercontent.com/nipegun/p-scripts/master/PVE-CopSeg-IDs-Importar.sh | bash
 # ----------
 
 # Modificar sólo esto antes de ejecutar el script
@@ -23,15 +23,15 @@ vAlmacenamiento="PVE"
 
 vFechaDeEjec=$(date +A%YM%mD%d@%T)
 
-vColorAzul="\033[0;34m"
-vColorAzulClaro="\033[1;34m"
-vColorVerde='\033[1;32m'
-vColorRojo='\033[1;31m'
+cColorAzul="\033[0;34m"
+cColorAzulClaro="\033[1;34m"
+cColorVerde='\033[1;32m'
+cColorRojo='\033[1;31m'
 vFinColor='\033[0m'
 
 echo ""
-echo -e "${vColorAzulClaro}  Iniciando importación la de todos los contenedores y máquinas virtuales en la carpeta:${vFinColor}"
-echo -e "${vColorAzulClaro}  $vCarpetaCopSeg.${vFinColor}"
+echo -e "${cColorAzulClaro}  Iniciando importación la de todos los contenedores y máquinas virtuales en la carpeta:${vFinColor}"
+echo -e "${cColorAzulClaro}  $vCarpetaCopSeg.${vFinColor}"
 echo ""
 echo ""
 
@@ -40,8 +40,8 @@ echo ""
     echo ""
   else
     echo ""
-    echo -e "${vColorRojo}    No se ha encontrado la carpeta de copias de seguridad indicada en el script.${vFinColor}"
-    echo -e "${vColorRojo}    Copia de seguridad abortada.${vFinColor}"
+    echo -e "${cColorRojo}    No se ha encontrado la carpeta de copias de seguridad indicada en el script.${vFinColor}"
+    echo -e "${cColorRojo}    Copia de seguridad abortada.${vFinColor}"
     echo ""
     exit 1
   fi

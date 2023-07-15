@@ -6,14 +6,14 @@
 # No tienes que aceptar ningún tipo de términos de uso o licencia para utilizarlo o modificarlo porque va sin CopyLeft.
 
 #-------------------------------------------------------------------------------
-#  Script de NiPeGun para instalar y configurar el servidor DHCP en ProxmoxPVE
+# Script de NiPeGun para instalar y configurar el servidor DHCP en ProxmoxPVE
 #-------------------------------------------------------------------------------
 
 ColorRojo='\033[1;31m'
 ColorVerde='\033[1;32m'
 FinColor='\033[0m'
 
-## Determinar la versión de Debian
+# Determinar la versión de Debian
 
    if [ -f /etc/os-release ]; then
        # Para systemd y freedesktop.org
@@ -95,7 +95,7 @@ elif [ $OS_VERS == "11" ]; then
   echo "--------------------------------------------------------------------------------------------"
   echo ""
 
-  ## Desinstalar cualquier posible paquete previamente instalado
+  # Desinstalar cualquier posible paquete previamente instalado
      mkdir -p /CopSegInt/ 2> /dev/null
      mkdir -p /CopSegInt/DHCP/ 2> /dev/null
      cp /etc/default/isc-dhcp-server /CopSegInt/DHCP/ 2> /dev/null
@@ -104,14 +104,14 @@ elif [ $OS_VERS == "11" ]; then
      systemctl disable isc-dhcp-server.service
      apt-get -y purge isc-dhcp-server
      
-  ## Instalar el paquete
+  # Instalar el paquete
      apt-get -y install isc-dhcp-server
 
-  ## Indicar las interfaces
+  # Indicar las interfaces
      sed -i -e 's|#DHCPDv4_CONF=/etc/dhcp/dhcpd.conf|DHCPDv4_CONF=/etc/dhcp/dhcpd.conf|g' /etc/default/isc-dhcp-server
      sed -i -e 's|INTERFACESv4=""|INTERFACESv4="vmbr0"|g'                                 /etc/default/isc-dhcp-server
 
-  ## Crear el archivo de configuración
+  # Crear el archivo de configuración
      IPPVE=$(hostname -I | cut -d' ' -f1 | cut -d' ' -f1)
      cp /etc/dhcp/dhcpd.conf /etc/dhcp/dhcpd.conf.bak
      echo "authoritative;"                                 > /etc/dhcp/dhcpd.conf
@@ -394,7 +394,7 @@ elif [ $OS_VERS == "11" ]; then
      echo ""                                              >> /etc/dhcp/dhcpd.conf
      echo "  }"                                           >> /etc/dhcp/dhcpd.conf
 
-  ## Reiniciar el servicio
+  # Reiniciar el servicio
      systemctl restart isc-dhcp-server.service
 
 fi
