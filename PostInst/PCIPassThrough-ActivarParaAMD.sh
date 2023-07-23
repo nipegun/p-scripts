@@ -7,6 +7,9 @@
 
 # ----------
 # Script de NiPeGun para activar PCI PassThrough en un host ProxmoxVE con procesador AMD 
+#
+# Ejecución remota:
+#   curl -sL https://raw.githubusercontent.com/nipegun/p-scripts/master/PostInst/PCIPassThrough-ActivarParaAMD.sh | bash
 # ----------
 
 echo ""
