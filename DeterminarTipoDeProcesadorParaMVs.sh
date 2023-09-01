@@ -29,11 +29,14 @@ vSupports_v2='awk "/cx16/&&/lahf_lm/&&/pni/&&/popcnt/&&/sse4_1/&&/sse4_2/&&/ssse
 vSupports_v2_AES='awk "/cx16/&&/lahf_lm/&&/pni/&&/popcnt/&&/sse4_1/&&/sse4_2/&&/ssse3/&&/aes/ {found=1} END {exit !found}"'
 vSupports_v3='awk "/avx/&&/avx2/&&/bmi1/&&/bmi2/&&/f16c/&&/fma/&&/abm/&&/movbe/&&/xsave/      {found=1} END {exit !found}"'
 vSupports_v4='awk "/avx512f/&&/avx512bw/&&/avx512cd/&&/avx512dq/&&/avx512vl/                  {found=1} END {exit !found}"'
- 
-echo "$vFlags" | eval $vSupports_v2     || exit 2 && echo "Se puede usar: x86-64-v2"
-echo "$vFlags" | eval $vSupports_v2_AES || exit 3 && echo "Se puede usar: x86-64-v2-AES"
-echo "$vFlags" | eval $vSupports_v3     || exit 4 && echo "Se puede usar: x86-64-v3"
-echo "$vFlags" | eval $vSupports_v4     || exit 5 && echo "Se puede usar: x86-64-v4"
+
+echo ""
+echo "  El procesador de este Proxmox permite asignar a las MVs los siguientes tipos de CPU:"
+echo "
+echo "$vFlags" | eval $vSupports_v2     || exit 2 && echo "    x86-64-v2"
+echo "$vFlags" | eval $vSupports_v2_AES || exit 3 && echo "    x86-64-v2-AES"
+echo "$vFlags" | eval $vSupports_v3     || exit 4 && echo "    x86-64-v3"
+echo "$vFlags" | eval $vSupports_v4     || exit 5 && echo "    x86-64-v4"
 
 
 vFlags-v2=$(    echo $vFlags | grep -E --color 'cx16|lahf_lm|pni|popcnt|sse4_1|sse4_2|ssse3')
