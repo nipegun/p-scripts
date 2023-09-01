@@ -33,10 +33,10 @@ vSupports_v4='awk "/avx512f/&&/avx512bw/&&/avx512cd/&&/avx512dq/&&/avx512vl/    
 echo ""
 echo "  El procesador de este Proxmox permite asignar a las MVs los siguientes tipos de CPU x86-64:"
 echo ""
-echo "$vFlags" | eval $vSupports_v2     || exit 2 && echo "    x86-64-v2"
-echo "$vFlags" | eval $vSupports_v2_AES || exit 3 && echo "    x86-64-v2-AES"
-echo "$vFlags" | eval $vSupports_v3     || exit 4 && echo "    x86-64-v3"
-echo "$vFlags" | eval $vSupports_v4     || exit 5 && echo "    x86-64-v4"
+echo "$vFlags" | eval $vSupports_v2     || exit 2 && echo "    x86-64-v2     (Intel Nehalem y AMD Opteron_G3, o superiores)"
+echo "$vFlags" | eval $vSupports_v2_AES || exit 3 && echo "    x86-64-v2-AES (Intel Westmere y AMD Opteron_G4, o superiores)"
+echo "$vFlags" | eval $vSupports_v3     || exit 4 && echo "    x86-64-v3     (Intel Broadwell y AMD EPYC, o superiores)"
+echo "$vFlags" | eval $vSupports_v4     || exit 5 && echo "    x86-64-v4     (Intel Skylake y AMD EPYC v4 Genoa, o superiores)"
 
 vFlags-v2=$(    echo $vFlags | grep -E --color 'cx16|lahf_lm|pni|popcnt|sse4_1|sse4_2|ssse3')
 vFlags-v2-AES=$(echo $vFlags | grep -E --color 'cx16|lahf_lm|pni|popcnt|sse4_1|sse4_2|ssse3| aes ')
