@@ -37,7 +37,7 @@ echo "$vFlags" | eval $vSupports_v2     || exit 2 && echo "    x86-64-v2"
 echo "$vFlags" | eval $vSupports_v2_AES || exit 3 && echo "    x86-64-v2-AES"
 echo "$vFlags" | eval $vSupports_v3     || exit 4 && echo "    x86-64-v3"
 echo "$vFlags" | eval $vSupports_v4     || exit 5 && echo "    x86-64-v4"
-echo ""
+echo ""                                 || exit 6 && echo ""
 
 vFlags-v2=$(    echo $vFlags | grep -E --color 'cx16|lahf_lm|pni|popcnt|sse4_1|sse4_2|ssse3')
 vFlags-v2-AES=$(echo $vFlags | grep -E --color 'cx16|lahf_lm|pni|popcnt|sse4_1|sse4_2|ssse3| aes ')
