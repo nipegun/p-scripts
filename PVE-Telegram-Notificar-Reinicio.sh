@@ -42,5 +42,5 @@ echo ""
   vTokenDelBot=$(cat /root/scripts/Telegram/TokenDelBot.txt)
   vIdChat=$(cat /root/scripts/Telegram/IdChat.txt)
   vMensaje="$cFechaEjecScript - El nodo $(hostname) ha terminado de reiniciarse. Su IP pública es: $vIPWAN."
-  /root/scripts/d-scripts/Telegram-EnviarTexto.sh  "$vTokenDelBot" "$vIdChat" "$vMensaje"
+  /root/scripts/d-scripts/Telegram-Enviar-Texto.sh  "$vTokenDelBot" "$vIdChat" "$vMensaje"
 
