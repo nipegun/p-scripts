@@ -28,6 +28,6 @@ vMensaje="$1"
 # Notificar por Telegram
   vTokenDelBot=$(cat /root/scripts/Telegram/TokenDelBot.txt)
   vIdChat=$(cat /root/scripts/Telegram/IdChat.txt)
-  /root/scripts/d-scripts/Telegram-EnviarTexto.sh  "$vTokenDelBot" "$vIdChat" "$vMensaje"
+  /root/scripts/d-scripts/Telegram-Enviar-Texto.sh  "$vTokenDelBot" "$vIdChat" "$vMensaje"
 
 
