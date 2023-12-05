@@ -96,5 +96,25 @@ elif [ $cVerSO == "11" ]; then
   # Ejecutar script
     /tmp/KernelUltimoInstaladoDejarSolo.sh
 
+elif [ $cVerSO == "12" ]; then
+
+  echo ""
+  echo "  Iniciando el script para dejar sólo el último kernel instalado en ProxmoxVE 8..."
+  echo ""
+
+  # Determinar kernels instalados
+    /root/scripts/p-scripts/Kernels-Instalados-Mostrar.sh | grep pve | grep "\-pve" > /tmp/KernelsInstalados.txt
+  # Crear script
+    echo '#!/bin/bash'                                            > /tmp/KernelUltimoInstaladoDejarSolo.sh
+    echo ""                                                      >> /tmp/KernelUltimoInstaladoDejarSolo.sh
+    cat /tmp/KernelsInstalados.txt | head -n -1                  >> /tmp/KernelUltimoInstaladoDejarSolo.sh
+    sed -i -e 's|proxmox-kernel|apt-get -y remove proxmox-kernel|g' /tmp/KernelUltimoInstaladoDejarSolo.sh
+    echo ""                                                      >> /tmp/KernelUltimoInstaladoDejarSolo.sh
+    echo "apt-get -y autoremove"                                 >> /tmp/KernelUltimoInstaladoDejarSolo.sh
+  # Dar permisos de ejecución al script
+    chmod +x /tmp/KernelUltimoInstaladoDejarSolo.sh
+  # Ejecutar script
+    /tmp/KernelUltimoInstaladoDejarSolo.sh
+
 fi
 
