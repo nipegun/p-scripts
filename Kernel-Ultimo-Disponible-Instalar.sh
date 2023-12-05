@@ -81,5 +81,13 @@ elif [ $cVerSO == "11" ]; then
   vUltKernelDisponible=$(apt-cache search pve-kernel | grep atest | tail -1 | cut -d ' ' -f1)
   apt-get -y install $vUltKernelDisponible
 
+elif [ $cVerSO == "11" ]; then
+
+  echo ""
+  echo "  Iniciando el script de instalación del último kernel para proxmox 8..."
+  echo ""
+  apt-get update && apt-get -y dist-upgrade
+  vUltKernelDisponible=$(apt-cache search proxmox-kernel | grep atest | tail -1 | cut -d ' ' -f1)
+  apt-get -y install $vUltKernelDisponible
 fi
 
