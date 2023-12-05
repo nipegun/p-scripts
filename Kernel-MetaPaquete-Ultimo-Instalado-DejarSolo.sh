@@ -96,5 +96,24 @@ elif [ $cVerSO == "11" ]; then
   # Ejecutar script
     /tmp/KernelMetapaqueteUltimoInstaladoDejarSolo.sh
 
+elif [ $cVerSO == "12" ]; then
+
+  echo ""
+  echo "  Iniciando el script para dejar sólo el último metapaquete del kernel instalado en ProxmoxVE 8..."
+  echo ""
+
+  # Determinar metapaquetes del kernel instalados en el sistema
+    apt list --installed  2> /dev/null | grep proxmox-kernel | grep all | cut -d'/' -f1 | grep -v helper > /tmp/KernelsMetapaquetesInstalados.txt
+  # Crear script
+    echo '#!/bin/bash'                                            > /tmp/KernelMetapaqueteUltimoInstaladoDejarSolo.sh
+    echo ""                                                      >> /tmp/KernelMetapaqueteUltimoInstaladoDejarSolo.sh
+    cat /tmp/KernelsMetapaquetesInstalados.txt | head -n -1      >> /tmp/KernelMetapaqueteUltimoInstaladoDejarSolo.sh
+    sed -i -e 's|proxmox-kernel|apt-get -y remove proxmox-kernel|g' /tmp/KernelMetapaqueteUltimoInstaladoDejarSolo.sh
+    echo ""                                                      >> /tmp/KernelMetapaqueteUltimoInstaladoDejarSolo.sh
+    echo "apt-get -y autoremove"                                 >> /tmp/KernelMetapaqueteUltimoInstaladoDejarSolo.sh
+  # Dar permisos de ejecución al script
+    chmod +x /tmp/KernelMetapaqueteUltimoInstaladoDejarSolo.sh
+  # Ejecutar script
+    /tmp/KernelMetapaqueteUltimoInstaladoDejarSolo.sh
 fi
 
