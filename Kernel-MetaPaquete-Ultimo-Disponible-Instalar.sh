@@ -88,5 +88,18 @@ elif [ $cVerSO == "11" ]; then
   # Instalar esa versión
     apt-get -y install $vUltMetaDisp
 
+
+elif [ $cVerSO == "12" ]; then
+
+  echo ""
+  echo "  Iniciando el script para instalar el último metapaquete del kernel disponible en ProxmoxVE 8..."
+  echo ""
+
+  # Determinar última versión del metapaquete del kernel
+    vUltMetaDisp=$(apt-cache search proxmox-kernel | grep atest | sed 's| - .*||g' | tail -n1)
+
+  # Instalar esa versión
+    apt-get -y install $vUltMetaDisp
+
 fi
 
