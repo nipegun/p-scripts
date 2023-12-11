@@ -8,14 +8,11 @@
 # ----------
 # Script de NiPeGun para cambiar el nombre de un servidor Proxmox
 #
-# Ejecución remota:
-#   curl -sL x | bash
+# Ejecución remota con parámetros:
+#   curl -sL https://raw.githubusercontent.com/nipegun/p-scripts/master/PVE-Host-Nombre-Cambiar.sh | bash -s NombreNuevo
 #
 # Ejecución remota sin caché:
-#   curl -sL -H 'Cache-Control: no-cache, no-store' x | bash
-#
-# Ejecución remota con parámetros:
-#   curl -sL x | bash -s Parámetro1 Parámetro2
+#   curl -sL -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/nipegun/p-scripts/master/PVE-Host-Nombre-Cambiar.sh | bash -s NombreNuevo
 # ----------
 
 # Definir constantes de color
