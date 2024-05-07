@@ -27,9 +27,10 @@ vCarpetaCopSeg="/CopSegInt" # No debe acabar c on /
   cColorRojo='\033[1;31m'
   cFinColor='\033[0m'
 
-echo ""
-echo -e "${cColorAzulClaro}  Iniciando script de copia de seguridad interna de ProxmoxVE...${cFinColor}"
-echo ""
+# Notificar inicio de ejecución del script
+  echo ""
+  echo -e "${cColorAzulClaro}  Iniciando script de copia de seguridad interna de ProxmoxVE...${cFinColor}"
+  echo ""
 
 # Definir la fecha de ejecución del script
   cFechaEjecScript=$(date +A%YM%mD%d@%T)
@@ -121,4 +122,23 @@ echo ""
   echo ""
   echo -e "${cColorVerde}    Ejecución del script, finalizada.${cFinColor}"
   echo ""
+
+
+
+
+
+# PCIPassThrough
+#  mkdir -p                                        "$vPuntoMontPartCopSeg"ProxmoxVE/SO/"$vNombreDelServidor"/$vFechaDeEjec/etc/modprobe.d/
+#  cp /etc/modprobe.d/iommu_unsafe_interrupts.conf "$vPuntoMontPartCopSeg"ProxmoxVE/SO/"$vNombreDelServidor"/$vFechaDeEjec/etc/modprobe.d/
+#  cp /etc/modprobe.d/pcipassthrough.conf          "$vPuntoMontPartCopSeg"ProxmoxVE/SO/"$vNombreDelServidor"/$vFechaDeEjec/etc/modprobe.d/
+#  cp /etc/modprobe.d/vfio.conf                    "$vPuntoMontPartCopSeg"ProxmoxVE/SO/"$vNombreDelServidor"/$vFechaDeEjec/etc/modprobe.d/
+
+# Configuración de almacenamiento
+#  mkdir -p                "$vPuntoMontPartCopSeg"ProxmoxVE/SO/"$vNombreDelServidor"/$vFechaDeEjec/etc/pve/
+#  cp /etc/pve/storage.cfg "$vPuntoMontPartCopSeg"ProxmoxVE/SO/"$vNombreDelServidor"/$vFechaDeEjec/etc/pve/
+
+# Máquinas virtuales
+#  mkdir -p                  "$vPuntoMontPartCopSeg"ProxmoxVE/SO/"$vNombreDelServidor"/$vFechaDeEjec/etc/pve/qemu-server/
+#  cp /etc/pve/qemu-server/* "$vPuntoMontPartCopSeg"ProxmoxVE/SO/"$vNombreDelServidor"/$vFechaDeEjec/etc/pve/qemu-server/
+
 
