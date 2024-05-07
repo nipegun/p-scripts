@@ -14,21 +14,24 @@
 # ----------
 
 # Modificar sólo esto antes de ejecutar el script
-vCarpetaCopSeg='/CopSegInt/' # La ubicación de la carpeta para las copias debe acabar con /
-vIdIni=100
-vIdFin=999999999
+  vCarpetaCopSeg='/CopSegInt/' # La ubicación de la carpeta para las copias debe acabar con /
+  vIdIni=100
+  vIdFin=999999999
 
-cFechaEjecScript=$(date +A%YM%mD%d@%T)
+# Determinar fecha de ejecución del script
+  cFechaEjecScript=$(date +A%YM%mD%d@%T)
 
-cColorAzul="\033[0;34m"
-cColorAzulClaro="\033[1;34m"
-cColorVerde='\033[1;32m'
-cColorRojo='\033[1;31m'
-cFinColor='\033[0m'
+# Establecer variables de color
+  cColorAzul="\033[0;34m"
+  cColorAzulClaro="\033[1;34m"
+  cColorVerde='\033[1;32m'
+  cColorRojo='\033[1;31m'
+  cFinColor='\033[0m'
 
-echo ""
-echo -e "${cColorAzulClaro}  Iniciando copia de seguridad de todos los contenedores y máquinas virtuales...${cFinColor}"
-echo ""
+# Notificar inicio de ejecución del script
+  echo ""
+  echo -e "${cColorAzulClaro}  Iniciando copia de seguridad de todos los contenedores y máquinas virtuales...${cFinColor}"
+  echo ""
 
 # Abortar script si no existe la carpeta de copias de seguridad
   if [ -d "$vCarpetaCopSeg" ]; then
