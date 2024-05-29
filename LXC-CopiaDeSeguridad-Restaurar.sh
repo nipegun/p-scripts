@@ -27,13 +27,13 @@ if [ $# -ne $cCantArgumEsperados ]
     echo -e "$0 ${cColorVerde}[RutaAbsolutaAlArchivo] [IDDelNuevoContainer] [Almacenamiento]${cFinColor}"
     echo ""
     echo "Ejemplo:"
-    echo "$0 '/root/copias/vzdump-lxc-777.tar' 130 local-lvm" 
+    echo "$0 '/root/copias/vzdump-lxc-777.tar' 130 local-lvm"
     echo "------------------------------------------------------------------------------"
     echo ""
     exit
   else
     echo ""
-    pct restore $2 $1 -storage $3
+    pct restore $2 $1 --storage $3
     echo ""
 fi
 
