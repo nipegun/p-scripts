@@ -14,6 +14,10 @@
 
 vCarpetaCopSeg="/CopSegInt" # No debe acabar c on /
 
+# -----------------------------
+# NO MODIFICAR A PARTIR DE AQUÍ
+# -----------------------------
+
 # Comprobar si el script está corriendo como root
   if [ $(id -u) -ne 0 ]; then
     echo "Este script está preparado para ejecutarse como root y no lo has ejecutado como root." >&2
@@ -33,7 +37,7 @@ vCarpetaCopSeg="/CopSegInt" # No debe acabar c on /
   echo ""
 
 # Definir la fecha de ejecución del script
-  cFechaEjecScript=$(date +A%YM%mD%d@%T)
+  cFechaEjecScript=$(date +a%Ym%md%d@%T)
 
 # Crear las carpetas de copias de seguridad interna (en caso de que no existan)
   mkdir -p "$vCarpetaCopSeg/$cFechaEjecScript/BD/" 2> /dev/null
