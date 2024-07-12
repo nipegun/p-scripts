@@ -122,6 +122,9 @@ vArchivosImportantes="/root/scripts/ParaEstePVE/CopSeg-ArchivosImportantes.txt"
 # Archivos individuales específicados manualmente
   # Comprobar si el archivo existe
     if [ -f "$vArchivosImportantes" ]; then
+      echo ""
+      echo "    Creando copia de seguridad de archivos importantes..."
+      echo ""
       mkdir "$vCarpetaCopSeg/$cFechaEjecScript/ArchivosImportantes/"
       # Leer el archivo línea por línea usando un bucle while y el comando cat
         cat "$vArchivosImportantes" | while IFS= read -r vRutaArchivo; do
