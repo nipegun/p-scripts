@@ -118,6 +118,12 @@ vCarpetaCopSeg="/CopSegInt" # No debe acabar c on /
     mkdir -p "$vCarpetaCopSeg/$cFechaEjecScript/BD/Archivos/etc/pve/" 2> /dev/null
     cp -rfL /etc/pve/. "$vCarpetaCopSeg/$cFechaEjecScript/BD/Archivos/etc/pve/"
 
+# Borrar carpetas vacías
+  echo ""
+  echo "  Borrando carpetas vacías..."
+  echo ""
+  find "$vCarpetaCopSeg/$cFechaEjecScript/" -type d -empty -print -delete
+
 # Apuntar fecha en el log
   touch /var/log/CopiasDeSeguridad.log 2> /dev/null
   echo "$cFechaEjecScript - Terminada la copia de seguridad interna de ProxmoxVE." >> /var/log/CopiasDeSeguridad.log
