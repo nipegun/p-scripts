@@ -128,7 +128,12 @@ vArchivosImportantes="/root/scripts/ParaEstePVE/CopSeg-ArchivosImportantes.txt"
       mkdir "$vCarpetaCopSeg/$cFechaEjecScript/ArchivosImportantes/"
       # Leer el archivo línea por línea usando un bucle while y el comando cat
         cat "$vArchivosImportantes" | while IFS= read -r vRutaArchivo; do
-          cp "$vRutaArchivo" "$vCarpetaCopSeg/$cFechaEjecScript/ArchivosImportantes/"
+          # Obtener la lista de carpetas que preceden al archivo desde la ruta absoluta
+            vRutaDeCarpetas=$(dirname "$vRutaArchivo")
+          # Crear la estructura de directorios previa al archivo en la carpeta de copias de seguridad
+            mkdir -p "$vCarpetaCopSeg/$cFechaEjecScript/ArchivosImportantes/$vRutaDeCarpetas"
+          # Copiar el archivo
+            cp "$vRutaArchivo" "$vCarpetaCopSeg/$cFechaEjecScript/ArchivosImportantes/$vRutaDeCarpetas/"
         done
     else
      echo ""
