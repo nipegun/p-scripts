@@ -120,9 +120,9 @@ vCarpetaCopSeg="/CopSegInt" # No debe acabar c on /
 
 # Borrar carpetas vacías
   echo ""
-  echo "  Borrando carpetas vacías..."
+  echo "    Borrando carpetas vacías..."
   echo ""
-  find "$vCarpetaCopSeg/$cFechaEjecScript/" -type d -empty -print -delete
+  find "$vCarpetaCopSeg/$cFechaEjecScript/" -type d -empty -delete
 
 # Apuntar fecha en el log
   touch /var/log/CopiasDeSeguridad.log 2> /dev/null
