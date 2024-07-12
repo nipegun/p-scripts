@@ -13,6 +13,7 @@
 # ----------
 
 vCarpetaCopSeg="/CopSegInt" # No debe acabar c on /
+vArchivosImportantes="/root/scripts/ParaEstePVE/CopSeg-ArchivosImportantes.txt"
 
 # -----------------------------
 # NO MODIFICAR A PARTIR DE AQUÍ
@@ -117,6 +118,18 @@ vCarpetaCopSeg="/CopSegInt" # No debe acabar c on /
     echo ""
     mkdir -p "$vCarpetaCopSeg/$cFechaEjecScript/BD/Archivos/etc/pve/" 2> /dev/null
     cp -rfL /etc/pve/. "$vCarpetaCopSeg/$cFechaEjecScript/BD/Archivos/etc/pve/"
+
+# Archivos individuales específicados manualmente
+  # Comprobar si el archivo existe
+    if [ -f "$vArchivosImportantes" ]; then
+      mkdir "$vCarpetaCopSeg/$cFechaEjecScript/ArchivosImportantes/"
+      # Leer el archivo línea por línea usando un bucle while y el comando cat
+        cat "$vArchivosImportantes" | while IFS= read -r vRutaArchivo; do
+          cp "$vRutaArchivo" "$vCarpetaCopSeg/$cFechaEjecScript/ArchivosImportantes/"
+        done
+    else
+     echo ""
+    fi
 
 # Borrar carpetas vacías
   echo ""
