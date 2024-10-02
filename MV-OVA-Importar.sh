@@ -6,13 +6,7 @@
 # No tienes que aceptar ningún tipo de términos de uso o licencia para utilizarlo o modificarlo porque va sin CopyLeft.
 
 # ----------
-# Script de NiPeGun para instalar y configurar xxxxxxxxx en Debian
-#
-# Ejecución remota:
-#   curl -sL x | bash
-#
-# Ejecución remota sin caché:
-#   curl -sL -H 'Cache-Control: no-cache, no-store' x | bash
+# Script de NiPeGun para importar una máquina virtual .OVA en Proxmox
 #
 # Ejecución remota con parámetros:
 #   curl -sL x | bash -s Parámetro1 Parámetro2
