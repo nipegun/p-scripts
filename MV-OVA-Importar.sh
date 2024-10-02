@@ -34,7 +34,7 @@
   fi
 
 # Definir la cantidad de argumentos esperados
-  cCantArgumEsperados=2
+  cCantArgumEsperados=3
 
 if [ $# -ne $cCantArgumEsperados ]
   then
@@ -55,18 +55,18 @@ if [ $# -ne $cCantArgumEsperados ]
     vAlmacenamiento="$3"
     vArchivoOVA="$1"
 
-    # Comprobar si el paquete tar está instalado. Si no lo está, instalarlo.
-      if [[ $(dpkg-query -s tar 2>/dev/null | grep installed) == "" ]]; then
-        echo ""
-        echo -e "${cColorRojo}    El paquete tar no está instalado. Iniciando su instalación...${cFinColor}"
-        echo ""
-        apt-get -y update && apt-get -y install tar
-        echo ""
-      fi
-
     # Descomprimir
-      mkdir -p /tmp/OVAdeMV
-      tar xvf "$vArchivoOVA" -C /tmp/OVAdeMV
+      mkdir -p /tmp/OVAdeMV/ 2> /dev/null
+      rm -rf /tmp/OVAdeMV/*
+      # Comprobar si el paquete tar está instalado. Si no lo está, instalarlo.
+        if [[ $(dpkg-query -s tar 2>/dev/null | grep installed) == "" ]]; then
+          echo ""
+          echo -e "${cColorRojo}    El paquete tar no está instalado. Iniciando su instalación...${cFinColor}"
+          echo ""
+          apt-get -y update && apt-get -y install tar
+          echo ""
+        fi
+        tar xvf "$vArchivoOVA" -C /tmp/OVAdeMV
 
     # Determinar el archivo .ovf
     
