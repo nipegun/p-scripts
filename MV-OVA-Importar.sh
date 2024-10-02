@@ -9,10 +9,10 @@
 # Script de NiPeGun para importar una máquina virtual .OVA en Proxmox
 #
 # Ejecución remota con parámetros:
-#   curl -sL x | bash -s Parámetro1 Parámetro2
+#   curl -sL https://raw.githubusercontent.com/nipegun/p-scripts/refs/heads/master/MV-OVA-Importar.sh | bash -s Parámetro1 Parámetro2 Parámetro3
 #
 # Bajar y editar directamente el archivo en nano
-#   curl -sL x | nano -
+#   curl -sL https://raw.githubusercontent.com/nipegun/p-scripts/refs/heads/master/MV-OVA-Importar.sh | nano -
 # ----------
 
 # Definir constantes de color
