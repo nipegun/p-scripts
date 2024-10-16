@@ -36,42 +36,50 @@ cFinColor='\033[0m'
     cVerSO=$(uname -r)
   fi
 
-if [ $cVerSO == "7" ]; then
+if [ $cVerSO == "13" ]; then
 
   echo ""
-  echo "  Iniciando el script que permitirá a los no-suscriptores actualizar ProxmoxVE 3..."
+  echo "  Iniciando el script que permitirá a los no-suscriptores actualizar ProxmoxVE 9..."
   echo ""
 
-  echo ""
-  echo "    Comandos para ProxmoxVE 3 todavía no preparados. Prueba ejecutar el script en otra versión de ProxmoxVE."
-  echo ""
-
-elif [ $cVerSO == "8" ]; then
+elif [ $cVerSO == "12" ]; then
 
   echo ""
-  echo "  Iniciando el script que permitirá a los no-suscriptores actualizar ProxmoxVE 4..."
-  echo ""
-
-  echo ""
-  echo "    Comandos para ProxmoxVE 4 todavía no preparados. Prueba ejecutar el script en otra versión de ProxmoxVE."
-  echo ""
-
-elif [ $cVerSO == "9" ]; then
-
-  echo ""
-  echo "  Iniciando el script que permitirá a los no-suscriptores actualizar ProxmoxVE 5..."
+  echo "  Iniciando el script que permitirá a los no-suscriptores actualizar ProxmoxVE 8..."
   echo ""
 
   echo ""
   echo -e "${cColorVerde}    Deshabilitando el repositorio Enterprise...${cFinColor}"
   echo ""
   cp /etc/apt/sources.list.d/pve-enterprise.list /etc/apt/sources.list.d/pve-enterprise.list.bak
-  sed -i -e 's|deb https://enterprise.proxmox.com/debian/pve stretch pve-enterprise|# deb https://enterprise.proxmox.com/debian/pve stretch pve-enterprise|g' /etc/apt/sources.list.d/pve-enterprise.list
+  sed -i -e 's|deb https://enterprise.proxmox.com/debian/pve bookworm pve-enterprise|# deb https://enterprise.proxmox.com/debian/pve bookworm pve-enterprise|g' /etc/apt/sources.list.d/pve-enterprise.list
 
   echo ""
   echo -e "${cColorVerde}    Agregando el repositorio para no-suscriptores...${cFinColor}"
   echo ""
-  echo "deb http://download.proxmox.com/debian/pve stretch pve-no-subscription" > /etc/apt/sources.list.d/pve-no-sub.list
+  echo "deb http://download.proxmox.com/debian/pve bookworm pve-no-subscription" > /etc/apt/sources.list.d/pve-no-subscription.list
+
+  echo ""
+  echo -e "${cColorVerde}    Activando cambios en apt...${cFinColor}"
+  echo ""
+  apt-get -y update
+
+elif [ $cVerSO == "11" ]; then
+
+  echo ""
+  echo "  Iniciando el script que permitirá a los no-suscriptores actualizar ProxmoxVE 7..."
+  echo ""
+
+  echo ""
+  echo -e "${cColorVerde}    Deshabilitando el repositorio Enterprise...${cFinColor}"
+  echo ""
+  cp /etc/apt/sources.list.d/pve-enterprise.list /etc/apt/sources.list.d/pve-enterprise.list.bak
+  sed -i -e 's|deb https://enterprise.proxmox.com/debian/pve bullseye pve-enterprise|# deb https://enterprise.proxmox.com/debian/pve bullseye pve-enterprise|g' /etc/apt/sources.list.d/pve-enterprise.list
+
+  echo ""
+  echo -e "${cColorVerde}    Agregando el repositorio para no-suscriptores...${cFinColor}"
+  echo ""
+  echo "deb http://download.proxmox.com/debian/pve bullseye pve-no-subscription" > /etc/apt/sources.list.d/pve-no-subscription.list
 
   echo ""
   echo -e "${cColorVerde}    Activando cambios en apt...${cFinColor}"
@@ -100,27 +108,47 @@ elif [ $cVerSO == "10" ]; then
   echo ""
   apt-get -y update
 
-elif [ $cVerSO == "11" ]; then
+elif [ $cVerSO == "9" ]; then
 
   echo ""
-  echo "  Iniciando el script que permitirá a los no-suscriptores actualizar ProxmoxVE 7..."
+  echo "  Iniciando el script que permitirá a los no-suscriptores actualizar ProxmoxVE 5..."
   echo ""
 
   echo ""
   echo -e "${cColorVerde}    Deshabilitando el repositorio Enterprise...${cFinColor}"
   echo ""
   cp /etc/apt/sources.list.d/pve-enterprise.list /etc/apt/sources.list.d/pve-enterprise.list.bak
-  sed -i -e 's|deb https://enterprise.proxmox.com/debian/pve bullseye pve-enterprise|# deb https://enterprise.proxmox.com/debian/pve bullseye pve-enterprise|g' /etc/apt/sources.list.d/pve-enterprise.list
+  sed -i -e 's|deb https://enterprise.proxmox.com/debian/pve stretch pve-enterprise|# deb https://enterprise.proxmox.com/debian/pve stretch pve-enterprise|g' /etc/apt/sources.list.d/pve-enterprise.list
 
   echo ""
   echo -e "${cColorVerde}    Agregando el repositorio para no-suscriptores...${cFinColor}"
   echo ""
-  echo "deb http://download.proxmox.com/debian/pve bullseye pve-no-subscription" > /etc/apt/sources.list.d/pve-no-subscription.list
+  echo "deb http://download.proxmox.com/debian/pve stretch pve-no-subscription" > /etc/apt/sources.list.d/pve-no-sub.list
 
   echo ""
   echo -e "${cColorVerde}    Activando cambios en apt...${cFinColor}"
   echo ""
   apt-get -y update
+
+elif [ $cVerSO == "8" ]; then
+
+  echo ""
+  echo "  Iniciando el script que permitirá a los no-suscriptores actualizar ProxmoxVE 4..."
+  echo ""
+
+  echo ""
+  echo "    Comandos para ProxmoxVE 4 todavía no preparados. Prueba ejecutar el script en otra versión de ProxmoxVE."
+  echo ""
+
+elif [ $cVerSO == "7" ]; then
+
+  echo ""
+  echo "  Iniciando el script que permitirá a los no-suscriptores actualizar ProxmoxVE 3..."
+  echo ""
+
+  echo ""
+  echo "    Comandos para ProxmoxVE 3 todavía no preparados. Prueba ejecutar el script en otra versión de ProxmoxVE."
+  echo ""
 
 fi
 
