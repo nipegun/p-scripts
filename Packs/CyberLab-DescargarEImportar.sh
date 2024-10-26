@@ -9,17 +9,14 @@
 # Script de NiPeGun para instalar y configurar las máquinas virtuales para un laboratorio de ciberseguridad en Proxmox
 #
 # Ejecución remota:
-#   curl -sL x | bash
-#
-# Ejecución remota sin caché:
-#   curl -sL -H 'Cache-Control: no-cache, no-store' x | bash
-#
-# Ejecución remota con parámetros:
-#   curl -sL x | bash -s Parámetro1 Parámetro2
+#   curl -sL https://raw.githubusercontent.com/nipegun/p-scripts/main/Packs/CyberLab-DescargarEImportar.sh | bash
 #
 # Bajar y editar directamente el archivo en nano
-#   curl -sL x | nano -
+#   curl -sL https://raw.githubusercontent.com/nipegun/p-scripts/main/Packs/CyberLab-DescargarEImportar.sh | nano -
 # ----------
+
+# Deficir el almacenamiento donde importar
+  vAlmacenamiento='local-lvm'
 
 # Definir constantes de color
   cColorAzul="\033[0;34m"
@@ -73,4 +70,10 @@
   curl -sL http://hacks4geeks.com/_/premium/descargas/proxmox/packs/cyberlab/kali.gzip    -o /tmp/vzdump-qemu-1002-2024_10_26-23_59_00.vma.gz
   curl -sL http://hacks4geeks.com/_/premium/descargas/proxmox/packs/cyberlab/sift.gzip    -o /tmp/vzdump-qemu-1003-2024_10_26-23_59_00.vma.gz
   curl -sL http://hacks4geeks.com/_/premium/descargas/proxmox/packs/cyberlab/pruebas.gzip -o /tmp/vzdump-qemu-2002-2024_10_26-23_59_00.vma.gz
+
+# Importar
+  qm import 1000 /tmp/vzdump-qemu-1000-2024_10_26-23_59_00.vma.gz --storage $vAlmacenamiento
+  qm import 1002 /tmp/vzdump-qemu-1002-2024_10_26-23_59_00.vma.gz --storage $vAlmacenamiento
+  qm import 1003 /tmp/vzdump-qemu-1003-2024_10_26-23_59_00.vma.gz --storage $vAlmacenamiento
+  qm import 2002 /tmp/vzdump-qemu-2002-2024_10_26-23_59_00.vma.gz --storage $vAlmacenamiento
 
