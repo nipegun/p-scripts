@@ -72,8 +72,8 @@
   curl -sL http://hacks4geeks.com/_/premium/descargas/PVE/Packs/CyberSecLab/pruebas.vma.gz    -o /tmp/vzdump-qemu-2002-2024_00_00-00_00_00.vma.gz
 
 # Importar
-  qm import 1000 /tmp/vzdump-qemu-1000-2024_10_26-23_59_00.vma.gz --storage $vAlmacenamiento
-  qm import 1002 /tmp/vzdump-qemu-1002-2024_10_26-23_59_00.vma.gz --storage $vAlmacenamiento
-  qm import 1003 /tmp/vzdump-qemu-1003-2024_10_26-23_59_00.vma.gz --storage $vAlmacenamiento
-  qm import 2002 /tmp/vzdump-qemu-2002-2024_10_26-23_59_00.vma.gz --storage $vAlmacenamiento
+  qm import 1000 /tmp/vzdump-qemu-1000-2024_00_00-00_00_00.vma.gz --storage $vAlmacenamiento
+  qm import 1002 /tmp/vzdump-qemu-1002-2024_00_00-00_00_00.vma.gz --storage $vAlmacenamiento
+  qm import 1003 /tmp/vzdump-qemu-1003-2024_00_00-00_00_00.vma.gz --storage $vAlmacenamiento
+  qm import 2002 /tmp/vzdump-qemu-2002-2024_00_00-00_00_00.vma.gz --storage $vAlmacenamiento
 
