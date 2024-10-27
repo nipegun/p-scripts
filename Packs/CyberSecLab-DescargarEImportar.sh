@@ -80,9 +80,9 @@
     # Asignar RAM correcta
       qm set 1000 -memory 2048 -balloon 0
     # Conectar a los puentes correctos
-      qm set 1000 -net0 bridge=vmbr0
-      qm set 1000 -net1 bridge=vmbr10
-      qm set 1000 -net2 bridge=vmbr20
+      qm set 1000 -net0 virtio=00:11:22:33:44:55,bridge=vmbr0
+      qm set 1000 -net1 virtio=00:aa:aa:aa:10:01,bridge=vmbr10
+      qm set 1000 -net2 virtio=00:aa:aa:aa:20:01,bridge=vmbr20
 
   # kali
     echo ""
@@ -93,7 +93,7 @@
     # Asignar RAM correcta
       qm set 1002 -memory 8192 -balloon 0
     # Conectar al puente correcto
-      qm set 1002 -net0 bridge=vmbr10
+      qm set 1002 -net0 virtio=00:aa:aa:aa:10:02,bridge=vmbr10
 
   # sift
     echo ""
@@ -104,7 +104,7 @@
     # Asignar RAM correcta
       qm set 1003 -memory 8192 -balloon 0
     # Conectar al puente correcto
-      qm set 1003 -net0 bridge=vmbr10
+      qm set 1003 -net0 virtio=00:aa:aa:aa:10:03,bridge=vmbr10
 
   # pruebas
     echo ""
@@ -115,5 +115,6 @@
     # Asignar RAM correcta
       qm set 2002 -memory 8192 -balloon 0
     # Conectar al puente correcto
-      qm set 2002 -net0 bridge=vmbr20
-  
+      qm set 2002 -net0 virtio=00:aa:aa:aa:20:02,bridge=vmbr20
+    # Pantalla
+      qm set 2002 -vga virtio,memory=512
