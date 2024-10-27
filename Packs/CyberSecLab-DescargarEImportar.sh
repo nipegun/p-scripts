@@ -61,6 +61,7 @@
   echo ""
   echo "  Descargando y restaurando las máquinas virtuales para el laboratorio de ciberseguridad..."
   echo ""
+
   # Comprobar si el paquete curl está instalado. Si no lo está, instalarlo.
     if [[ $(dpkg-query -s curl 2>/dev/null | grep installed) == "" ]]; then
       echo ""
@@ -69,46 +70,50 @@
       apt-get -y update && apt-get -y install curl
       echo ""
     fi
-  echo ""
-  echo "    Descargando y restaurando openwrtlab..."
-  echo ""
-  curl -L https://hacks4geeks.com/_/descargas/PVE/Packs/CyberSecLab/openwrtlab.vma.gz -o /tmp/vzdump-qemu-1000-2024_01_01-01_01_01.vma.gz
-  qmrestore /tmp/vzdump-qemu-1000-2024_01_01-01_01_01.vma.gz 1000 --storage $vAlmacenamiento && rm -f /tmp/vzdump-qemu-1000-2024_01_01-01_01_01.vma.gz
 
-  echo ""
-  echo "    Descargando y restaurando kali..."
-  echo ""
-  curl -L https://hacks4geeks.com/_/descargas/PVE/Packs/CyberSecLab/kali.vma.gz       -o /tmp/vzdump-qemu-1002-2024_01_01-01_01_01.vma.gz
-  qmrestore /tmp/vzdump-qemu-1002-2024_01_01-01_01_01.vma.gz 1002 --storage $vAlmacenamiento && rm -f /tmp/vzdump-qemu-1002-2024_01_01-01_01_01.vma.gz
+  # openwrtlab
+    echo ""
+    echo "    Descargando y restaurando openwrtlab..."
+    echo ""
+    curl -L https://hacks4geeks.com/_/descargas/PVE/Packs/CyberSecLab/openwrtlab.vma.gz -o /tmp/vzdump-qemu-1000-2024_01_01-01_01_01.vma.gz
+    qmrestore /tmp/vzdump-qemu-1000-2024_01_01-01_01_01.vma.gz 1000 --storage $vAlmacenamiento && rm -f /tmp/vzdump-qemu-1000-2024_01_01-01_01_01.vma.gz
+    # Asignar RAM correcta
+      qm set 1000 -memory 2048 -balloon 0
+    # Conectar a los puentes correctos
+      qm set 1000 -net0 bridge=vmbr0
+      qm set 1000 -net1 bridge=vmbr10
+      qm set 1000 -net2 bridge=vmbr20
 
-  echo ""
-  echo "    Descargando y restaurando sift..."
-  echo ""
-  curl -L https://hacks4geeks.com/_/descargas/PVE/Packs/CyberSecLab/sift.vma.gz       -o /tmp/vzdump-qemu-1003-2024_01_01-01_01_01.vma.gz
-  qmrestore /tmp/vzdump-qemu-1003-2024_01_01-01_01_01.vma.gz 1003 --storage $vAlmacenamiento && rm -f /tmp/vzdump-qemu-1003-2024_01_01-01_01_01.vma.gz
+  # kali
+    echo ""
+    echo "    Descargando y restaurando kali..."
+    echo ""
+    curl -L https://hacks4geeks.com/_/descargas/PVE/Packs/CyberSecLab/kali.vma.gz       -o /tmp/vzdump-qemu-1002-2024_01_01-01_01_01.vma.gz
+    qmrestore /tmp/vzdump-qemu-1002-2024_01_01-01_01_01.vma.gz 1002 --storage $vAlmacenamiento && rm -f /tmp/vzdump-qemu-1002-2024_01_01-01_01_01.vma.gz
+    # Asignar RAM correcta
+      qm set 1002 -memory 8192 -balloon 0
+    # Conectar al puente correcto
+      qm set 1002 -net0 bridge=vmbr10
 
+  # sift
+    echo ""
+    echo "    Descargando y restaurando sift..."
+    echo ""
+    curl -L https://hacks4geeks.com/_/descargas/PVE/Packs/CyberSecLab/sift.vma.gz       -o /tmp/vzdump-qemu-1003-2024_01_01-01_01_01.vma.gz
+    qmrestore /tmp/vzdump-qemu-1003-2024_01_01-01_01_01.vma.gz 1003 --storage $vAlmacenamiento && rm -f /tmp/vzdump-qemu-1003-2024_01_01-01_01_01.vma.gz
+    # Asignar RAM correcta
+      qm set 1003 -memory 8192 -balloon 0
+    # Conectar al puente correcto
+      qm set 1003 -net0 bridge=vmbr10
 
-  echo ""
-  echo "    Descargando y restaurando máquina de pruebas..."
-  echo ""
-  curl -L https://hacks4geeks.com/_/descargas/PVE/Packs/CyberSecLab/pruebas.vma.gz    -o /tmp/vzdump-qemu-2002-2024_01_01-01_01_01.vma.gz
-  qmrestore /tmp/vzdump-qemu-2002-2024_01_01-01_01_01.vma.gz 2002 --storage $vAlmacenamiento && rm -f /tmp/vzdump-qemu-2002-2024_01_01-01_01_01.vma.gz
-
-  echo ""
-  echo "  Configurando RAM para todas las máquinas virtuales..."
-  echo ""
-  qm set 1000 -memory 2048 -balloon 0
-  qm set 1002 -memory 8192 -balloon 0
-  qm set 1003 -memory 8192 -balloon 0
-  qm set 2002 -memory 8192 -balloon 0
-
-  echo ""
-  echo "  Configurando el puente al que se conecta cada máquina..."
-  echo ""
-  qm set 1000 -net0 bridge=vmbr0
-  qm set 1000 -net1 bridge=vmbr10
-  qm set 1000 -net2 bridge=vmbr20
-  qm set 1002 -net0 bridge=vmbr10
-  qm set 1003 -net0 bridge=vmbr10
-  qm set 2002 -net0 bridge=vmbr20
+  # pruebas
+    echo ""
+    echo "    Descargando y restaurando máquina de pruebas..."
+    echo ""
+    curl -L https://hacks4geeks.com/_/descargas/PVE/Packs/CyberSecLab/pruebas.vma.gz    -o /tmp/vzdump-qemu-2002-2024_01_01-01_01_01.vma.gz
+    qmrestore /tmp/vzdump-qemu-2002-2024_01_01-01_01_01.vma.gz 2002 --storage $vAlmacenamiento && rm -f /tmp/vzdump-qemu-2002-2024_01_01-01_01_01.vma.gz
+    # Asignar RAM correcta
+      qm set 2002 -memory 8192 -balloon 0
+    # Conectar al puente correcto
+      qm set 2002 -net0 bridge=vmbr20
   
