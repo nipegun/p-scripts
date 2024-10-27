@@ -58,6 +58,9 @@
   systemctl restart networking
 
 # Descargar máquinas virtuales a /tmp
+  echo ""
+  echo "  Descargando y restaurando las máquinas virtuales para el laboratorio de ciberseguridad..."
+  echo ""
   # Comprobar si el paquete curl está instalado. Si no lo está, instalarlo.
     if [[ $(dpkg-query -s curl 2>/dev/null | grep installed) == "" ]]; then
       echo ""
@@ -66,14 +69,35 @@
       apt-get -y update && apt-get -y install curl
       echo ""
     fi
-  curl -sL http://hacks4geeks.com/_/premium/descargas/PVE/Packs/CyberSecLab/openwrtlab.vma.gz -o /tmp/vzdump-qemu-1000-2024_01_01-01_01_01.vma.gz
-  curl -sL http://hacks4geeks.com/_/premium/descargas/PVE/Packs/CyberSecLab/kali.vma.gz       -o /tmp/vzdump-qemu-1002-2024_01_01-01_01_01.vma.gz
-  curl -sL http://hacks4geeks.com/_/premium/descargas/PVE/Packs/CyberSecLab/sift.vma.gz       -o /tmp/vzdump-qemu-1003-2024_01_01-01_01_01.vma.gz
-  curl -sL http://hacks4geeks.com/_/premium/descargas/PVE/Packs/CyberSecLab/pruebas.vma.gz    -o /tmp/vzdump-qemu-2002-2024_01_01-01_01_01.vma.gz
+  echo ""
+  echo "    Descargando y restaurando openwrtlab..."
+  echo ""
+  curl -L https://hacks4geeks.com/_/descargas/PVE/Packs/CyberSecLab/openwrtlab.vma.gz -o /tmp/vzdump-qemu-1000-2024_01_01-01_01_01.vma.gz
+  qmrestore /tmp/vzdump-qemu-1000-2024_01_01-01_01_01.vma.gz 1000 --storage $vAlmacenamiento && rm -f /tmp/vzdump-qemu-1000-2024_01_01-01_01_01.vma.gz
 
-# Importar
-  qmrestore 1000 /tmp/vzdump-qemu-1000-2024_01_01-01_01_01.vma.gz --storage $vAlmacenamiento
-  qmrestore 1002 /tmp/vzdump-qemu-1002-2024_01_01-01_01_01.vma.gz --storage $vAlmacenamiento
-  qmrestore 1003 /tmp/vzdump-qemu-1003-2024_01_01-01_01_01.vma.gz --storage $vAlmacenamiento
-  qmrestore 2002 /tmp/vzdump-qemu-2002-2024_01_01-01_01_01.vma.gz --storage $vAlmacenamiento
+  echo ""
+  echo "    Descargando y restaurando kali..."
+  echo ""
+  curl -L https://hacks4geeks.com/_/descargas/PVE/Packs/CyberSecLab/kali.vma.gz       -o /tmp/vzdump-qemu-1002-2024_01_01-01_01_01.vma.gz
+  qmrestore /tmp/vzdump-qemu-1002-2024_01_01-01_01_01.vma.gz 1002 --storage $vAlmacenamiento && rm -f /tmp/vzdump-qemu-1002-2024_01_01-01_01_01.vma.gz
 
+  echo ""
+  echo "    Descargando y restaurando sift..."
+  echo ""
+  curl -L https://hacks4geeks.com/_/descargas/PVE/Packs/CyberSecLab/sift.vma.gz       -o /tmp/vzdump-qemu-1003-2024_01_01-01_01_01.vma.gz
+  qmrestore /tmp/vzdump-qemu-1003-2024_01_01-01_01_01.vma.gz 1003 --storage $vAlmacenamiento && rm -f /tmp/vzdump-qemu-1003-2024_01_01-01_01_01.vma.gz
+
+
+  echo ""
+  echo "    Descargando y restaurando máquina de pruebas..."
+  echo ""
+  curl -L https://hacks4geeks.com/_/descargas/PVE/Packs/CyberSecLab/pruebas.vma.gz    -o /tmp/vzdump-qemu-2002-2024_01_01-01_01_01.vma.gz
+  qmrestore /tmp/vzdump-qemu-2002-2024_01_01-01_01_01.vma.gz 2002 --storage $vAlmacenamiento && rm -f /tmp/vzdump-qemu-2002-2024_01_01-01_01_01.vma.gz
+
+  echo ""
+  echo "  Configurando RAM para todas las máquinas virtuales..."
+  echo ""
+  qm set 1000 -memory 2048 -balloon 0
+  qm set 1002 -memory 8192 -balloon 0
+  qm set 1003 -memory 8192 -balloon 0
+  qm set 2002 -memory 8192 -balloon 0
