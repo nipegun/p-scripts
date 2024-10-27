@@ -101,3 +101,14 @@
   qm set 1002 -memory 8192 -balloon 0
   qm set 1003 -memory 8192 -balloon 0
   qm set 2002 -memory 8192 -balloon 0
+
+  echo ""
+  echo "  Configurando el puente al que se conecta cada máquina..."
+  echo ""
+  qm set 1000 -net0 bridge=vmbr0
+  qm set 1000 -net1 bridge=vmbr10
+  qm set 1000 -net2 bridge=vmbr20
+  qm set 1002 -net0 bridge=vmbr10
+  qm set 1003 -net0 bridge=vmbr10
+  qm set 2002 -net0 bridge=vmbr20
+  
