@@ -9,10 +9,10 @@
 # Script de NiPeGun para instalar y configurar las máquinas virtuales para un laboratorio de ciberseguridad en Proxmox
 #
 # Ejecución remota:
-#   curl -sL https://raw.githubusercontent.com/nipegun/p-scripts/main/Packs/CyberSecLab/DescargarEImportar.sh | bash
+#   curl -sL https://raw.githubusercontent.com/nipegun/p-scripts/main/Packs/CyberSecLab-DescargarEImportar.sh | bash
 #
 # Bajar y editar directamente el archivo en nano
-#   curl -sL https://raw.githubusercontent.com/nipegun/p-scripts/main/Packs/CyberSecLab/DescargarEImportar.sh | nano -
+#   curl -sL https://raw.githubusercontent.com/nipegun/p-scripts/main/Packs/CyberSecLab-DescargarEImportar.sh | nano -
 # ----------
 
 # Deficir el almacenamiento donde importar
