@@ -38,24 +38,24 @@
 
 # Crear los puentes, en caso de que no existan
   # vmbr10
-    echo "auto vmbr10"              >> /etc/network/interfaces
-    echo "iface vmbr10 inet manual" >> /etc/network/interfaces
-    echo "  bridge-ports none"      >> /etc/network/interfaces
-    echo "  bridge-stp off"         >> /etc/network/interfaces
-    echo "  bridge-fd 0"            >> /etc/network/interfaces
-    echo "#Switch lan"              >> /etc/network/interfaces
-    echo ""                         >> /etc/network/interfaces
+#    echo "auto vmbr10"              >> /etc/network/interfaces
+#    echo "iface vmbr10 inet manual" >> /etc/network/interfaces
+#    echo "  bridge-ports none"      >> /etc/network/interfaces
+#    echo "  bridge-stp off"         >> /etc/network/interfaces
+#    echo "  bridge-fd 0"            >> /etc/network/interfaces
+#    echo "#Switch lan"              >> /etc/network/interfaces
+#    echo ""                         >> /etc/network/interfaces
   # vmbr20
-    echo "auto vmbr20"              >> /etc/network/interfaces
-    echo "iface vmbr20 inet manual" >> /etc/network/interfaces
-    echo "  bridge-ports none"      >> /etc/network/interfaces
-    echo "  bridge-stp off"         >> /etc/network/interfaces
-    echo "  bridge-fd 0"            >> /etc/network/interfaces
-    echo "# Switch lab"             >> /etc/network/interfaces
-    echo ""                         >> /etc/network/interfaces
+#    echo "auto vmbr20"              >> /etc/network/interfaces
+#    echo "iface vmbr20 inet manual" >> /etc/network/interfaces
+#    echo "  bridge-ports none"      >> /etc/network/interfaces
+#    echo "  bridge-stp off"         >> /etc/network/interfaces
+#    echo "  bridge-fd 0"            >> /etc/network/interfaces
+#    echo "# Switch lab"             >> /etc/network/interfaces
+#    echo ""                         >> /etc/network/interfaces
 
 # Reiniciar el servicio de red
-  systemctl restart networking
+#  systemctl restart networking
 
 # Descargar máquinas virtuales a /tmp
   echo ""
