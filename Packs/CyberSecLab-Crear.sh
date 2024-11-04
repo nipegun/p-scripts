@@ -39,6 +39,15 @@ vAlmacenamiento=${1:-'local-lvm'} # Si le paso un parámetro, el almacenamiento 
     exit
   fi
 
+# Comprobar si el paquete curl está instalado. Si no lo está, instalarlo.
+  if [[ $(dpkg-query -s curl 2>/dev/null | grep installed) == "" ]]; then
+    echo ""
+    echo -e "${cColorRojo}  El paquete curl no está instalado. Iniciando su instalación...${cFinColor}"
+    echo ""
+    apt-get -y update && apt-get -y install curl
+    echo ""
+  fi
+
 # Crear la máquina virtual de openwrtlab
   echo ""
   echo "  Creando la máquina virtual de openwrtlab..."
@@ -123,7 +132,7 @@ vAlmacenamiento=${1:-'local-lvm'} # Si le paso un parámetro, el almacenamiento 
   echo ""
   echo "  Creando la máquina virtual de pruebas..."
   echo ""
-  qm create 12002 \
+  qm create 2002 \
     --name pruebas \
     --machine q35 \
     --bios ovmf \
