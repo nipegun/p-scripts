@@ -6,22 +6,20 @@
 # No tienes que aceptar ningún tipo de términos de uso o licencia para utilizarlo o modificarlo porque va sin CopyLeft.
 
 # ----------
-# Script de NiPeGun para instalar y configurar xxxxxxxxx en Debian
+# Script de NiPeGun para crear un laboratorio de ciberseguridad en Proxmox
 #
 # Ejecución remota:
-#   curl -sL x | bash
-#
-# Ejecución remota sin caché:
-#   curl -sL -H 'Cache-Control: no-cache, no-store' x | bash
+#   curl -sL https://raw.githubusercontent.com/nipegun/p-scripts/refs/heads/master/Packs/CyberSecLab-Crear.sh | bash
 #
 # Ejecución remota con parámetros:
-#   curl -sL x | bash -s Parámetro1 Parámetro2
+#   curl -sL https://raw.githubusercontent.com/nipegun/p-scripts/refs/heads/master/Packs/CyberSecLab-Crear.sh | bash -s Almacenamiento
 #
 # Bajar y editar directamente el archivo en nano
-#   curl -sL x | nano -
+#   curl -sL https://raw.githubusercontent.com/nipegun/p-scripts/refs/heads/master/Packs/CyberSecLab-Crear.sh | nano -
 # ----------
 
-vAlmacenamiento='local-lvm'
+# Definir el almacenamiento
+vAlmacenamiento=${1:-'local-lvm'} # Si le paso un parámetro, el almacenamiento será el primer parámetro. Si no, será local-lvm.
 
 # Definir constantes de color
   cColorAzul="\033[0;34m"
@@ -45,7 +43,7 @@ vAlmacenamiento='local-lvm'
   echo ""
   echo "  Creando la máquina virtual de openwrtlab..."
   echo ""
-  qm create 11000 \
+  qm create 1000 \
     --name openwrt \
     --machine q35 \
     --bios ovmf \
@@ -64,12 +62,16 @@ vAlmacenamiento='local-lvm'
     --sata0 none,media=cdrom \
     --ostype l26 \
     --agent 1
+  # Descargar el .vmdk de openwrtlab e importarlo en la máquina virtual
+    curl -L http://hacks4geeks.com/_/descargas/MVs/Discos/Packs/CyberSecLab/openwrtlab.vmdk -o /tmp/openwrtlab.vmdk
+    qm importdisk 1000 /tmp/openwrtlab.vmdk "$vAlmacenamiento"
+    qm set 1000 --virtio0 local-lvm:vm-1000-disk-0
 
 # Crear la máquina virtual de kali
   echo ""
   echo "  Creando la máquina virtual de kali..."
   echo ""
-  qm create 11002 \
+  qm create 1002 \
     --name kali \
     --machine q35 \
     --bios ovmf \
@@ -86,6 +88,10 @@ vAlmacenamiento='local-lvm'
     --sata0 none,media=cdrom \
     --ostype l26 \
     --agent 1
+  # Descargar el .vmdk de kali e importarlo en la máquina virtual
+    curl -L http://hacks4geeks.com/_/descargas/MVs/Discos/Packs/CyberSecLab/kali.vmdk -o /tmp/kali.vmdk
+    qm importdisk 1002 /tmp/kali.vmdk "$vAlmacenamiento"
+    qm set 1002 --virtio0 local-lvm:vm-1002-disk-0
 
 # Crear la máquina virtual de sift
   echo ""
@@ -108,9 +114,10 @@ vAlmacenamiento='local-lvm'
     --sata0 none,media=cdrom \
     --ostype l26 \
     --agent 1
-  # Descargar el .vmdk e importarlo a la máquina virtual
-    w
-    qm importdisk 1003 /tmp/<path_to_vmdk> $vAlmacenamiento
+  # Descargar el .vmdk de sift e importarlo en la máquina virtual
+    curl -L http://hacks4geeks.com/_/descargas/MVs/Discos/Packs/CyberSecLab/sift.vmdk -o /tmp/sift.vmdk
+    qm importdisk 1003 /tmp/sift.vmdk "$vAlmacenamiento"
+    qm set 1003 --virtio0 local-lvm:vm-1003-disk-0
 
 # Crear la máquina virtual de pruebas
   echo ""
