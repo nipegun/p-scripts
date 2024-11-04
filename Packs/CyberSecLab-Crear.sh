@@ -39,6 +39,36 @@ vAlmacenamiento=${1:-'local-lvm'} # Si le paso un parámetro, el almacenamiento 
     exit
   fi
 
+# Crear los puentes
+  echo ""
+  echo "  Levantando los puentes vmbr100 y vmbr200..."
+  echo ""
+  # Crear el puente vmbr100
+    ip link add name vmbr100 type bridge
+    ip link set dev vmbr100 up
+  # Crear el puente vmbr200
+    ip link add name vmbr200 type bridge
+    ip link set dev vmbr200 up
+
+  echo ""
+  echo "  Haciendo los puentes persistentes..."
+  echo ""
+  echo ""                                         >> /etc/network/interfaces
+  echo "auto vmbr100"                             >> /etc/network/interfaces
+  echo "iface vmbr100 inet manual"                >> /etc/network/interfaces
+  echo "    bridge-ports none"                    >> /etc/network/interfaces
+  echo "    bridge-stp off"                       >> /etc/network/interfaces
+  echo "    bridge-fd 0"                          >> /etc/network/interfaces
+  echo "# Switch para la red LAN del laboratorio" >> /etc/network/interfaces
+  echo ""                                         >> /etc/network/interfaces
+  echo "auto vmbr200"                             >> /etc/network/interfaces
+  echo "iface vmbr200 inet manual"                >> /etc/network/interfaces
+  echo "    bridge-ports none"                    >> /etc/network/interfaces
+  echo "    bridge-stp off"                       >> /etc/network/interfaces
+  echo "    bridge-fd 0"                          >> /etc/network/interfaces
+  echo "# Switch para la red LAB del laboratorio" >> /etc/network/interfaces
+  echo ""                                         >> /etc/network/interfaces
+
 # Comprobar si el paquete curl está instalado. Si no lo está, instalarlo.
   if [[ $(dpkg-query -s curl 2>/dev/null | grep installed) == "" ]]; then
     echo ""
@@ -67,13 +97,13 @@ vAlmacenamiento=${1:-'local-lvm'} # Si le paso un parámetro, el almacenamiento 
     --net2 virtio=00:aa:aa:aa:20:01,bridge=vmbr200,firewall=1 \
     --boot order=sata0 \
     --scsihw virtio-scsi-single \
-    --sata0 none,media=cdrom \
     --ostype l26 \
     --agent 1
   # Descargar el .vmdk de openwrtlab e importarlo en la máquina virtual
     curl -L http://hacks4geeks.com/_/descargas/MVs/Discos/Packs/CyberSecLab/openwrtlab.vmdk -o /tmp/openwrtlab.vmdk
     qm importdisk 1000 /tmp/openwrtlab.vmdk "$vAlmacenamiento" && rm -f /tmp/openwrtlab.vmdk
-    qm set 1000 --virtio0 local-lvm:vm-1000-disk-0
+    vRutaAlDisco=$(qm config 1000 | grep unused | cut -d' ' -f2)
+    qm set 1000 --sata0 $vRutaAlDisco
 
 # Crear la máquina virtual de kali
   echo ""
@@ -99,7 +129,8 @@ vAlmacenamiento=${1:-'local-lvm'} # Si le paso un parámetro, el almacenamiento 
   # Descargar el .vmdk de kali e importarlo en la máquina virtual
     curl -L http://hacks4geeks.com/_/descargas/MVs/Discos/Packs/CyberSecLab/kali.vmdk -o /tmp/kali.vmdk
     qm importdisk 1002 /tmp/kali.vmdk "$vAlmacenamiento" && rm -f /tmp/kali.vmdk
-    qm set 1002 --virtio0 local-lvm:vm-1002-disk-0
+    vRutaAlDisco=$(qm config 1002 | grep unused | cut -d' ' -f2)
+    qm set 1002 --virtio0 $vRutaAlDisco
 
 # Crear la máquina virtual de sift
   echo ""
@@ -125,7 +156,8 @@ vAlmacenamiento=${1:-'local-lvm'} # Si le paso un parámetro, el almacenamiento 
   # Descargar el .vmdk de sift e importarlo en la máquina virtual
     curl -L http://hacks4geeks.com/_/descargas/MVs/Discos/Packs/CyberSecLab/sift.vmdk -o /tmp/sift.vmdk
     qm importdisk 1003 /tmp/sift.vmdk "$vAlmacenamiento" && rm -f /tmp/sift.vmdk
-    qm set 1003 --virtio0 local-lvm:vm-1003-disk-0
+    vRutaAlDisco=$(qm config 1003 | grep unused | cut -d' ' -f2)
+    qm set 1003 --virtio0 $vRutaAlDisco
 
 # Crear la máquina virtual de pruebas
   echo ""
