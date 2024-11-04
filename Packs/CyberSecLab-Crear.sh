@@ -125,7 +125,7 @@ vAlmacenamiento=${1:-'local-lvm'} # Si le paso un parámetro, el almacenamiento 
     --balloon 0 \
     --vga virtio,memory=512 \
     --net0 virtio=00:aa:aa:aa:10:02,bridge=vmbr100,firewall=1 \
-    --boot order='sata0;virtio0' \
+    --boot order=sata0 \
     --scsihw virtio-scsi-single \
     --sata0 none,media=cdrom \
     --ostype l26 \
@@ -135,6 +135,7 @@ vAlmacenamiento=${1:-'local-lvm'} # Si le paso un parámetro, el almacenamiento 
     qm importdisk 1002 /tmp/kali.vmdk "$vAlmacenamiento" && rm -f /tmp/kali.vmdk
     vRutaAlDisco=$(qm config 1002 | grep unused | cut -d' ' -f2)
     qm set 1002 --virtio0 $vRutaAlDisco
+    qm set 1002 --boot order='sata0;virtio0'
 
 # Crear la máquina virtual de sift
   echo ""
@@ -152,7 +153,7 @@ vAlmacenamiento=${1:-'local-lvm'} # Si le paso un parámetro, el almacenamiento 
     --balloon 0 \
     --vga virtio,memory=512 \
     --net0 virtio=00:aa:aa:aa:10:03,bridge=vmbr100,firewall=1 \
-    --boot order='sata0;virtio0' \
+    --boot order=sata0 \
     --scsihw virtio-scsi-single \
     --sata0 none,media=cdrom \
     --ostype l26 \
@@ -162,6 +163,7 @@ vAlmacenamiento=${1:-'local-lvm'} # Si le paso un parámetro, el almacenamiento 
     qm importdisk 1003 /tmp/sift.vmdk "$vAlmacenamiento" && rm -f /tmp/sift.vmdk
     vRutaAlDisco=$(qm config 1003 | grep unused | cut -d' ' -f2)
     qm set 1003 --virtio0 $vRutaAlDisco
+    qm set 1003 --boot order='sata0;virtio0'
 
 # Crear la máquina virtual de pruebas
   echo ""
@@ -179,7 +181,7 @@ vAlmacenamiento=${1:-'local-lvm'} # Si le paso un parámetro, el almacenamiento 
     --balloon 0 \
     --vga virtio,memory=512 \
     --net0 virtio=00:aa:aa:aa:20:02,bridge=vmbr200,firewall=1 \
-    --boot order='sata0;virtio0' \
+    --boot order=sata0 \
     --scsihw virtio-scsi-single \
     --sata0 none,media=cdrom \
     --ostype l26 \
