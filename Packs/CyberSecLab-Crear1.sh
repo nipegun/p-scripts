@@ -30,18 +30,23 @@ vAlmacenamiento=${1:-'local-lvm'} # Si le paso un parámetro, el almacenamiento 
     #echo "$(tput setaf 1)Mensaje en color rojo. $(tput sgr 0)"
   cFinColor='\033[0m'
 
+# Notificar inicio de ejecución del script
+  echo ""
+  echo -e "${cColorAzulClaro}  Iniciando el script de creación de laboratorio de ciberseguridad para Promxox...${cFinColor}"
+  echo ""
+
 # Comprobar si el script está corriendo como root
   #if [ $(id -u) -ne 0 ]; then     # Sólo comprueba si es root
   if [[ $EUID -ne 0 ]]; then       # Comprueba si es root o sudo
     echo ""
-    echo -e "${cColorRojo}  Este script está preparado para ejecutarse con privilegios de administrador (como root o con sudo).${cFinColor}"
+    echo -e "${cColorRojo}    Este script está preparado para ejecutarse con privilegios de administrador (como root o con sudo).${cFinColor}"
     echo ""
     exit
   fi
 
 # Crear los puentes
   echo ""
-  echo "  Levantando los puentes vmbr100 y vmbr200..."
+  echo "    Levantando los puentes vmbr100 y vmbr200..."
   echo ""
   # Crear el puente vmbr100
     ip link add name vmbr100 type bridge
@@ -51,7 +56,7 @@ vAlmacenamiento=${1:-'local-lvm'} # Si le paso un parámetro, el almacenamiento 
     ip link set dev vmbr200 up
 
   echo ""
-  echo "  Haciendo los puentes persistentes..."
+  echo "    Haciendo los puentes persistentes..."
   echo ""
   echo ""                                         >> /etc/network/interfaces
   echo "auto vmbr100"                             >> /etc/network/interfaces
@@ -69,18 +74,9 @@ vAlmacenamiento=${1:-'local-lvm'} # Si le paso un parámetro, el almacenamiento 
   echo "# Switch para la red LAB del laboratorio" >> /etc/network/interfaces
   echo ""                                         >> /etc/network/interfaces
 
-# Comprobar si el paquete curl está instalado. Si no lo está, instalarlo.
-  if [[ $(dpkg-query -s curl 2>/dev/null | grep installed) == "" ]]; then
-    echo ""
-    echo -e "${cColorRojo}  El paquete curl no está instalado. Iniciando su instalación...${cFinColor}"
-    echo ""
-    apt-get -y update && apt-get -y install curl
-    echo ""
-  fi
-
 # Crear la máquina virtual de openwrtlab
   echo ""
-  echo "  Creando la máquina virtual de openwrtlab..."
+  echo "    Creando la máquina virtual de openwrtlab..."
   echo ""
   qm create 1000 \
     --name openwrt \
@@ -100,6 +96,14 @@ vAlmacenamiento=${1:-'local-lvm'} # Si le paso un parámetro, el almacenamiento 
     --ostype l26 \
     --agent 1
   # Descargar el .vmdk de openwrtlab e importarlo en la máquina virtual
+    # Comprobar si el paquete curl está instalado. Si no lo está, instalarlo.
+      if [[ $(dpkg-query -s curl 2>/dev/null | grep installed) == "" ]]; then
+        echo ""
+        echo -e "${cColorRojo}      El paquete curl no está instalado. Iniciando su instalación...${cFinColor}"
+        echo ""
+        apt-get -y update && apt-get -y install curl
+        echo ""
+      fi
     curl -L http://hacks4geeks.com/_/descargas/MVs/Discos/Packs/CyberSecLab/openwrtlab.vmdk -o /tmp/openwrtlab.vmdk
     qm importdisk 1000 /tmp/openwrtlab.vmdk "$vAlmacenamiento" && rm -f /tmp/openwrtlab.vmdk
     vRutaAlDisco=$(qm config 1000 | grep unused | cut -d' ' -f2)
@@ -107,7 +111,7 @@ vAlmacenamiento=${1:-'local-lvm'} # Si le paso un parámetro, el almacenamiento 
 
 # Crear la máquina virtual de kali
   echo ""
-  echo "  Creando la máquina virtual de kali..."
+  echo "    Creando la máquina virtual de kali..."
   echo ""
   qm create 1002 \
     --name kali \
@@ -134,7 +138,7 @@ vAlmacenamiento=${1:-'local-lvm'} # Si le paso un parámetro, el almacenamiento 
 
 # Crear la máquina virtual de sift
   echo ""
-  echo "  Creando la máquina virtual de sift..."
+  echo "    Creando la máquina virtual de sift..."
   echo ""
   qm create 1003 \
     --name sift \
@@ -161,7 +165,7 @@ vAlmacenamiento=${1:-'local-lvm'} # Si le paso un parámetro, el almacenamiento 
 
 # Crear la máquina virtual de pruebas
   echo ""
-  echo "  Creando la máquina virtual de pruebas..."
+  echo "    Creando la máquina virtual de pruebas..."
   echo ""
   qm create 2002 \
     --name pruebas \
