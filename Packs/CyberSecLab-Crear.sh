@@ -63,8 +63,8 @@ vAlmacenamiento=${1:-'local-lvm'} # Si le paso un parámetro, el almacenamiento 
     --memory 1024 \
     --balloon 0 \
     --net0 virtio,bridge=vmbr0,firewall=1 \
-    --net1 virtio=00:aa:aa:aa:10:01,bridge=vmbr10,firewall=1 \
-    --net2 virtio=00:aa:aa:aa:20:01,bridge=vmbr20,firewall=1 \
+    --net1 virtio=00:aa:aa:aa:10:01,bridge=vmbr100,firewall=1 \
+    --net2 virtio=00:aa:aa:aa:20:01,bridge=vmbr200,firewall=1 \
     --boot order=sata0 \
     --scsihw virtio-scsi-single \
     --sata0 none,media=cdrom \
@@ -90,7 +90,7 @@ vAlmacenamiento=${1:-'local-lvm'} # Si le paso un parámetro, el almacenamiento 
     --memory 4096 \
     --balloon 0 \
     --vga virtio,memory=512 \
-    --net0 virtio=00:aa:aa:aa:10:02,bridge=vmbr10,firewall=1 \
+    --net0 virtio=00:aa:aa:aa:10:02,bridge=vmbr100,firewall=1 \
     --boot order='sata0;virtio0' \
     --scsihw virtio-scsi-single \
     --sata0 none,media=cdrom \
@@ -116,7 +116,7 @@ vAlmacenamiento=${1:-'local-lvm'} # Si le paso un parámetro, el almacenamiento 
     --memory 4096 \
     --balloon 0 \
     --vga virtio,memory=512 \
-    --net0 virtio=00:aa:aa:aa:10:03,bridge=vmbr10,firewall=1 \
+    --net0 virtio=00:aa:aa:aa:10:03,bridge=vmbr100,firewall=1 \
     --boot order='sata0;virtio0' \
     --scsihw virtio-scsi-single \
     --sata0 none,media=cdrom \
@@ -142,7 +142,7 @@ vAlmacenamiento=${1:-'local-lvm'} # Si le paso un parámetro, el almacenamiento 
     --memory 4096 \
     --balloon 0 \
     --vga virtio,memory=512 \
-    --net0 virtio=00:aa:aa:aa:20:02,bridge=vmbr20,firewall=1 \
+    --net0 virtio=00:aa:aa:aa:20:02,bridge=vmbr200,firewall=1 \
     --boot order='sata0;virtio0' \
     --scsihw virtio-scsi-single \
     --sata0 none,media=cdrom \
