@@ -62,7 +62,6 @@ vAlmacenamiento=${1:-'local-lvm'} # Si le paso un parámetro, el almacenamiento 
     --cores 2 \
     --memory 1024 \
     --balloon 0 \
-    --vga virtio,memory=512 \
     --net0 virtio,bridge=vmbr0,firewall=1 \
     --net1 virtio=00:aa:aa:aa:10:01,bridge=vmbr10,firewall=1 \
     --net2 virtio=00:aa:aa:aa:20:01,bridge=vmbr20,firewall=1 \
@@ -73,7 +72,7 @@ vAlmacenamiento=${1:-'local-lvm'} # Si le paso un parámetro, el almacenamiento 
     --agent 1
   # Descargar el .vmdk de openwrtlab e importarlo en la máquina virtual
     curl -L http://hacks4geeks.com/_/descargas/MVs/Discos/Packs/CyberSecLab/openwrtlab.vmdk -o /tmp/openwrtlab.vmdk
-    qm importdisk 1000 /tmp/openwrtlab.vmdk "$vAlmacenamiento"
+    qm importdisk 1000 /tmp/openwrtlab.vmdk "$vAlmacenamiento" && rm -f /tmp/openwrtlab.vmdk
     qm set 1000 --virtio0 local-lvm:vm-1000-disk-0
 
 # Crear la máquina virtual de kali
@@ -99,7 +98,7 @@ vAlmacenamiento=${1:-'local-lvm'} # Si le paso un parámetro, el almacenamiento 
     --agent 1
   # Descargar el .vmdk de kali e importarlo en la máquina virtual
     curl -L http://hacks4geeks.com/_/descargas/MVs/Discos/Packs/CyberSecLab/kali.vmdk -o /tmp/kali.vmdk
-    qm importdisk 1002 /tmp/kali.vmdk "$vAlmacenamiento"
+    qm importdisk 1002 /tmp/kali.vmdk "$vAlmacenamiento" && rm -f /tmp/kali.vmdk
     qm set 1002 --virtio0 local-lvm:vm-1002-disk-0
 
 # Crear la máquina virtual de sift
@@ -125,7 +124,7 @@ vAlmacenamiento=${1:-'local-lvm'} # Si le paso un parámetro, el almacenamiento 
     --agent 1
   # Descargar el .vmdk de sift e importarlo en la máquina virtual
     curl -L http://hacks4geeks.com/_/descargas/MVs/Discos/Packs/CyberSecLab/sift.vmdk -o /tmp/sift.vmdk
-    qm importdisk 1003 /tmp/sift.vmdk "$vAlmacenamiento"
+    qm importdisk 1003 /tmp/sift.vmdk "$vAlmacenamiento" && rm -f /tmp/sift.vmdk
     qm set 1003 --virtio0 local-lvm:vm-1003-disk-0
 
 # Crear la máquina virtual de pruebas
