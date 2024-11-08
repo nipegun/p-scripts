@@ -9,13 +9,13 @@
 # Script de NiPeGun para crear un laboratorio de ciberseguridad en Proxmox
 #
 # Ejecución remota:
-#   https://raw.githubusercontent.com/nipegun/p-scripts/refs/heads/master/MVs/Packs/CyberSecLab-Crear.sh | bash
+#   curl -sL https://raw.githubusercontent.com/nipegun/p-scripts/refs/heads/master/MVs/Packs/CyberSecLab-Crear.sh | bash
 #
 # Ejecución remota con parámetros:
-#   https://raw.githubusercontent.com/nipegun/p-scripts/refs/heads/master/MVs/Packs/CyberSecLab-Crear.sh | bash -s Almacenamiento
+#   curl sL https://raw.githubusercontent.com/nipegun/p-scripts/refs/heads/master/MVs/Packs/CyberSecLab-Crear.sh | bash -s Almacenamiento
 #
 # Bajar y editar directamente el archivo en nano
-#   https://raw.githubusercontent.com/nipegun/p-scripts/refs/heads/master/MVs/Packs/CyberSecLab-Crear.sh | nano -
+#   curl -sL https://raw.githubusercontent.com/nipegun/p-scripts/refs/heads/master/MVs/Packs/CyberSecLab-Crear.sh | nano -
 # ----------
 
 # Definir el almacenamiento
