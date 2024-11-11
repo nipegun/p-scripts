@@ -285,6 +285,23 @@ vAlmacenamiento=${1:-'local-lvm'} # Si le paso un parámetro, el almacenamiento 
               echo ""
               echo "  Creando la máquina virtual de Windows Server 22..."
               echo ""
+              qm create 1004 \
+                --name winserver22 \
+                --machine q35 \
+                --bios ovmf \
+                --numa 0 \
+                --sockets 1 \
+                --cpu x86-64-v2-AES \
+                --cores 4 \
+                --memory 4096 \
+                --balloon 0 \
+                --vga virtio,memory=512 \
+                --net0 virtio=00:aa:aa:aa:10:04,bridge=vmbr100,firewall=1 \
+                --boot order=sata0 \
+                --scsihw virtio-scsi-single \
+                --sata0 none,media=cdrom \
+                --ostype win11 \
+                --agent 1
 
             ;;
 
@@ -302,6 +319,24 @@ vAlmacenamiento=${1:-'local-lvm'} # Si le paso un parámetro, el almacenamiento 
               echo ""
               echo "  Creando la máquina virtual de Windows 11 Pro..."
               echo ""
+              qm create 1005 \
+                --name win11pro \
+                --machine q35 \
+                --bios ovmf \
+                --numa 0 \
+                --sockets 1 \
+                --cpu x86-64-v2-AES \
+                --cores 4 \
+                --memory 4096 \
+                --balloon 0 \
+                --vga virtio,memory=512 \
+                --net0 virtio=00:aa:aa:aa:10:04,bridge=vmbr100,firewall=1 \
+                --boot order=sata0 \
+                --scsihw virtio-scsi-single \
+                --sata0 none,media=cdrom \
+                --ostype win11 \
+                --agent 1
+
 
             ;;
 
