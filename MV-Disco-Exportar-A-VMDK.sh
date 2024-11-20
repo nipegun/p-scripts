@@ -6,22 +6,13 @@
 # No tienes que aceptar ningún tipo de términos de uso o licencia para utilizarlo o modificarlo porque va sin CopyLeft.
 
 # ----------
-# Script de NiPeGun para instalar y configurar xxxxxxxxx en Debian
+# Script de NiPeGun para exportar el disco de una máquina virtual de proxmox hacia un archivo .vmdk
 #
-# Ejecución remota con sudo:
-#   curl -sL x | sudo bash
-#
-# Ejecución remota como root:
-#   curl -sL x | bash
-#
-# Ejecución remota sin caché:
-#   curl -sL -H 'Cache-Control: no-cache, no-store' x | bash
-#
-# Ejecución remota con parámetros:
-#   curl -sL x | bash -s Parámetro1 Parámetro2
+# Ejecución remota del root con parámetros:
+#   curl -sL https://raw.githubusercontent.com/nipegun/p-scripts/refs/heads/master/MV-Disco-Exportar-A-VMDK.sh | bash -s Parámetro1 Parámetro2
 #
 # Bajar y editar directamente el archivo en nano
-#   curl -sL x | nano -
+#   curl -sL https://raw.githubusercontent.com/nipegun/p-scripts/refs/heads/master/MV-Disco-Exportar-A-VMDK.sh | nano -
 # ----------
 
 # Definir constantes de color
@@ -42,4 +33,24 @@
     exit
   fi
 
-qemu-img convert -O vmdk /path/to/disk.raw /path/to/disk.vmdk
+# Definir la cantidad de argumentos esperados
+  cCantParamEsperados=2
+
+# Comprobar que se hayan pasado la cantidad de parámetros correctos y proceder
+  if [ $# -ne $cCantParamEsperados ]
+    then
+      echo ""
+      echo -e "${cColorRojo}  Mal uso del script. El uso correcto sería: ${cFinColor}"
+      echo "    $0 [RutaAlArchivoDeDiscoEnProxmox] [RutaAlVMDKFinal]"
+      echo ""
+      echo "  Ejemplo:"
+      echo "    $0 '/Rutal/Al/Archivo.raw' '/Ruta/Al/Archivo.vmdk'"
+      echo ""
+      exit
+    else
+      echo ""
+      echo ""
+      echo ""
+      qemu-img convert -O vmdk $1 $2
+  fi
+
