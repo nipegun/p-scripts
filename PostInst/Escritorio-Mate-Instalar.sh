@@ -45,40 +45,20 @@
     cVerSO=$(uname -r)
   fi
 
-if [ $cVerSO == "7" ]; then
+if [ $cVerSO == "13" ]; then
 
   echo ""
-  echo "  Iniciando el script de instalación del escritorio Mate en ProxmoxVE 3..."
+  echo "  Iniciando el script de instalación del escritorio Mate en ProxmoxVE 5..."
   echo ""
 
   echo ""
   echo "  Comandos para ProxmoxVE 3 todavía no preparados. Prueba ejecutar el script en otra versión de ProxmoxVE."
   echo ""
 
-elif [ $cVerSO == "8" ]; then
+elif [ $cVerSO == "12" ]; then
 
   echo ""
-  echo "  Iniciando el script de instalación del escritorio Mate en ProxmoxVE 4..."
-  echo ""
-
-  echo ""
-  echo "  Comandos para ProxmoxVE 4 todavía no preparados. Prueba ejecutar el script en otra versión de ProxmoxVE."
-  echo ""
-
-elif [ $cVerSO == "9" ]; then
-
-  echo ""
-  echo "  Iniciando el script de instalación del escritorio Mate en ProxmoxVE 5..."
-  echo ""
-
-  tasksel install mate-desktop
-  apt-get -y install firefox-esr-l10n-es-es libreoffice-l10n-es
-  systemctl disable NetworkManager.service
-
-elif [ $cVerSO == "10" ]; then
-
-  echo ""
-  echo "  Iniciando el script de instalación del escritorio Mate en ProxmoxVE 6..."
+  echo "  Iniciando el script de instalación del escritorio Mate en ProxmoxVE 8..."
   echo ""
 
   apt-get -y update
@@ -143,10 +123,10 @@ elif [ $cVerSO == "11" ]; then
     echo ""
     systemctl disable NetworkManager.service
 
-elif [ $cVerSO == "12" ]; then
+elif [ $cVerSO == "10" ]; then
 
   echo ""
-  echo "  Iniciando el script de instalación del escritorio Mate en ProxmoxVE 8..."
+  echo "  Iniciando el script de instalación del escritorio Mate en ProxmoxVE 6..."
   echo ""
 
   apt-get -y update
@@ -176,6 +156,36 @@ elif [ $cVerSO == "12" ]; then
     echo "  Deshabilitando NetworkManager..."
     echo ""
     systemctl disable NetworkManager.service
+
+elif [ $cVerSO == "9" ]; then
+
+  echo ""
+  echo "  Iniciando el script de instalación del escritorio Mate en ProxmoxVE 5..."
+  echo ""
+
+  tasksel install mate-desktop
+  apt-get -y install firefox-esr-l10n-es-es libreoffice-l10n-es
+  systemctl disable NetworkManager.service
+
+elif [ $cVerSO == "8" ]; then
+
+  echo ""
+  echo "  Iniciando el script de instalación del escritorio Mate en ProxmoxVE 4..."
+  echo ""
+
+  echo ""
+  echo "  Comandos para ProxmoxVE 4 todavía no preparados. Prueba ejecutar el script en otra versión de ProxmoxVE."
+  echo ""
+
+elif [ $cVerSO == "7" ]; then
+
+  echo ""
+  echo "  Iniciando el script de instalación del escritorio Mate en ProxmoxVE 3..."
+  echo ""
+
+  echo ""
+  echo "  Comandos para ProxmoxVE 3 todavía no preparados. Prueba ejecutar el script en otra versión de ProxmoxVE."
+  echo ""
 
 fi
 
