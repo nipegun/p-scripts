@@ -6,16 +6,16 @@
 # No tienes que aceptar ningún tipo de términos de uso o licencia para utilizarlo o modificarlo porque va sin CopyLeft.
 
 # ----------
-# Script de NiPeGun para crear un lab de honeypots en Proxmox
+# Script de NiPeGun para crear un lab con un honeypot SSH autogestionado en Proxmox
 #
 # Ejecución remota:
-#   curl -sL https://raw.githubusercontent.com/nipegun/p-scripts/refs/heads/master/MVs/Packs/HoneypotsLabs-Importar.sh | bash
+#   curl -sL https://raw.githubusercontent.com/nipegun/p-scripts/refs/heads/master/MVs/Packs/Lab-HoneypotAutoSSH-Importar.sh | bash
 #
 # Ejecución remota con parámetros:
-#   curl sL https://raw.githubusercontent.com/nipegun/p-scripts/refs/heads/master/MVs/Packs/HoneypotsLab-Importar.sh | bash -s Almacenamiento
+#   curl sL https://raw.githubusercontent.com/nipegun/p-scripts/refs/heads/master/MVs/Packs/Lab-HoneypotAutoSSH-Importar.sh | bash -s Almacenamiento
 #
 # Bajar y editar directamente el archivo en nano
-#   curl -sL https://raw.githubusercontent.com/nipegun/p-scripts/refs/heads/master/MVs/Packs/HoneypotsLab-Importar.sh | nano -
+#   curl -sL https://raw.githubusercontent.com/nipegun/p-scripts/refs/heads/master/MVs/Packs/Lab-HoneypotAutoSSH-Importar.sh | nano -
 # ----------
 
 # Definir el almacenamiento
@@ -32,7 +32,7 @@ vAlmacenamiento=${1:-'local-lvm'} # Si le paso un parámetro, el almacenamiento 
 
 # Notificar inicio de ejecución del script
   echo ""
-  echo -e "${cColorAzulClaro}  Iniciando el script de creación del laboratorio de honeypots para Promxox...${cFinColor}"
+  echo -e "${cColorAzulClaro}  Iniciando el script...${cFinColor}"
   echo ""
 
 # Comprobar si el script está corriendo como root
@@ -69,7 +69,7 @@ vAlmacenamiento=${1:-'local-lvm'} # Si le paso un parámetro, el almacenamiento 
   if [ $cVerSO == "13" ]; then
 
     echo ""
-    echo -e "${cColorAzulClaro}  Iniciando el script de importación del pack HoneypotsLabs para Proxmox 9...${cFinColor}"
+    echo -e "${cColorAzulClaro}  Iniciando el script de importación del pack Lab-HoneypotAutoSSH para Proxmox 9...${cFinColor}"
     echo ""
 
     echo ""
@@ -79,7 +79,7 @@ vAlmacenamiento=${1:-'local-lvm'} # Si le paso un parámetro, el almacenamiento 
   elif [ $cVerSO == "12" ]; then
 
     echo ""
-    echo -e "${cColorAzulClaro}  Iniciando el script de importación del pack HoneypotsLabs para Proxmox 8...${cFinColor}"
+    echo -e "${cColorAzulClaro}  Iniciando el script de importación del pack Lab-HoneypotAutoSSH para Proxmox 8...${cFinColor}"
     echo ""
 
     # Crear el menú
@@ -121,30 +121,30 @@ vAlmacenamiento=${1:-'local-lvm'} # Si le paso un parámetro, el almacenamiento 
               echo "  Creando los puentes..."
               echo ""
               # Crear el puente vmbr100
-                ip link add name vmbr100 type bridge
-                ip link set dev vmbr100 up
+                ip link add name vmbr300 type bridge
+                ip link set dev vmbr300 up
               # Crear el puente vmbr200
-                ip link add name vmbr200 type bridge
-                ip link set dev vmbr200 up
+                ip link add name vmbr400 type bridge
+                ip link set dev vmbr400 up
 
               echo ""
               echo "    Haciendo los puentes persistentes..."
               echo ""
-              echo ""                                         >> /etc/network/interfaces
-              echo "auto vmbr100"                             >> /etc/network/interfaces
-              echo "iface vmbr100 inet manual"                >> /etc/network/interfaces
-              echo "    bridge-ports none"                    >> /etc/network/interfaces
-              echo "    bridge-stp off"                       >> /etc/network/interfaces
-              echo "    bridge-fd 0"                          >> /etc/network/interfaces
-              echo "# Switch para la red LAN del laboratorio" >> /etc/network/interfaces
-              echo ""                                         >> /etc/network/interfaces
-              echo "auto vmbr200"                             >> /etc/network/interfaces
-              echo "iface vmbr200 inet manual"                >> /etc/network/interfaces
-              echo "    bridge-ports none"                    >> /etc/network/interfaces
-              echo "    bridge-stp off"                       >> /etc/network/interfaces
-              echo "    bridge-fd 0"                          >> /etc/network/interfaces
-              echo "# Switch para la red LAB del laboratorio" >> /etc/network/interfaces
-              echo ""                                         >> /etc/network/interfaces
+              echo ""                                                 >> /etc/network/interfaces
+              echo "auto vmbr400"                                     >> /etc/network/interfaces
+              echo "iface vmbr400 inet manual"                        >> /etc/network/interfaces
+              echo "    bridge-ports none"                            >> /etc/network/interfaces
+              echo "    bridge-stp off"                               >> /etc/network/interfaces
+              echo "    bridge-fd 0"                                  >> /etc/network/interfaces
+              echo "# Switch para la red LAN del lab HoneypotAutoSSH" >> /etc/network/interfaces
+              echo ""                                                 >> /etc/network/interfaces
+              echo "auto vmbr400"                                     >> /etc/network/interfaces
+              echo "iface vmbr400 inet manual"                        >> /etc/network/interfaces
+              echo "    bridge-ports none"                            >> /etc/network/interfaces
+              echo "    bridge-stp off"                               >> /etc/network/interfaces
+              echo "    bridge-fd 0"                                  >> /etc/network/interfaces
+              echo "# Switch para la red DMZ del lab HoneypotAutoSSH" >> /etc/network/interfaces
+              echo ""                                                 >> /etc/network/interfaces
 
             ;;
 
@@ -153,7 +153,7 @@ vAlmacenamiento=${1:-'local-lvm'} # Si le paso un parámetro, el almacenamiento 
               echo ""
               echo "  Creando la máquina virtual de OpenWrt..."
               echo ""
-              qm create 1000 \
+              qm create 3000 \
                 --name openwrt \
                 --machine q35 \
                 --bios ovmf \
@@ -164,8 +164,8 @@ vAlmacenamiento=${1:-'local-lvm'} # Si le paso un parámetro, el almacenamiento 
                 --memory 1024 \
                 --balloon 0 \
                 --net0 virtio,bridge=vmbr0,firewall=1 \
-                --net1 virtio=00:aa:aa:aa:10:01,bridge=vmbr100,firewall=1 \
-                --net2 virtio=00:aa:aa:aa:20:01,bridge=vmbr200,firewall=1 \
+                --net1 virtio=00:bb:bb:bb:10:01,bridge=vmbr300,firewall=1 \
+                --net2 virtio=00:bb:bb:bb:20:01,bridge=vmbr400,firewall=1 \
                 --boot order=sata0 \
                 --scsihw virtio-scsi-single \
                 --ostype l26 \
@@ -187,10 +187,10 @@ vAlmacenamiento=${1:-'local-lvm'} # Si le paso un parámetro, el almacenamiento 
                   apt-get -y install curl
                   echo ""
                 fi
-              curl -L http://hacks4geeks.com/_/descargas/MVs/Discos/Packs/CyberSecLab/openwrtlab.vmdk -o /tmp/openwrtlab.vmdk
-              qm importdisk 1000 /tmp/openwrtlab.vmdk "$vAlmacenamiento" && rm -f /tmp/openwrtlab.vmdk
-              vRutaAlDisco=$(qm config 1000 | grep unused | cut -d' ' -f2)
-              qm set 1000 --sata0 $vRutaAlDisco
+              curl -L http://hacks4geeks.com/_/descargas/MVs/Discos/Packs/HoneypotAutoSSH/openwrthp.vmdk -o /tmp/openwrthp.vmdk
+              qm importdisk 3000 /tmp/openwrthp.vmdk "$vAlmacenamiento" && rm -f /tmp/openwrthp.vmdk
+              vRutaAlDisco=$(qm config 3000 | grep unused | cut -d' ' -f2)
+              qm set 3000 --sata0 $vRutaAlDisco
 
             ;;
 
@@ -199,7 +199,7 @@ vAlmacenamiento=${1:-'local-lvm'} # Si le paso un parámetro, el almacenamiento 
               echo ""
               echo "  Creando la máquina virtual de Kali..."
               echo ""
-              qm create 1002 \
+              qm create 3002 \
                 --name kali \
                 --machine q35 \
                 --bios ovmf \
@@ -403,7 +403,7 @@ vAlmacenamiento=${1:-'local-lvm'} # Si le paso un parámetro, el almacenamiento 
   elif [ $cVerSO == "11" ]; then
 
     echo ""
-    echo -e "${cColorAzulClaro}  Iniciando el script de importación del pack HoneypotsLabs para Proxmox 7...${cFinColor}"
+    echo -e "${cColorAzulClaro}  Iniciando el script de importación del pack Lab-HoneypotAutoSSH para Proxmox 7...${cFinColor}"
     echo ""
 
     echo ""
@@ -413,7 +413,7 @@ vAlmacenamiento=${1:-'local-lvm'} # Si le paso un parámetro, el almacenamiento 
   elif [ $cVerSO == "10" ]; then
 
     echo ""
-    echo -e "${cColorAzulClaro}  Iniciando el script de importación del pack HoneypotsLabs para Proxmox 6...${cFinColor}"
+    echo -e "${cColorAzulClaro}  Iniciando el script de importación del pack Lab-HoneypotAutoSSH para Proxmox 6...${cFinColor}"
     echo ""
 
     echo ""
@@ -423,7 +423,7 @@ vAlmacenamiento=${1:-'local-lvm'} # Si le paso un parámetro, el almacenamiento 
   elif [ $cVerSO == "9" ]; then
 
     echo ""
-    echo -e "${cColorAzulClaro}  Iniciando el script de importación del pack HoneypotsLabs para Proxmox 5...${cFinColor}"
+    echo -e "${cColorAzulClaro}  Iniciando el script de importación del pack Lab-HoneypotAutoSSH para Proxmox 5...${cFinColor}"
     echo ""
 
     echo ""
@@ -433,7 +433,7 @@ vAlmacenamiento=${1:-'local-lvm'} # Si le paso un parámetro, el almacenamiento 
   elif [ $cVerSO == "8" ]; then
 
     echo ""
-    echo -e "${cColorAzulClaro}  Iniciando el script de importación del pack HoneypotsLabs para Proxmox 4...${cFinColor}"
+    echo -e "${cColorAzulClaro}  Iniciando el script de importación del pack Lab-HoneypotAutoSSH para Proxmox 4...${cFinColor}"
     echo ""
 
     echo ""
@@ -443,7 +443,7 @@ vAlmacenamiento=${1:-'local-lvm'} # Si le paso un parámetro, el almacenamiento 
   elif [ $cVerSO == "7" ]; then
 
     echo ""
-    echo -e "${cColorAzulClaro}  Iniciando el script de importación del pack HoneypotsLabs para Proxmox 3...${cFinColor}"
+    echo -e "${cColorAzulClaro}  Iniciando el script de importación del pack Lab-HoneypotAutoSSH para Proxmox 3...${cFinColor}"
     echo ""
 
     echo ""
