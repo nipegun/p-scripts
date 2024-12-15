@@ -69,21 +69,29 @@ vAlmacenamiento=${1:-'local-lvm'} # Si le paso un parámetro, el almacenamiento 
   if [ $cVerSO == "13" ]; then
 
     echo ""
-    echo -e "${cColorAzulClaro}  Iniciando el script de importación del pack CyberSecLab para el VirtualBox de Debian 13 (x)...${cFinColor}"
+    echo -e "${cColorAzulClaro}  Iniciando el script de importación del pack CyberSecLab para Proxmox 9...${cFinColor}"
     echo ""
 
     echo ""
-    echo -e "${cColorRojo}    Comandos para Debian 13 todavía no preparados. Prueba ejecutarlo en otra versión de Debian.${cFinColor}"
+    echo -e "${cColorRojo}    Comandos para Proxmox 9 todavía no preparados. Prueba ejecutarlo en otra versión de Proxmox.${cFinColor}"
     echo ""
 
   elif [ $cVerSO == "12" ]; then
 
     echo ""
-    echo -e "${cColorAzulClaro}  Iniciando el script de importación del pack CyberSecLab para el VirtualBox de Debian 12 (Bookworm)...${cFinColor}"
+    echo -e "${cColorAzulClaro}  Iniciando el script de importación del pack CyberSecLab para Proxmox 8...${cFinColor}"
     echo ""
 
     # Crear el menú
-      #menu=(dialog --timeout 5 --checklist "Marca las opciones que quieras instalar:" 22 96 16)
+      # Comprobar si el paquete dialog está instalado. Si no lo está, instalarlo.
+        if [[ $(dpkg-query -s dialog 2>/dev/null | grep installed) == "" ]]; then
+          echo ""
+          echo -e "${cColorRojo}    El paquete dialog no está instalado. Iniciando su instalación...${cFinColor}"
+          echo ""
+          apt-get -y update
+          apt-get -y install dialog
+          echo ""
+        fi
       menu=(dialog --checklist "Marca las opciones que quieras instalar:" 22 96 16)
         opciones=(
           1 "Crear los puentes"                               on
@@ -175,7 +183,8 @@ vAlmacenamiento=${1:-'local-lvm'} # Si le paso un parámetro, el almacenamiento 
                   echo ""
                   echo -e "${cColorRojo}      El paquete curl no está instalado. Iniciando su instalación...${cFinColor}"
                   echo ""
-                  apt-get -y update && apt-get -y install curl
+                  apt-get -y update
+                  apt-get -y install curl
                   echo ""
                 fi
               curl -L http://hacks4geeks.com/_/descargas/MVs/Discos/Packs/CyberSecLab/openwrtlab.vmdk -o /tmp/openwrtlab.vmdk
@@ -269,7 +278,8 @@ vAlmacenamiento=${1:-'local-lvm'} # Si le paso un parámetro, el almacenamiento 
                   echo ""
                   echo -e "${cColorRojo}      El paquete curl no está instalado. Iniciando su instalación...${cFinColor}"
                   echo ""
-                  apt-get -y update && apt-get -y install curl
+                  apt-get -y update
+                  apt-get -y install curl
                   echo ""
                 fi
               curl -L http://hacks4geeks.com/_/descargas/MVs/Discos/Packs/CyberSecLab/sift.vmdk -o /tmp/sift.vmdk
@@ -311,7 +321,6 @@ vAlmacenamiento=${1:-'local-lvm'} # Si le paso un parámetro, el almacenamiento 
               echo "    Importando .vmdk de Windows Server 22..."
               echo ""
 
-
             ;;
 
            10)
@@ -337,7 +346,6 @@ vAlmacenamiento=${1:-'local-lvm'} # Si le paso un parámetro, el almacenamiento 
                 --ostype win11 \
                 --agent 1
 
-
             ;;
 
            11)
@@ -345,7 +353,6 @@ vAlmacenamiento=${1:-'local-lvm'} # Si le paso un parámetro, el almacenamiento 
               echo ""
               echo "    Importando .vmdk de Windows 11 Pro..."
               echo ""
-
 
             ;;
 
@@ -396,51 +403,51 @@ vAlmacenamiento=${1:-'local-lvm'} # Si le paso un parámetro, el almacenamiento 
   elif [ $cVerSO == "11" ]; then
 
     echo ""
-    echo -e "${cColorAzulClaro}  Iniciando el script de importación del pack CyberSecLab para el VirtualBox de Debian 11 (Bullseye)...${cFinColor}"
+    echo -e "${cColorAzulClaro}  Iniciando el script de importación del pack CyberSecLab para Proxmox 7...${cFinColor}"
     echo ""
 
     echo ""
-    echo -e "${cColorRojo}    Comandos para Debian 11 todavía no preparados. Prueba ejecutarlo en otra versión de Debian.${cFinColor}"
+    echo -e "${cColorRojo}    Comandos para Proxmox 7 todavía no preparados. Prueba ejecutarlo en otra versión de Proxmox.${cFinColor}"
     echo ""
 
   elif [ $cVerSO == "10" ]; then
 
     echo ""
-    echo -e "${cColorAzulClaro}  Iniciando el script de importación del pack CyberSecLab para el VirtualBox de Debian 10 (Buster)...${cFinColor}"
+    echo -e "${cColorAzulClaro}  Iniciando el script de importación del pack CyberSecLab para Proxmox 6...${cFinColor}"
     echo ""
 
     echo ""
-    echo -e "${cColorRojo}    Comandos para Debian 10 todavía no preparados. Prueba ejecutarlo en otra versión de Debian.${cFinColor}"
+    echo -e "${cColorRojo}    Comandos para Proxmox 6 todavía no preparados. Prueba ejecutarlo en otra versión de Proxmox.${cFinColor}"
     echo ""
 
   elif [ $cVerSO == "9" ]; then
 
     echo ""
-    echo -e "${cColorAzulClaro}  Iniciando el script de importación del pack CyberSecLab para el VirtualBox de Debian 9 (Stretch)...${cFinColor}"
+    echo -e "${cColorAzulClaro}  Iniciando el script de importación del pack CyberSecLab para Proxmox 5...${cFinColor}"
     echo ""
 
     echo ""
-    echo -e "${cColorRojo}    Comandos para Debian 9 todavía no preparados. Prueba ejecutarlo en otra versión de Debian.${cFinColor}"
+    echo -e "${cColorRojo}    Comandos para Proxmox 5 todavía no preparados. Prueba ejecutarlo en otra versión de Proxmox.${cFinColor}"
     echo ""
 
   elif [ $cVerSO == "8" ]; then
 
     echo ""
-    echo -e "${cColorAzulClaro}  Iniciando el script de importación del pack CyberSecLab para el VirtualBox de Debian 8 (Jessie)...${cFinColor}"
+    echo -e "${cColorAzulClaro}  Iniciando el script de importación del pack CyberSecLab para Proxmox 4...${cFinColor}"
     echo ""
 
     echo ""
-    echo -e "${cColorRojo}    Comandos para Debian 8 todavía no preparados. Prueba ejecutarlo en otra versión de Debian.${cFinColor}"
+    echo -e "${cColorRojo}    Comandos para Proxmox 4 todavía no preparados. Prueba ejecutarlo en otra versión de Proxmox.${cFinColor}"
     echo ""
 
   elif [ $cVerSO == "7" ]; then
 
     echo ""
-    echo -e "${cColorAzulClaro}  Iniciando el script de importación del pack CyberSecLab para el VirtualBox de Debian 7 (Wheezy)...${cFinColor}"
+    echo -e "${cColorAzulClaro}  Iniciando el script de importación del pack CyberSecLab para Proxmox 3...${cFinColor}"
     echo ""
 
     echo ""
-    echo -e "${cColorRojo}    Comandos para Debian 7 todavía no preparados. Prueba ejecutarlo en otra versión de Debian.${cFinColor}"
+    echo -e "${cColorRojo}    Comandos para Proxmox 3 todavía no preparados. Prueba ejecutarlo en otra versión de Proxmox.${cFinColor}"
     echo ""
 
   fi
