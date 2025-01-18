@@ -39,57 +39,72 @@ cFinColor='\033[0m'
 if [ $cVerSO == "7" ]; then
 
   echo ""
-  echo "-------------------------------------------------------------------------------"
-  echo "  Iniciando el script para preparar el contenedor LXC de Debian 7 (Wheezy)..."
-  echo "-------------------------------------------------------------------------------"
+  echo "  Iniciando el script para preparar el contenedor LXC de Debian 13 (x)..."
   echo ""
 
   echo ""
-  echo "  Comandos para Debian 7 todavía no preparados. Prueba ejecutarlo en otra versión de Debian."
+  echo "  Comandos para Debian 13 todavía no preparados. Prueba ejecutarlo en otra versión de Debian."
   echo ""
 
-elif [ $cVerSO == "8" ]; then
+elif [ $cVerSO == "12" ]; then
 
   echo ""
-  echo "-------------------------------------------------------------------------------"
-  echo "  Iniciando el script para preparar el contenedor LXC de Debian 8 (Jessie)..."
-  echo "-------------------------------------------------------------------------------"
+  echo "  Iniciando el script para preparar el contenedor LXC de Debian 12 (Bookworm)..."
   echo ""
 
-  echo ""
-  echo "  Comandos para Debian 8 todavía no preparados. Prueba ejecutarlo en otra versión de Debian."
-  echo ""
+  if [ ! -f /root/Fase1Comp.txt ]
+    then
+      # Poner idioma sólo en español
+        curl -sL https://raw.githubusercontent.com/nipegun/d-scripts/master/PostInst/CLI/Idioma-CambiarTodoAes-es.sh | bash
+      # Marcar la fase 1
+        touch /root/Fase1Comp.txt
+        echo ""
+        echo "  Fase 1 completada. Reiniciando el container..."
+        echo ""
+        echo "  Al acabar de reiniciar beberás ejecutar el script una segunda vez"
+        echo "  para terminar de preparar el contenedor."
+        echo ""
+      # Reiniciar sistema
+        shutdown -r now
+    else
+      # Poner todos los repositorios
+        curl -sL https://raw.githubusercontent.com/nipegun/d-scripts/master/PostInst/CLI/Repositorios-Todos-Poner.sh | bash
 
-elif [ $cVerSO == "9" ]; then
+      # Preparar tareas Cron
+        curl -sL https://raw.githubusercontent.com/nipegun/d-scripts/master/PostInst/CLI/TareasCron-Preparar.sh | bash
 
-  echo ""
-  echo "--------------------------------------------------------------------------------"
-  echo "  Iniciando el script para preparar el contenedor LXC de Debian 9 (Stretch)..."
-  echo "--------------------------------------------------------------------------------"
-  echo ""
+      # Preparar ComandosPostArranque (rc.local)
+        curl -sL https://raw.githubusercontent.com/nipegun/d-scripts/master/PostInst/CLI/ComandosPostArranque-Preparar.sh | bash
 
-  echo ""
-  echo "  Comandos para Debian 9 todavía no preparados. Prueba ejecutarlo en otra versión de Debian."
-  echo ""
+      # Permitir el logueo root mediante ssh
+        sed -i -e 's|#PermitRootLogin prohibit-password|PermitRootLogin yes|g' /etc/ssh/sshd_config
 
-elif [ $cVerSO == "10" ]; then
+      # Crear la carpeta para montar las carpetas del host
+        mkdir /Host/ 2> /dev/null
 
-  echo ""
-  echo "--------------------------------------------------------------------------------"
-  echo "  Iniciando el script para preparar el contenedor LXC de Debian 10 (Buster)..."
-  echo "--------------------------------------------------------------------------------"
-  echo ""
+      # Instalar y configurar Fail2Ban
+        curl -sL https://raw.githubusercontent.com/nipegun/d-scripts/master/SoftInst/Consola/Fail2Ban-InstalarYConfigurar.sh | bash
 
-  echo ""
-  echo "  Comandos para Debian 10 todavía no preparados. Prueba ejecutarlo en otra versión de Debian."
-  echo ""
+      # Instalar los d-scripts
+        apt-get -y update
+        apt-get -y install curl
+        curl -s https://raw.githubusercontent.com/nipegun/d-scripts/master/DScripts-Sincronizar.sh | bash
+        sh -c "echo 'export PATH=$PATH:~/scripts/d-scripts/Alias/' >> ~/.bashrc"
+  
+      # Bejar al mínimo la utilización de espacio de intercambio
+        echo "vm.swappiness=0" >> /etc/sysctl.conf
+
+      # Actualizar el sistema y reinciar
+        echo ""
+        echo "  Container preparado. Actualizando el sistema y reiniciando..."
+        echo ""
+        /root/scripts/d-scripts/SistemaOperativo-ActualizarYReiniciar.sh
+  fi
 
 elif [ $cVerSO == "11" ]; then
 
   echo ""
-  echo "----------------------------------------------------------------------------------"
   echo "  Iniciando el script para preparar el contenedor LXC de Debian 11 (Bullseye)..."
-  echo "----------------------------------------------------------------------------------"
   echo ""
 
   if [ ! -f /root/Fase1Comp.txt ]
@@ -376,6 +391,46 @@ elif [ $cVerSO == "11" ]; then
         echo ""
         apt-get -y upgrade && apt-get -y dist-upgrade && apt-get -y install mc && shutdown -r now
   fi
-  
+
+elif [ $cVerSO == "10" ]; then
+
+  echo ""
+  echo "  Iniciando el script para preparar el contenedor LXC de Debian 10 (Buster)..."
+  echo ""
+
+  echo ""
+  echo "  Comandos para Debian 10 todavía no preparados. Prueba ejecutarlo en otra versión de Debian."
+  echo ""
+
+elif [ $cVerSO == "9" ]; then
+
+  echo ""
+  echo "  Iniciando el script para preparar el contenedor LXC de Debian 9 (Stretch)..."
+  echo ""
+
+  echo ""
+  echo "  Comandos para Debian 9 todavía no preparados. Prueba ejecutarlo en otra versión de Debian."
+  echo ""
+
+elif [ $cVerSO == "8" ]; then
+
+  echo ""
+  echo "  Iniciando el script para preparar el contenedor LXC de Debian 8 (Jessie)..."
+  echo ""
+
+  echo ""
+  echo "  Comandos para Debian 8 todavía no preparados. Prueba ejecutarlo en otra versión de Debian."
+  echo ""
+
+elif [ $cVerSO == "7" ]; then
+
+  echo ""
+  echo "  Iniciando el script para preparar el contenedor LXC de Debian 7 (Wheezy)..."
+  echo ""
+
+  echo ""
+  echo "  Comandos para Debian 7 todavía no preparados. Prueba ejecutarlo en otra versión de Debian."
+  echo ""
+
 fi
 
