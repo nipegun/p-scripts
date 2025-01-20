@@ -9,13 +9,13 @@
 # Script de NiPeGun para permitir pasar tarjetas gráficas a contenedores LXC sin privilegios de proxmox
 #
 # Ejecución remota (puede requerir permisos sudo):
-#   curl -sL x | bash
+#   curl -sL https://raw.githubusercontent.com/nipegun/p-scripts/refs/heads/master/PostInst/LXC-Unprivileged-GPUPassThrough-Permitir.sh | bash
 #
 # Ejecución remota como root (para sistemas sin sudo):
-#   curl -sL x | sed 's-sudo--g' | bash
+#   curl -sL https://raw.githubusercontent.com/nipegun/p-scripts/refs/heads/master/PostInst/LXC-Unprivileged-GPUPassThrough-Permitir.sh | sed 's-sudo--g' | bash
 #
 # Bajar y editar directamente el archivo en nano
-#   curl -sL x | nano -
+#   curl -sL https://raw.githubusercontent.com/nipegun/p-scripts/refs/heads/master/PostInst/LXC-Unprivileged-GPUPassThrough-Permitir.sh | nano -
 # ----------
 
 echo ""
