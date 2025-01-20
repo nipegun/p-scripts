@@ -113,6 +113,7 @@
           done
 
         # Pedir al usuario que seleccione una línea
+          echo ""
           read -p "  Que tarjeta quieres pasar al contendor: " vNumTarjeta < /dev/tty
 
           # Ejecutar comandos específicos dependiendo del número seleccionado
