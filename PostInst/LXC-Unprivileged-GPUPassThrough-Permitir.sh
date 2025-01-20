@@ -37,17 +37,17 @@ echo ""
       echo ""
       echo "  El usuario 'root' no pertenece a los grupos 'video' ni 'render'. Agregándolo a ambos..."
       echo ""
-      usermod -aG video,render root
+      sudo usermod -aG video,render root
     elif [[ "$vPerteneceAVideo" == "si" ]]; then
       echo ""
       echo "  El usuario 'root' pertenece al grupo 'video' pero no a 'render'. Agregándolo a 'render'..."
       echo ""
-      usermod -aG render root
+      sudo usermod -aG render root
     elif [[ "$vPerteneceARender" == "si" ]]; then
       echo ""
       echo "  El usuario 'root' pertenece al grupo 'render' pero no a 'video'. Agregándolo a 'video'..."
       echo ""
-      usermod -aG video root
+      sudo usermod -aG video root
     fi
 
 # Comprobar si el root ya ha mapeado los grupos render y video al subgrupo 1
@@ -65,7 +65,7 @@ echo ""
       echo "    root:$vIDGrupoVideo:1"
       echo "  no existe en /etc/subgid. Procediendo a agregarla..."
       echo ""
-      echo "root:$vIDGrupoVideo:1" >> /etc/subgid
+      echo "root:$vIDGrupoVideo:1" | sudo tee -a /etc/subgid
     fi
 
   # Grupo render
@@ -75,6 +75,6 @@ echo ""
       echo "    root:$vIDGrupoRender:1"
       echo "  no existe en /etc/subgid. Procediendo a agregarla..."
       echo ""
-      echo "root:$vIDGrupoRender:1" >> /etc/subgid
+      echo "root:$vIDGrupoRender:1" | sudo tee -a /etc/subgid
     fi
 
