@@ -1,5 +1,9 @@
 #!/bin/bash
 
+echo ""
+echo "  Iniciando el script para pasar una tarjeta gráfica a un contenedor LXC de Proxmox..."
+echo ""
+
 # Crear el archivo .csv donde guardar la información de las tarjetas gráficas disponibles
 
   # Determinar la cantidad de gráficas que hay en el sistema
@@ -37,8 +41,101 @@
       echo "${tarjeta},${dispoRender},${rutaPCI}" >> "$vArchivoCSV"
     done
 
-  # Mostrar el contenido del archivo
-    cat "$vArchivoCSV"
+# Salir si no se encuentra ninguna tarjeta gráfica
+  vCantTarjetas=$(($(wc -l < "$vArchivoCSV") - 1))
+  if [[ "$vCantTarjetas" -le 0 ]]; then
+    echo ""
+    echo "  No hay ninguna tarjeta gráfica disponible para pasar al contenedor."
+    echo ""
+    exit 1
+  fi
+
+# Crear el menú
+
+  # Mostrar el contenido del archivo (excluyendo la cabecera) en un menú
+    echo ""
+    echo "    Tarjetas encontradas:"
+    echo ""
+    tail -n +2 "$vArchivoCSV" | nl -v 1
+
+  # Leer todas las líneas del archivo (excluyendo la cabecera) y guardarlas en un array
+    tail -n +2 "$vArchivoCSV" | while IFS= read -r linea; do
+      lineas+=("$linea")
+    done
+
+  # Pedir al usuario que seleccione una línea
+    read -p "  Que tarjeta quieres pasar al contendor: " vNumTarjeta
+
+    # Ejecutar comandos específicos dependiendo del número seleccionado
+      case "$vNumTarjeta" in
+
+        1)
+          echo "  El texto que debes agregar al archivo .conf, después de la línea:
+          echo "  unprivileged: 1"
+          echo "  ...del contenedor LXC es el siguiente:"
+          echo ""
+          echo "lxc.cgroup2.devices.allow: c 226:0 rwm"
+          echo "lxc.cgroup2.devices.allow: c 226:128 rwm"
+          echo "lxc.mount.entry: /dev/dri/renderD128 dev/dri/renderD128 none bind,optional,create=file"
+          echo "lxc.idmap: u 0 100000 65536"
+          echo "lxc.idmap: g 0 100000 $vIDGrupoVideo"
+          echo "lxc.idmap: g $vIDGrupoVideo $vIDGrupoVideo 1"
+          echo "lxc.idmap: g 45 100045 62"
+          echo "lxc.idmap: g 107 $vIDGrupoRender 1"
+          echo "lxc.idmap: g 108 100108 65428"
+        ;;
+
+        2)
+          echo "  El texto que debes agregar al archivo .conf del contenedor LXC es el siguiente:"
+        ;;
+
+        3)
+          echo "  El texto que debes agregar al archivo .conf del contenedor LXC es el siguiente:"
+        ;;
+
+        4)
+          echo "  El texto que debes agregar al archivo .conf del contenedor LXC es el siguiente:"
+        ;;
+
+        5)
+          echo "  El texto que debes agregar al archivo .conf del contenedor LXC es el siguiente:"
+        ;;
+
+        6)
+          echo "  El texto que debes agregar al archivo .conf del contenedor LXC es el siguiente:"
+        ;;
+
+        7)
+          echo "  El texto que debes agregar al archivo .conf del contenedor LXC es el siguiente:"
+        ;;
+
+        8)
+          echo "  El texto que debes agregar al archivo .conf del contenedor LXC es el siguiente:"
+        ;;
+
+        9)
+          echo "  El texto que debes agregar al archivo .conf del contenedor LXC es el siguiente:"
+        ;;
+
+        *)
+          echo "Acción no especificada para este número."
+        ;;
+
+    esac
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 # Permitir al root mapear los grupos video y render
 
@@ -51,6 +148,8 @@
   # Permitir al root mapear ambos grupos a nuevos groupsids
     echo "root:$vIDGrupoVideo:1"  >> /etc/subgid
     echo "root:$vIDGrupoRender:1" >> /etc/subgid
+
+
 
 # Determinar cual es la GPU integrada y cual la pinchada
   aGPUs=$(ls -l /dev/dri)
