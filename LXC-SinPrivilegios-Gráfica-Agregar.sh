@@ -1,11 +1,14 @@
 #!/bin/bash
 
+vNumGrupoRenderDelContenedor="104"
+vNumGrupoNamespaceDelContenedor=""
+
 echo ""
 echo "  Iniciando el script para pasar una tarjeta gráfica a un contenedor LXC de Proxmox..."
 echo ""
 
 # Encontrar el IDGroup de render (Normalmente 105)
-  vIDGrupoRender=$(cat /etc/group | grep ^render | cut -d':' -f3)
+  vNumGrupoRenderDelHost=$(cat /etc/group | grep ^render | cut -d':' -f3)
 
 # Encontrar el IDGroup de video (Normalmente 44)
   vIDGrupoVideo=$(cat /etc/group | grep ^video | cut -d':' -f3)
@@ -92,8 +95,13 @@ echo ""
           echo "lxc.idmap: g 0 100000 $vIDGrupoVideo"
           echo "lxc.idmap: g $vIDGrupoVideo $vIDGrupoVideo 1"
           echo "lxc.idmap: g 45 100045 62"
-          echo "lxc.idmap: g 107 $vIDGrupoRender 1"
+          echo "lxc.idmap: g $vNumGrupoRenderDelContenedor $vNumGrupoRenderDelHost 1"
           echo "lxc.idmap: g 108 100108 65428"
+          echo "lxc.idmap: g 65534 165534 1" # esto es por si apt no funciona
+          echo ""
+          echo "  Recuerda instalar los controladores gráficos dentro del contenedor, dependiendo de la gráfica que se pase."
+          echo "    Por ejemplo, si se pasa una gráfica Intel integrada:"
+          echo "      apt-get -y update && apt-get -y install intel-media-va-driver"
           echo ""
         ;;
 
@@ -114,8 +122,13 @@ echo ""
           echo "lxc.idmap: g 0 100000 $vIDGrupoVideo"
           echo "lxc.idmap: g $vIDGrupoVideo $vIDGrupoVideo 1"
           echo "lxc.idmap: g 45 100045 62"
-          echo "lxc.idmap: g 107 $vIDGrupoRender 1"
+          echo "lxc.idmap: g $vNumGrupoRenderDelContenedor $vNumGrupoRenderDelHost 1"
           echo "lxc.idmap: g 108 100108 65428"
+          echo "lxc.idmap: g 65534 165534 1" # esto es por si apt no funciona
+          echo ""
+          echo "  Recuerda instalar los controladores gráficos dentro del contenedor, dependiendo de la gráfica que se pase."
+          echo "    Por ejemplo, si se pasa una gráfica Intel integrada:"
+          echo "      apt-get -y update && apt-get -y install intel-media-va-driver"
           echo ""
         ;;
 
@@ -136,8 +149,13 @@ echo ""
           echo "lxc.idmap: g 0 100000 $vIDGrupoVideo"
           echo "lxc.idmap: g $vIDGrupoVideo $vIDGrupoVideo 1"
           echo "lxc.idmap: g 45 100045 62"
-          echo "lxc.idmap: g 107 $vIDGrupoRender 1"
+          echo "lxc.idmap: g $vNumGrupoRenderDelContenedor $vNumGrupoRenderDelHost 1"
           echo "lxc.idmap: g 108 100108 65428"
+          echo "lxc.idmap: g 65534 165534 1" # esto es por si apt no funciona
+          echo ""
+          echo "  Recuerda instalar los controladores gráficos dentro del contenedor, dependiendo de la gráfica que se pase."
+          echo "    Por ejemplo, si se pasa una gráfica Intel integrada:"
+          echo "      apt-get -y update && apt-get -y install intel-media-va-driver"
           echo ""
         ;;
 
@@ -158,8 +176,13 @@ echo ""
           echo "lxc.idmap: g 0 100000 $vIDGrupoVideo"
           echo "lxc.idmap: g $vIDGrupoVideo $vIDGrupoVideo 1"
           echo "lxc.idmap: g 45 100045 62"
-          echo "lxc.idmap: g 107 $vIDGrupoRender 1"
+          echo "lxc.idmap: g $vNumGrupoRenderDelContenedor $vNumGrupoRenderDelHost 1"
           echo "lxc.idmap: g 108 100108 65428"
+          echo "lxc.idmap: g 65534 165534 1" # esto es por si apt no funciona
+          echo ""
+          echo "  Recuerda instalar los controladores gráficos dentro del contenedor, dependiendo de la gráfica que se pase."
+          echo "    Por ejemplo, si se pasa una gráfica Intel integrada:"
+          echo "      apt-get -y update && apt-get -y install intel-media-va-driver"
           echo ""
         ;;
 
@@ -180,8 +203,13 @@ echo ""
           echo "lxc.idmap: g 0 100000 $vIDGrupoVideo"
           echo "lxc.idmap: g $vIDGrupoVideo $vIDGrupoVideo 1"
           echo "lxc.idmap: g 45 100045 62"
-          echo "lxc.idmap: g 107 $vIDGrupoRender 1"
+          echo "lxc.idmap: g $vNumGrupoRenderDelContenedor $vNumGrupoRenderDelHost 1"
           echo "lxc.idmap: g 108 100108 65428"
+          echo "lxc.idmap: g 65534 165534 1" # esto es por si apt no funciona
+          echo ""
+          echo "  Recuerda instalar los controladores gráficos dentro del contenedor, dependiendo de la gráfica que se pase."
+          echo "    Por ejemplo, si se pasa una gráfica Intel integrada:"
+          echo "      apt-get -y update && apt-get -y install intel-media-va-driver"
           echo ""
         ;;
 
@@ -202,8 +230,13 @@ echo ""
           echo "lxc.idmap: g 0 100000 $vIDGrupoVideo"
           echo "lxc.idmap: g $vIDGrupoVideo $vIDGrupoVideo 1"
           echo "lxc.idmap: g 45 100045 62"
-          echo "lxc.idmap: g 107 $vIDGrupoRender 1"
+          echo "lxc.idmap: g $vNumGrupoRenderDelContenedor $vNumGrupoRenderDelHost 1"
           echo "lxc.idmap: g 108 100108 65428"
+          echo "lxc.idmap: g 65534 165534 1" # esto es por si apt no funciona
+          echo ""
+          echo "  Recuerda instalar los controladores gráficos dentro del contenedor, dependiendo de la gráfica que se pase."
+          echo "    Por ejemplo, si se pasa una gráfica Intel integrada:"
+          echo "      apt-get -y update && apt-get -y install intel-media-va-driver"
           echo ""
         ;;
 
@@ -224,8 +257,13 @@ echo ""
           echo "lxc.idmap: g 0 100000 $vIDGrupoVideo"
           echo "lxc.idmap: g $vIDGrupoVideo $vIDGrupoVideo 1"
           echo "lxc.idmap: g 45 100045 62"
-          echo "lxc.idmap: g 107 $vIDGrupoRender 1"
+          echo "lxc.idmap: g $vNumGrupoRenderDelContenedor $vNumGrupoRenderDelHost 1"
           echo "lxc.idmap: g 108 100108 65428"
+          echo "lxc.idmap: g 65534 165534 1" # esto es por si apt no funciona
+          echo ""
+          echo "  Recuerda instalar los controladores gráficos dentro del contenedor, dependiendo de la gráfica que se pase."
+          echo "    Por ejemplo, si se pasa una gráfica Intel integrada:"
+          echo "      apt-get -y update && apt-get -y install intel-media-va-driver"
           echo ""
         ;;
 
@@ -246,8 +284,13 @@ echo ""
           echo "lxc.idmap: g 0 100000 $vIDGrupoVideo"
           echo "lxc.idmap: g $vIDGrupoVideo $vIDGrupoVideo 1"
           echo "lxc.idmap: g 45 100045 62"
-          echo "lxc.idmap: g 107 $vIDGrupoRender 1"
+          echo "lxc.idmap: g $vNumGrupoRenderDelContenedor $vNumGrupoRenderDelHost 1"
           echo "lxc.idmap: g 108 100108 65428"
+          echo "lxc.idmap: g 65534 165534 1" # esto es por si apt no funciona
+          echo ""
+          echo "  Recuerda instalar los controladores gráficos dentro del contenedor, dependiendo de la gráfica que se pase."
+          echo "    Por ejemplo, si se pasa una gráfica Intel integrada:"
+          echo "      apt-get -y update && apt-get -y install intel-media-va-driver"
           echo ""
         ;;
 
@@ -256,3 +299,6 @@ echo ""
         ;;
 
     esac
+
+dev0: /dev/dri/card0,gid=44,uid=0
+dev1: /dev/dri/renderD128,gid=105,uid=0
