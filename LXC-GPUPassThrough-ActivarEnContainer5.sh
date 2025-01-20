@@ -114,7 +114,7 @@
 
         # Pedir al usuario que seleccione una línea
           echo ""
-          read -p "  Que tarjeta quieres pasar al contendor: " vNumTarjeta < /dev/tty
+          read -p "    Que tarjeta quieres pasar al contendor (Ingresa el número y presiona Enter): " vNumTarjeta < /dev/tty
 
           # Ejecutar comandos específicos dependiendo del número seleccionado
             case "$vNumTarjeta" in
