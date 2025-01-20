@@ -4,6 +4,12 @@ echo ""
 echo "  Iniciando el script para pasar una tarjeta gráfica a un contenedor LXC de Proxmox..."
 echo ""
 
+# Encontrar el IDGroup de render (Normalmente 105)
+  vIDGrupoRender=$(cat /etc/group | grep ^render | cut -d':' -f3)
+
+# Encontrar el IDGroup de video (Normalmente 44)
+  vIDGrupoVideo=$(cat /etc/group | grep ^video | cut -d':' -f3)
+
 # Crear el archivo .csv donde guardar la información de las tarjetas gráficas disponibles
 
   # Determinar la cantidad de gráficas que hay en el sistema
@@ -70,51 +76,171 @@ echo ""
       case "$vNumTarjeta" in
 
         1)
-          echo "  El texto que debes agregar al archivo .conf, después de la línea:
+          # Determinar el dispositivo de render correspondiente a la 1ra tarjeta:
+            vNombreDispRender=$(cat /tmp/GPUs.csv | sed -n '2p' | cut -d',' -f2)
+          # Determinar el numero del dispositivo de render correspondiente a la 1ra tarjeta:
+            vNumeroDispRender=$(cat /tmp/GPUs.csv | sed -n '2p' | cut -d',' -f2 | cut -d'D' -f2)
+          echo "  El texto que debes agregar al archivo .conf, después de la línea:"
           echo "  unprivileged: 1"
           echo "  ...del contenedor LXC es el siguiente:"
           echo ""
           echo "lxc.cgroup2.devices.allow: c 226:0 rwm"
-          echo "lxc.cgroup2.devices.allow: c 226:128 rwm"
-          echo "lxc.mount.entry: /dev/dri/renderD128 dev/dri/renderD128 none bind,optional,create=file"
+          echo "lxc.cgroup2.devices.allow: c 226:$vNumeroDispRender rwm"
+          echo "lxc.mount.entry: /dev/dri/$vvNombreDispRender dev/dri/$vNombreDispRender none bind,optional,create=file"
           echo "lxc.idmap: u 0 100000 65536"
           echo "lxc.idmap: g 0 100000 $vIDGrupoVideo"
           echo "lxc.idmap: g $vIDGrupoVideo $vIDGrupoVideo 1"
           echo "lxc.idmap: g 45 100045 62"
           echo "lxc.idmap: g 107 $vIDGrupoRender 1"
           echo "lxc.idmap: g 108 100108 65428"
+          echo ""
         ;;
 
         2)
-          echo "  El texto que debes agregar al archivo .conf del contenedor LXC es el siguiente:"
+          # Determinar el dispositivo de render correspondiente a la 2da tarjeta:
+            vNombreDispRender=$(cat /tmp/GPUs.csv | sed -n '3p' | cut -d',' -f2)
+          # Determinar el numero del dispositivo de render correspondiente a la 2da tarjeta:
+            vNumeroDispRender=$(cat /tmp/GPUs.csv | sed -n '3p' | cut -d',' -f2 | cut -d'D' -f2)
+          echo "  El texto que debes agregar al archivo .conf, después de la línea:"
+          echo "  unprivileged: 1"
+          echo "  ...del contenedor LXC es el siguiente:"
+          echo ""
+          echo "lxc.cgroup2.devices.allow: c 226:0 rwm"
+          echo "lxc.cgroup2.devices.allow: c 226:$vNumeroDispRender rwm"
+          echo "lxc.mount.entry: /dev/dri/$vvNombreDispRender dev/dri/$vNombreDispRender none bind,optional,create=file"
+          echo "lxc.idmap: u 0 100000 65536"
+          echo "lxc.idmap: g 0 100000 $vIDGrupoVideo"
+          echo "lxc.idmap: g $vIDGrupoVideo $vIDGrupoVideo 1"
+          echo "lxc.idmap: g 45 100045 62"
+          echo "lxc.idmap: g 107 $vIDGrupoRender 1"
+          echo "lxc.idmap: g 108 100108 65428"
+          echo ""
         ;;
 
         3)
-          echo "  El texto que debes agregar al archivo .conf del contenedor LXC es el siguiente:"
+          # Determinar el dispositivo de render correspondiente a la 3ra tarjeta:
+            vNombreDispRender=$(cat /tmp/GPUs.csv | sed -n '4p' | cut -d',' -f2)
+          # Determinar el numero del dispositivo de render correspondiente a la 3ra tarjeta:
+            vNumeroDispRender=$(cat /tmp/GPUs.csv | sed -n '4p' | cut -d',' -f2 | cut -d'D' -f2)
+          echo "  El texto que debes agregar al archivo .conf, después de la línea:"
+          echo "  unprivileged: 1"
+          echo "  ...del contenedor LXC es el siguiente:"
+          echo ""
+          echo "lxc.cgroup2.devices.allow: c 226:0 rwm"
+          echo "lxc.cgroup2.devices.allow: c 226:$vNumeroDispRender rwm"
+          echo "lxc.mount.entry: /dev/dri/$vvNombreDispRender dev/dri/$vNombreDispRender none bind,optional,create=file"
+          echo "lxc.idmap: u 0 100000 65536"
+          echo "lxc.idmap: g 0 100000 $vIDGrupoVideo"
+          echo "lxc.idmap: g $vIDGrupoVideo $vIDGrupoVideo 1"
+          echo "lxc.idmap: g 45 100045 62"
+          echo "lxc.idmap: g 107 $vIDGrupoRender 1"
+          echo "lxc.idmap: g 108 100108 65428"
+          echo ""
         ;;
 
         4)
-          echo "  El texto que debes agregar al archivo .conf del contenedor LXC es el siguiente:"
+          # Determinar el dispositivo de render correspondiente a la 4ta tarjeta:
+            vNombreDispRender=$(cat /tmp/GPUs.csv | sed -n '5p' | cut -d',' -f2)
+          # Determinar el numero del dispositivo de render correspondiente a la 4ta tarjeta:
+            vNumeroDispRender=$(cat /tmp/GPUs.csv | sed -n '5p' | cut -d',' -f2 | cut -d'D' -f2)
+          echo "  El texto que debes agregar al archivo .conf, después de la línea:"
+          echo "  unprivileged: 1"
+          echo "  ...del contenedor LXC es el siguiente:"
+          echo ""
+          echo "lxc.cgroup2.devices.allow: c 226:0 rwm"
+          echo "lxc.cgroup2.devices.allow: c 226:$vNumeroDispRender rwm"
+          echo "lxc.mount.entry: /dev/dri/$vvNombreDispRender dev/dri/$vNombreDispRender none bind,optional,create=file"
+          echo "lxc.idmap: u 0 100000 65536"
+          echo "lxc.idmap: g 0 100000 $vIDGrupoVideo"
+          echo "lxc.idmap: g $vIDGrupoVideo $vIDGrupoVideo 1"
+          echo "lxc.idmap: g 45 100045 62"
+          echo "lxc.idmap: g 107 $vIDGrupoRender 1"
+          echo "lxc.idmap: g 108 100108 65428"
+          echo ""
         ;;
 
         5)
-          echo "  El texto que debes agregar al archivo .conf del contenedor LXC es el siguiente:"
+          # Determinar el dispositivo de render correspondiente a la 5ta tarjeta:
+            vNombreDispRender=$(cat /tmp/GPUs.csv | sed -n '6p' | cut -d',' -f2)
+          # Determinar el numero del dispositivo de render correspondiente a la 5ta tarjeta:
+            vNumeroDispRender=$(cat /tmp/GPUs.csv | sed -n '6p' | cut -d',' -f2 | cut -d'D' -f2)
+          echo "  El texto que debes agregar al archivo .conf, después de la línea:"
+          echo "  unprivileged: 1"
+          echo "  ...del contenedor LXC es el siguiente:"
+          echo ""
+          echo "lxc.cgroup2.devices.allow: c 226:0 rwm"
+          echo "lxc.cgroup2.devices.allow: c 226:$vNumeroDispRender rwm"
+          echo "lxc.mount.entry: /dev/dri/$vvNombreDispRender dev/dri/$vNombreDispRender none bind,optional,create=file"
+          echo "lxc.idmap: u 0 100000 65536"
+          echo "lxc.idmap: g 0 100000 $vIDGrupoVideo"
+          echo "lxc.idmap: g $vIDGrupoVideo $vIDGrupoVideo 1"
+          echo "lxc.idmap: g 45 100045 62"
+          echo "lxc.idmap: g 107 $vIDGrupoRender 1"
+          echo "lxc.idmap: g 108 100108 65428"
+          echo ""
         ;;
 
         6)
-          echo "  El texto que debes agregar al archivo .conf del contenedor LXC es el siguiente:"
+          # Determinar el dispositivo de render correspondiente a la 6ta tarjeta:
+            vNombreDispRender=$(cat /tmp/GPUs.csv | sed -n '7p' | cut -d',' -f2)
+          # Determinar el numero del dispositivo de render correspondiente a la 6ta tarjeta:
+            vNumeroDispRender=$(cat /tmp/GPUs.csv | sed -n '7p' | cut -d',' -f2 | cut -d'D' -f2)
+          echo "  El texto que debes agregar al archivo .conf, después de la línea:"
+          echo "  unprivileged: 1"
+          echo "  ...del contenedor LXC es el siguiente:"
+          echo ""
+          echo "lxc.cgroup2.devices.allow: c 226:0 rwm"
+          echo "lxc.cgroup2.devices.allow: c 226:$vNumeroDispRender rwm"
+          echo "lxc.mount.entry: /dev/dri/$vvNombreDispRender dev/dri/$vNombreDispRender none bind,optional,create=file"
+          echo "lxc.idmap: u 0 100000 65536"
+          echo "lxc.idmap: g 0 100000 $vIDGrupoVideo"
+          echo "lxc.idmap: g $vIDGrupoVideo $vIDGrupoVideo 1"
+          echo "lxc.idmap: g 45 100045 62"
+          echo "lxc.idmap: g 107 $vIDGrupoRender 1"
+          echo "lxc.idmap: g 108 100108 65428"
+          echo ""
         ;;
 
         7)
-          echo "  El texto que debes agregar al archivo .conf del contenedor LXC es el siguiente:"
+          # Determinar el dispositivo de render correspondiente a la 7ma tarjeta:
+            vNombreDispRender=$(cat /tmp/GPUs.csv | sed -n '8p' | cut -d',' -f2)
+          # Determinar el numero del dispositivo de render correspondiente a la 7ma tarjeta:
+            vNumeroDispRender=$(cat /tmp/GPUs.csv | sed -n '8p' | cut -d',' -f2 | cut -d'D' -f2)
+          echo "  El texto que debes agregar al archivo .conf, después de la línea:"
+          echo "  unprivileged: 1"
+          echo "  ...del contenedor LXC es el siguiente:"
+          echo ""
+          echo "lxc.cgroup2.devices.allow: c 226:0 rwm"
+          echo "lxc.cgroup2.devices.allow: c 226:$vNumeroDispRender rwm"
+          echo "lxc.mount.entry: /dev/dri/$vvNombreDispRender dev/dri/$vNombreDispRender none bind,optional,create=file"
+          echo "lxc.idmap: u 0 100000 65536"
+          echo "lxc.idmap: g 0 100000 $vIDGrupoVideo"
+          echo "lxc.idmap: g $vIDGrupoVideo $vIDGrupoVideo 1"
+          echo "lxc.idmap: g 45 100045 62"
+          echo "lxc.idmap: g 107 $vIDGrupoRender 1"
+          echo "lxc.idmap: g 108 100108 65428"
+          echo ""
         ;;
 
         8)
-          echo "  El texto que debes agregar al archivo .conf del contenedor LXC es el siguiente:"
-        ;;
-
-        9)
-          echo "  El texto que debes agregar al archivo .conf del contenedor LXC es el siguiente:"
+          # Determinar el dispositivo de render correspondiente a la 8va tarjeta:
+            vNombreDispRender=$(cat /tmp/GPUs.csv | sed -n '9p' | cut -d',' -f2)
+          # Determinar el numero del dispositivo de render correspondiente a la 8va tarjeta:
+            vNumeroDispRender=$(cat /tmp/GPUs.csv | sed -n '9p' | cut -d',' -f2 | cut -d'D' -f2)
+          echo "  El texto que debes agregar al archivo .conf, después de la línea:"
+          echo "  unprivileged: 1"
+          echo "  ...del contenedor LXC es el siguiente:"
+          echo ""
+          echo "lxc.cgroup2.devices.allow: c 226:0 rwm"
+          echo "lxc.cgroup2.devices.allow: c 226:$vNumeroDispRender rwm"
+          echo "lxc.mount.entry: /dev/dri/$vvNombreDispRender dev/dri/$vNombreDispRender none bind,optional,create=file"
+          echo "lxc.idmap: u 0 100000 65536"
+          echo "lxc.idmap: g 0 100000 $vIDGrupoVideo"
+          echo "lxc.idmap: g $vIDGrupoVideo $vIDGrupoVideo 1"
+          echo "lxc.idmap: g 45 100045 62"
+          echo "lxc.idmap: g 107 $vIDGrupoRender 1"
+          echo "lxc.idmap: g 108 100108 65428"
+          echo ""
         ;;
 
         *)
