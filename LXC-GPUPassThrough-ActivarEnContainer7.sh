@@ -52,6 +52,14 @@
       echo ""
       echo ""
 
+      # Comprobar que el contenedor exista. Si no existe, abortar el script
+        if [ ! -f /etc/pve/lxc/$1.conf ]; then
+          echo ""
+          echo -e "${cColorRojo}  El contenedor $1 no existe. Abortando... ${cFinColor}"
+          echo ""
+          exit 1
+        fi
+
       # Crear el archivo .csv donde guardar la información de las tarjetas gráficas disponibles
 
         # Determinar la cantidad de gráficas que hay en el sistema
