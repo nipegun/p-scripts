@@ -31,21 +31,21 @@ echo ""
   # Lógica para verificar y agregar a los grupos
     if [[ "$vPerteneceAVideo" == "si" && "$vPerteneceARender" == "si" ]]; then
       echo ""
-      echo "  El usuario 'root' ya pertenece a los grupos 'video' y 'render'."
+      echo "    El usuario 'root' ya pertenece a los grupos 'video' y 'render'."
       echo ""
     elif [[ "$vPerteneceAVideo" == "no" && "$vPerteneceARender" == "no" ]]; then
       echo ""
-      echo "  El usuario 'root' no pertenece a los grupos 'video' ni 'render'. Agregándolo a ambos..."
+      echo "    El usuario 'root' no pertenece a los grupos 'video' ni 'render'. Agregándolo a ambos..."
       echo ""
       sudo usermod -aG video,render root
     elif [[ "$vPerteneceAVideo" == "si" ]]; then
       echo ""
-      echo "  El usuario 'root' pertenece al grupo 'video' pero no a 'render'. Agregándolo a 'render'..."
+      echo "    El usuario 'root' pertenece al grupo 'video' pero no a 'render'. Agregándolo a 'render'..."
       echo ""
       sudo usermod -aG render root
     elif [[ "$vPerteneceARender" == "si" ]]; then
       echo ""
-      echo "  El usuario 'root' pertenece al grupo 'render' pero no a 'video'. Agregándolo a 'video'..."
+      echo "    El usuario 'root' pertenece al grupo 'render' pero no a 'video'. Agregándolo a 'video'..."
       echo ""
       sudo usermod -aG video root
     fi
@@ -59,7 +59,13 @@ echo ""
     vIDGrupoVideo=$(cat /etc/group | grep ^video | cut -d':' -f3)
 
   # Grupo video
-    if ! grep -q "^root:$vIDGrupoVideo:1$" /etc/subgid; then
+    if grep -q "^root:$vIDGrupoVideo:1$" /etc/subgid; then
+      echo ""
+      echo "  La línea:"
+      echo "    root:$vIDGrupoVideo:1"
+      echo "  ya existe en /etc/subgid."
+      echo ""
+    else
       echo ""
       echo "  La línea:"
       echo "    root:$vIDGrupoVideo:1"
@@ -69,7 +75,13 @@ echo ""
     fi
 
   # Grupo render
-    if ! grep -q "^root:$vIDGrupoRender:1$" /etc/subgid; then
+    if grep -q "^root:$vIDGrupoRender:1$" /etc/subgid; then
+      echo ""
+      echo "  La línea:"
+      echo "    root:$vIDGrupoRender:1"
+      echo "  ya existe en /etc/subgid."
+      echo ""
+    else
       echo ""
       echo "  La línea:"
       echo "    root:$vIDGrupoRender:1"
