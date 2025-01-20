@@ -125,8 +125,14 @@
                 # Determinar el dispositivo de render correspondiente a la 1ra tarjeta:
                   vNombreDispRender=$(cat /tmp/GPUs.csv | sed -n '2p' | cut -d',' -f2)
                 # Agregar los dispositivos al archivo de configuración del container
-                  echo "dev0: /dev/dri/$vNombreCard,gid=$vNumGrupoVideoDelHost,uid=0"        >> /etc/pve/lxc/$1.conf
-                  echo "dev1: /dev/dri/$vNombreDispRender,gid=$vNumGrupoRenderDelHost,uid=0" >> /etc/pve/lxc/$1.conf
+                  if [ -f /etc/pve/lxc/$1.conf ]; then
+                    echo "dev0: /dev/dri/$vNombreCard,gid=$vNumGrupoVideoDelHost,uid=0"        >> /etc/pve/lxc/$1.conf
+                    echo "dev1: /dev/dri/$vNombreDispRender,gid=$vNumGrupoRenderDelHost,uid=0" >> /etc/pve/lxc/$1.conf
+                  else
+                    echo ""
+                    echo "  El contenedor $1 no existe"
+                    echo ""
+                  fi
              
                   #echo "lxc.idmap: g 65534 165534 1" # esto es por si apt no funciona
                   echo ""
