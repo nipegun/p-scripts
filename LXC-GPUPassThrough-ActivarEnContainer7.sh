@@ -55,7 +55,7 @@
       # Comprobar que el contenedor exista. Si no existe, abortar el script
         if [ ! -f /etc/pve/lxc/$1.conf ]; then
           echo ""
-          echo -e "${cColorRojo}  El contenedor $1 no existe. Abortando... ${cFinColor}"
+          echo -e "${cColorRojo}    El contenedor $1 no existe. Abortando... ${cFinColor}"
           echo ""
           exit 1
         fi
@@ -133,14 +133,9 @@
                 # Determinar el dispositivo de render correspondiente a la 1ra tarjeta:
                   vNombreDispRender=$(cat /tmp/GPUs.csv | sed -n '2p' | cut -d',' -f2)
                 # Agregar los dispositivos al archivo de configuración del container
-                  if [ -f /etc/pve/lxc/$1.conf ]; then
-                    echo "dev0: /dev/dri/$vNombreCard,gid=$vNumGrupoVideoDelHost,uid=0"        >> /etc/pve/lxc/$1.conf
-                    echo "dev1: /dev/dri/$vNombreDispRender,gid=$vNumGrupoRenderDelHost,uid=0" >> /etc/pve/lxc/$1.conf
-                  else
-                    echo ""
-                    echo "  El contenedor $1 no existe"
-                    echo ""
-                  fi
+                  echo "dev0: /dev/dri/$vNombreCard,gid=$vNumGrupoVideoDelHost,uid=0"        >> /etc/pve/lxc/$1.conf
+                  echo "dev1: /dev/dri/$vNombreDispRender,gid=$vNumGrupoRenderDelHost,uid=0" >> /etc/pve/lxc/$1.conf
+
              
                   #echo "lxc.idmap: g 65534 165534 1" # esto es por si apt no funciona
                   echo ""
