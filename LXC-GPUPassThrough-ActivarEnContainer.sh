@@ -77,16 +77,17 @@
 
         # Crear el archivo .csv y escribir el encabezado
           vArchivoCSV='/tmp/GPUs.csv'
-          echo "Tarjeta,DispoRender,RutaPCI" > "$vArchivoCSV"
+          echo "Tarjeta,DispoRender,RutaPCI,Vendor,Device" > "$vArchivoCSV"
 
         # Combinar la información de los arrays en el archivo CSV
           for i in "${!aGPUs[@]}"; do
             tarjeta="${aGPUs[$i]}"
             rutaPCI="${aRutaPCITarjetas[$i]}"
             dispoRender="${aDispoRenderTarjetas[$i]}"
-  
+            vVendor=$(cat /sys/bus/pci/devices/$rutaPCI/vendor)
+            vDevice=$(cat /sys/bus/pci/devices/$rutaPCI/device)
             # Escribir la fila en el archivo CSV
-            echo "${tarjeta},${dispoRender},${rutaPCI}" >> "$vArchivoCSV"
+            echo "${tarjeta},${dispoRender},${rutaPCI},${vVendor},${vDevice}" >> "$vArchivoCSV"
           done
 
       # Salir si no se encuentra ninguna tarjeta gráfica
