@@ -9,13 +9,13 @@
 # Script de NiPeGun para pasar una tarjeta gráfica a un contendor del proxmox
 #
 # Ejecución remota (puede requerir permisos sudo):
-#   curl -sL x | bash -s [IDDelContenedorLXC]
+#   curl -sL https://raw.githubusercontent.com/nipegun/p-scripts/refs/heads/master/LXC-GPUPassThrough-ActivarEnContainer.sh | bash -s [IDDelContenedorLXC]
 #
 # Ejecución remota como root:
-#   curl -sL x | sed 's-sudo--g' | bash -s [IDDelContenedorLXC]
+#   curl -sL https://raw.githubusercontent.com/nipegun/p-scripts/refs/heads/master/LXC-GPUPassThrough-ActivarEnContainer.sh | sed 's-sudo--g' | bash -s [IDDelContenedorLXC]
 #
 # Bajar y editar directamente el archivo en nano
-#   curl -sL x | nano -
+#   curl -sL https://raw.githubusercontent.com/nipegun/p-scripts/refs/heads/master/LXC-GPUPassThrough-ActivarEnContainer.sh | nano -
 # ----------
 
 # Definir constantes de color
