@@ -18,6 +18,9 @@
 #   curl -sL https://raw.githubusercontent.com/nipegun/p-scripts/refs/heads/master/LXC-GPUPassThrough-ActivarEnContainer.sh | nano -
 # ----------
 
+vNumGrupoVideoDeDentroDelLXC="44"
+vNumGrupoRenderDeDentroDelLXC="104"
+
 # Definir constantes de color
   cColorAzul="\033[0;34m"
   cColorAzulClaro="\033[1;34m"
@@ -133,8 +136,8 @@
                 # Determinar el dispositivo de render correspondiente a la 1ra tarjeta:
                   vNombreDispRender=$(cat /tmp/GPUs.csv | sed -n '2p' | cut -d',' -f2)
                 # Agregar los dispositivos al archivo de configuración del container
-                  echo "dev0: /dev/dri/$vNombreCard,gid=$vNumGrupoVideoDelHost,uid=0"        >> /etc/pve/lxc/$1.conf
-                  echo "dev1: /dev/dri/$vNombreDispRender,gid=$vNumGrupoRenderDelHost,uid=0" >> /etc/pve/lxc/$1.conf
+                  echo "dev0: /dev/dri/$vNombreCard,gid=$vNumGrupoVideoDeDentroDelLXC,uid=0"        >> /etc/pve/lxc/$1.conf
+                  echo "dev1: /dev/dri/$vNombreDispRender,gid=$vNumGrupoRenderDeDentroDelLXC,uid=0" >> /etc/pve/lxc/$1.conf
 
              
                   #echo "lxc.idmap: g 65534 165534 1" # esto es por si apt no funciona
@@ -151,8 +154,8 @@
                 # Determinar el dispositivo de render correspondiente a la 2da tarjeta:
                   vNombreDispRender=$(cat /tmp/GPUs.csv | sed -n '3p' | cut -d',' -f2)
                 # Agregar los dispositivos al archivo de configuración del container
-                  echo "dev0: /dev/dri/$vNombreCard,gid=$vNumGrupoVideoDelHost,uid=0"        >> /etc/pve/lxc/$1.conf
-                  echo "dev1: /dev/dri/$vNombreDispRender,gid=$vNumGrupoRenderDelHost,uid=0" >> /etc/pve/lxc/$1.conf
+                  echo "dev0: /dev/dri/$vNombreCard,gid=$vNumGrupoVideoDeDentroDelLXC,uid=0"        >> /etc/pve/lxc/$1.conf
+                  echo "dev1: /dev/dri/$vNombreDispRender,gid=$vNumGrupoRenderDeDentroDelLXC,uid=0" >> /etc/pve/lxc/$1.conf
              
                   #echo "lxc.idmap: g 65534 165534 1" # esto es por si apt no funciona
                   echo ""
@@ -168,8 +171,8 @@
                 # Determinar el dispositivo de render correspondiente a la 3ra tarjeta:
                   vNombreDispRender=$(cat /tmp/GPUs.csv | sed -n '4p' | cut -d',' -f2)
                 # Agregar los dispositivos al archivo de configuración del container
-                  echo "dev0: /dev/dri/$vNombreCard,gid=$vNumGrupoVideoDelHost,uid=0"        >> /etc/pve/lxc/$1.conf
-                  echo "dev1: /dev/dri/$vNombreDispRender,gid=$vNumGrupoRenderDelHost,uid=0" >> /etc/pve/lxc/$1.conf
+                  echo "dev0: /dev/dri/$vNombreCard,gid=$vNumGrupoVideoDeDentroDelLXC,uid=0"        >> /etc/pve/lxc/$1.conf
+                  echo "dev1: /dev/dri/$vNombreDispRender,gid=$vNumGrupoRenderDeDentroDelLXC,uid=0" >> /etc/pve/lxc/$1.conf
              
                   #echo "lxc.idmap: g 65534 165534 1" # esto es por si apt no funciona
                   echo ""
@@ -185,8 +188,8 @@
                 # Determinar el dispositivo de render correspondiente a la 4ta tarjeta:
                   vNombreDispRender=$(cat /tmp/GPUs.csv | sed -n '5p' | cut -d',' -f2)
                 # Agregar los dispositivos al archivo de configuración del container
-                  echo "dev0: /dev/dri/$vNombreCard,gid=$vNumGrupoVideoDelHost,uid=0"        >> /etc/pve/lxc/$1.conf
-                  echo "dev1: /dev/dri/$vNombreDispRender,gid=$vNumGrupoRenderDelHost,uid=0" >> /etc/pve/lxc/$1.conf
+                  echo "dev0: /dev/dri/$vNombreCard,gid=$vNumGrupoVideoDeDentroDelLXC,uid=0"        >> /etc/pve/lxc/$1.conf
+                  echo "dev1: /dev/dri/$vNombreDispRender,gid=$vNumGrupoRenderDeDentroDelLXC,uid=0" >> /etc/pve/lxc/$1.conf
              
                   #echo "lxc.idmap: g 65534 165534 1" # esto es por si apt no funciona
                   echo ""
@@ -202,8 +205,8 @@
                 # Determinar el dispositivo de render correspondiente a la 5ta tarjeta:
                   vNombreDispRender=$(cat /tmp/GPUs.csv | sed -n '6p' | cut -d',' -f2)
                 # Agregar los dispositivos al archivo de configuración del container
-                  echo "dev0: /dev/dri/$vNombreCard,gid=$vNumGrupoVideoDelHost,uid=0"        >> /etc/pve/lxc/$1.conf
-                  echo "dev1: /dev/dri/$vNombreDispRender,gid=$vNumGrupoRenderDelHost,uid=0" >> /etc/pve/lxc/$1.conf
+                  echo "dev0: /dev/dri/$vNombreCard,gid=$vNumGrupoVideoDeDentroDelLXC,uid=0"        >> /etc/pve/lxc/$1.conf
+                  echo "dev1: /dev/dri/$vNombreDispRender,gid=$vNumGrupoRenderDeDentroDelLXC,uid=0" >> /etc/pve/lxc/$1.conf
              
                   #echo "lxc.idmap: g 65534 165534 1" # esto es por si apt no funciona
                   echo ""
@@ -219,8 +222,8 @@
                 # Determinar el dispositivo de render correspondiente a la 6ta tarjeta:
                   vNombreDispRender=$(cat /tmp/GPUs.csv | sed -n '7p' | cut -d',' -f2)
                 # Agregar los dispositivos al archivo de configuración del container
-                  echo "dev0: /dev/dri/$vNombreCard,gid=$vNumGrupoVideoDelHost,uid=0"        >> /etc/pve/lxc/$1.conf
-                  echo "dev1: /dev/dri/$vNombreDispRender,gid=$vNumGrupoRenderDelHost,uid=0" >> /etc/pve/lxc/$1.conf
+                  echo "dev0: /dev/dri/$vNombreCard,gid=$vNumGrupoVideoDeDentroDelLXC,uid=0"        >> /etc/pve/lxc/$1.conf
+                  echo "dev1: /dev/dri/$vNombreDispRender,gid=$vNumGrupoRenderDeDentroDelLXC,uid=0" >> /etc/pve/lxc/$1.conf
              
                   #echo "lxc.idmap: g 65534 165534 1" # esto es por si apt no funciona
                   echo ""
@@ -236,8 +239,8 @@
                 # Determinar el dispositivo de render correspondiente a la 7ma tarjeta:
                   vNombreDispRender=$(cat /tmp/GPUs.csv | sed -n '8p' | cut -d',' -f2)
                 # Agregar los dispositivos al archivo de configuración del container
-                  echo "dev0: /dev/dri/$vNombreCard,gid=$vNumGrupoVideoDelHost,uid=0"        >> /etc/pve/lxc/$1.conf
-                  echo "dev1: /dev/dri/$vNombreDispRender,gid=$vNumGrupoRenderDelHost,uid=0" >> /etc/pve/lxc/$1.conf
+                  echo "dev0: /dev/dri/$vNombreCard,gid=$vNumGrupoVideoDeDentroDelLXC,uid=0"        >> /etc/pve/lxc/$1.conf
+                  echo "dev1: /dev/dri/$vNombreDispRender,gid=$vNumGrupoRenderDeDentroDelLXC,uid=0" >> /etc/pve/lxc/$1.conf
              
                   #echo "lxc.idmap: g 65534 165534 1" # esto es por si apt no funciona
                   echo ""
@@ -253,8 +256,8 @@
                 # Determinar el dispositivo de render correspondiente a la 8va tarjeta:
                   vNombreDispRender=$(cat /tmp/GPUs.csv | sed -n '9p' | cut -d',' -f2)
                 # Agregar los dispositivos al archivo de configuración del container
-                  echo "dev0: /dev/dri/$vNombreCard,gid=$vNumGrupoVideoDelHost,uid=0"        >> /etc/pve/lxc/$1.conf
-                  echo "dev1: /dev/dri/$vNombreDispRender,gid=$vNumGrupoRenderDelHost,uid=0" >> /etc/pve/lxc/$1.conf
+                  echo "dev0: /dev/dri/$vNombreCard,gid=$vNumGrupoVideoDeDentroDelLXC,uid=0"        >> /etc/pve/lxc/$1.conf
+                  echo "dev1: /dev/dri/$vNombreDispRender,gid=$vNumGrupoRenderDeDentroDelLXC,uid=0" >> /etc/pve/lxc/$1.conf
              
                   #echo "lxc.idmap: g 65534 165534 1" # esto es por si apt no funciona
                   echo ""
