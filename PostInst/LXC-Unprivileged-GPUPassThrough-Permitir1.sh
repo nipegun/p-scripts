@@ -61,15 +61,15 @@ echo ""
   # Grupo video
     if grep -q "^root:$vIDGrupoVideo:1$" /etc/subgid; then
       echo ""
-      echo "  La línea:"
-      echo "    root:$vIDGrupoVideo:1"
-      echo "  ya existe en /etc/subgid."
+      echo "    La línea:"
+      echo "      root:$vIDGrupoVideo:1"
+      echo "    ya existe en /etc/subgid."
       echo ""
     else
       echo ""
-      echo "  La línea:"
-      echo "    root:$vIDGrupoVideo:1"
-      echo "  no existe en /etc/subgid. Procediendo a agregarla..."
+      echo "    La línea:"
+      echo "      root:$vIDGrupoVideo:1"
+      echo "    no existe en /etc/subgid. Procediendo a agregarla..."
       echo ""
       echo "root:$vIDGrupoVideo:1" | sudo tee -a /etc/subgid
     fi
@@ -77,15 +77,15 @@ echo ""
   # Grupo render
     if grep -q "^root:$vIDGrupoRender:1$" /etc/subgid; then
       echo ""
-      echo "  La línea:"
-      echo "    root:$vIDGrupoRender:1"
-      echo "  ya existe en /etc/subgid."
+      echo "    La línea:"
+      echo "      root:$vIDGrupoRender:1"
+      echo "    ya existe en /etc/subgid."
       echo ""
     else
       echo ""
-      echo "  La línea:"
-      echo "    root:$vIDGrupoRender:1"
-      echo "  no existe en /etc/subgid. Procediendo a agregarla..."
+      echo "    La línea:"
+      echo "      root:$vIDGrupoRender:1"
+      echo "    no existe en /etc/subgid. Procediendo a agregarla..."
       echo ""
       echo "root:$vIDGrupoRender:1" | sudo tee -a /etc/subgid
     fi
