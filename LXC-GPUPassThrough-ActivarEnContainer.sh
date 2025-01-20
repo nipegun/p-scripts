@@ -5,6 +5,19 @@
 # Si se te llena la boca hablando de libertad entonces hazlo realmente libre.
 # No tienes que aceptar ningún tipo de términos de uso o licencia para utilizarlo o modificarlo porque va sin CopyLeft.
 
+# ----------
+# Script de NiPeGun para pasar una tarjeta gráfica a un contendor del proxmox
+#
+# Ejecución remota (puede requerir permisos sudo):
+#   curl -sL x | bash -s [IDDelContenedorLXC]
+#
+# Ejecución remota como root:
+#   curl -sL x | sed 's-sudo--g' | bash -s [IDDelContenedorLXC]
+#
+# Bajar y editar directamente el archivo en nano
+#   curl -sL x | nano -
+# ----------
+
 # Definir constantes de color
   cColorAzul="\033[0;34m"
   cColorAzulClaro="\033[1;34m"
