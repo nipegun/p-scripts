@@ -1,47 +1,54 @@
 #!/bin/bash
 
+# Pongo a disposición pública este script bajo el término de "software de dominio público".
+# Puedes hacer lo que quieras con él porque es libre de verdad; no libre con condiciones como las licencias GNU y otras patrañas similares.
+# Si se te llena la boca hablando de libertad entonces hazlo realmente libre.
+# No tienes que aceptar ningún tipo de términos de uso o licencia para utilizarlo o modificarlo porque va sin CopyLeft.
+
+# ----------
+# Script de NiPeGun para permitir pasar tarjetas gráficas a contenedores LXC sin privilegios de proxmox
+#
+# Ejecución remota (puede requerir permisos sudo):
+#   curl -sL x | bash
+#
+# Ejecución remota como root (para sistemas sin sudo):
+#   curl -sL x | sed 's-sudo--g' | bash
+#
+# Bajar y editar directamente el archivo en nano
+#   curl -sL x | nano -
+# ----------
+
 echo ""
 echo "  Iniciando el script para permitir pasar tarjetas gráficas a un contendor LXC sin privilegios de Proxmox..."
 echo ""
 
 # Comprobar si el root ya forma parte de los grupos de video y render
 
-  # Función para agregar un usuario a un grupo
-    agregar_a_grupo() {
-      local usuario="$1"
-      local grupo="$2"
-      if grep -q "^$grupo:" /etc/group; then
-        usermod -aG "$grupo" "$usuario"
-        echo "El usuario '$usuario' ha sido agregado al grupo '$grupo'."
-      else
-        echo "El grupo '$grupo' no existe. Creándolo..."
-        groupadd "$grupo"
-        usermod -aG "$grupo" "$usuario"
-        echo "El grupo '$grupo' fue creado y el usuario '$usuario' agregado."
-      fi
-    }
-
   # Verificar si root pertenece a ambos grupos
-    pertenece_video=$(id -nG root | grep -qw "video" && echo "si" || echo "no")
-    pertenece_render=$(id -nG root | grep -qw "render" && echo "si" || echo "no")
+    vPerteneceAVideo=$(id -nG root | grep -qw "video" && echo "si" || echo "no")
+    vPerteneceARender=$(id -nG root | grep -qw "render" && echo "si" || echo "no")
 
   # Lógica para verificar y agregar a los grupos
-    if [[ "$pertenece_video" == "si" && "$pertenece_render" == "si" ]]; then
-      echo "El usuario 'root' ya pertenece a los grupos 'video' y 'render'."
-    elif [[ "$pertenece_video" == "no" && "$pertenece_render" == "no" ]]; then
-      echo "El usuario 'root' no pertenece a los grupos 'video' ni 'render'. Agregándolo a ambos..."
-      agregar_a_grupo root video
-      agregar_a_grupo root render
-    elif [[ "$pertenece_video" == "si" ]]; then
-      echo "El usuario 'root' pertenece al grupo 'video' pero no a 'render'. Agregándolo a 'render'..."
-      agregar_a_grupo root render
-    elif [[ "$pertenece_render" == "si" ]]; then
-      echo "El usuario 'root' pertenece al grupo 'render' pero no a 'video'. Agregándolo a 'video'..."
-      agregar_a_grupo root video
+    if [[ "$vPerteneceAVideo" == "si" && "$vPerteneceARender" == "si" ]]; then
+      echo ""
+      echo "  El usuario 'root' ya pertenece a los grupos 'video' y 'render'."
+      echo ""
+    elif [[ "$vPerteneceAVideo" == "no" && "$vPerteneceARender" == "no" ]]; then
+      echo ""
+      echo "  El usuario 'root' no pertenece a los grupos 'video' ni 'render'. Agregándolo a ambos..."
+      echo ""
+      usermod -aG video,render root
+    elif [[ "$vPerteneceAVideo" == "si" ]]; then
+      echo ""
+      echo "  El usuario 'root' pertenece al grupo 'video' pero no a 'render'. Agregándolo a 'render'..."
+      echo ""
+      usermod -aG render root
+    elif [[ "$vPerteneceARender" == "si" ]]; then
+      echo ""
+      echo "  El usuario 'root' pertenece al grupo 'render' pero no a 'video'. Agregándolo a 'video'..."
+      echo ""
+      usermod -aG video root
     fi
-
-echo "Comprobación y ajustes completados."
-
 
 # Comprobar si el root ya ha mapeado los grupos render y video al subgrupo 1
 
