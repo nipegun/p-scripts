@@ -274,4 +274,10 @@ vNumGrupoRenderDeDentroDelLXC="104"
           esac
 
   fi
+dd the following lines to the LXC's .conf file in /etc/pve/lxc:
 
+lxc.apparmor.profile: unconfined
+dev0: /dev/dri/card0,gid=44,uid=0
+dev1: /dev/dri/renderD128,gid=993,uid=0
+
+The first line is required otherwise the container's console isn't displayed. Haven't investigated further why this is the case, but looks to be apparmore related. Yeah, amazing insight, I know. 
