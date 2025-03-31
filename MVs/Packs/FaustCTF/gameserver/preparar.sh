@@ -8,13 +8,13 @@
 # Clonar repo de ansible de faust
   git clone https://github.com/fausecteam/ctf-gameserver-ansible.git
 
+# Descargar archivos
+  curl -L https://raw.githubusercontent.com/nipegun/p-scripts/refs/heads/master/MVs/Packs/FaustCTF/gameserver/playbook.yml        -o ~/ctf-gameserver-ansible/playbook.yml
+  curl -L https://raw.githubusercontent.com/nipegun/p-scripts/refs/heads/master/MVs/Packs/FaustCTF/gameserver/prod_settings.py.j2 -o ~/ctf-gameserver-ansible/roles/web/templates/prod_settings.py.j2
 
-mv playbook.yml ctf-gameserver-ansible/
-mv prod_settings.py.j2 ctf-gameserver-ansible/roles/web/templates -f
-
-#Install Gameserver with ansible
-cd ctf-gameserver-ansible
-sudo ansible-playbook playbook.yml
+# Instalar gameserver usando ansible
+  cd ctf-gameserver-ansible
+  sudo ansible-playbook playbook.yml
 cd ..
 
 #uwsgi
