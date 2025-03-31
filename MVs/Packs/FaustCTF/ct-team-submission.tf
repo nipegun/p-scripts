@@ -5,7 +5,7 @@ resource "proxmox_virtual_environment_container" "team-submission" {
 
   count = var.team-count
 
-  vm_id     = 1500 + count.index
+  vm_id     = 1501 + count.index
 
   initialization {
     hostname = "team${count.index}-submission"
