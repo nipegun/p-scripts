@@ -6,7 +6,7 @@
 # No tienes que aceptar ningún tipo de términos de uso o licencia para utilizarlo o modificarlo porque va sin CopyLeft.
 
 # ----------
-# Script de NiPeGun para instalar el simulador del PLC 1214c de clase de Zubiri
+# Script de NiPeGun para instalar FaustCTF en proxmox
 #
 # Ejecución remota como root:
 #   curl -sL x | sed 's-sudo--g' | bash
