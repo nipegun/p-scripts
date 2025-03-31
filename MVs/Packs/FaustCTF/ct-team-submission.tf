@@ -12,8 +12,8 @@ resource "proxmox_virtual_environment_container" "team-submission" {
 
     ip_config {
       ipv4 {
-        address = "10.0.${count.index}.1/24"
-        gateway = "10.0.${count.index}.254"
+        address = "10.0.${1 + count.index}.1/24"
+        gateway = "10.0.${1 + count.index}.254"
       }
     }
 
