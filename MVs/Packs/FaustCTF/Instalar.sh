@@ -9,8 +9,8 @@
 # Script de NiPeGun para instalar FaustCTF en proxmox
 #
 # Ejecución remota como root:
-#   curl -sL x | sed 's-sudo--g' | bash
+#   curl -sL https://raw.githubusercontent.com/nipegun/p-scripts/refs/heads/master/MVs/Packs/FaustCTF/Instalar.sh | bash
 #
 # Bajar y editar directamente el archivo en nano
-#   curl -sL x | nano -
+#   curl -sL https://raw.githubusercontent.com/nipegun/p-scripts/refs/heads/master/MVs/Packs/FaustCTF/Instalar.sh | nano -
 
