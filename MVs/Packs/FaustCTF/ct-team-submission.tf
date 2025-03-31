@@ -37,7 +37,7 @@ resource "proxmox_virtual_environment_container" "team-submission" {
   network_interface {
     name    = "eth0"
     bridge  = "vmbr999"
-    vlan_id = "${100+count.index}"
+    vlan_id = "${101+count.index}"
   }
 
   operating_system {
