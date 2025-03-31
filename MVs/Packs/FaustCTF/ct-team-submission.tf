@@ -8,7 +8,7 @@ resource "proxmox_virtual_environment_container" "team-submission" {
   vm_id     = 1501 + count.index
 
   initialization {
-    hostname = "team${count.index}-submission"
+    hostname = "team${1 + count.index}-submission"
 
     ip_config {
       ipv4 {
