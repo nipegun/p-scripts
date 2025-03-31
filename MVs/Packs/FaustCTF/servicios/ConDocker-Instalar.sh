@@ -41,28 +41,28 @@
     fi
   menu=(dialog --checklist "Marca las opciones que quieras instalar:" 22 96 16)
     opciones=(
-      1 "Comprobar disponibilidad de docker-compose" on
-     22 "  faustctf-2024-lvm"                        off
-     21 "  faustctf-2024-quickr-maps"                off
-     20 "  faustctf-2024-floppcraft"                 off
-     19 "  faustctf-2024-todo-list-service"          off
-     18 "  faustctf-2024-faust-vault     (Corregir)" off
-     17 "  faustctf-2024-asm_chat"                   off
-     16 "  faustctf-2024-secretchannel   (Corregir)" off
-     15 "  faustctf-2024-missions"                   off
-     14 "  faustctf-2023-rsa-mail        (Corregir)" off
-     13 "  faustctf-2023-office-supplies"            off
-     12 "  faustctf-2023-image-galoisry  (Corregir)" off
-     11 "  faustctf-2023-tic-tac-toe"                off
-     10 "  faustctf-2023-jokes"                      off
-      9 "  faustctf-2023-chat-app"                   off
-      8 "  faustctf-2023-buerographie"               off
-      7 "  faustctf-2022-docs-notebook"              off
-      6 "  faustctf-2022-compiler60      (Corregir)" off
-      5 "  faustctf-2022-admincrashboard (Corregir)" off
-      4 "  faustctf-2022-notes-from-the-future"      off
-      3 "  faustctf-2022-fittyfit"                   off
-      2 "  faustctf-2021-pirate-birthday-planner"    off
+      1 "Comprobar disponibilidad de docker-compose y git" on
+     22 "  faustctf-2024-lvm"                              off
+     21 "  faustctf-2024-quickr-maps"                      off
+     20 "  faustctf-2024-floppcraft"                       off
+     19 "  faustctf-2024-todo-list-service"                off
+     18 "  faustctf-2024-faust-vault     (Corregir)"       off
+     17 "  faustctf-2024-asm_chat"                         off
+     16 "  faustctf-2024-secretchannel   (Corregir)"       off
+     15 "  faustctf-2024-missions"                         off
+     14 "  faustctf-2023-rsa-mail        (Corregir)"       off
+     13 "  faustctf-2023-office-supplies"                  off
+     12 "  faustctf-2023-image-galoisry  (Corregir)"       off
+     11 "  faustctf-2023-tic-tac-toe"                      off
+     10 "  faustctf-2023-jokes"                            off
+      9 "  faustctf-2023-chat-app"                         off
+      8 "  faustctf-2023-buerographie"                     off
+      7 "  faustctf-2022-docs-notebook"                    off
+      6 "  faustctf-2022-compiler60      (Corregir)"       off
+      5 "  faustctf-2022-admincrashboard (Corregir)"       off
+      4 "  faustctf-2022-notes-from-the-future"            off
+      3 "  faustctf-2022-fittyfit"                         off
+      2 "  faustctf-2021-pirate-birthday-planner"          off
     )
   choices=$("${menu[@]}" "${opciones[@]}" 2>&1 >/dev/tty)
 
@@ -73,7 +73,7 @@
         1)
 
           echo ""
-          echo "  Comprobando disponibilidad de docker-compose..."
+          echo "  Comprobando disponibilidad de docker-compose y git..."
           echo ""
           # Comprobar si el paquete docker-compose está instalado. Si no lo está, instalarlo.
             if [[ $(dpkg-query -s docker-compose 2>/dev/null | grep installed) == "" ]]; then
@@ -82,6 +82,15 @@
               echo ""
               sudo apt-get -y update
               sudo apt-get -y install docker-compose
+              echo ""
+            fi
+          # Comprobar si el paquete git está instalado. Si no lo está, instalarlo.
+            if [[ $(dpkg-query -s git 2>/dev/null | grep installed) == "" ]]; then
+              echo ""
+              echo -e "${cColorRojo}    El paquete git no está instalado. Iniciando su instalación...${cFinColor}"
+              echo ""
+              sudo apt-get -y update
+              sudo apt-get -y install git
               echo ""
             fi
 
@@ -143,6 +152,9 @@
           cd ~/
           git clone https://github.com/fausecteam/faustctf-2024-faust-vault
           cd faustctf-2024-faust-vault
+          sed -i -e 's|--mode no-install||g' ~/faustctf-2024-faust-vault/frontend/Dockerfile.deps
+          sed -i -e 's|--mode no-install||g' ~/faustctf-2024-faust-vault/nginx/Dockerfile
+          sed -i -e 's|--mode no-install||g' ~/faustctf-2024-faust-vault/nginx/Dockerfile.nodemodules
           sudo docker-compose up -d
 
         ;;
@@ -191,6 +203,12 @@
           cd ~/
           git clone https://github.com/fausecteam/faustctf-2023-rsa-mail
           cd faustctf-2023-rsa-mail
+          echo 'FROM alpine:latest'                                                               > ~/faustctf-2023-rsa-mail/rsa-mail/Dockerfile.deps
+          echo 'RUN apk add --update --no-cache python3 py3-virtualenv build-base'               >> ~/faustctf-2023-rsa-mail/rsa-mail/Dockerfile.deps
+          echo 'RUN python3 -m venv /venv'                                                       >> ~/faustctf-2023-rsa-mail/rsa-mail/Dockerfile.deps
+          echo 'COPY requirements.txt /tmp/requirements.txt'                                     >> ~/faustctf-2023-rsa-mail/rsa-mail/Dockerfile.deps
+          echo 'RUN . /venv/bin/activate && pip install --no-cache-dir -r /tmp/requirements.txt' >> ~/faustctf-2023-rsa-mail/rsa-mail/Dockerfile.deps
+          echo 'ENV PATH="/venv/bin:$PATH"'                                                      >> ~/faustctf-2023-rsa-mail/rsa-mail/Dockerfile.deps
           sudo docker-compose up -d
 
         ;;
@@ -215,6 +233,7 @@
           cd ~/
           git clone https://github.com/fausecteam/faustctf-2023-image-galoisry
           cd faustctf-2023-image-galoisry
+          sed -i -e 's|FROM python:alpine3.18|FROM python:3.11-alpine|g' ~/faustctf-2023-image-galoisry/image-galoisry/Dockerfile.deps
           sudo docker-compose up -d
 
         ;;
