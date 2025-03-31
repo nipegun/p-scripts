@@ -41,56 +41,73 @@
     fi
   menu=(dialog --checklist "Marca las opciones que quieras instalar:" 22 96 16)
     opciones=(
-      1 "Comprobar disponibilidad de docker-compose"    on
-      2 "  Preparar el servicio x"                   on
-      3 "  Preparar el servicio x"           off
-      4 "  Preparar el servicio x"              off
-      5 "  Preparar el servicio x"                off
-      6 "  Preparar el servicio x"                 off
-      7 "  Preparar el servicio x"         off
-      8 "  Preparar el servicio x"             off
-      9 "  Preparar el servicio x"                   off
-     10 "  Preparar el servicio x"              off
-     11 "  Preparar el servicio x"       off
-     12 "  Preparar el servicio x"              off
-     13 "  Preparar el servicio x"          off
-     14 "  Preparar el servicio x"         off
-     15 "  Preparar el servicio x"                 off
-     16 "  Preparar el servicio x"             off
-     17 "  Preparar el servicio x"            off
-     18 "  Preparar el servicio x"                off
-     19 "  Preparar el servicio x"              off
-     20 "  Preparar el servicio x"        off
-     21 "  Preparar el servicio x"           off
-     22 "  Preparar el servicio x"            off
-     23 "  Preparar el servicio x"             off
-     24 "  Preparar el servicio x"              off
-     25 "  Preparar el servicio x"             off
-     26 "  Preparar el servicio x"              off
-     27 "  Preparar el servicio x"                  off
-     28 "  Preparar el servicio x"      off
-     29 "  Preparar el servicio x"               off
-     30 "  Preparar el servicio x"               off
-     31 "  Preparar el servicio x"               off
-     32 "  Preparar el servicio x"      off
-     33 "  Preparar el servicio x" off
-     34 "  Preparar el servicio x"               off
-     35 "  Preparar el servicio x"             off
-     36 "  Preparar el servicio x"           off
-     37 "  Preparar el servicio x"           off
-     38 "  Preparar el servicio x"            off
-     39 "  Preparar el servicio x"             off
-     40 "  Preparar el servicio x"                off
-     41 "  Preparar el servicio x"                  off
-     42 "  Preparar el servicio x"                 off
-     43 "  Preparar el servicio x"         off
-     44 "  Preparar el servicio x"            off
-     45 "  Preparar el servicio x"                      off
-     46 "  Preparar el servicio x"               off
-     47 "  Preparar el servicio x"             off
-     48 "  Preparar el servicio x"             off
-     49 "  Preparar el servicio x"             off
-     50 "  Preparar el servicio x"             off
+      1 "Comprobar disponibilidad de docker-compose y git"             on
+
+     59 "  Preparar el servicio faustctf-2024-todo-list-service"       off
+     58 "  Preparar el servicio faustctf-2024-secretchannel"           off
+     57 "  Preparar el servicio faustctf-2024-quickr-maps"             off
+     56 "  Preparar el servicio faustctf-2024-missions"                off
+     55 "  Preparar el servicio faustctf-2024-lvm"                     off
+     54 "  Preparar el servicio faustctf-2024-floppcraft"              off
+     53 "  Preparar el servicio faustctf-2024-faust-vault"             off
+     52 "  Preparar el servicio faustctf-2024-asm_chat"                off
+     
+     51 "  Preparar el servicio faustctf-2023-tic-tac-toe"             off
+     50 "  Preparar el servicio faustctf-2023-rsa-mail"                off
+     49 "  Preparar el servicio faustctf-2023-office-supplies"         off
+     48 "  Preparar el servicio faustctf-2023-jokes"                   off
+     47 "  Preparar el servicio faustctf-2023-image-galoisry"          off
+     46 "  Preparar el servicio faustctf-2023-chat-app"                off
+     45 "  Preparar el servicio faustctf-2023-buerographie"            off
+     44 "  Preparar el servicio faustctf-2023-auction-service"         off
+
+     43 "  Preparar el servicio faustctf-2022-notes-from-the-future"   off
+     42 "  Preparar el servicio faustctf-2022-ghost"                   off
+     41 "  Preparar el servicio faustctf-2022-flux-mail"               off
+     40 "  Preparar el servicio faustctf-2022-fittyfit"                off
+     39 "  Preparar el servicio faustctf-2022-docs-notebook"           off
+     38 "  Preparar el servicio faustctf-2022-compiler60"              off
+     37 "  Preparar el servicio faustctf-2022-admincrashboard"         off
+
+     36 "  Preparar el servicio faustctf-2021-veighty-machinery"       off
+     35 "  Preparar el servicio faustctf-2021-treasurehunt"            off
+     34 "  Preparar el servicio faustctf-2021-treasury"                off
+     33 "  Preparar el servicio faustctf-2021-thelostbottle"           off
+     32 "  Preparar el servicio faustctf-2021-pirate-birthday-planner" off
+     31 "  Preparar el servicio faustctf-2021-merklechat"              off
+     30 "  Preparar el servicio faustctf-2021-lonely-island"           off
+     29 "  Preparar el servicio faustctf-2022-digital-seconds-ago"     off
+
+     28 "  Preparar el servicio faustctf-2020-photoshoot"              off
+     27 "  Preparar el servicio faustctf-2020-marsu"                   off
+     26 "  Preparar el servicio faustctf-2020-mars-express"            off
+     25 "  Preparar el servicio faustctf-2020-marscasino"              off
+     24 "  Preparar el servicio faustctf-2020-ipps"                    off
+     23 "  Preparar el servicio faustctf-2020-greenhouses"             off
+     22 "  Preparar el servicio faustctf-2020-cartography"             off
+
+     21 "  Preparar el servicio faustctf-2019-two-factor-apache"       off
+     20 "  Preparar el servicio faustctf-2019-sloc"                    off
+     19 "  Preparar el servicio faustctf-2019-responsivesecurity"      off
+     18 "  Preparar el servicio faustctf-2019-ptth"                    off
+     17 "  Preparar el servicio faustctf-2019-punchy"                  off
+     16 "  Preparar el servicio faustctf-2019-posthorn"                off
+     15 "  Preparar el servicio faustctf-2019-happy-birthday-gdpr"     off
+
+     14 "  Preparar el servicio faustctf-2018-the-tangle"              off
+     13 "  Preparar el servicio faustctf-2018-restchain"               off
+     12 "  Preparar el servicio faustctf-2018-mtcamlx"                 off
+     11 "  Preparar el servicio faustctf-2018-jodlgang"                off
+     10 "  Preparar el servicio faustctf-2018-helpline"                off
+      9 "  Preparar el servicio faustctf-2018-diagon-alley"            off
+
+      8 "  Preparar el servicio faustctf-2017-toilet"                  off
+      7 "  Preparar el servicio faustctf-2017-tempsense"               off
+      6 "  Preparar el servicio faustctf-2017-smartscale"              off
+      5 "  Preparar el servicio faustctf-2017-smartmeter"              off
+      4 "  Preparar el servicio faustctf-2017-doodle"                  off
+      3 "  Preparar el servicio faustctf-2017-doedel"                  off
+      2 "  Preparar el servicio faustctf-2017-alexa"                   off
 
     )
   choices=$("${menu[@]}" "${opciones[@]}" 2>&1 >/dev/tty)
@@ -102,39 +119,7 @@
         1)
 
           echo ""
-          echo "  Descargando repo de Github de dockers vulnerables de vulhub..."
-          echo ""
-          # Comprobar si el paquete curl está instalado. Si no lo está, instalarlo.
-            if [[ $(dpkg-query -s curl 2>/dev/null | grep installed) == "" ]]; then
-              echo ""
-              echo -e "${cColorRojo}    El paquete curl no está instalado. Iniciando su instalación...${cFinColor}"
-              echo ""
-              sudo apt-get -y update
-              sudo apt-get -y install curl
-              echo ""
-            fi
-          sudo rm -f /tmp/vulhub-master.zip 2> /dev/null
-          curl -L https://github.com/vulhub/vulhub/archive/master.zip -o /tmp/vulhub-master.zip
-          cd /tmp/
-          # Comprobar si el paquete unzip está instalado. Si no lo está, instalarlo.
-            if [[ $(dpkg-query -s unzip 2>/dev/null | grep installed) == "" ]]; then
-              echo ""
-              echo -e "${cColorRojo}    El paquete unzip no está instalado. Iniciando su instalación...${cFinColor}"
-              echo ""
-              sudo apt-get -y update
-              sudo apt-get -y install unzip
-              echo ""
-            fi
-          sudo rm -rf /tmp/vulhub-master/ 2> /dev/null
-          unzip vulhub-master.zip
-          cd vulhub-master
-
-        ;;
-
-        2)
-
-          echo ""
-          echo "  Comprobando disponibilidad de docker-compose..."
+          echo "  Comprobando disponibilidad de docker-compose y git..."
           echo ""
           # Comprobar si el paquete docker-compose está instalado. Si no lo está, instalarlo.
             if [[ $(dpkg-query -s docker-compose 2>/dev/null | grep installed) == "" ]]; then
@@ -145,534 +130,653 @@
               sudo apt-get -y install docker-compose
               echo ""
             fi
+          # Comprobar si el paquete git está instalado. Si no lo está, instalarlo.
+            if [[ $(dpkg-query -s git 2>/dev/null | grep installed) == "" ]]; then
+              echo ""
+              echo -e "${cColorRojo}    El paquete git no está instalado. Iniciando su instalación...${cFinColor}"
+              echo ""
+              sudo apt-get -y update
+              sudo apt-get -y install git
+              echo ""
+            fi
 
         ;;
 
-        3)
+       59)
 
           echo ""
-          echo "  Construyendo la imagen de activemq (CVE-2023-46604)..."
+          echo "  Preparando el servicio x..."
           echo ""
-          cd /tmp/vulhub-master/activemq/CVE-2023-46604/
-          sudo docker-compose build
-          sudo docker-compose up -d
-
-        ;;
-
-        4)
-
-          echo ""
-          echo "  Construyendo la imagen de appweb (CVE-2018-8715)..."
-          echo ""
-          cd /tmp/vulhub-master/appweb/CVE-2018-8715/
-          sudo docker-compose build
-          sudo docker-compose up -d
+          cd ~/
+          git clone https://github.com/fausecteam/x
+          cd x
 
         ;;
 
-        5)
+       58)
 
           echo ""
-          echo "  Construyendo la imagen de bash (CVE-2014-6271)..."
+          echo "  Preparando el servicio x..."
           echo ""
-          cd /tmp/vulhub-master/bash/CVE-2014-6271/
-          sudo docker-compose build
-          sudo docker-compose up -d
-
-        ;;
-
-        6)
-
-          echo ""
-          echo "  Construyendo la imagen de cgi (CVE-2016-5385)..."
-          echo ""
-          cd /tmp/vulhub-master/cgi/CVE-2016-5385/
-          sudo docker-compose build
-          sudo docker-compose up -d
+          cd ~/
+          git clone https://github.com/fausecteam/x
+          cd x
 
         ;;
 
-        7)
+       57)
 
           echo ""
-          echo "  Construyendo la imagen de confluence (CVE-2023-22527)..."
+          echo "  Preparando el servicio x..."
           echo ""
-          cd /tmp/vulhub-master/confluence/CVE-2023-22527/
-          sudo docker-compose build
-          sudo docker-compose up -d
-
-        ;;
-
-        8)
-
-          echo ""
-          echo "  Construyendo la imagen de django (CVE-2022-34265)..."
-          echo ""
-          cd /tmp/vulhub-master/django/CVE-2022-34265/
-          sudo docker-compose build
-          sudo docker-compose up -d
+          cd ~/
+          git clone https://github.com/fausecteam/x
+          cd x
 
         ;;
 
-        9)
+       56)
 
           echo ""
-          echo "  Construyendo la imagen de dns-zone-transfer..."
+          echo "  Preparando el servicio x..."
           echo ""
-          cd /tmp/vulhub-master/dns-zone-transfer/
-          sudo docker-compose build
-          sudo docker-compose up -d
-
-        ;;
-
-       10)
-
-          echo ""
-          echo "  Construyendo la imagen de drupal (CVE-2019-6341)..."
-          echo ""
-          cd /tmp/vulhub-master/drupal/CVE-2019-6341/
-          sudo docker-compose build
-          sudo docker-compose up -d
+          cd ~/
+          git clone https://github.com/fausecteam/x
+          cd x
 
         ;;
 
-       11)
+       55)
 
           echo ""
-          echo "  Construyendo la imagen de elasticsearch (CVE-2015-5531)..."
+          echo "  Preparando el servicio x..."
           echo ""
-          cd /tmp/vulhub-master/elasticsearch/CVE-2015-5531/
-          sudo docker-compose build
-          sudo docker-compose up -d
-
-        ;;
-
-       12)
-
-          echo ""
-          echo "  Construyendo la imagen de ffmpeg (CVE-2017-9993)..."
-          echo ""
-          cd /tmp/vulhub-master/ffmpeg/CVE-2017-9993/
-          sudo docker-compose build
-          sudo docker-compose up -d
+          cd ~/
+          git clone https://github.com/fausecteam/x
+          cd x
 
         ;;
 
-       13)
+       54)
 
           echo ""
-          echo "  Construyendo la imagen de geoserver (CVE-2024-36401)..."
+          echo "  Preparando el servicio x..."
           echo ""
-          cd /tmp/vulhub-master/geoserver/CVE-2024-36401/
-          sudo docker-compose build
-          sudo docker-compose up -d
-
-        ;;
-
-       14)
-
-          echo ""
-          echo "  Construyendo la imagen de ghostscript (CVE-2019-6116)..."
-          echo ""
-          cd /tmp/vulhub-master/ghostscript/CVE-2019-6116/
-          sudo docker-compose build
-          sudo docker-compose up -d
+          cd ~/
+          git clone https://github.com/fausecteam/x
+          cd x
 
         ;;
 
-       15)
+       53)
 
           echo ""
-          echo "  Construyendo la imagen de git (CVE-2017-8386)..."
+          echo "  Preparando el servicio x..."
           echo ""
-          cd /tmp/vulhub-master/git/CVE-2017-8386/
-          sudo docker-compose build
-          sudo docker-compose up -d
-
-        ;;
-
-       16)
-
-          echo ""
-          echo "  Construyendo la imagen de gitlab (CVE-2021-22205)..."
-          echo ""
-          cd /tmp/vulhub-master/gitlab/CVE-2021-22205/
-          sudo docker-compose build
-          sudo docker-compose up -d
+          cd ~/
+          git clone https://github.com/fausecteam/x
+          cd x
 
         ;;
 
-       17)
+       52)
 
           echo ""
-          echo "  Construyendo la imagen de grafana (CVE-2021-43798)..."
+          echo "  Preparando el servicio x..."
           echo ""
-          cd /tmp/vulhub-master/grafana/CVE-2021-43798/
-          sudo docker-compose build
-          sudo docker-compose up -d
-
-        ;;
-
-       18)
-
-          echo ""
-          echo "  Construyendo la imagen de grafana (admin-ssrf)..."
-          echo ""
-          cd /tmp/vulhub-master/grafana/admin-ssrf/
-          sudo docker-compose build
-          sudo docker-compose up -d
+          cd ~/
+          git clone https://github.com/fausecteam/x
+          cd x
 
         ;;
 
-       19)
+       51)
 
           echo ""
-          echo "  Construyendo la imagen de httpd (CVE-2021-42013)..."
+          echo "  Preparando el servicio x..."
           echo ""
-          cd /tmp/vulhub-master/httpd/CVE-2021-42013/
-          sudo docker-compose build
-          sudo docker-compose up -d
-
-        ;;
-
-       20)
-
-          echo ""
-          echo "  Construyendo la imagen de imagemagick (CVE-2022-44268)..."
-          echo ""
-          cd /tmp/vulhub-master/imagemagick/CVE-2022-44268/
-          sudo docker-compose build
-          sudo docker-compose up -d
-
-        ;;
-
-       21)
-
-          echo ""
-          echo "  Construyendo la imagen de influxdb (CVE-2019-20933)..."
-          echo ""
-          cd /tmp/vulhub-master/influxdb/CVE-2019-20933/
-          sudo docker-compose build
-          sudo docker-compose up -d
-
-        ;;
-
-       22)
-
-          echo ""
-          echo "  Construyendo la imagen de jenkins (CVE-2024-23897)..."
-          echo ""
-          cd /tmp/vulhub-master/jenkins/CVE-2024-23897/
-          sudo docker-compose build
-          sudo docker-compose up -d
-
-        ;;
-
-       23)
-
-          echo ""
-          echo "  Construyendo la imagen de joomla (CVE-2023-23752)..."
-          echo ""
-          cd /tmp/vulhub-master/joomla/CVE-2023-23752/
-          sudo docker-compose build
-          sudo docker-compose up -d
-
-        ;;
-
-       24)
-
-          echo ""
-          echo "  Construyendo la imagen de kibana (CVE-2020-7012)..."
-          echo ""
-          cd /tmp/vulhub-master/kibana/CVE-2020-7012/
-          sudo docker-compose build
-          sudo docker-compose up -d
-
-        ;;
-
-       25)
-
-          echo ""
-          echo "  Construyendo la imagen de libssh (CVE-2018-10933)..."
-          echo ""
-          cd /tmp/vulhub-master/libssh/CVE-2018-10933/
-          sudo docker-compose build
-          sudo docker-compose up -d
-
-        ;;
-
-       26)
-
-          echo ""
-          echo "  Construyendo la imagen de log4j (CVE-2021-44228)..."
-          echo ""
-          cd /tmp/vulhub-master/log4j/CVE-2021-44228/
-          sudo docker-compose build
-          sudo docker-compose up -d
-
-        ;;
-
-       27)
-
-          echo ""
-          echo "  Construyendo la imagen de magento (2.2-sqli)..."
-          echo ""
-          cd /tmp/vulhub-master/magento/2.2-sqli/
-          sudo docker-compose build
-          sudo docker-compose up -d
-
-        ;;
-
-       28)
-
-          echo ""
-          echo "  Construyendo la imagen de mongo-express (CVE-2019-10758)..."
-          echo ""
-          cd /tmp/vulhub-master/mongo-express/CVE-2019-10758/
-          sudo docker-compose build
-          sudo docker-compose up -d
-
-        ;;
-
-       29)
-
-          echo ""
-          echo "  Construyendo la imagen de mysql (CVE-2012-2122)..."
-          echo ""
-          cd /tmp/vulhub-master/mysql/CVE-2012-2122/
-          sudo docker-compose build
-          sudo docker-compose up -d
-
-        ;;
-
-       30)
-
-          echo ""
-          echo "  Construyendo la imagen de nexus (CVE-2024-4956)..."
-          echo ""
-          cd /tmp/vulhub-master/nexus/CVE-2024-4956/
-          sudo docker-compose build
-          sudo docker-compose up -d
-
-        ;;
-
-       31)
-
-          echo ""
-          echo "  Construyendo la imagen de nginx (CVE-2017-7529)..."
-          echo ""
-          cd /tmp/vulhub-master/nginx/CVE-2017-7529/
-          sudo docker-compose build
-          sudo docker-compose up -d
-
-        ;;
-
-       32)
-
-          echo ""
-          echo "  Construyendo la imagen de nginx (insecure-configuration)..."
-          echo ""
-          cd /tmp/vulhub-master/nginx/insecure-configuration/
-          sudo docker-compose build
-          sudo docker-compose up -d
-
-        ;;
-
-       33)
-
-          echo ""
-          echo "  Construyendo la imagen de nginx (nginx-parsing-vulnerability)..."
-          echo ""
-          cd /tmp/vulhub-master/nginx/nginx-parsing-vulnerability/
-          sudo docker-compose build
-          sudo docker-compose up -d
-
-        ;;
-
-       34)
-
-          echo ""
-          echo "  Construyendo la imagen de node (CVE-2017-16082)..."
-          echo ""
-          cd /tmp/vulhub-master/node/CVE-2017-16082/
-          sudo docker-compose build
-          sudo docker-compose up -d
-
-        ;;
-
-       35)
-
-          echo ""
-          echo "  Construyendo la imagen de ntopng (CVE-2021-28073)..."
-          echo ""
-          cd /tmp/vulhub-master/ntopng/CVE-2021-28073/
-          sudo docker-compose build
-          sudo docker-compose up -d
-
-        ;;
-
-       36)
-
-          echo ""
-          echo "  Construyendo la imagen de openfire (CVE-2023-32315)..."
-          echo ""
-          cd /tmp/vulhub-master/openfire/CVE-2023-32315/
-          sudo docker-compose build
-          sudo docker-compose up -d
-
-        ;;
-
-       37)
-
-          echo ""
-          echo "  Construyendo la imagen de opensmtpd (CVE-2020-7247)..."
-          echo ""
-          cd /tmp/vulhub-master/opensmtpd/CVE-2020-7247/
-          sudo docker-compose build
-          sudo docker-compose up -d
-
-        ;;
-
-       38)
-
-          echo ""
-          echo "  Construyendo la imagen de openssh (CVE-2018-15473)..."
-          echo ""
-          cd /tmp/vulhub-master/openssh/CVE-2018-15473/
-          sudo docker-compose build
-          sudo docker-compose up -d
-
-        ;;
-
-       39)
-
-          echo ""
-          echo "  Construyendo la imagen de openssl (CVE-2022-0778)..."
-          echo ""
-          cd /tmp/vulhub-master/openssl/CVE-2022-0778/
-          sudo docker-compose build
-          sudo docker-compose up -d
-
-        ;;
-
-       40)
-
-          echo ""
-          echo "  Construyendo la imagen de openssl (heartbleed)..."
-          echo ""
-          cd /tmp/vulhub-master/openssl/heartbleed/
-          sudo docker-compose build
-          sudo docker-compose up -d
-
-        ;;
-
-       41)
-
-          echo ""
-          echo "  Construyendo la imagen de php (8.1-backdoor)..."
-          echo ""
-          cd /tmp/vulhub-master/php/8.1-backdoor/
-          sudo docker-compose build
-          sudo docker-compose up -d
-
-        ;;
-
-       42)
-
-          echo ""
-          echo "  Construyendo la imagen de php (CVE-2024-2961)..."
-          echo ""
-          cd /tmp/vulhub-master/php/CVE-2024-2961/
-          sudo docker-compose build
-          sudo docker-compose up -d
-
-        ;;
-
-       43)
-
-          echo ""
-          echo "  Construyendo la imagen de phpmyadmin (CVE-2018-12613)..."
-          echo ""
-          cd /tmp/vulhub-master/phpmyadmin/CVE-2018-12613/
-          sudo docker-compose build
-          sudo docker-compose up -d
-
-        ;;
-
-       44)
-
-          echo ""
-          echo "  Construyendo la imagen de postgres (CVE-2019-9193)..."
-          echo ""
-          cd /tmp/vulhub-master/postgres/CVE-2019-9193/
-          sudo docker-compose build
-          sudo docker-compose up -d
-
-        ;;
-
-       45)
-
-          echo ""
-          echo "  Construyendo la imagen de rsync (common)..."
-          echo ""
-          cd /tmp/vulhub-master/rsync/common/
-          sudo docker-compose build
-          sudo docker-compose up -d
-
-        ;;
-
-       46)
-
-          echo ""
-          echo "  Construyendo la imagen de samba (CVE-2017-7494)..."
-          echo ""
-          cd /tmp/vulhub-master/samba/CVE-2017-7494/
-          sudo docker-compose build
-          sudo docker-compose up -d
-
-        ;;
-
-       47)
-
-          echo ""
-          echo "  Construyendo la imagen de tomcat (CVE-2025-24813)..."
-          echo ""
-          cd /tmp/vulhub-master/tomcat/CVE-2025-24813/
-          sudo docker-compose build
-          sudo docker-compose up -d
-
-        ;;
-
-       48)
-
-          echo ""
-          echo "  Construyendo la imagen de webmin (CVE-2019-15107)..."
-          echo ""
-          cd /tmp/vulhub-master/webmin/CVE-2019-15107/
-          sudo docker-compose build
-          sudo docker-compose up -d
-
-        ;;
-
-       49)
-
-          echo ""
-          echo "  Construyendo la imagen de wordpress (pwnscriptum)..."
-          echo ""
-          cd /tmp/vulhub-master/wordpress/pwnscriptum/
-          sudo docker-compose build
-          sudo docker-compose up -d
+          cd ~/
+          git clone https://github.com/fausecteam/x
+          cd x
 
         ;;
 
        50)
 
           echo ""
-          echo "  Construyendo la imagen de zabbix (CVE-2020-11800)..."
+          echo "  Preparando el servicio x..."
           echo ""
-          cd /tmp/vulhub-master/zabbix/CVE-2020-11800/
-          sudo docker-compose build
-          sudo docker-compose up -d
+          cd ~/
+          git clone https://github.com/fausecteam/x
+          cd x
+
+        ;;
+
+       49)
+
+          echo ""
+          echo "  Preparando el servicio x..."
+          echo ""
+          cd ~/
+          git clone https://github.com/fausecteam/x
+          cd x
+
+        ;;
+
+       48)
+
+          echo ""
+          echo "  Preparando el servicio x..."
+          echo ""
+          cd ~/
+          git clone https://github.com/fausecteam/x
+          cd x
+
+        ;;
+
+       47)
+
+          echo ""
+          echo "  Preparando el servicio x..."
+          echo ""
+          cd ~/
+          git clone https://github.com/fausecteam/x
+          cd x
+
+        ;;
+
+       46)
+
+          echo ""
+          echo "  Preparando el servicio x..."
+          echo ""
+          cd ~/
+          git clone https://github.com/fausecteam/x
+          cd x
+
+        ;;
+
+       45)
+
+          echo ""
+          echo "  Preparando el servicio x..."
+          echo ""
+          cd ~/
+          git clone https://github.com/fausecteam/x
+          cd x
+
+        ;;
+
+       44)
+
+          echo ""
+          echo "  Preparando el servicio x..."
+          echo ""
+          cd ~/
+          git clone https://github.com/fausecteam/x
+          cd x
+
+        ;;
+
+       43)
+
+          echo ""
+          echo "  Preparando el servicio x..."
+          echo ""
+          cd ~/
+          git clone https://github.com/fausecteam/x
+          cd x
+
+        ;;
+
+       42)
+
+          echo ""
+          echo "  Preparando el servicio x..."
+          echo ""
+          cd ~/
+          git clone https://github.com/fausecteam/x
+          cd x
+
+        ;;
+
+       41)
+
+          echo ""
+          echo "  Preparando el servicio x..."
+          echo ""
+          cd ~/
+          git clone https://github.com/fausecteam/x
+          cd x
+
+        ;;
+
+       40)
+
+          echo ""
+          echo "  Preparando el servicio x..."
+          echo ""
+          cd ~/
+          git clone https://github.com/fausecteam/x
+          cd x
+
+        ;;
+
+       39)
+
+          echo ""
+          echo "  Preparando el servicio x..."
+          echo ""
+          cd ~/
+          git clone https://github.com/fausecteam/x
+          cd x
+
+        ;;
+
+       38)
+
+          echo ""
+          echo "  Preparando el servicio x..."
+          echo ""
+          cd ~/
+          git clone https://github.com/fausecteam/x
+          cd x
+
+        ;;
+
+       37)
+
+          echo ""
+          echo "  Preparando el servicio x..."
+          echo ""
+          cd ~/
+          git clone https://github.com/fausecteam/x
+          cd x
+
+        ;;
+
+       36)
+
+          echo ""
+          echo "  Preparando el servicio x..."
+          echo ""
+          cd ~/
+          git clone https://github.com/fausecteam/x
+          cd x
+
+        ;;
+
+       35)
+
+          echo ""
+          echo "  Preparando el servicio x..."
+          echo ""
+          cd ~/
+          git clone https://github.com/fausecteam/x
+          cd x
+
+        ;;
+
+       34)
+
+          echo ""
+          echo "  Preparando el servicio x..."
+          echo ""
+          cd ~/
+          git clone https://github.com/fausecteam/x
+          cd x
+
+        ;;
+
+       33)
+
+          echo ""
+          echo "  Preparando el servicio x..."
+          echo ""
+          cd ~/
+          git clone https://github.com/fausecteam/x
+          cd x
+
+        ;;
+
+       32)
+
+          echo ""
+          echo "  Preparando el servicio x..."
+          echo ""
+          cd ~/
+          git clone https://github.com/fausecteam/x
+          cd x
+
+        ;;
+
+       31)
+
+          echo ""
+          echo "  Preparando el servicio x..."
+          echo ""
+          cd ~/
+          git clone https://github.com/fausecteam/x
+          cd x
+
+        ;;
+
+       30)
+
+          echo ""
+          echo "  Preparando el servicio x..."
+          echo ""
+          cd ~/
+          git clone https://github.com/fausecteam/x
+          cd x
+
+        ;;
+
+       29)
+
+          echo ""
+          echo "  Preparando el servicio x..."
+          echo ""
+          cd ~/
+          git clone https://github.com/fausecteam/x
+          cd x
+
+        ;;
+
+       28)
+
+          echo ""
+          echo "  Preparando el servicio x..."
+          echo ""
+          cd ~/
+          git clone https://github.com/fausecteam/x
+          cd x
+
+        ;;
+
+       27)
+
+          echo ""
+          echo "  Preparando el servicio x..."
+          echo ""
+          cd ~/
+          git clone https://github.com/fausecteam/x
+          cd x
+
+        ;;
+
+       26)
+
+          echo ""
+          echo "  Preparando el servicio x..."
+          echo ""
+          cd ~/
+          git clone https://github.com/fausecteam/x
+          cd x
+
+        ;;
+
+       25)
+
+          echo ""
+          echo "  Preparando el servicio x..."
+          echo ""
+          cd ~/
+          git clone https://github.com/fausecteam/x
+          cd x
+
+        ;;
+
+       24)
+
+          echo ""
+          echo "  Preparando el servicio x..."
+          echo ""
+          cd ~/
+          git clone https://github.com/fausecteam/x
+          cd x
+
+        ;;
+
+       23)
+
+          echo ""
+          echo "  Preparando el servicio x..."
+          echo ""
+          cd ~/
+          git clone https://github.com/fausecteam/x
+          cd x
+
+        ;;
+
+       22)
+
+          echo ""
+          echo "  Preparando el servicio x..."
+          echo ""
+          cd ~/
+          git clone https://github.com/fausecteam/x
+          cd x
+
+        ;;
+
+       21)
+
+          echo ""
+          echo "  Preparando el servicio x..."
+          echo ""
+          cd ~/
+          git clone https://github.com/fausecteam/x
+          cd x
+
+        ;;
+
+       20)
+
+          echo ""
+          echo "  Preparando el servicio x..."
+          echo ""
+          cd ~/
+          git clone https://github.com/fausecteam/x
+          cd x
+
+        ;;
+
+       19)
+
+          echo ""
+          echo "  Preparando el servicio x..."
+          echo ""
+          cd ~/
+          git clone https://github.com/fausecteam/x
+          cd x
+
+        ;;
+
+       18)
+
+          echo ""
+          echo "  Preparando el servicio x..."
+          echo ""
+          cd ~/
+          git clone https://github.com/fausecteam/x
+          cd x
+
+        ;;
+
+       17)
+
+          echo ""
+          echo "  Preparando el servicio x..."
+          echo ""
+          cd ~/
+          git clone https://github.com/fausecteam/x
+          cd x
+
+        ;;
+
+       16)
+
+          echo ""
+          echo "  Preparando el servicio x..."
+          echo ""
+          cd ~/
+          git clone https://github.com/fausecteam/x
+          cd x
+
+        ;;
+
+       15)
+
+          echo ""
+          echo "  Preparando el servicio x..."
+          echo ""
+          cd ~/
+          git clone https://github.com/fausecteam/x
+          cd x
+
+        ;;
+
+       14)
+
+          echo ""
+          echo "  Preparando el servicio x..."
+          echo ""
+          cd ~/
+          git clone https://github.com/fausecteam/x
+          cd x
+
+        ;;
+
+       13)
+
+          echo ""
+          echo "  Preparando el servicio x..."
+          echo ""
+          cd ~/
+          git clone https://github.com/fausecteam/x
+          cd x
+
+        ;;
+
+       12)
+
+          echo ""
+          echo "  Preparando el servicio x..."
+          echo ""
+          cd ~/
+          git clone https://github.com/fausecteam/x
+          cd x
+
+        ;;
+
+       11)
+
+          echo ""
+          echo "  Preparando el servicio x..."
+          echo ""
+          cd ~/
+          git clone https://github.com/fausecteam/x
+          cd x
+
+        ;;
+
+       10)
+
+          echo ""
+          echo "  Preparando el servicio x..."
+          echo ""
+          cd ~/
+          git clone https://github.com/fausecteam/x
+          cd x
+
+        ;;
+
+        9)
+
+          echo ""
+          echo "  Preparando el servicio x..."
+          echo ""
+          cd ~/
+          git clone https://github.com/fausecteam/x
+          cd x
+
+        ;;
+
+        8)
+
+          echo ""
+          echo "  Preparando el servicio x..."
+          echo ""
+          cd ~/
+          git clone https://github.com/fausecteam/x
+          cd x
+
+        ;;
+
+        7)
+
+          echo ""
+          echo "  Preparando el servicio x..."
+          echo ""
+          cd ~/
+          git clone https://github.com/fausecteam/x
+          cd x
+
+        ;;
+
+        6)
+
+          echo ""
+          echo "  Preparando el servicio x..."
+          echo ""
+          cd ~/
+          git clone https://github.com/fausecteam/x
+          cd x
+
+        ;;
+
+        5)
+
+          echo ""
+          echo "  Preparando el servicio x..."
+          echo ""
+          cd ~/
+          git clone https://github.com/fausecteam/x
+          cd x
+
+        ;;
+
+        4)
+
+          echo ""
+          echo "  Preparando el servicio x..."
+          echo ""
+          cd ~/
+          git clone https://github.com/fausecteam/x
+          cd x
+
+        ;;
+
+        3)
+
+          echo ""
+          echo "  Preparando el servicio x..."
+          echo ""
+          cd ~/
+          git clone https://github.com/fausecteam/x
+          cd x
+
+        ;;
+
+        2)
+
+          echo ""
+          echo "  Preparando el servicio x..."
+          echo ""
+          cd ~/
+          git clone https://github.com/fausecteam/x
+          cd x
 
         ;;
 
