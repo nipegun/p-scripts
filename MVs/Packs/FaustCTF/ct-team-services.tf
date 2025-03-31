@@ -12,7 +12,7 @@ resource "proxmox_virtual_environment_container" "services" {
   }
 
   initialization {
-    hostname = "team${count.index}-services"
+    hostname = "team${1 + count.index}-services"
 
     ip_config {
       ipv4 {
