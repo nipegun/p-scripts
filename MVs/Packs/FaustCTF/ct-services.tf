@@ -5,7 +5,7 @@ resource "proxmox_virtual_environment_container" "services" {
 
   count = var.team-count
 
-  vm_id     = 1000 + count.index
+  vm_id     = 1001 + count.index
 
   memory {
     dedicated = 1024
