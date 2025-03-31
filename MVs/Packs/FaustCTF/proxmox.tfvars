@@ -27,3 +27,9 @@ service-instance-username  = "root"
 service-priv-ip-CIDR       = "10.255.254.220/24"
 service-priv-ip            = "10.255.254.220"
 service-priv-gw            = "10.255.254.1"
+
+pve-endpoint  = "https://10.5.0.210:8006/api2/json"
+pve-username  = "root@pam"
+pve-password  = "P@ssw0rd"
+pve-insecure  = true
+pve-tmppath   = "/tmp"
