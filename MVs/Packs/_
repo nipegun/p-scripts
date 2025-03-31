@@ -1,0 +1,83 @@
+#!/bin/bash
+
+echo 
+
+
+# Clonar el repositorio
+  apt-get -y update
+  apt-get -y install git
+  cd /root
+  git clone https://github.com/Tknika/ctf-gameserver-terraform
+
+# Crear el archivo proxmox.tfvars
+  echo 'pve-node     = "ctfgameserver"'                           > /root/ctf-gameserver-terraform/proxmox.tfvars
+  echo 'pve-vm-ds    = "local-lvm"'                              >> /root/ctf-gameserver-terraform/proxmox.tfvars
+  echo 'team-count   = 5'                                        >> /root/ctf-gameserver-terraform/proxmox.tfvars
+  echo ''                                                        >> /root/ctf-gameserver-terraform/proxmox.tfvars
+  echo 'gameserver-instance-user-path     = ""'                  >> /root/ctf-gameserver-terraform/proxmox.tfvars
+  echo 'gameserver-instance-username      = "root"'              >> /root/ctf-gameserver-terraform/proxmox.tfvars
+  echo 'gameserver-priv-ip-CIDR           = "10.255.254.200/24"' >> /root/ctf-gameserver-terraform/proxmox.tfvars
+  echo 'gameserver-priv-ip                = "10.255.254.200"'    >> /root/ctf-gameserver-terraform/proxmox.tfvars
+  echo 'gameserver-priv-gw                = "10.255.254.1"'      >> /root/ctf-gameserver-terraform/proxmox.tfvars
+  echo ''                                                        >> /root/ctf-gameserver-terraform/proxmox.tfvars
+  echo 'gameserver-sub-instance-user-path = ""'                  >> /root/ctf-gameserver-terraform/proxmox.tfvars
+  echo 'gameserver-sub-instance-username  = "root"'              >> /root/ctf-gameserver-terraform/proxmox.tfvars
+  echo 'gameserver-sub-priv-ip-CIDR       = "10.255.254.210/24"' >> /root/ctf-gameserver-terraform/proxmox.tfvars
+  echo 'gameserver-sub-priv-ip            = "10.255.254.210"'    >> /root/ctf-gameserver-terraform/proxmox.tfvars
+  echo 'gameserver-sub-priv-gw            = "10.255.254.1"'      >> /root/ctf-gameserver-terraform/proxmox.tfvars
+  echo ''                                                        >> /root/ctf-gameserver-terraform/proxmox.tfvars
+  echo 'openvpn-install-script-location = ""'                    >> /root/ctf-gameserver-terraform/proxmox.tfvars
+  echo 'openvpn-instance-user-path      = ""'                    >> /root/ctf-gameserver-terraform/proxmox.tfvars
+  echo 'openvpn-instance-username       = "root"'                >> /root/ctf-gameserver-terraform/proxmox.tfvars
+  echo 'openvpn-port                    = 1194'                  >> /root/ctf-gameserver-terraform/proxmox.tfvars
+  echo 'ovpn-users                      = []'                    >> /root/ctf-gameserver-terraform/proxmox.tfvars
+  echo ''                                                        >> /root/ctf-gameserver-terraform/proxmox.tfvars
+  echo 'pve-templ-ds = "local-lvm"'                              >> /root/ctf-gameserver-terraform/proxmox.tfvars
+  echo ''                                                        >> /root/ctf-gameserver-terraform/proxmox.tfvars
+  echo 'service-instance-user-path = ""'                         >> /root/ctf-gameserver-terraform/proxmox.tfvars
+  echo 'service-instance-username  = "root"'                     >> /root/ctf-gameserver-terraform/proxmox.tfvars
+  echo 'service-priv-ip-CIDR       = "10.255.254.220/24"'        >> /root/ctf-gameserver-terraform/proxmox.tfvars
+  echo 'service-priv-ip            = "10.255.254.220"'           >> /root/ctf-gameserver-terraform/proxmox.tfvars
+  echo 'service-priv-gw            = "10.255.254.1"'             >> /root/ctf-gameserver-terraform/proxmox.tfvars
+
+# Crear el archivo terraform.tfvars
+  echo 'pve-endpoint  = "https://10.5.0.210:8006/api2/json"'  > /root/ctf-gameserver-terraform/proxmox/terraform.tfvars
+  echo 'pve-username  = "root@pam"'                          >> /root/ctf-gameserver-terraform/proxmox/terraform.tfvars
+  echo 'pve-password  = "raizraiz"'                          >> /root/ctf-gameserver-terraform/proxmox/terraform.tfvars
+  echo 'pve-insecure  = true'                                >> /root/ctf-gameserver-terraform/proxmox/terraform.tfvars
+  echo 'pve-tmppath   = "/tmp"'                              >> /root/ctf-gameserver-terraform/proxmox/terraform.tfvars
+
+# Modificar el template acorde
+  sed -i -e 's|local2:vztmpl/debian-12-standard_12.2-1_amd64.tar.zst|local-lvm:vztmpl/debian-12-standard_12.7-1_amd64.tar.zst|g' /root/ctf-gameserver-terraform/proxmox/ct-services.tf
+  sed -i -e 's|local2:vztmpl/debian-12-standard_12.2-1_amd64.tar.zst|local-lvm:vztmpl/debian-12-standard_12.7-1_amd64.tar.zst|g' /root/ctf-gameserver-terraform/proxmox/ct-gameserver.tf
+  sed -i -e 's|local2:vztmpl/debian-12-standard_12.2-1_amd64.tar.zst|local-lvm:vztmpl/debian-12-standard_12.7-1_amd64.tar.zst|g' /root/ctf-gameserver-terraform/proxmox/ct-team-submission.tf
+  sed -i -e 's|local2:vztmpl/debian-12-standard_12.2-1_amd64.tar.zst|local-lvm:vztmpl/debian-12-standard_12.7-1_amd64.tar.zst|g' /root/ctf-gameserver-terraform/proxmox/terraform.tfstate
+  sed -i -e 's|local2:vztmpl/debian-12-standard_12.2-1_amd64.tar.zst|local-lvm:vztmpl/debian-12-standard_12.7-1_amd64.tar.zst|g' /root/ctf-gameserver-terraform/proxmox/terraform.tfstate.backup
+  sed -i -e 's|local2:vztmpl/debian-12-standard_12.2-1_amd64.tar.zst|local-lvm:vztmpl/debian-12-standard_12.7-1_amd64.tar.zst|g' /root/ctf-gameserver-terraform/proxmox/ct-gameserver-sub.tf
+
+# Instalar terraform
+  apt-get -y update
+  apt-get -y install gnupg
+  apt-get -y install software-properties-common
+  apt-get -y install curl
+  curl -fsSL https://apt.releases.hashicorp.com/gpg | gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
+  echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | tee /etc/apt/sources.list.d/hashicorp.list
+  apt-get -y update
+  apt-get -y install terraform
+
+#Crear el puente vmbr999
+  echo 'auto vmbr999'              >> /etc/network/interfaces
+  echo 'iface vmbr999 inet manual' >> /etc/network/interfaces
+  echo '  bridge_ports none'       >> /etc/network/interfaces
+  echo '  bridge_stp off'          >> /etc/network/interfaces
+  echo '  bridge_fd 0'             >> /etc/network/interfaces
+  echo '  bridge_vlan_aware yes'   >> /etc/network/interfaces
+  systemctl restart networking
+
+# Levantar
+  cd /root/ctf-gameserver-terraform/
+  rm -rf proxmox/.terraform
+  rm -f proxmox/.terraform.lock.hcl
+  rm -f proxmox/terraform.tfstate*
+  terraform -chdir=proxmox init
+  ./terraform-apply.sh proxmox 5
