@@ -4,6 +4,7 @@
   apt-get -y update
   apt-get -y install git
   apt-get -y install ansible
+  apt-get -y install sudo
 
 # Clonar repo de ansible de faust
   git clone https://github.com/fausecteam/ctf-gameserver-ansible.git
@@ -14,22 +15,20 @@
 
 # Instalar gameserver usando ansible
   cd ctf-gameserver-ansible
+  curl -L https://raw.githubusercontent.com/nipegun/p-scripts/refs/heads/master/MVs/Packs/FaustCTF/gameserver/ctf-gameserver_1.0_all.deb -o /tmp/ctf-gameserver_1.0_all.deb
   sudo ansible-playbook playbook.yml
-cd ..
+  cd ..
 
-#uwsgi
-#sudo apt install python3-dev python3-pip gcc # python3-venv -y #errepasatu ea venv beahr den
-sudo apt install uwsgi uwsgi-plugin-python3 -y
-sudo uwsgi.ini /etc/uwsgi/apps-available/ctf_gameserver.ini
-sudo ln -s /etc/uwsgi/apps-available/ctf_gameserver.ini /etc/uwsgi/apps-enabled/
-sudo systemctl restart uwsgi
+# uwsgi
+  sudo apt-get -y install uwsgi
+  sudo apt-get -y install uwsgi-plugin-python3
+  curl -L https://raw.githubusercontent.com/nipegun/p-scripts/refs/heads/master/MVs/Packs/FaustCTF/gameserver/uwsgi.ini -o /etc/uwsgi/apps-available/ctf_gameserver.ini
+  sudo ln -s /etc/uwsgi/apps-available/ctf_gameserver.ini /etc/uwsgi/apps-enabled/
+  sudo systemctl restart uwsgi
 
-#nginx
-sudo apt install nginx -y
-sudo mv nginx.conf /etc/nginx/sites-available/ctf_gameserver.conf
-sudo rm /etc/nginx/sites-enabled/default
-sudo ln -s /etc/nginx/sites-available/ctf_gameserver.conf /etc/nginx/sites-enabled/
-sudo systemctl restart nginx
-
-#corrections
-#/etc/ctf-gameserver/web/prod_settings.py fitxategian ALLOWED_HOSTS = ['*']
+# nginx
+  sudo apt-get -y install nginx
+  curl -L https://raw.githubusercontent.com/nipegun/p-scripts/refs/heads/master/MVs/Packs/FaustCTF/gameserver/nginx.conf -o /etc/nginx/sites-available/ctf_gameserver.conf
+  sudo rm /etc/nginx/sites-enabled/default
+  sudo ln -s /etc/nginx/sites-available/ctf_gameserver.conf /etc/nginx/sites-enabled/
+  sudo systemctl restart nginx
