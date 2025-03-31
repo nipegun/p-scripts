@@ -27,6 +27,36 @@
   echo ""
   echo -e "${cColorAzulClaro}  Iniciando el script de instalación/reinstalación/actualización del simulador del PLC 1214c de Zubiri...${cFinColor}"
 
+pct stop 1000
+pct stop 1001
+pct stop 1002
+pct stop 1003
+pct stop 1004
+pct stop 1005
+pct stop 1500
+pct stop 1501
+pct stop 1502
+pct stop 1503
+pct stop 1504
+pct stop 1505
+pct stop 1990
+pct stop 1999
+
+pct destroy 1000
+pct destroy 1001
+pct destroy 1002
+pct destroy 1003
+pct destroy 1004
+pct destroy 1005
+pct destroy 1500
+pct destroy 1501
+pct destroy 1502
+pct destroy 1503
+pct destroy 1504
+pct destroy 1505
+pct destroy 1990
+pct destroy 1999
+
 # Borrar posible carpeta previa
   cd ~/
   rm -rf ~/p-scripts
