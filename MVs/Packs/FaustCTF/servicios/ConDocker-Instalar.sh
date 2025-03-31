@@ -46,13 +46,13 @@
      21 "  faustctf-2024-quickr-maps"                      off
      20 "  faustctf-2024-floppcraft"                       off
      19 "  faustctf-2024-todo-list-service"                off
-     18 "  faustctf-2024-faust-vault     (Corregir)"       off
+     18 "  faustctf-2024-faust-vault"                      off
      17 "  faustctf-2024-asm_chat"                         off
-     16 "  faustctf-2024-secretchannel   (Corregir)"       off
+     16 "  faustctf-2024-secretchannel"                    off
      15 "  faustctf-2024-missions"                         off
-     14 "  faustctf-2023-rsa-mail        (Corregir)"       off
+     14 "  faustctf-2023-rsa-mail"                         off
      13 "  faustctf-2023-office-supplies"                  off
-     12 "  faustctf-2023-image-galoisry  (Corregir)"       off
+     12 "  faustctf-2023-image-galoisry"                   off
      11 "  faustctf-2023-tic-tac-toe"                      off
      10 "  faustctf-2023-jokes"                            off
       9 "  faustctf-2023-chat-app"                         off
@@ -336,6 +336,8 @@
           rm -rf faustctf-2022-admincrashboard
           git clone https://github.com/fausecteam/faustctf-2022-admincrashboard
           cd faustctf-2022-admincrashboard
+          sed -i -e 's|FROM python|FROM python:3.10|g' ~/faustctf-2022-admincrashboard/admincrashboard/Dockerfile.deps
+          echo 'werkzeug==2.0.3'                    >> ~/faustctf-2022-admincrashboard/admincrashboard/requirements.txt
           sudo docker-compose up -d
 
         ;;
