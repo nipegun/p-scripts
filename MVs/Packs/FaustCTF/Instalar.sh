@@ -47,5 +47,33 @@
   git clone https://github.com/nipegun/p-scripts.git
 
 # Mover carpeta
-  mv ~/p-scripts/MVs/Packs/FaustCTFGameServer/ ~/
+  rm -rf ~/FaustCTF/
+  mv ~/p-scripts/MVs/Packs/FaustCTF/ ~/
+  rm -rf ~/p-scripts/
+
+# Instalar terraform
+  apt-get -y update
+  apt-get -y install gnupg
+  apt-get -y install software-properties-common
+  apt-get -y install curl
+  curl -fsSL https://apt.releases.hashicorp.com/gpg | gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
+  echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | tee /etc/apt/sources.list.d/hashicorp.list
+  apt-get -y update
+  apt-get -y install terraform
+
+#Crear el puente vmbr999
+  echo 'auto vmbr999'              >> /etc/network/interfaces
+  echo 'iface vmbr999 inet manual' >> /etc/network/interfaces
+  echo '  bridge_ports none'       >> /etc/network/interfaces
+  echo '  bridge_stp off'          >> /etc/network/interfaces
+  echo '  bridge_fd 0'             >> /etc/network/interfaces
+  echo '  bridge_vlan_aware yes'   >> /etc/network/interfaces
+  systemctl restart networking
+
+#
+  cd ~/FaustCTF/
+  rm -rf ~/.terraform.d/
+  terraform init
+  terraform apply -auto-approve -var team-count=5 -var-file=proxmox.tfvars -compact-warnings
+
 
