@@ -41,7 +41,7 @@ resource "proxmox_virtual_environment_container" "team-submission" {
   }
 
   operating_system {
-    template_file_id = "local-lvm:vztmpl/debian-12-standard_12.7_1_amd64.tar.zst" #proxmox_virtual_environment_file.debian11_container_template.id
+    template_file_id = "local-lvm:vztmpl/debian-12-standard_12.7-1_amd64.tar.zst" #proxmox_virtual_environment_file.debian11_container_template.id
     type             = "debian"
   }
 
