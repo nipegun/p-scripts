@@ -94,6 +94,7 @@
           echo ""
           cd /tmp/
           git clone https://github.com/fausecteam/faustctf-2024-lvm
+          cd faustctf-2024-lvm
           sudo docker-compose up -d
 
         ;;
@@ -105,6 +106,7 @@
           echo ""
           cd /tmp/
           git clone https://github.com/fausecteam/faustctf-2024-quickr-maps
+          cd faustctf-2024-quickr-maps
           sudo docker-compose up -d
 
         ;;
@@ -116,6 +118,7 @@
           echo ""
           cd /tmp/
           git clone https://github.com/fausecteam/faustctf-2024-floppcraft
+          cd faustctf-2024-floppcraft
           sudo docker-compose up -d
 
         ;;
@@ -127,6 +130,7 @@
           echo ""
           cd /tmp/
           git clone https://github.com/fausecteam/faustctf-2024-todo-list-service
+          cd faustctf-2024-todo-list-service
           sudo docker-compose up -d
 
         ;;
@@ -138,6 +142,7 @@
           echo ""
           cd /tmp/
           git clone https://github.com/fausecteam/faustctf-2024-faust-vault
+          cd faustctf-2024-faust-vault
           sudo docker-compose up -d
 
         ;;
@@ -149,6 +154,7 @@
           echo ""
           cd /tmp/
           git clone https://github.com/fausecteam/faustctf-2024-asm_chat
+          cd faustctf-2024-asm_chat
           sudo docker-compose up -d
 
         ;;
@@ -160,6 +166,7 @@
           echo ""
           cd /tmp/
           git clone https://github.com/fausecteam/faustctf-2024-secretchannel
+          cd faustctf-2024-secretchannel
           sudo docker-compose up -d
 
         ;;
@@ -171,6 +178,7 @@
           echo ""
           cd /tmp/
           git clone https://github.com/fausecteam/faustctf-2024-missions
+          cd faustctf-2024-missions
           sudo docker-compose up -d
 
         ;;
@@ -182,6 +190,7 @@
           echo ""
           cd /tmp/
           git clone https://github.com/fausecteam/faustctf-2023-rsa-mail
+          cd faustctf-2023-rsa-mail
           sudo docker-compose up -d
 
         ;;
@@ -193,6 +202,7 @@
           echo ""
           cd /tmp/
           git clone https://github.com/fausecteam/faustctf-2023-office-supplies
+          cd faustctf-2023-office-supplies
           sudo docker-compose up -d
 
         ;;
@@ -204,6 +214,7 @@
           echo ""
           cd /tmp/
           git clone https://github.com/fausecteam/faustctf-2023-image-galoisry
+          cd faustctf-2023-image-galoisry
           sudo docker-compose up -d
 
         ;;
@@ -215,6 +226,7 @@
           echo ""
           cd /tmp/
           git clone https://github.com/fausecteam/faustctf-2023-tic-tac-toe
+          cd faustctf-2023-tic-tac-toe
           sudo docker-compose up -d
 
         ;;
@@ -226,6 +238,7 @@
           echo ""
           cd /tmp/
           git clone https://github.com/fausecteam/faustctf-2023-jokes
+          cd faustctf-2023-jokes
           sudo docker-compose up -d
 
         ;;
@@ -237,6 +250,7 @@
           echo ""
           cd /tmp/
           git clone https://github.com/fausecteam/faustctf-2023-chat-app
+          cd faustctf-2023-chat-app
           sudo docker-compose up -d
 
         ;;
@@ -248,6 +262,7 @@
           echo ""
           cd /tmp/
           git clone https://github.com/fausecteam/faustctf-2023-buerographie
+          cd faustctf-2023-buerographie
           sudo docker-compose up -d
 
         ;;
@@ -259,6 +274,7 @@
           echo ""
           cd /tmp/
           git clone https://github.com/fausecteam/faustctf-2022-docs-notebook
+          cd faustctf-2022-docs-notebook
           sudo docker-compose up -d
 
         ;;
@@ -270,6 +286,7 @@
           echo ""
           cd /tmp/
           git clone https://github.com/fausecteam/faustctf-2022-compiler60
+          cd faustctf-2022-compiler60
           sudo docker-compose up -d
 
         ;;
@@ -281,6 +298,7 @@
           echo ""
           cd /tmp/
           git clone https://github.com/fausecteam/faustctf-2022-admincrashboard
+          cd faustctf-2022-admincrashboard
           sudo docker-compose up -d
 
         ;;
@@ -292,6 +310,7 @@
           echo ""
           cd /tmp/
           git clone https://github.com/fausecteam/faustctf-2022-notes-from-the-future
+          cd faustctf-2022-notes-from-the-future
           sudo docker-compose up -d
 
         ;;
@@ -303,6 +322,7 @@
           echo ""
           cd /tmp/
           git clone https://github.com/fausecteam/faustctf-2022-fittyfit
+          cd faustctf-2022-fittyfit
           sudo docker-compose up -d
 
         ;;
