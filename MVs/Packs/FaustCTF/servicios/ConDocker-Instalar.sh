@@ -46,20 +46,20 @@
      21 "  faustctf-2024-quickr-maps"                off
      20 "  faustctf-2024-floppcraft"                 off
      19 "  faustctf-2024-todo-list-service"          off
-     18 "  faustctf-2024-faust-vault"                off
+     18 "  faustctf-2024-faust-vault     (Corregir)" off
      17 "  faustctf-2024-asm_chat"                   off
-     16 "  faustctf-2024-secretchannel"              off
+     16 "  faustctf-2024-secretchannel   (Corregir)" off
      15 "  faustctf-2024-missions"                   off
-     14 "  faustctf-2023-rsa-mail"                   off
+     14 "  faustctf-2023-rsa-mail        (Corregir)" off
      13 "  faustctf-2023-office-supplies"            off
-     12 "  faustctf-2023-image-galoisry"             off
+     12 "  faustctf-2023-image-galoisry  (Corregir)" off
      11 "  faustctf-2023-tic-tac-toe"                off
      10 "  faustctf-2023-jokes"                      off
       9 "  faustctf-2023-chat-app"                   off
       8 "  faustctf-2023-buerographie"               off
       7 "  faustctf-2022-docs-notebook"              off
-      6 "  faustctf-2022-compiler60"                 off
-      5 "  faustctf-2022-admincrashboard"            off
+      6 "  faustctf-2022-compiler60      (Corregir)" off
+      5 "  faustctf-2022-admincrashboard (Corregir)" off
       4 "  faustctf-2022-notes-from-the-future"      off
       3 "  faustctf-2022-fittyfit"                   off
       2 "  faustctf-2021-pirate-birthday-planner"    off
@@ -322,7 +322,7 @@
           echo ""
           cd /tmp/
           git clone https://github.com/fausecteam/faustctf-2022-fittyfit
-          cd faustctf-2022-fittyfit
+          cd faustctf-2022-fittyfit/src/
           sudo docker-compose up -d
 
         ;;
