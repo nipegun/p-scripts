@@ -101,6 +101,13 @@
           echo ""
           echo "  Construyendo la imagen de faustctf-2024-lvm..."
           echo ""
+          # Borrar todo antes de construir
+            docker rm -f $(docker ps -aq)
+            docker rmi -f $(docker images -aq)
+            docker volume rm -f $(docker volume ls -q)
+            docker builder prune -af
+            docker system prune -a --volumes -f
+            docker-compose up -d --build
           cd ~/
           rm -rf faustctf-2024-lvm
           git clone https://github.com/fausecteam/faustctf-2024-lvm
