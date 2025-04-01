@@ -42,26 +42,26 @@
   menu=(dialog --checklist "Marca las opciones que quieras instalar:" 22 96 16)
     opciones=(
       1 "Comprobar disponibilidad de docker-compose y git"                    on
-     22 "  faustctf-2024-lvm                     (puertos: 7777,7778,36449)"  off
-     21 "  faustctf-2024-quickr-maps             (puertos: 4241,44141)"       off
-     20 "  faustctf-2024-floppcraft              (puertos: 5000,32768,33603)" off
-     19 "  faustctf-2024-todo-list-service       (puertos: 8080,46149)"       off
+     22 "  faustctf-2024-lvm                     (puertos: 7777,7778,36449)"  on
+     21 "  faustctf-2024-quickr-maps             (puertos: 4241,44141)"       on
+     20 "  faustctf-2024-floppcraft              (puertos: 5000,32768,33603)" on
+     19 "  faustctf-2024-todo-list-service       (puertos: 8080,46149)"       on
      18 "  faustctf-2024-faust-vault             (puertos: 5555,37259)"       off
      17 "  faustctf-2024-asm_chat                -(Por corregir)-"            off
-     16 "  faustctf-2024-secretchannel           (puertos: 3000,45375)"       off
-     15 "  faustctf-2024-missions                (puertos: 9090,36459)"       off
-     14 "  faustctf-2023-rsa-mail                (puertos: 5555,36559)"       off
-     13 "  faustctf-2023-office-supplies         (puertos: 1337,46849)"       off
-     12 "  faustctf-2023-image-galoisry          (puertos: 5005,34365)"       off
-     11 "  faustctf-2023-tic-tac-toe             (puertos: 3333,33251)"       off
+     16 "  faustctf-2024-secretchannel           (puertos: 3000,45375)"       on
+     15 "  faustctf-2024-missions                (puertos: 9090,36459)"       on
+     14 "  faustctf-2023-rsa-mail                (puertos: 5555,36559)"       on
+     13 "  faustctf-2023-office-supplies         (puertos: 1337,46849)"       on
+     12 "  faustctf-2023-image-galoisry          (puertos: 5005,34365)"       on
+     11 "  faustctf-2023-tic-tac-toe             (puertos: 3333,33251)"       on
      10 "  faustctf-2023-jokes                   -(Por corregir)-"            off
       9 "  faustctf-2023-chat-app                (puertos: 3000,41877)"       off
-      8 "  faustctf-2023-buerographie            (puertos: 13731,38323)"      off
+      8 "  faustctf-2023-buerographie            (puertos: 13731,38323)"      on
       7 "  faustctf-2022-docs-notebook           (puertos: 9000,44985)"       off
       6 "  faustctf-2022-compiler60              -(Por corregir)-"            off
       5 "  faustctf-2022-admincrashboard         (puertos: 5000,5002,35127)"  off
-      4 "  faustctf-2022-notes-from-the-future   (puertos: 1338,33041)"       off
-      3 "  faustctf-2022-fittyfit                (puertos: 5001,33019)"       off
+      4 "  faustctf-2022-notes-from-the-future   (puertos: 1338,33041)"       on
+      3 "  faustctf-2022-fittyfit                (puertos: 5001,33019)"       on
       2 "  faustctf-2021-pirate-birthday-planner (puertos: por determinar)"   off
     )
   choices=$("${menu[@]}" "${opciones[@]}" 2>&1 >/dev/tty)
