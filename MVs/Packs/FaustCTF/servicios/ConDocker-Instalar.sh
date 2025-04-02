@@ -39,7 +39,7 @@
       sudo apt-get -y install dialog
       echo ""
     fi
-  menu=(dialog --checklist "Marca las opciones que quieras instalar:" 22 96 16)
+  menu=(dialog --checklist "Marca el servicio que quieres levantar:" 22 96 16)
     opciones=(
       1 "Comprobar disponibilidad de docker-compose y git"                    on
      22 "  faustctf-2024-lvm                     (puertos: 7777,7778,36449)"  on
@@ -99,7 +99,7 @@
        22)
 
           echo ""
-          echo "  Construyendo la imagen de faustctf-2024-lvm..."
+          echo "  Construyendo el servicio de faustctf-2024-lvm..."
           echo ""
           # Borrar todo antes de construir
             docker rm -f $(docker ps -aq)
@@ -119,7 +119,7 @@
        21)
 
           echo ""
-          echo "  Construyendo la imagen de faustctf-2024-quickr-maps..."
+          echo "  Construyendo el servicio de faustctf-2024-quickr-maps..."
           echo ""
           cd ~/
           rm -rf faustctf-2024-quickr-maps
@@ -132,7 +132,7 @@
        20)
 
           echo ""
-          echo "  Construyendo la imagen de faustctf-2024-floppcraft..."
+          echo "  Construyendo el servicio de faustctf-2024-floppcraft..."
           echo ""
           cd ~/
           rm -rf faustctf-2024-floppcraft
@@ -145,7 +145,7 @@
        19)
 
           echo ""
-          echo "  Construyendo la imagen de faustctf-2024-todo-list-service..."
+          echo "  Construyendo el servicio de faustctf-2024-todo-list-service..."
           echo ""
           cd ~/
           rm -rf faustctf-2024-todo-list-service
@@ -158,7 +158,7 @@
        18)
 
           echo ""
-          echo "  Construyendo la imagen de faustctf-2024-faust-vault..."
+          echo "  Construyendo el servicio de faustctf-2024-faust-vault..."
           echo ""
           cd ~/
           rm -rf faustctf-2024-faust-vault
@@ -174,7 +174,7 @@
        17)
 
           echo ""
-          echo "  Construyendo la imagen de faustctf-2024-asm_chat..."
+          echo "  Construyendo el servicio de faustctf-2024-asm_chat..."
           echo ""
           cd ~/
           rm -rf faustctf-2024-asm_chat
@@ -187,7 +187,7 @@
        16)
 
           echo ""
-          echo "  Construyendo la imagen de faustctf-2024-secretchannel..."
+          echo "  Construyendo el servicio de faustctf-2024-secretchannel..."
           echo ""
           cd ~/
           rm -rf faustctf-2024-secretchannel
@@ -200,7 +200,7 @@
        15)
 
           echo ""
-          echo "  Construyendo la imagen de faustctf-2024-missions..."
+          echo "  Construyendo el servicio de faustctf-2024-missions..."
           echo ""
           cd ~/
           rm -rf faustctf-2024-missions
@@ -213,7 +213,7 @@
        14)
 
           echo ""
-          echo "  Construyendo la imagen de faustctf-2023-rsa-mail..."
+          echo "  Construyendo el servicio de faustctf-2023-rsa-mail..."
           echo ""
           cd ~/
           rm -rf faustctf-2023-rsa-mail
@@ -232,7 +232,7 @@
        13)
 
           echo ""
-          echo "  Construyendo la imagen de faustctf-2023-office-supplies..."
+          echo "  Construyendo el servicio de faustctf-2023-office-supplies..."
           echo ""
           cd ~/
           rm -rf faustctf-2023-office-supplies
@@ -245,7 +245,7 @@
        12)
 
           echo ""
-          echo "  Construyendo la imagen de faustctf-2023-image-galoisry..."
+          echo "  Construyendo el servicio de faustctf-2023-image-galoisry..."
           echo ""
           cd ~/
           rm -rf faustctf-2023-image-galoisry
@@ -259,7 +259,7 @@
        11)
 
           echo ""
-          echo "  Construyendo la imagen de faustctf-2023-tic-tac-toe..."
+          echo "  Construyendo el servicio de faustctf-2023-tic-tac-toe..."
           echo ""
           cd ~/
           rm -rf faustctf-2023-tic-tac-toe
@@ -272,7 +272,7 @@
        10)
 
           echo ""
-          echo "  Construyendo la imagen de faustctf-2023-jokes..."
+          echo "  Construyendo el servicio de faustctf-2023-jokes..."
           echo ""
           cd ~/
           rm -rf faustctf-2023-jokes
@@ -285,7 +285,7 @@
         9)
 
           echo ""
-          echo "  Construyendo la imagen de faustctf-2023-chat-app..."
+          echo "  Construyendo el servicio de faustctf-2023-chat-app..."
           echo ""
           cd ~/
           rm -rf faustctf-2023-chat-app
@@ -298,7 +298,7 @@
         8)
 
           echo ""
-          echo "  Construyendo la imagen de faustctf-2023-buerographie..."
+          echo "  Construyendo el servicio de faustctf-2023-buerographie..."
           echo ""
           cd ~/
           rm -rf faustctf-2023-buerographie
@@ -319,7 +319,7 @@
         7)
 
           echo ""
-          echo "  Construyendo la imagen de faustctf-2022-docs-notebook..."
+          echo "  Construyendo el servicio de faustctf-2022-docs-notebook..."
           echo ""
           cd ~/
           rm -rf faustctf-2022-docs-notebook
@@ -332,7 +332,7 @@
         6)
 
           echo ""
-          echo "  Construyendo la imagen de faustctf-2022-compiler60..."
+          echo "  Construyendo el servicio de faustctf-2022-compiler60..."
           echo ""
           cd ~/
           rm -rf faustctf-2022-compiler60
@@ -351,7 +351,7 @@
         5)
 
           echo ""
-          echo "  Construyendo la imagen de faustctf-2022-admincrashboard..."
+          echo "  Construyendo el servicio de faustctf-2022-admincrashboard..."
           echo ""
           cd ~/
           rm -rf faustctf-2022-admincrashboard
@@ -366,7 +366,7 @@
         4)
 
           echo ""
-          echo "  Construyendo la imagen de faustctf-2022-notes-from-the-future..."
+          echo "  Construyendo el servicio de faustctf-2022-notes-from-the-future..."
           echo ""
           cd ~/
           rm -rf faustctf-2022-notes-from-the-future
@@ -379,7 +379,7 @@
         3)
 
           echo ""
-          echo "  Construyendo la imagen de faustctf-2022-fittyfit..."
+          echo "  Construyendo el servicio de faustctf-2022-fittyfit..."
           echo ""
           cd ~/
           rm -rf faustctf-2022-fittyfit
@@ -392,7 +392,7 @@
         2)
 
           echo ""
-          echo "  Construyendo la imagen de faustctf-2021-pirate-birthday-planner..."
+          echo "  Construyendo el servicio de faustctf-2021-pirate-birthday-planner..."
           echo ""
           cd ~/
           rm -rf faustctf-2021-pirate-birthday-planner
