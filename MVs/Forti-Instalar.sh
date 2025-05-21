@@ -11,12 +11,17 @@
 # Ejecución remota como root:
 #   curl -sL https://raw.githubusercontent.com/nipegun/p-scripts/refs/heads/master/MVs/Forti-Instalar.sh | bash
 #
-# Ejecución remota sin caché:
-#   curl -sL -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/nipegun/p-scripts/refs/heads/master/MVs/Forti-Instalar.sh | bash
-#
-# Bajar y editar directamente el archivo en nano
+# Descargar el archivo directamente al editor nano
 #   curl -sL https://raw.githubusercontent.com/nipegun/p-scripts/refs/heads/master/MVs/Forti-Instalar.sh | nano -
 # ----------
+
+# Definir versiones de software
+  vUltVersFortiADC="7.6.3"
+  vUltVersFortiAnalyzer="7.6.3"
+  vUltVersFortiFirewall="7.6.3"
+  vUltVersFortiGate="7.6.3"
+  vUltVersFortiManager="7.6.3"
+  vUltVersFortiWeb="7.6.3"
 
 # Definir constantes de color
   cColorAzul='\033[0;34m'
@@ -84,14 +89,14 @@
           apt-get -y install dialog
           echo ""
         fi
-      menu=(dialog --checklist "Marca las opciones que quieras instalar:" 22 96 16)
+      menu=(dialog --checklist "Marca la máquina virtual que quieras importar:" 22 80 16)
         opciones=(
-          1 "FortiADC"      off
-          2 "FortiAnalyzer" off
-          3 "FortiFirewall" off
-          4 "FortiGate"     off
-          5 "FortiManager"  off
-          6 "FortiWeb"      off
+          1 "FortiADC $vUltVersFortiADC"           off
+          2 "FortiAnalyzer $vUltVersFortiAnalyzer" off
+          3 "FortiFirewall $vUltVersFortiFirewall" off
+          4 "FortiGate $vUltVersFortiGate"         off
+          5 "FortiManager $vUltVersFortiManager"   off
+          6 "FortiWeb $vUltVersFortiWeb"           off
         )
       choices=$("${menu[@]}" "${opciones[@]}" 2>&1 >/dev/tty)
 
@@ -101,7 +106,6 @@
 
             1)
 
-              vUltVersFortiADC="7.6.3"
               echo ""
               echo "  Importando la máquina virtual de FortiADC v$vUltVersFortiADC..."
               echo ""
@@ -153,7 +157,6 @@
 
             2)
 
-              vUltVersFortiAnalyzer="7.6.3"
               echo ""
               echo "  Importando la máquina virtual de FortiAnalyzer v$vUltVersFortiAnalyzer..."
               echo ""
@@ -188,7 +191,6 @@
 
             3)
 
-              vUltVersFortiFirewall="7.6.3"
               echo ""
               echo "  Importando la máquina virtual de FortiFirewall v$vUltVersFortiFirewall..."
               echo ""
@@ -223,7 +225,6 @@
 
             4)
 
-              vUltVersFortiGate="7.6.3"
               echo ""
               echo "  Importando la máquina virtual de FortiGate v$vUltVersFortiGate..."
               echo ""
@@ -258,7 +259,6 @@
 
             5)
 
-              vUltVersFortiManager="7.6.3"
               echo ""
               echo "  Importando la máquina virtual de FortiManager v$vUltVersFortiManager..."
               echo ""
@@ -293,7 +293,6 @@
 
             6)
 
-              vUltVersFortiWeb="7.6.3"
               echo ""
               echo "  Importando la máquina virtual de FortiWeb v$vUltVersFortiWeb..."
               echo ""
