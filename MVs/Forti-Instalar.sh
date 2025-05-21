@@ -8,20 +8,14 @@
 # ----------
 # Script de NiPeGun para importar las diferentes máquinas virtuales de Forti en Proxmox
 #
-# Ejecución remota (puede requerir permisos sudo):
-#   curl -sL x | bash
-#
-# Ejecución remota como root (para sistemas sin sudo):
-#   curl -sL x | sed 's-sudo--g' | bash
+# Ejecución remota como root:
+#   curl -sL https://raw.githubusercontent.com/nipegun/p-scripts/refs/heads/master/MVs/Forti-Instalar.sh | bash
 #
 # Ejecución remota sin caché:
-#   curl -sL -H 'Cache-Control: no-cache, no-store' x | bash
-#
-# Ejecución remota con parámetros:
-#   curl -sL x | bash -s Parámetro1 Parámetro2
+#   curl -sL -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/nipegun/p-scripts/refs/heads/master/MVs/Forti-Instalar.sh | bash
 #
 # Bajar y editar directamente el archivo en nano
-#   curl -sL x | nano -
+#   curl -sL https://raw.githubusercontent.com/nipegun/p-scripts/refs/heads/master/MVs/Forti-Instalar.sh | nano -
 # ----------
 
 # Definir constantes de color
@@ -90,7 +84,72 @@
           apt-get -y install dialog
           echo ""
         fi
-      #
+      menu=(dialog --checklist "Marca las opciones que quieras instalar:" 22 96 16)
+        opciones=(
+          1 "FortiADC"      off
+          2 "FortiAnalyzer" off
+          3 "FortiFirewall" off
+          4 "FortiGate"     off
+          5 "FortiManager"  off
+          6 "FortiWeb"      off
+        )
+      choices=$("${menu[@]}" "${opciones[@]}" 2>&1 >/dev/tty)
+
+      for choice in $choices
+        do
+          case $choice in
+
+            1)
+
+              echo ""
+              echo "  Opción 1..."
+              echo ""
+
+            ;;
+
+            2)
+
+              echo ""
+              echo "  Opción 2..."
+              echo ""
+
+            ;;
+
+            3)
+
+              echo ""
+              echo "  Opción 3..."
+              echo ""
+
+            ;;
+
+            4)
+
+              echo ""
+              echo "  Opción 4..."
+              echo ""
+
+            ;;
+
+            5)
+
+              echo ""
+              echo "  Opción 5..."
+              echo ""
+
+            ;;
+
+            6)
+
+              echo ""
+              echo "  Opción 6..."
+              echo ""
+
+            ;;
+
+        esac
+
+    done
 
   elif [ $cVerSO == "11" ]; then
 
