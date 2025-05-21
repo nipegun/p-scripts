@@ -101,49 +101,169 @@
 
             1)
 
+              vUltVersFortiADC="7.6.3"
               echo ""
-              echo "  Opción 1..."
+              echo "  Importando la máquina virtual de FortiADC v$vUltVersFortiADC..."
               echo ""
+
+              # Crear la máquina virtual
+                qm create 4001 \
+                  --name FortiADC \
+                  --machine q35 \
+                  --bios ovmf \
+                  --numa 0 \
+                  --sockets 1 \
+                  --cpu x86-64-v2-AES \
+                  --cores 2 \
+                  --memory 2048 \
+                  --balloon 0 \
+                  --net0 virtio,bridge=vmbr0,firewall=1 \
+                  --net1 virtio=00:af:aa:e1:40:01,bridge=vmbr0,firewall=1 \
+                  --net2 virtio=00:af:aa:e2:40:01,bridge=vmbr1,firewall=1 \
+                  --boot order=sata0 \
+                  --scsihw virtio-scsi-single \
+                  --ostype l26 \
+                  --agent 1
 
             ;;
 
             2)
 
+              vUltVersFortiAnalyzer="7.6.3"
               echo ""
-              echo "  Opción 2..."
+              echo "  Importando la máquina virtual de FortiAnalyzer v$vUltVersFortiAnalyzer..."
               echo ""
+
+              # Crear la máquina virtual
+                qm create 4002 \
+                  --name FortiAnalyzer \
+                  --machine q35 \
+                  --bios ovmf \
+                  --numa 0 \
+                  --sockets 1 \
+                  --cpu x86-64-v2-AES \
+                  --cores 2 \
+                  --memory 2048 \
+                  --balloon 0 \
+                  --net0 virtio,bridge=vmbr0,firewall=1 \
+                  --net1 virtio=00:af:aa:e1:40:02,bridge=vmbr0,firewall=1 \
+                  --net2 virtio=00:af:aa:e2:40:02,bridge=vmbr1,firewall=1 \
+                  --boot order=sata0 \
+                  --scsihw virtio-scsi-single \
+                  --ostype l26 \
+                  --agent 1
 
             ;;
 
             3)
 
+              vUltVersFortiFirewall="7.6.3"
               echo ""
-              echo "  Opción 3..."
+              echo "  Importando la máquina virtual de FortiFirewall v$vUltVersFortiFirewall..."
               echo ""
+
+              # Crear la máquina virtual
+                qm create 4003 \
+                  --name FortiFirewall \
+                  --machine q35 \
+                  --bios ovmf \
+                  --numa 0 \
+                  --sockets 1 \
+                  --cpu x86-64-v2-AES \
+                  --cores 2 \
+                  --memory 2048 \
+                  --balloon 0 \
+                  --net0 virtio,bridge=vmbr0,firewall=1 \
+                  --net1 virtio=00:af:aa:e1:40:03,bridge=vmbr0,firewall=1 \
+                  --net2 virtio=00:af:aa:e2:40:03,bridge=vmbr1,firewall=1 \
+                  --boot order=sata0 \
+                  --scsihw virtio-scsi-single \
+                  --ostype l26 \
+                  --agent 1
 
             ;;
 
             4)
 
+              vUltVersFortiGate="7.6.3"
               echo ""
-              echo "  Opción 4..."
+              echo "  Importando la máquina virtual de FortiGate v$vUltVersFortiGate..."
               echo ""
+
+              # Crear la máquina virtual
+                qm create 4004 \
+                  --name FortiGate \
+                  --machine q35 \
+                  --bios ovmf \
+                  --numa 0 \
+                  --sockets 1 \
+                  --cpu x86-64-v2-AES \
+                  --cores 2 \
+                  --memory 2048 \
+                  --balloon 0 \
+                  --net0 virtio,bridge=vmbr0,firewall=1 \
+                  --net1 virtio=00:af:aa:e1:40:04,bridge=vmbr0,firewall=1 \
+                  --net2 virtio=00:af:aa:e2:40:04,bridge=vmbr1,firewall=1 \
+                  --boot order=sata0 \
+                  --scsihw virtio-scsi-single \
+                  --ostype l26 \
+                  --agent 1
 
             ;;
 
             5)
 
+              vUltVersFortiManager="7.6.3"
               echo ""
-              echo "  Opción 5..."
+              echo "  Importando la máquina virtual de FortiManager v$vUltVersFortiManager..."
               echo ""
+
+              # Crear la máquina virtual
+                qm create 4005 \
+                  --name FortiManager \
+                  --machine q35 \
+                  --bios ovmf \
+                  --numa 0 \
+                  --sockets 1 \
+                  --cpu x86-64-v2-AES \
+                  --cores 2 \
+                  --memory 2048 \
+                  --balloon 0 \
+                  --net0 virtio,bridge=vmbr0,firewall=1 \
+                  --net1 virtio=00:af:aa:e1:40:05,bridge=vmbr0,firewall=1 \
+                  --net2 virtio=00:af:aa:e2:40:05,bridge=vmbr1,firewall=1 \
+                  --boot order=sata0 \
+                  --scsihw virtio-scsi-single \
+                  --ostype l26 \
+                  --agent 1
 
             ;;
 
             6)
 
+              vUltVersFortiWeb="7.6.3"
               echo ""
-              echo "  Opción 6..."
+              echo "  Importando la máquina virtual de FortiWeb v$vUltVersFortiWeb..."
               echo ""
+
+              # Crear la máquina virtual
+                qm create 4006 \
+                  --name FortiWeb \
+                  --machine q35 \
+                  --bios ovmf \
+                  --numa 0 \
+                  --sockets 1 \
+                  --cpu x86-64-v2-AES \
+                  --cores 2 \
+                  --memory 2048 \
+                  --balloon 0 \
+                  --net0 virtio,bridge=vmbr0,firewall=1 \
+                  --net1 virtio=00:af:aa:e1:40:06,bridge=vmbr0,firewall=1 \
+                  --net2 virtio=00:af:aa:e2:40:06,bridge=vmbr1,firewall=1 \
+                  --boot order=sata0 \
+                  --scsihw virtio-scsi-single \
+                  --ostype l26 \
+                  --agent 1
 
             ;;
 
