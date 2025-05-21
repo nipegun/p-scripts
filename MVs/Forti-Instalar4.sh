@@ -15,6 +15,9 @@
 #   curl -sL https://raw.githubusercontent.com/nipegun/p-scripts/refs/heads/master/MVs/Forti-Instalar.sh | nano -
 # ----------
 
+# Definir el almacenamiento
+  vAlmacenamiento='local-lvm'
+
 # Definir versiones de software
   vUltVersFortiADC="7.6.3"
   vUltVersFortiAnalyzer="7.6.3"
