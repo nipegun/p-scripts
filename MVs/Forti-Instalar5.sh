@@ -133,16 +133,6 @@
               # Descargar los archivos de disco duro
                 curl -L http://hacks4geeks.com/_/descargas/MVs/Discos/Forti/FortiADC763boot.qcow2 -o /tmp/FortiADC763boot.qcow2
                 curl -L http://hacks4geeks.com/_/descargas/MVs/Discos/Forti/FortiADC763data.qcow2 -o /tmp/FortiADC763data.qcow2
-              # Convertir los archivos a RAW
-#                qemu-img convert -O raw /tmp/FortiADC763boot-temp.qcow2 /tmp/FortiADC763boot.raw
-#                qemu-img convert -O raw /tmp/FortiADC763data-temp.qcow2 /tmp/FortiADC763data.raw
-              # Truncar las imágenes a múltiplo de 512 bytes
-#                vTamArchivo=$(stat -c %s /tmp/FortiADC763boot.raw)
-#                vTamAlineado=$(( vTamArchivo - (filesize % 512) ))
-#                truncate -s "$vTamAlineado" /tmp/FortiADC763boot.raw
-#                vTamArchivo=$(stat -c %s /tmp/FortiADC763data.raw)
-#                vTamAlineado=$(( vTamArchivo - (filesize % 512) ))
-#                truncate -s "$vTamAlineado" /tmp/FortiADC763data.raw
               # Importar los discos
                 qm importdisk 4001 /tmp/FortiADC763boot.qcow2 "$vAlmacenamiento" && rm -f /tmp/FortiADC763boot.qcow2
                 qm importdisk 4001 /tmp/FortiADC763data.qcow2 "$vAlmacenamiento" && rm -f /tmp/FortiADC763data.qcow2
@@ -188,6 +178,9 @@
                 vRutaAlDisco=$(qm config 4002 | grep unused | cut -d' ' -f2 | head -n1)
                 qm set 4002 --virtio0 "$vRutaAlDisco",format=raw,cache=writeback,aio=threads
 
+              # Crear la nota para la máquina virtual
+                sed -i '1i#<p>Usuario: admin</p><p>Contraseña: vacía</p><br><p>En el primer inicio de sesión pedirá que se asigne una nueva contraseña.</p>' /etc/pve/qemu-server/4001.conf
+
             ;;
 
             3)
@@ -220,6 +213,9 @@
               # Asignar los discos a la máquina virtual
                 vRutaAlDisco=$(qm config 4003 | grep unused | cut -d' ' -f2 | head -n1)
                 qm set 4003 --virtio0 "$vRutaAlDisco",format=raw,cache=writeback,aio=threads
+
+              # Crear la nota para la máquina virtual
+                sed -i '1i#<p>Usuario: admin</p><p>Contraseña: vacía</p><br><p>En el primer inicio de sesión pedirá que se asigne una nueva contraseña.</p>' /etc/pve/qemu-server/4001.conf
 
             ;;
 
@@ -254,6 +250,9 @@
                 vRutaAlDisco=$(qm config 4004 | grep unused | cut -d' ' -f2 | head -n1)
                 qm set 4004 --virtio0 "$vRutaAlDisco",format=raw,cache=writeback,aio=threads
 
+              # Crear la nota para la máquina virtual
+                sed -i '1i#<p>Usuario: admin</p><p>Contraseña: vacía</p><br><p>En el primer inicio de sesión pedirá que se asigne una nueva contraseña.</p>' /etc/pve/qemu-server/4001.conf
+
             ;;
 
             5)
@@ -286,6 +285,9 @@
               # Asignar los discos a la máquina virtual
                 vRutaAlDisco=$(qm config 4005 | grep unused | cut -d' ' -f2 | head -n1)
                 qm set 4005 --virtio0 "$vRutaAlDisco",format=raw,cache=writeback,aio=threads
+
+              # Crear la nota para la máquina virtual
+                sed -i '1i#<p>Usuario: admin</p><p>Contraseña: vacía</p><br><p>En el primer inicio de sesión pedirá que se asigne una nueva contraseña.</p>' /etc/pve/qemu-server/4001.conf
 
             ;;
 
@@ -327,6 +329,9 @@
                 qm set 4006 --virtio1 "$vRutaAlDisco",format=raw,cache=writeback,aio=threads
                 vRutaAlDisco=$(qm config 4006 | grep unused | cut -d' ' -f2 | head -n1)
                 qm set 4006 --virtio2 "$vRutaAlDisco",format=raw,cache=writeback,aio=threads
+
+              # Crear la nota para la máquina virtual
+                sed -i '1i#<p>Usuario: admin</p><p>Contraseña: vacía</p><br><p>En el primer inicio de sesión pedirá que se asigne una nueva contraseña.</p>' /etc/pve/qemu-server/4001.conf
 
             ;;
 
