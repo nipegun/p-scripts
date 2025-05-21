@@ -89,7 +89,7 @@
           apt-get -y install dialog
           echo ""
         fi
-      menu=(dialog --checklist "Marca la máquina virtual que quieras importar:" 22 60 16)
+      menu=(dialog --checklist "Marca la máquina virtual que quieras importar:" 22 52 16)
         opciones=(
           1 "FortiADC v$vUltVersFortiADC"           off
           2 "FortiAnalyzer v$vUltVersFortiAnalyzer" off
