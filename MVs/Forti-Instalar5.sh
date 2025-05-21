@@ -123,9 +123,8 @@
                   --cores 2 \
                   --memory 4096 \
                   --balloon 0 \
-                  --net0 virtio,bridge=vmbr0,firewall=1 \
-                  --net1 virtio=00:af:aa:e1:40:01,bridge=vmbr0,firewall=1 \
-                  --net2 virtio=00:af:aa:e2:40:01,bridge=vmbr1,firewall=1 \
+                  --net0 virtio=00:af:aa:e1:40:01,bridge=vmbr0,firewall=1 \
+                  --net1 virtio=00:af:aa:e2:40:01,bridge=vmbr1,firewall=1 \
                   --boot order=virtio0 \
                   --scsihw virtio-scsi-single \
                   --ostype l26 \
@@ -174,9 +173,8 @@
                   --cores 2 \
                   --memory 2048 \
                   --balloon 0 \
-                  --net0 virtio,bridge=vmbr0,firewall=1 \
-                  --net1 virtio=00:af:aa:e1:40:02,bridge=vmbr0,firewall=1 \
-                  --net2 virtio=00:af:aa:e2:40:02,bridge=vmbr50,firewall=1 \
+                  --net0 virtio=00:af:aa:e1:40:02,bridge=vmbr0,firewall=1 \
+                  --net1 virtio=00:af:aa:e2:40:02,bridge=vmbr1,firewall=1 \
                   --boot order=virtio0 \
                   --scsihw virtio-scsi-single \
                   --ostype l26 \
@@ -208,9 +206,8 @@
                   --cores 2 \
                   --memory 2048 \
                   --balloon 0 \
-                  --net0 virtio,bridge=vmbr0,firewall=1 \
-                  --net1 virtio=00:af:aa:e1:40:03,bridge=vmbr0,firewall=1 \
-                  --net2 virtio=00:af:aa:e2:40:03,bridge=vmbr1,firewall=1 \
+                  --net0 virtio=00:af:aa:e1:40:03,bridge=vmbr0,firewall=1 \
+                  --net1 virtio=00:af:aa:e2:40:03,bridge=vmbr1,firewall=1 \
                   --boot order=virtio0 \
                   --scsihw virtio-scsi-single \
                   --ostype l26 \
@@ -242,9 +239,8 @@
                   --cores 2 \
                   --memory 2048 \
                   --balloon 0 \
-                  --net0 virtio,bridge=vmbr0,firewall=1 \
-                  --net1 virtio=00:af:aa:e1:40:04,bridge=vmbr0,firewall=1 \
-                  --net2 virtio=00:af:aa:e2:40:04,bridge=vmbr1,firewall=1 \
+                  --net0 virtio=00:af:aa:e1:40:04,bridge=vmbr0,firewall=1 \
+                  --net1 virtio=00:af:aa:e2:40:04,bridge=vmbr1,firewall=1 \
                   --boot order=virtio0 \
                   --scsihw virtio-scsi-single \
                   --ostype l26 \
@@ -276,9 +272,8 @@
                   --cores 2 \
                   --memory 2048 \
                   --balloon 0 \
-                  --net0 virtio,bridge=vmbr0,firewall=1 \
-                  --net1 virtio=00:af:aa:e1:40:05,bridge=vmbr0,firewall=1 \
-                  --net2 virtio=00:af:aa:e2:40:05,bridge=vmbr1,firewall=1 \
+                  --net0 virtio=00:af:aa:e1:40:05,bridge=vmbr0,firewall=1 \
+                  --net1 virtio=00:af:aa:e2:40:05,bridge=vmbr1,firewall=1 \
                   --boot order=virtio0 \
                   --scsihw virtio-scsi-single \
                   --ostype l26 \
@@ -310,9 +305,8 @@
                   --cores 2 \
                   --memory 2048 \
                   --balloon 0 \
-                  --net0 virtio,bridge=vmbr0,firewall=1 \
-                  --net1 virtio=00:af:aa:e1:40:06,bridge=vmbr0,firewall=1 \
-                  --net2 virtio=00:af:aa:e2:40:06,bridge=vmbr1,firewall=1 \
+                  --net0 virtio=00:af:aa:e1:40:06,bridge=vmbr0,firewall=1 \
+                  --net1 virtio=00:af:aa:e2:40:06,bridge=vmbr1,firewall=1 \
                   --boot order=virtio0 \
                   --scsihw virtio-scsi-single \
                   --ostype l26 \
