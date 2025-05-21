@@ -110,20 +110,44 @@
                 qm create 4001 \
                   --name FortiADC \
                   --machine q35 \
-                  --bios ovmf \
                   --numa 0 \
                   --sockets 1 \
                   --cpu x86-64-v2-AES \
                   --cores 2 \
-                  --memory 2048 \
+                  --memory 4096 \
                   --balloon 0 \
                   --net0 virtio,bridge=vmbr0,firewall=1 \
                   --net1 virtio=00:af:aa:e1:40:01,bridge=vmbr0,firewall=1 \
                   --net2 virtio=00:af:aa:e2:40:01,bridge=vmbr1,firewall=1 \
-                  --boot order=sata0 \
+                  --boot order=virtio0 \
                   --scsihw virtio-scsi-single \
                   --ostype l26 \
                   --agent 1
+
+              # Descargar los archivos de disco duro
+                curl -L http://hacks4geeks.com/_/descargas/MVs/Discos/Forti/FortiADC763boot.qcow2 -o /tmp/FortiADC763boot.qcow2
+                curl -L http://hacks4geeks.com/_/descargas/MVs/Discos/Forti/FortiADC763data.qcow2 -o /tmp/FortiADC763data.qcow2
+              # Convertir los archivos a RAW
+#                qemu-img convert -O raw /tmp/FortiADC763boot-temp.qcow2 /tmp/FortiADC763boot.raw
+#                qemu-img convert -O raw /tmp/FortiADC763data-temp.qcow2 /tmp/FortiADC763data.raw
+              # Truncar las imágenes a múltiplo de 512 bytes
+#                vTamArchivo=$(stat -c %s /tmp/FortiADC763boot.raw)
+#                vTamAlineado=$(( vTamArchivo - (filesize % 512) ))
+#                truncate -s "$vTamAlineado" /tmp/FortiADC763boot.raw
+#                vTamArchivo=$(stat -c %s /tmp/FortiADC763data.raw)
+#                vTamAlineado=$(( vTamArchivo - (filesize % 512) ))
+#                truncate -s "$vTamAlineado" /tmp/FortiADC763data.raw
+              # Importar los discos
+                qm importdisk 4001 /tmp/FortiADC763boot.qcow2 "$vAlmacenamiento" && rm -f /tmp/FortiADC763boot.qcow2
+                qm importdisk 4001 /tmp/FortiADC763data.qcow2 "$vAlmacenamiento" && rm -f /tmp/FortiADC763data.qcow2
+              # Asignar los discos a la máquina virtual
+                vRutaAlDisco=$(qm config 4001 | grep unused | cut -d' ' -f2 | head -n1)
+                qm set 4001 --virtio0 "$vRutaAlDisco",format=raw,cache=writeback,aio=threads
+                vRutaAlDisco=$(qm config 4001 | grep unused | cut -d' ' -f2 | head -n1)
+                qm set 4001 --virtio1 "$vRutaAlDisco",format=raw,cache=writeback,aio=threads
+
+              # Crear la nota para la máquina virtual
+                sed -i '1i#<p>Usuario: admin</p><p>Contraseña: vacía</p><br><p>En el primer inicio de sesión pedirá que se asigne una nueva contraseña.</p>' /etc/pve/qemu-server/4001.conf
 
             ;;
 
@@ -138,7 +162,6 @@
                 qm create 4002 \
                   --name FortiAnalyzer \
                   --machine q35 \
-                  --bios ovmf \
                   --numa 0 \
                   --sockets 1 \
                   --cpu x86-64-v2-AES \
@@ -147,11 +170,19 @@
                   --balloon 0 \
                   --net0 virtio,bridge=vmbr0,firewall=1 \
                   --net1 virtio=00:af:aa:e1:40:02,bridge=vmbr0,firewall=1 \
-                  --net2 virtio=00:af:aa:e2:40:02,bridge=vmbr1,firewall=1 \
-                  --boot order=sata0 \
+                  --net2 virtio=00:af:aa:e2:40:02,bridge=vmbr50,firewall=1 \
+                  --boot order=virtio0 \
                   --scsihw virtio-scsi-single \
                   --ostype l26 \
                   --agent 1
+
+              # Descargar el archivo de disco duro
+                curl -L http://hacks4geeks.com/_/descargas/MVs/Discos/Forti/FortiAnalyzer763.qcow2 -o /tmp/FortiAnalyzer763.qcow2
+              # Importar el disco
+                qm importdisk 4002 /tmp/FortiAnalyzer763.qcow2 "$vAlmacenamiento" && rm -f /tmp/FortiAnalyzer763.qcow2
+              # Asignar los discos a la máquina virtual
+                vRutaAlDisco=$(qm config 4002 | grep unused | cut -d' ' -f2 | head -n1)
+                qm set 4002 --virtio0 "$vRutaAlDisco",format=raw,cache=writeback,aio=threads
 
             ;;
 
@@ -166,7 +197,6 @@
                 qm create 4003 \
                   --name FortiFirewall \
                   --machine q35 \
-                  --bios ovmf \
                   --numa 0 \
                   --sockets 1 \
                   --cpu x86-64-v2-AES \
@@ -176,10 +206,18 @@
                   --net0 virtio,bridge=vmbr0,firewall=1 \
                   --net1 virtio=00:af:aa:e1:40:03,bridge=vmbr0,firewall=1 \
                   --net2 virtio=00:af:aa:e2:40:03,bridge=vmbr1,firewall=1 \
-                  --boot order=sata0 \
+                  --boot order=virtio0 \
                   --scsihw virtio-scsi-single \
                   --ostype l26 \
                   --agent 1
+
+              # Descargar el archivo de disco duro
+                curl -L http://hacks4geeks.com/_/descargas/MVs/Discos/Forti/FortiFirewall763.qcow2 -o /tmp/FortiFirewall763.qcow2
+              # Importar el disco
+                qm importdisk 4003 /tmp/FortiFirewall763.qcow2 "$vAlmacenamiento" && rm -f /tmp/FortiFirewall763.qcow2
+              # Asignar los discos a la máquina virtual
+                vRutaAlDisco=$(qm config 4003 | grep unused | cut -d' ' -f2 | head -n1)
+                qm set 4003 --virtio0 "$vRutaAlDisco",format=raw,cache=writeback,aio=threads
 
             ;;
 
@@ -194,7 +232,6 @@
                 qm create 4004 \
                   --name FortiGate \
                   --machine q35 \
-                  --bios ovmf \
                   --numa 0 \
                   --sockets 1 \
                   --cpu x86-64-v2-AES \
@@ -204,10 +241,18 @@
                   --net0 virtio,bridge=vmbr0,firewall=1 \
                   --net1 virtio=00:af:aa:e1:40:04,bridge=vmbr0,firewall=1 \
                   --net2 virtio=00:af:aa:e2:40:04,bridge=vmbr1,firewall=1 \
-                  --boot order=sata0 \
+                  --boot order=virtio0 \
                   --scsihw virtio-scsi-single \
                   --ostype l26 \
                   --agent 1
+
+              # Descargar el archivo de disco duro
+                curl -L http://hacks4geeks.com/_/descargas/MVs/Discos/Forti/FortiGate763.qcow2 -o /tmp/FortiGate763.qcow2
+              # Importar el disco
+                qm importdisk 4004 /tmp/FortiGate763.qcow2 "$vAlmacenamiento" && rm -f /tmp/FortiGate763.qcow2
+              # Asignar los discos a la máquina virtual
+                vRutaAlDisco=$(qm config 4004 | grep unused | cut -d' ' -f2 | head -n1)
+                qm set 4004 --virtio0 "$vRutaAlDisco",format=raw,cache=writeback,aio=threads
 
             ;;
 
@@ -222,7 +267,6 @@
                 qm create 4005 \
                   --name FortiManager \
                   --machine q35 \
-                  --bios ovmf \
                   --numa 0 \
                   --sockets 1 \
                   --cpu x86-64-v2-AES \
@@ -232,10 +276,18 @@
                   --net0 virtio,bridge=vmbr0,firewall=1 \
                   --net1 virtio=00:af:aa:e1:40:05,bridge=vmbr0,firewall=1 \
                   --net2 virtio=00:af:aa:e2:40:05,bridge=vmbr1,firewall=1 \
-                  --boot order=sata0 \
+                  --boot order=virtio0 \
                   --scsihw virtio-scsi-single \
                   --ostype l26 \
                   --agent 1
+
+              # Descargar el archivo de disco duro
+                curl -L http://hacks4geeks.com/_/descargas/MVs/Discos/Forti/FortiManager763.qcow2 -o /tmp/FortiManager763.qcow2
+              # Importar el disco
+                qm importdisk 4005 /tmp/FortiManager763.qcow2 "$vAlmacenamiento" && rm -f /tmp/FortiManager763.qcow2
+              # Asignar los discos a la máquina virtual
+                vRutaAlDisco=$(qm config 4005 | grep unused | cut -d' ' -f2 | head -n1)
+                qm set 4005 --virtio0 "$vRutaAlDisco",format=raw,cache=writeback,aio=threads
 
             ;;
 
@@ -250,7 +302,6 @@
                 qm create 4006 \
                   --name FortiWeb \
                   --machine q35 \
-                  --bios ovmf \
                   --numa 0 \
                   --sockets 1 \
                   --cpu x86-64-v2-AES \
@@ -260,10 +311,26 @@
                   --net0 virtio,bridge=vmbr0,firewall=1 \
                   --net1 virtio=00:af:aa:e1:40:06,bridge=vmbr0,firewall=1 \
                   --net2 virtio=00:af:aa:e2:40:06,bridge=vmbr1,firewall=1 \
-                  --boot order=sata0 \
+                  --boot order=virtio0 \
                   --scsihw virtio-scsi-single \
                   --ostype l26 \
                   --agent 1
+
+              # Descargar los archivos de disco duro
+                curl -L http://hacks4geeks.com/_/descargas/MVs/Discos/Forti/FortiWeb763boot.qcow2    -o /tmp/FortiWeb763boot.qcow2
+                curl -L http://hacks4geeks.com/_/descargas/MVs/Discos/Forti/FortiWeb763boot_2g.qcow2 -o /tmp/FortiWeb763boot_2g.qcow2
+                curl -L http://hacks4geeks.com/_/descargas/MVs/Discos/Forti/FortiWeb763log.qcow2     -o /tmp/FortiWeb763log.qcow2
+              # Importar los discos
+                qm importdisk 4006 /tmp/FortiWeb763boot.qcow2    "$vAlmacenamiento" && rm -f /tmp/FortiWeb763boot.qcow2
+                qm importdisk 4006 /tmp/FortiWeb763boot_2g.qcow2 "$vAlmacenamiento" && rm -f /tmp/FortiWeb763boot_2g.qcow2
+                qm importdisk 4006 /tmp/FortiWeb763log.qcow2     "$vAlmacenamiento" && rm -f /tmp/FortiWeb763log.qcow2
+              # Asignar los discos a la máquina virtual
+                vRutaAlDisco=$(qm config 4006 | grep unused | cut -d' ' -f2 | head -n1)
+                qm set 4006 --virtio0 "$vRutaAlDisco",format=raw,cache=writeback,aio=threads
+                vRutaAlDisco=$(qm config 4006 | grep unused | cut -d' ' -f2 | head -n1)
+                qm set 4006 --virtio1 "$vRutaAlDisco",format=raw,cache=writeback,aio=threads
+                vRutaAlDisco=$(qm config 4006 | grep unused | cut -d' ' -f2 | head -n1)
+                qm set 4006 --virtio2 "$vRutaAlDisco",format=raw,cache=writeback,aio=threads
 
             ;;
 
