@@ -206,8 +206,8 @@
                   --numa 0 \
                   --sockets 1 \
                   --cpu x86-64-v2-AES \
-                  --cores 2 \
-                  --memory 4096 \
+                  --cores 1 \
+                  --memory 2048 \
                   --balloon 0 \
                   --net0 virtio=00:af:aa:e1:40:03,bridge=vmbr0,firewall=1 \
                   --net1 virtio=00:af:aa:e2:40:03,bridge=vmbr1,firewall=1 \
@@ -230,8 +230,9 @@
               # Notificar fin de importación de la MV
                 echo ""
                 echo "  Máquina virtual de FortiFirewall v$vUltVersFortiFirewall, importada."
+                echo "  Para que la licencia mínima sea válida se ha asignado un único procesador y 2GB de RAM."
+                echo "  Si tienes pensado poner una licencia original, antes de iniciar la MV por primiera vez, aumenta esos valores."
                 echo ""
-
             ;;
 
             4)
