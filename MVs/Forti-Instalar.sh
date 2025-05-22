@@ -145,6 +145,11 @@
               # Crear la nota para la máquina virtual
                 sed -i '1i#<p>Usuario: admin</p><p>Contraseña: vacía</p><br><p>En el primer inicio de sesión pedirá que se asigne una nueva contraseña.</p>' /etc/pve/qemu-server/4001.conf
 
+              # Notificar fin de importación de la MV
+                echo ""
+                echo "  Máquina virtual de FortiADC v$vUltVersFortiADC, importada."
+                echo ""
+
             ;;
 
             2)
@@ -180,6 +185,11 @@
 
               # Crear la nota para la máquina virtual
                 sed -i '1i#<p>Usuario: admin</p><p>Contraseña: vacía</p><br><p>En el primer inicio de sesión pedirá que se asigne una nueva contraseña.</p>' /etc/pve/qemu-server/4001.conf
+
+              # Notificar fin de importación de la MV
+                echo ""
+                echo "  Máquina virtual de FortiAnalyzer v$vUltVersFortiAnalyzer, importada."
+                echo ""
 
             ;;
 
@@ -217,6 +227,11 @@
               # Crear la nota para la máquina virtual
                 sed -i '1i#<p>Usuario: admin</p><p>Contraseña: vacía</p><br><p>En el primer inicio de sesión pedirá que se asigne una nueva contraseña.</p>' /etc/pve/qemu-server/4001.conf
 
+              # Notificar fin de importación de la MV
+                echo ""
+                echo "  Máquina virtual de FortiFirewall v$vUltVersFortiFirewall, importada."
+                echo ""
+
             ;;
 
             4)
@@ -253,9 +268,9 @@
               # Crear la nota para la máquina virtual
                 sed -i '1i#<p>Usuario: admin</p><p>Contraseña: vacía</p><br><p>En el primer inicio de sesión pedirá que se asigne una nueva contraseña.</p>' /etc/pve/qemu-server/4001.conf
 
-              # Notificar fin de ejecución del script
+              # Notificar fin de importación de la MV
                 echo ""
-                echo "  Máquina virtual de FortiGate, importada."
+                echo "  Máquina virtual de FortiGate v$vUltVersFortiGate, importada."
                 echo "  Para que la licencia mínima sea válida se ha asignado un único procesador y 2GB de RAM."
                 echo "  Si tienes pensado poner una licencia original, antes de iniciar la MV por primiera vez, aumenta esos valores."
                 echo ""
@@ -295,6 +310,11 @@
 
               # Crear la nota para la máquina virtual
                 sed -i '1i#<p>Usuario: admin</p><p>Contraseña: vacía</p><br><p>En el primer inicio de sesión pedirá que se asigne una nueva contraseña.</p>' /etc/pve/qemu-server/4001.conf
+
+              # Notificar fin de importación de la MV
+                echo ""
+                echo "  Máquina virtual de FortiManager v$vUltVersFortiManager, importada."
+                echo ""
 
             ;;
 
@@ -339,6 +359,11 @@
 
               # Crear la nota para la máquina virtual
                 sed -i '1i#<p>Usuario: admin</p><p>Contraseña: vacía</p><br><p>En el primer inicio de sesión pedirá que se asigne una nueva contraseña.</p>' /etc/pve/qemu-server/4001.conf
+
+              # Notificar fin de importación de la MV
+                echo ""
+                echo "  Máquina virtual de FortiWeb v$vUltVersFortiWeb, importada."
+                echo ""
 
             ;;
 
