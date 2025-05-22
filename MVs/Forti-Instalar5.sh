@@ -161,7 +161,7 @@
                   --sockets 1 \
                   --cpu x86-64-v2-AES \
                   --cores 2 \
-                  --memory 2048 \
+                  --memory 4096 \
                   --balloon 0 \
                   --net0 virtio=00:af:aa:e1:40:02,bridge=vmbr0,firewall=1 \
                   --net1 virtio=00:af:aa:e2:40:02,bridge=vmbr1,firewall=1 \
@@ -197,7 +197,7 @@
                   --sockets 1 \
                   --cpu x86-64-v2-AES \
                   --cores 2 \
-                  --memory 2048 \
+                  --memory 4096 \
                   --balloon 0 \
                   --net0 virtio=00:af:aa:e1:40:03,bridge=vmbr0,firewall=1 \
                   --net1 virtio=00:af:aa:e2:40:03,bridge=vmbr1,firewall=1 \
@@ -232,7 +232,7 @@
                   --numa 0 \
                   --sockets 1 \
                   --cpu x86-64-v2-AES \
-                  --cores 2 \
+                  --cores 1 \
                   --memory 2048 \
                   --balloon 0 \
                   --net0 virtio=00:af:aa:e1:40:04,bridge=vmbr0,firewall=1 \
@@ -253,6 +253,13 @@
               # Crear la nota para la máquina virtual
                 sed -i '1i#<p>Usuario: admin</p><p>Contraseña: vacía</p><br><p>En el primer inicio de sesión pedirá que se asigne una nueva contraseña.</p>' /etc/pve/qemu-server/4001.conf
 
+              # Notificar fin de ejecución del script
+                echo ""
+                echo "  Máquina virtual de FortiGate, importada."
+                echo "  Para que la licencia mínima sea válida se ha asignado un único procesador y 2GB de RAM."
+                echo "  Si tienes pensado poner una licencia original, antes de iniciar la MV por primiera vez, aumenta esos valores."
+                echo ""
+
             ;;
 
             5)
@@ -269,7 +276,7 @@
                   --sockets 1 \
                   --cpu x86-64-v2-AES \
                   --cores 2 \
-                  --memory 2048 \
+                  --memory 4096 \
                   --balloon 0 \
                   --net0 virtio=00:af:aa:e1:40:05,bridge=vmbr0,firewall=1 \
                   --net1 virtio=00:af:aa:e2:40:05,bridge=vmbr1,firewall=1 \
@@ -305,7 +312,7 @@
                   --sockets 1 \
                   --cpu x86-64-v2-AES \
                   --cores 2 \
-                  --memory 2048 \
+                  --memory 4096 \
                   --balloon 0 \
                   --net0 virtio=00:af:aa:e1:40:06,bridge=vmbr0,firewall=1 \
                   --net1 virtio=00:af:aa:e2:40:06,bridge=vmbr1,firewall=1 \
