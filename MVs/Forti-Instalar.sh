@@ -253,6 +253,7 @@
                   --balloon 0 \
                   --net0 virtio=00:af:aa:e1:40:04,bridge=vmbr0,firewall=1 \
                   --net1 virtio=00:af:aa:e2:40:04,bridge=vmbr1,firewall=1 \
+                  --net2 virtio=00:af:aa:e3:40:04,bridge=vmbr2,firewall=1 \
                   --boot order=virtio0 \
                   --scsihw virtio-scsi-single \
                   --ostype l26 \
@@ -273,7 +274,7 @@
                 echo ""
                 echo "  Máquina virtual de FortiGate v$vUltVersFortiGate, importada."
                 echo "  Para que la licencia mínima sea válida se ha asignado un único procesador y 2GB de RAM."
-                echo "  Si tienes pensado poner una licencia original, antes de iniciar la MV por primiera vez, aumenta esos valores."
+                echo "  Si tienes pensado poner una licencia original, antes de iniciar la MV por primera vez, aumenta esos valores."
                 echo ""
 
             ;;
