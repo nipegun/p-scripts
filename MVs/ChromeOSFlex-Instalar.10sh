@@ -110,8 +110,12 @@
   echo "    Ejecución del script, finalizada."
   echo ""
   echo "      Para proceder con la instalación de ChromeOSFlex:"
-  echo "        - inicia la máquina virtual"
-  echo "        - Presiona Esc para acceder al menú gráfico EFI de OVMF"
-  echo "        - Ve a: selecciona el bootx64.efi en el menú gráfico de OVMF"
-  echo "        - Selecciona el archivo bootx64.efi"
+  echo "        - Inicia la máquina virtual."
+  echo "        - Presiona Esc para acceder al menú gráfico EFI de OVMF."
+  echo '        - Ve a: "Boot Maintenance Manager" >> "Boot From File" >> "EFI-SYSTEM"'
+  echo "        - Selecciona el archivo /efi/boot/bootx64.efi"
+  echo ""
+  echo '      Al finalizar la instalación apaga la máquina virtual y borra la linea que empieza por "args"'
+  echo "        en el archivo /etc/pve/qemu-server/"$vIdDeLaNuevaMV".conf"
+  echo ""
 
