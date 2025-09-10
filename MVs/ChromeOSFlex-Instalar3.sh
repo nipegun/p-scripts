@@ -92,6 +92,9 @@
     echo ""
   fi
 
-# Crear el pendrive instalador
+# Asignar el pendrive virtual para instalar
   curl -sL https://raw.githubusercontent.com/nipegun/chromeos-scripts/refs/heads/main/RecoveryFile-Download.sh | sed 's-sudo--g' | bash
-  
+  mv -vf /root/Descargas/chromeos-flex-latest.bin /tmp/chromeos-flex-latest.bin
+  qm monitor "$vIdDeLaNuevaMV" --cmd "drive_add 0 id=ChromeOSUSBInstaller,if=none,format=raw,file=/tmp/chromeos-flex-latest.bin"
+  qm monitor "$vIdDeLaNuevaMV" --cmd "device_add usb-storage,drive=ChromeOSUSBInstaller"
+
