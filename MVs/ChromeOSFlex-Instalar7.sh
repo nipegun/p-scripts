@@ -94,6 +94,7 @@
   fi
 
 # Descargar la última versión del recovery de ChromeOSFlex
+ echo "hole"
   curl -sL https://raw.githubusercontent.com/nipegun/chromeos-scripts/refs/heads/main/RecoveryFile-Download.sh | sed 's-sudo--g' | bash
   mv -vf /root/Descargas/chromeos-flex-latest.bin /tmp/chromeos-flex-latest.bin
 # Asignarlo a la máquina virtual como pendrive USB
