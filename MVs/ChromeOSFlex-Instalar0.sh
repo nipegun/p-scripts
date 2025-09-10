@@ -79,3 +79,16 @@
     --vga virtio-gl               \
     --net0 virtio,bridge=vmbr0    \
     --agent enabled=1
+
+# Comprobar que la máquina virtual se haya creado correctamente y notificar fin del script
+  sleep 1
+  if qm status "$vIdDeLaNuevaMV" &>/dev/null; then
+    echo ""
+    echo -e "${cColorVerde}    La máquina virtual de ChromeOSFlex se ha creado correctamente. El ID es $vIdDeLaNuevaMVD.${cFinColor}"
+    echo ""
+  else
+    echo ""
+    echo -e "${cColorRojo}    Se intentó crear la máquina virtual con ID $vIdDeLaNuevaMVD, pero no fue posible.${cFinColor}"
+    echo ""
+  fi
+
