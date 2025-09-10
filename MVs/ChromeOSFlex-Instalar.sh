@@ -8,10 +8,10 @@
 # ----------
 # Script de NiPeGun para crear la máquina virtual de ChromeOS Flex en Proxmox
 #
-# Ejecución remota como root (con parámetros):
-#   curl -sL https://raw.githubusercontent.com/nipegun/p-scripts/refs/heads/master/MVs/ChromeOSFlex-Instalar.sh | sed 's-sudo--g' | bash -s "NombreDelAlmacenamiento" "IDDeLaMV"
+# Ejecución remota como root:
+#   curl -sL https://raw.githubusercontent.com/nipegun/p-scripts/refs/heads/master/MVs/ChromeOSFlex-Instalar.sh | sed 's-sudo--g' | bash
 #
-# Ejecución remota como root (con parámetros):
+# Ejecución remota como root con parámetros (Para indicar almacenamiento específico e ID de máquina virtual deseado):
 #   curl -sL https://raw.githubusercontent.com/nipegun/p-scripts/refs/heads/master/MVs/ChromeOSFlex-Instalar.sh | sed 's-sudo--g' | bash -s "NombreDelAlmacenamiento" "IDDeLaMV"
 #
 # Bajar y editar directamente el archivo en nano
