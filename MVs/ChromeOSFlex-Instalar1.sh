@@ -84,11 +84,11 @@
   sleep 1
   if qm status "$vIdDeLaNuevaMV" &>/dev/null; then
     echo ""
-    echo -e "${cColorVerde}    La máquina virtual de ChromeOSFlex se ha creado correctamente. El ID es $vIdDeLaNuevaMVD.${cFinColor}"
+    echo -e "${cColorVerde}    La máquina virtual de ChromeOSFlex se ha creado correctamente. El ID es $vIdDeLaNuevaMV.${cFinColor}"
     echo ""
   else
     echo ""
-    echo -e "${cColorRojo}    Se intentó crear la máquina virtual con ID $vIdDeLaNuevaMVD, pero no fue posible.${cFinColor}"
+    echo -e "${cColorRojo}    Se intentó crear la máquina virtual con ID $vIdDeLaNuevaMV, pero no fue posible.${cFinColor}"
     echo ""
   fi
 
