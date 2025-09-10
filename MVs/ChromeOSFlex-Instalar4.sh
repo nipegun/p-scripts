@@ -70,6 +70,7 @@
     --machine q35                 \
     --bios ovmf                   \
     --ostype l26                  \
+    --boot sata0                  \
     --cpu host                    \
     --cores 2                     \
     --memory 4096                 \
@@ -92,9 +93,21 @@
     echo ""
   fi
 
-# Asignar el pendrive virtual para instalar
+# Descargar la última versión del recovery de ChromeOSFlex
   curl -sL https://raw.githubusercontent.com/nipegun/chromeos-scripts/refs/heads/main/RecoveryFile-Download.sh | sed 's-sudo--g' | bash
   mv -vf /root/Descargas/chromeos-flex-latest.bin /tmp/chromeos-flex-latest.bin
-  qm monitor "$vIdDeLaNuevaMV" --cmd "drive_add 0 id=ChromeOSUSBInstaller,if=none,format=raw,file=/tmp/chromeos-flex-latest.bin"
-  qm monitor "$vIdDeLaNuevaMV" --cmd "device_add usb-storage,drive=ChromeOSUSBInstaller"
+# Asignarlo a la máquina virtual como pendrive USB
+  echo 'args: -drive id=ChromeOSUSBInstaller,if=none,format=raw,file=/tmp/chromeos-flex-latest.bin -device usb-storage,drive=ChromeOSUSBInstaller'
+# Hacer que la máquina virtual arranque desde ese pendrive virtual
+  #sed 's|boot: order=sata0;net0|boot: order=sata0;usb0|g' /etc/pve/qemu-server/"$vIdDeLaNuevaMV".conf
+
+# Notificar fin de ejecución del script
+  echo ""
+  echo "    Ejecución del script, finalizada."
+  echo ""
+  echo "      Para proceder con la instalación de ChromeOSFlex:"
+  echo "        - inicia la máquina virtual"
+  echo "        - Presiona Esc para acceder al menú gráfico EFI de OVMF"
+  echo "        - Ve a: selecciona el bootx64.efi en el menú gráfico de OVMF"
+  echo "        - Selecciona el archivo bootx64.efi"
 
