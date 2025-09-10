@@ -97,7 +97,9 @@
   curl -sL https://raw.githubusercontent.com/nipegun/chromeos-scripts/refs/heads/main/RecoveryFile-Download.sh | sed 's-sudo--g' | bash
   mv -vf /root/Descargas/chromeos-flex-latest.bin /tmp/chromeos-flex-latest.bin
 # Asignarlo a la máquina virtual como pendrive USB
-  echo 'args: -drive id=ChromeOSUSBInstaller,if=none,format=raw,file=/tmp/chromeos-flex-latest.bin -device usb-storage,drive=ChromeOSUSBInstaller'
+  #echo 'args: -drive id=ChromeOSUSBInstaller,if=none,format=raw,file=/tmp/chromeos-flex-latest.bin -device usb-storage,drive=ChromeOSUSBInstaller'
+  sed -i '1i args: -drive id=ChromeOSUSBInstaller,if=none,format=raw,file=/tmp/chromeos-flex-latest.bin -device usb-storage,drive=ChromeOSUSBInstaller' /etc/pve/qemu-server/"$vIdDeLaNuevaMV".conf
+
 # Hacer que la máquina virtual arranque desde ese pendrive virtual
   #sed 's|boot: order=sata0;net0|boot: order=sata0;usb0|g' /etc/pve/qemu-server/"$vIdDeLaNuevaMV".conf
 
