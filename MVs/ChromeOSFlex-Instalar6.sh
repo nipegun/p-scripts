@@ -70,7 +70,7 @@
     --machine q35                 \
     --bios ovmf                   \
     --ostype l26                  \
-    --boot sata0                  \
+    --boot order=sata0            \
     --cpu host                    \
     --cores 2                     \
     --memory 4096                 \
