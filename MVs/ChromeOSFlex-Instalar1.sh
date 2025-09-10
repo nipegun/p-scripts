@@ -92,3 +92,6 @@
     echo ""
   fi
 
+# Crear el pendrive instalador
+  curl -sL https://raw.githubusercontent.com/nipegun/chromeos-scripts/refs/heads/main/RecoveryFile-Download.sh | sed 's-sudo--g' | bash
+  
