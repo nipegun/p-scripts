@@ -76,20 +76,20 @@
           echo ""
 
           # Crear la máquina virtual
-            qm create 4001 \
-              --name FortiADC \
-              --machine q35 \
-              --numa 0 \
-              --sockets 1 \
-              --cpu x86-64-v2-AES \
-              --cores 2 \
-              --memory 4096 \
-              --balloon 0 \
+            qm create 4001                                            \
+              --name FortiADC                                         \
+              --machine q35                                           \
+              --numa 0                                                \
+              --sockets 1                                             \
+              --cpu x86-64-v2-AES                                     \
+              --cores 2                                               \
+              --memory 4096                                           \
+              --balloon 0                                             \
               --net0 virtio=00:af:aa:e1:40:01,bridge=vmbr0,firewall=1 \
               --net1 virtio=00:af:aa:e2:40:01,bridge=vmbr1,firewall=1 \
-              --boot order=virtio0 \
-              --scsihw virtio-scsi-single \
-              --ostype l26 \
+              --boot order=virtio0                                    \
+              --scsihw virtio-scsi-single                             \
+              --ostype l26                                            \
               --agent 1
 
           # Descargar los archivos de disco duro
@@ -121,20 +121,20 @@
           echo ""
 
           # Crear la máquina virtual
-            qm create 4002 \
-              --name FortiAnalyzer \
-              --machine q35 \
-              --numa 0 \
-              --sockets 1 \
-              --cpu x86-64-v2-AES \
-              --cores 2 \
-              --memory 4096 \
-              --balloon 0 \
+            qm create 4002                                            \
+              --name FortiAnalyzer                                    \
+              --machine q35                                           \
+              --numa 0                                                \
+              --sockets 1                                             \
+              --cpu x86-64-v2-AES                                     \
+              --cores 2                                               \
+              --memory 4096                                           \
+              --balloon 0                                             \
               --net0 virtio=00:af:aa:e1:40:02,bridge=vmbr0,firewall=1 \
               --net1 virtio=00:af:aa:e2:40:02,bridge=vmbr1,firewall=1 \
-              --boot order=virtio0 \
-              --scsihw virtio-scsi-single \
-              --ostype l26 \
+              --boot order=virtio0                                    \
+              --scsihw virtio-scsi-single                             \
+              --ostype l26                                            \
               --agent 1
 
           # Descargar el archivo de disco duro
@@ -162,20 +162,20 @@
           echo ""
 
           # Crear la máquina virtual
-            qm create 4003 \
-              --name FortiFirewall \
-              --machine q35 \
-              --numa 0 \
-              --sockets 1 \
-              --cpu x86-64-v2-AES \
-              --cores 1 \
-              --memory 2048 \
-              --balloon 0 \
+            qm create 4003                                            \
+              --name FortiFirewall                                    \
+              --machine q35                                           \
+              --numa 0                                                \
+              --sockets 1                                             \
+              --cpu x86-64-v2-AES                                     \
+              --cores 1                                               \
+              --memory 2048                                           \
+              --balloon 0                                             \
               --net0 virtio=00:af:aa:e1:40:03,bridge=vmbr0,firewall=1 \
               --net1 virtio=00:af:aa:e2:40:03,bridge=vmbr1,firewall=1 \
-              --boot order=virtio0 \
-              --scsihw virtio-scsi-single \
-              --ostype l26 \
+              --boot order=virtio0                                    \
+              --scsihw virtio-scsi-single                             \
+              --ostype l26                                            \
               --agent 1
 
           # Descargar el archivo de disco duro
@@ -205,21 +205,21 @@
           echo ""
 
           # Crear la máquina virtual
-            qm create 4004 \
-              --name FortiGate \
-              --machine q35 \
-              --numa 0 \
-              --sockets 1 \
-              --cpu x86-64-v2-AES \
-              --cores 1 \
-              --memory 2048 \
-              --balloon 0 \
+            qm create 4004                                            \
+              --name FortiGate                                        \
+              --machine q35                                           \
+              --numa 0                                                \
+              --sockets 1                                             \
+              --cpu x86-64-v2-AES                                     \
+              --cores 1                                               \
+              --memory 2048                                           \
+              --balloon 0                                             \
               --net0 virtio=00:af:aa:e1:40:04,bridge=vmbr0,firewall=1 \
               --net1 virtio=00:af:aa:e2:40:04,bridge=vmbr1,firewall=1 \
               --net2 virtio=00:af:aa:e3:40:04,bridge=vmbr2,firewall=1 \
-              --boot order=virtio0 \
-              --scsihw virtio-scsi-single \
-              --ostype l26 \
+              --boot order=virtio0                                    \
+              --scsihw virtio-scsi-single                             \
+              --ostype l26                                            \
               --agent 1
 
           # Descargar el archivo de disco duro
@@ -249,20 +249,20 @@
           echo ""
 
           # Crear la máquina virtual
-            qm create 4005 \
-              --name FortiManager \
-              --machine q35 \
-              --numa 0 \
-              --sockets 1 \
-              --cpu x86-64-v2-AES \
-              --cores 2 \
-              --memory 4096 \
-              --balloon 0 \
+            qm create 4005                                            \
+              --name FortiManager                                     \
+              --machine q35                                           \
+              --numa 0                                                \
+              --sockets 1                                             \
+              --cpu x86-64-v2-AES                                     \
+              --cores 2                                               \
+              --memory 4096                                           \
+              --balloon 0                                             \
               --net0 virtio=00:af:aa:e1:40:05,bridge=vmbr0,firewall=1 \
               --net1 virtio=00:af:aa:e2:40:05,bridge=vmbr1,firewall=1 \
-              --boot order=virtio0 \
-              --scsihw virtio-scsi-single \
-              --ostype l26 \
+              --boot order=virtio0                                    \
+              --scsihw virtio-scsi-single                             \
+              --ostype l26                                            \
               --agent 1
 
           # Descargar el archivo de disco duro
@@ -290,21 +290,21 @@
           echo ""
 
           # Crear la máquina virtual
-            qm create 4006 \
-              --name FortiWeb \
-              --machine q35 \
-              --numa 0 \
-              --sockets 1 \
-              --cpu x86-64-v2-AES \
-              --cores 2 \
-              --memory 4096 \
-              --balloon 0 \
+            qm create 4006                                            \
+              --name FortiWeb                                         \
+              --machine q35                                           \
+              --numa 0                                                \
+              --sockets 1                                             \
+              --cpu x86-64-v2-AES                                     \
+              --cores 2                                               \
+              --memory 4096                                           \
+              --balloon 0                                             \
               --net0 virtio=00:af:aa:e1:40:06,bridge=vmbr0,firewall=1 \
-             --net1 virtio=00:af:aa:e2:40:06,bridge=vmbr1,firewall=1 \
-             --boot order=virtio0 \
-             --scsihw virtio-scsi-single \
-             --ostype l26 \
-             --agent 1
+              --net1 virtio=00:af:aa:e2:40:06,bridge=vmbr1,firewall=1 \
+              --boot order=virtio0                                    \
+              --scsihw virtio-scsi-single                             \
+              --ostype l26                                            \
+              --agent 1
 
           # Descargar los archivos de disco duro
             curl -L http://hacks4geeks.com/_/descargas/MVs/Discos/Forti/FortiWeb763boot.qcow2    -o /tmp/FortiWeb763boot.qcow2
