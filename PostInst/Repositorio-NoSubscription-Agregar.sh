@@ -42,6 +42,30 @@ if [ $cVerSO == "13" ]; then
   echo "  Iniciando el script que permitirá a los no-suscriptores actualizar ProxmoxVE 9..."
   echo ""
 
+  echo ""
+  echo -e "${cColorVerde}    Agregando el repositorio para no-suscriptores...${cFinColor}"
+  echo ""
+  echo 'Types: deb'                                                 | sudo tee    /etc/apt/sources.list.d/pve-no-subscription.sources
+  echo 'URIs: http://download.proxmox.com/debian/pve'               | sudo tee -a /etc/apt/sources.list.d/pve-no-subscription.sources
+  echo 'Suites: trixie'                                             | sudo tee -a /etc/apt/sources.list.d/pve-no-subscription.sources
+  echo 'Components: pve-no-subscription'                            | sudo tee -a /etc/apt/sources.list.d/pve-no-subscription.sources
+  echo 'Signed-By: /usr/share/keyrings/proxmox-archive-keyring.gpg' | sudo tee -a /etc/apt/sources.list.d/pve-no-subscription.sources
+
+  echo ""
+  echo -e "${cColorVerde}    Deshabilitando el repositorio Enterprise...${cFinColor}"
+  echo ""
+  sudo rm -f /etc/apt/sources.list.d/pve-enterprise.list 2> /dev/null
+  echo '#Types: deb'                                                 | sudo tee    /etc/apt/sources.list.d/pve-enterprise.sources
+  echo '#URIs: https://enterprise.proxmox.com/debian/pve'            | sudo tee -a /etc/apt/sources.list.d/pve-enterprise.sources
+  echo '#Suites: trixie'                                             | sudo tee -a /etc/apt/sources.list.d/pve-enterprise.sources
+  echo '#Components: pve-enterprise'                                 | sudo tee -a /etc/apt/sources.list.d/pve-enterprise.sources
+  echo '#Signed-By: /usr/share/keyrings/proxmox-archive-keyring.gpg' | sudo tee -a /etc/apt/sources.list.d/pve-enterprise.sources
+
+  echo ""
+  echo -e "${cColorVerde}    Activando cambios en apt...${cFinColor}"
+  echo ""
+  apt-get -y update
+
 elif [ $cVerSO == "12" ]; then
 
   echo ""
