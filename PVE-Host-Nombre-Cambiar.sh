@@ -9,10 +9,10 @@
 # Script de NiPeGun para cambiar el nombre de un servidor Proxmox
 #
 # Ejecución remota con parámetros:
-#   curl -sL https://raw.githubusercontent.com/nipegun/p-scripts/master/PVE-Host-Nombre-Cambiar.sh | bash -s NombreNuevo
+#   curl -sL https://raw.githubusercontent.com/nipegun/p-scripts/refs/heads/master/PVE-Host-Nombre-Cambiar.sh | bash -s NombreNuevo
 #
 # Ejecución remota sin caché:
-#   curl -sL -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/nipegun/p-scripts/master/PVE-Host-Nombre-Cambiar.sh | bash -s NombreNuevo
+#   curl -sL -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/nipegun/p-scripts/refs/heads/master/PVE-Host-Nombre-Cambiar.sh | bash -s NombreNuevo
 # ----------
 
 # Definir constantes de color
@@ -53,17 +53,13 @@ if [ $# -ne $cCantArgumEsperados ]
     echo ""
     exit
   else
-    # Obtener el nombre actual del host
-      vNombreActualDelHost=$(hostname)
-    # Notificar del cambio y pedir aceptar
+    # Notificar
+      # Obtener el nombre actual del host
+        vNombreActualDelHost=$(hostname)
       echo ""
-      echo "    Se intentará cambiar el nombre del host de $vNombreActualDelHost a $1..."
-      echo ""
-      read -p "      Presiona cualquier tecla para continuar o CTRL+C para cancelar"
-
-    # Proceder con el cambio
-      echo ""
-      echo "    Procediendo..."
+      echo "    Cambiando el nombre del host de $vNombreActualDelHost a $1..."
+      echo "    Dependiendo de la velocidad del procesador y de la unidad donde está instalado Proxmox, la operación puede tardar más de 10 minutos..."
+      echo "    Al finalizar, se le preguntará al usuario si quiere reiniciar PVE. Es aconsejado hacerlo."
       echo ""
       find /bin        -type f -exec sed -i -e "s|$vNombreActualDelHost|$1|g" {} \;
       find /boot       -type f -exec sed -i -e "s|$vNombreActualDelHost|$1|g" {} \;
@@ -84,5 +80,11 @@ if [ $# -ne $cCantArgumEsperados ]
       find /usr        -type f -exec sed -i -e "s|$vNombreActualDelHost|$1|g" {} \;
       find /var        -type f -exec sed -i -e "s|$vNombreActualDelHost|$1|g" {} \;
       echo ""
+    # Notificar del cambio y pedir aceptar
+      echo ""
+      echo "    Se reemplazó el texto $vNombreActualDelHost por $1 en todos los archivos del sistema."
+      echo ""
+      read -p "      Presiona cualquier tecla reiniciar el sistema o presiona CTRL+C para saltar a la terminal"
+      shutdown -r now
 fi
 
