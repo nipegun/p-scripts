@@ -64,10 +64,10 @@ elif [ $cVerSO == "12" ]; then
   echo ""
   echo "  Apagando todas las máquinas virtuales y contenedores..."
   echo ""
-  for IdMV in $(seq $MVIni $MVFin);
+  for vIdMV in $(seq $vMVIni $vMVFin);
     do
-      echo "  Apagando la máquina virtual $IdMV..."
-      qm shutdown $IdMV
+      echo "  Apagando la máquina virtual $vIdMV..."
+      qm shutdown $vIdMV
     done
 
   if [ ! -f "/root/ActPVE8a9.txt" ]; then
@@ -126,10 +126,10 @@ elif [ $cVerSO == "10" ]; then
   echo ""
   echo "  Apagando todas las máquinas virtuales y contenedores..."
   echo ""
-  for IdMV in $(seq $MVIni $MVFin);
+  for vIdMV in $(seq $vMVIni $vMVFin);
     do
-      echo "  Apagando la máquina virtual $IdMV..."
-      qm shutdown $IdMV
+      echo "  Apagando la máquina virtual $vIdMV..."
+      qm shutdown $vIdMV
     done
 
   if [ ! -f "/root/ActPVE6a7.txt" ]; then
