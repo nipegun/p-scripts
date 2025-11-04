@@ -33,34 +33,34 @@ cFinColor='\033[0m'
     cVerSO=$(uname -r)
   fi
 
-if [ $cVerSO == "7" ]; then
+if [ $cVerSO == "13" ]; then
 
   echo ""
-  echo "  Iniciando el script de actualización de ProxmoxVE 3 a ProxmoxVE 4..."
+  echo "  Iniciando el script de actualización de ProxmoxVE 9 a ProxmoxVE 10..."
   echo ""
 
   echo ""
   echo "  Comandos para ProxmoxVE 3 todavía no preparados. Prueba ejecutar el script en otra versión de ProxmoxVE."
   echo ""
 
-elif [ $cVerSO == "8" ]; then
+elif [ $cVerSO == "12" ]; then
 
   echo ""
-  echo "  Iniciando el script de actualización de ProxmoxVE 4 a ProxmoxVE 5..."
-  echo ""
-
-  echo ""
-  echo "  Comandos para ProxmoxVE 4 todavía no preparados. Prueba ejecutar el script en otra versión de ProxmoxVE."
-  echo ""
-
-elif [ $cVerSO == "9" ]; then
-
-  echo ""
-  echo "  Iniciando el script de actualización de ProxmoxVE 5 a ProxmoxVE 6..."
+  echo "  Iniciando el script de actualización de ProxmoxVE 8 a ProxmoxVE 9..."
   echo ""
 
   echo ""
-  echo "  Comandos para ProxmoxVE 5 todavía no preparados. Prueba ejecutar el script en otra versión de ProxmoxVE."
+  echo "  Comandos para ProxmoxVE 7 todavía no preparados. Prueba ejecutar el script en otra versión de ProxmoxVE."
+  echo ""
+
+elif [ $cVerSO == "11" ]; then
+
+  echo ""
+  echo "  Iniciando el script de actualización de ProxmoxVE 7 a ProxmoxVE 8..."
+  echo ""
+
+  echo ""
+  echo "  Comandos para ProxmoxVE 7 todavía no preparados. Prueba ejecutar el script en otra versión de ProxmoxVE."
   echo ""
 
 elif [ $cVerSO == "10" ]; then
@@ -115,14 +115,34 @@ elif [ $cVerSO == "10" ]; then
   echo ""
   shutdown -r now
 
-elif [ $cVerSO == "11" ]; then
+elif [ $cVerSO == "9" ]; then
 
   echo ""
-  echo "  Iniciando el script de actualización de ProxmoxVE 7 a ProxmoxVE 8..."
+  echo "  Iniciando el script de actualización de ProxmoxVE 5 a ProxmoxVE 6..."
   echo ""
 
   echo ""
-  echo "  Comandos para ProxmoxVE 7 todavía no preparados. Prueba ejecutar el script en otra versión de ProxmoxVE."
+  echo "  Comandos para ProxmoxVE 5 todavía no preparados. Prueba ejecutar el script en otra versión de ProxmoxVE."
+  echo ""
+
+elif [ $cVerSO == "8" ]; then
+
+  echo ""
+  echo "  Iniciando el script de actualización de ProxmoxVE 4 a ProxmoxVE 5..."
+  echo ""
+
+  echo ""
+  echo "  Comandos para ProxmoxVE 4 todavía no preparados. Prueba ejecutar el script en otra versión de ProxmoxVE."
+  echo ""
+
+elif [ $cVerSO == "7" ]; then
+
+  echo ""
+  echo "  Iniciando el script de actualización de ProxmoxVE 3 a ProxmoxVE 4..."
+  echo ""
+
+  echo ""
+  echo "  Comandos para ProxmoxVE 3 todavía no preparados. Prueba ejecutar el script en otra versión de ProxmoxVE."
   echo ""
 
 fi
