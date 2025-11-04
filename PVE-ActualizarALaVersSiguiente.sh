@@ -7,6 +7,9 @@
 
 # ----------
 # Script de NiPeGun para actualizar cada versión de ProxmoxVE a la versión inmediatamente siguiente
+#
+# Ejecución remota:
+#   curl -sL https://raw.githubusercontent.com/nipegun/p-scripts/refs/heads/master/PVE-ActualizarALaVersSiguiente.sh | bash
 # ----------
 
 cColorRojo='\033[1;31m'
@@ -49,9 +52,51 @@ elif [ $cVerSO == "12" ]; then
   echo "  Iniciando el script de actualización de ProxmoxVE 8 a ProxmoxVE 9..."
   echo ""
 
+  if [ ! -f "/root/ActPVE8a9.txt" ]; then
+    echo ""
+    echo "  Actualizando Proxmox 8 a la última versión antes de actualizar a Proxmox 9..."
+    echo ""
+    apt-get -y update
+    apt-get -y dist upgrade
+    apt-get -y autoremove
+  fi
+
   echo ""
-  echo "  Comandos para ProxmoxVE 7 todavía no preparados. Prueba ejecutar el script en otra versión de ProxmoxVE."
+  echo "  Apagando todas las máquinas virtuales y contenedores..."
   echo ""
+  for IdMV in $(seq $MVIni $MVFin);
+    do
+      echo "  Apagando la máquina virtual $IdMV..."
+      qm shutdown $IdMV
+    done
+
+  if [ ! -f "/root/ActPVE8a9.txt" ]; then
+    echo ""
+    echo "  Reiniciando el sistema..."
+    echo ""
+    touch /root/ActPVE8a9.txt
+    shutdown -r now
+  fi
+
+  echo ""
+  echo "  Modificando repositorios..."
+  echo ""
+  sed -i -e 's|bookworm\/updates|trixie-security|g' /etc/apt/sources.list
+  sed -i -e 's|bookworm|trixie|g' /etc/apt/sources.list
+  sed -i -e 's|bookworm|trixie|g' /etc/apt/sources.list.d/pve-enterprise.list
+  sed -i -e 's|bookworm|trixie|g' /etc/apt/sources.list.d/pve-no-subscription.list
+  sed -i -e 's|bookworm|trixie|g' /etc/apt/sources.list.d/pve-no-sub.list
+
+  echo ""
+  echo "  Actualizando a la versión 7..."
+  echo ""
+  apt-get -y update
+  apt-get -y dist-upgrade
+
+  echo ""
+  echo "  Reiniciando el sistema para iniciar en Proxmox 9..."
+  echo ""
+  shutdown -r now
 
 elif [ $cVerSO == "11" ]; then
 
