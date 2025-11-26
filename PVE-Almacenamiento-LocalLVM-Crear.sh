@@ -1,7 +1,5 @@
 #!/bin/bash
 
-
-
 vIdUnidad='/dev/nvme1n1x'
 vGigas='300G'
 
