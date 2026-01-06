@@ -30,37 +30,98 @@ if [ $# -ne $EXPECTED_ARGS ]
     echo ""
     exit
   else
-    mkdir /var/lib/vz/images/$1
-    cd /var/lib/vz/images/$1
 
-    echo "agent: 1"
-    echo "balloon: 0"
-    echo "bios: ovmf"
-    echo "boot: order=scsi0"
-    echo "cores: 2"
-    echo "machine: q35"
-    echo "memory: 2048"
-    echo "name: dsm7"
-    echo "net0: vmxnet3=00:00:00:00:02:52,bridge=vmbr0,firewall=1"
-    echo "numa: 0"
-    echo "ostype: l26"
-    echo "scsihw: virtio-scsi-single"
-    echo "sockets: 1"
+    # Variables
+      vIDDeLaMV="$1"
+      vHilos="$2"
+      vRAM="$3"
+      vAlmacenamiento="local"
 
-    wget --no-check-certificate http://hacks4geeks.com/_/premium/descargas/DSM/6.1.4/JunsMod1.02b.img
-    qm create $1 --args /var/lib/vz/images/$1/JunsMod1.02b.img --balloon 0 --boot d --cores $2 --keyboard es --memory $3 --name DSM7 --net0 e1000=00:11:32:2c:a7:85,bridge=vmbr0 --numa 0 --onboot 1 --ostype l26 --sata0 local-lvm:$4 --scsihw virtio-scsi-pci --serial0 socket --sockets 1
-    sed -i -e '/smbios1/d' /etc/pve/qemu-server/$1.conf
-    sed -i -e '/vmgenid/d' /etc/pve/qemu-server/$1.conf
-    sed -i -e '/bootdisk/d' /etc/pve/qemu-server/$1.conf
-    qm start $1
-    cat /etc/pve/qemu-server/$1.conf
+    # Crear la máquina virtual
+      qm create "$vIDDeLaMV"        \
+        --balloon 0                 \
+        --bios ovmf                 \
+        --cores "$vHilos"           \
+        --keyboard es               \
+        --machine q35               \
+        --memory "$vRAM"            \
+        --name DSM7                 \
+        --net0 virtio,bridge=vmbr0  \
+        --ostype l26                \
+        --scsihw virtio-scsi-single \
+        --serial0 socket            \
+        --sockets 1
+
+    # Descargar el bootloader rr
+      # Obtener el tag de la última release del repo rr
+        # Comprobar si el paquete curl está instalado. Si no lo está, instalarlo.
+          if [[ $(dpkg-query -s curl 2>/dev/null | grep installed) == "" ]]; then
+            echo ""
+            echo -e "${cColorRojo}      El paquete curl no está instalado. Iniciando su instalación...${cFinColor}"
+            echo ""
+            sudo apt-get -y update
+            sudo apt-get -y install curl
+            echo ""
+          fi
+        # Comprobar si el paquete jq está instalado. Si no lo está, instalarlo.
+          if [[ $(dpkg-query -s jq 2>/dev/null | grep installed) == "" ]]; then
+            echo ""
+            echo -e "${cColorRojo}      El paquete jq no está instalado. Iniciando su instalación...${cFinColor}"
+            echo ""
+            sudo apt-get -y update
+            sudo apt-get -y install jq
+            echo ""
+          fi
+        vUltVersRR=$(curl -s https://api.github.com/repos/RROrg/rr/releases/latest | jq -r '.tag_name')
+      # Descargar asset
+        vURLArchivo=$(curl -sL https://api.github.com/repos/RROrg/rr/releases/tags/"$vUltVersRR" | jq -r '.assets[].browser_download_url' | grep '\.zip$' | grep img)
+        wget "$vURLArchivo" -O /tmp/rr.zip
+      # Descomprimir archivo
+        cd /tmp
+        unzip -o /tmp/rr.zip
+
+    # Importar la imagen del bootloader en la máquina virtual
+      qm importdisk "$vIDDeLaMV" /tmp/rr.img "$vAlmacenamiento"
+      vRutaAlDisco=$(qm config "$vIDDeLaMV" | grep unused | cut -d' ' -f2 | head -n1)
+      qm set "$vIDDeLaMV" --sata0 "$vRutaAlDisco",format=raw,cache=writeback
+
+    # Crear el disco para el almacenamiento
+      qm set "$vIDDeLaMV" --sata1 "$vAlmacenamiento":50
+
+
+
 
     echo ""
     echo -e "  ${cColorVerde}Proceso de creación de la máquina virtual, FINALIZADO.${cFinColor}"
     echo -e "  ${cColorVerde}Ya puedes arrancar la máquina virtual normalmente.${cFinColor}"
-    echo -e "  ${cColorVerde}Para que funcione el apagado ACPI tendrás que aplicar un parche.${cFinColor}"
-    echo -e "  ${cColorVerde}Tienes más información al respecto en hacks4geeks.com${cFinColor}"
     echo ""
+
+
+    #mkdir /var/lib/vz/images/$1
+    #cd /var/lib/vz/images/$1
+
+    #echo "agent: 1"
+    #echo "balloon: 0"
+    #echo "bios: ovmf"
+    #echo "boot: order=scsi0"
+    #echo "cores: 2"
+    #echo "machine: q35"
+    #echo "memory: 2048"
+    #echo "name: dsm7"
+    #echo "net0: vmxnet3=00:00:00:00:02:52,bridge=vmbr0,firewall=1"
+    #echo "numa: 0"
+    #echo "ostype: l26"
+    #echo "scsihw: virtio-scsi-single"
+    #echo "sockets: 1"
+
+
+    #sed -i -e '/smbios1/d' /etc/pve/qemu-server/"$vIDDeLaMV".conf
+    #sed -i -e '/vmgenid/d' /etc/pve/qemu-server/"$vIDDeLaMV".conf
+    #sed -i -e '/bootdisk/d' /etc/pve/qemu-server/"$vIDDeLaMV".conf
+    #qm start $1
+    #cat /etc/pve/qemu-server/$1.conf
+
+      #qm create "$vIDDeLaMV" --args /var/lib/vz/images/$1/JunsMod1.02b.img \
 
 fi
 
