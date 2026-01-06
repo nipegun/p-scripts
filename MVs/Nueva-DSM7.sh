@@ -41,6 +41,7 @@ if [ $# -ne $EXPECTED_ARGS ]
       qm create "$vIDDeLaMV"        \
         --balloon 0                 \
         --bios ovmf                 \
+        --boot order=sata0          \
         --cores "$vHilos"           \
         --keyboard es               \
         --machine q35               \
