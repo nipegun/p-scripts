@@ -89,7 +89,8 @@ if [ $# -ne $EXPECTED_ARGS ]
     # Crear el disco para el almacenamiento
       qm set "$vIDDeLaMV" --sata1 "$vAlmacenamiento":50
 
-
+    # Crear la nota para la máquina virtual
+      sed -i '1i#<p>Elige el modelo DS3622xs+</p>' /etc/pve/qemu-server/"$vIDDeLaMV".conf
 
 
     echo ""
